@@ -1,0 +1,8 @@
+*.tex text diff=tex
+*.py text diff=python
+*.md text
+*.json text
+*.csv text
+*.yml text
+*.yaml text
+*.pdf binary
