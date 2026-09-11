@@ -1,0 +1,234 @@
+\end{equation}
+である。これは空間微分の寄与とJordanian変形の寄与を明確に分けている。
+
+ここで用いている$\Pi$は、transfer matrixの局所漸近展開を記述するformal projectorである。monodromyの二つの固有値の比に由来する$\exp(-c/\zeta)$型の項は、$\zeta$のpower seriesの全次数を越えるため、ここで取り出すlocal hierarchyの係数には入らない。本報告はその非摂動的な漸近項を主張の対象にしない。
+
+\subsection{$r$-matrix routeから時間Lax行列を取り出す}
+
+式\eqref{audit5r:eq:VSTS}の局所power seriesでは、monodromy挿入を前節の$\Pi$で表せる。permutation作用素について
+\begin{equation}
+\tr_a(\Pi_a P_{ab})=\Pi_b
+\end{equation}
+が成立する。また、Jordanian tensor\eqref{audit5r:eq:Cj}から
+\begin{equation}
+\tr_a(\Pi_a C_{ab})
+=
+\tr(\Pi\Pup)\Eplus
+-\tr(\Pi\Eplus)\Pup
+\end{equation}
+を得る。
+
+従って、生成時間行列の局所展開は
+\begin{equation}
+\mathbb V(x;\zeta,\mu)
+=
+\mathbb V^{(0)}(x;\mu)
++\zeta\mathbb V^{(1)}(x;\mu)
++O(\zeta^2)
+\end{equation}
+と書け、その一次係数は
+\begin{equation}
+\mathbb V^{(1)}
+=
+-\frac{\ii}{2\mu}
+\left(\Pi_1+\frac{\rho}{\mu}\right)
++\ii\alpha
+\left[
+\tr(\Pi_1\Pup)\Eplus
+-\tr(\Pi_1\Eplus)\Pup
+\right]
+\label{audit5r:eq:Vgen1}
+\end{equation}
+となる。
+
+符号に注意する。標準式\eqref{audit5r:eq:STSflow}はHamiltonianをPoisson bracketの第一引数に置き、
+\[
+\{H,U\}=\partial_x\mathbb V+[\mathbb V,U]
+\]
+と書いている。一方、前報告の時間発展は
+\[
+U_T=\{U,H\}
+\]
+という規約である。Poisson bracketの反対称性により、同じ物理時間に対応する時間Lax行列は
+\begin{equation}
+V_r(x;\mu):=-\mathbb V^{(1)}(x;\mu)
+\label{audit5r:eq:Vrdef}
+\end{equation}
+である。ここで添字$r$は古典$r$-matrix routeから得たことを示す。
+
+この段階では、$\ln t(\zeta)$の一次係数をあらかじめClass 5 Hamiltonianと同一視していない。式\eqref{audit5r:eq:Vrdef}が生成するvector fieldを、量子有限格子極限から独立に得たClass 5の時間Lax行列と比較して同定する。
+
+\subsection{量子有限格子極限から得た時間行列との比較}
+
+前報告では、Class 5の時間Lax行列を、空間微分を含む行列$W$と、空間微分を含まない行列$Z$に分けて
+\begin{equation}
+V_q=W+Z
+\label{audit5r:eq:Vq}
+\end{equation}
+と書いた。ここで$q$はquantum finite-lattice routeを表す添字であり、spin成分$q$とは無関係である。混同を避けるため、本文では必要な箇所で「量子極限の時間行列$V_q$」と併記する。
+
+微分部分$W$は
+\begin{align}
+W_{11}&=-\frac{\ii}{4\mu}
+\left[pq_x-p_xq+4\alpha\mu(zp_x-pz_x)\right],\\
+W_{12}&=\frac{\ii}{2\mu}
+\left[zq_x-qz_x+\alpha\mu(pq_x-p_xq)\right],\\
+W_{21}&=\frac{\ii}{2\mu}(pz_x-zp_x),\\
+W_{22}&=\frac{\ii}{4\mu}(pq_x-p_xq)
+\label{audit5r:eq:Wcomponents}
+\end{align}
+であり、代数部分$Z$は
+\begin{equation}
+Z=2\ii U^2-\frac{\ii}{4\mu^2}\Id_2
+\label{audit5r:eq:Z}
+\end{equation}
+である。
+
+式\eqref{audit5r:eq:Pi1}を式\eqref{audit5r:eq:Vgen1}へ代入し、spin-length constraint
+\[
+pq+z^2=1
+\]
+だけを用いて整理すると、今回の中心結果
+\begin{equation}
+V_r(x;\mu)-V_q(x;\mu)
+=
+\frac{\ii}{4\mu^2}\Id_2
+\label{audit5r:eq:central}
+\end{equation}
+を得る。
+
+右辺は場$\Svec$にも空間座標$x$にも依存しない。従って
+\begin{equation}
+\partial_x\left(\frac{\ii}{4\mu^2}\Id_2\right)=0,
+\qquad
+\left[\frac{\ii}{4\mu^2}\Id_2,U\right]=0
+\end{equation}
+であり、二つの時間Lax行列は同じ零曲率方程式を与える。
+
+この一致は、Class 5のHamiltonian flowを生成するlocal chargeが、transfer matrixの小$\zeta$展開で一次の係数として現れることも意味する。厳密には、その一次係数と前報告のHamiltonianの差として、固定spin-length leaf上でvector fieldを持たないCasimir、場に依存しない定数、または境界条件で消える全微分を加える自由度が残る。しかし運動方程式と時間Lax成分の照合には影響しない。
+
+\subsection{undeformed極限での確認}
+
+変形パラメータ$\alpha$を0にすると
+\[
+U=\frac{\rho}{2\mu}
+\]
+となる。このとき式\eqref{audit5r:eq:Pi1}は
+\begin{equation}
+\Pi_1=2[\rho,\rho_x]
+\end{equation}
+へ簡約される。Pauli行列を用い、$\rho=(\Id_2+\Svec\cdot\bm\sigma)/2$と書けば
+\begin{equation}
+2[\rho,\rho_x]
+=
+\ii(\Svec\times\Svec_x)\cdot\bm\sigma
+\end{equation}
+である。
+
+この式を$r$-matrix routeの時間行列へ代入すると、標準的なisotropic Landau--Lifshitzの時間成分が、やはり場に依存しない単位行列成分を除いて得られる。Doikou--Karaiskosの標準Lax pair\cite{DK}とも、Poisson bracketと時間の規格化を合わせれば同じ構造になる。従ってClass 5の一致は、変形項だけの偶然ではない。
+
+\subsection{記号計算による独立検証}
+
+本報告の主要恒等式はSymPyで独立に再計算した。検証コードは本報告と同じディレクトリに保存した。使用した代数的拘束は
+\begin{equation}
+pq+z^2=1,
+\qquad
+p_xq+pq_x+2zz_x=0
+\label{audit5r:eq:constraints}
+\end{equation}
+である。第二式は第一式を空間微分した接ベクトル条件である。
+
+検証した項目は次の通りである。
+\begin{longtable}{L{69mm}L{70mm}}
+\toprule
+検査 & 結果\\
+\midrule
+\endhead
+連続$r$-matrixによる線形Poisson algebra、式\eqref{audit5r:eq:linearPB} & 全$4\times4$成分で厳密に一致\\
+projector条件$\rho\Pi_1+\Pi_1\rho=\Pi_1$ & 拘束\eqref{audit5r:eq:constraints}の下で厳密に成立\\
+projector輸送方程式\eqref{audit5r:eq:Pi1transport} & 拘束\eqref{audit5r:eq:constraints}の下で厳密に成立\\
+$r$-matrix routeと量子有限格子routeの差、式\eqref{audit5r:eq:central} & $pq+z^2=1$の下で厳密に成立\\
+\bottomrule
+\end{longtable}
+
+最後の差は実際に
+\begin{equation}
+V_r-V_q
+=
+\begin{pmatrix}
+\ii/(4\mu^2)&0\\
+0&\ii/(4\mu^2)
+\end{pmatrix}
+\end{equation}
+となる。数値フィッティングではなく、symbolic reductionによる恒等式である。
+
+\subsection{今回の一致が意味すること}
+
+\subsubsection{計算上の意味}
+
+これまでのClass 5計算には、時間Lax行列の正しさを支える三つの独立な経路がある。
+\begin{enumerate}
+\item 量子有限格子のSutherland relationから時間Lax作用素を構成し、その作用素積を保持して連続極限を取る経路。
+\item 連続HamiltonianとPoisson bracketから運動方程式を導き、補正後の零曲率方程式とoff-shellで照合する経路。
+\item 本報告で行った、古典$r$-matrixとmonodromy hierarchyから時間Lax成分を生成する経路。
+\end{enumerate}
+
+三つ目は一つ目の量子time operatorを入力していない。従って
+\begin{equation}
+V_{\rm quantum\,limit}
+\equiv
+V_{r\text{-matrix}}
+\quad
+\text{mod }f(\mu)\Id_2
+\label{audit5r:eq:bridgeclosed}
+\end{equation}
+が得られたことは、前報告の共有格子点補正と時間成分の独立な検算になっている。
+
+\subsubsection{新規性についての慎重な読み方}
+
+この一致によって、「Class 5の時間Lax成分は古典$r$-matrixから原理的に構成できない」という主張にはならない。むしろ逆で、標準的なmonodromy/$r$-matrix hierarchyを適切な小スペクトルパラメータ展開で実行すれば、同じ時間成分に到達することを今回確認した。
+
+従って投稿時に強調すべき点は、
+\begin{quote}
+Class 5の古典$r$-matrix一般論そのものではなく、finite-lattice quantum zero-curvature equationのtime operatorから、共有格子点のcoherent-state symbol補正を保持して、同じ古典時間Lax成分へ直接降りる経路を明示したこと
+\end{quote}
+である。
+
+Class 5原論文がcompanion matrixを得られなかったことは明記している\cite{DFN}が、原著者がどの具体的ansatzやmonodromy展開を試したかは公開情報から分からない。そのため、「原著者がsymbol correctionを落としたため失敗した」とは主張しない。
+
+\subsection{現在の研究の終了判定}
+
+前回の位置づけ報告では、このClass 5の$r$-matrix routeとの式レベルの照合を、Class 5/6 quantum--classical Lax bridgeを閉じるための最後の必須計算とした。本報告でその一致\eqref{audit5r:eq:central}が得られたので、現在の計算課題は一度終了としてよいと判断する。
+
+現時点で完了している内容は次の通りである。
+\begin{enumerate}
+\item Class 5：量子$R/L$から有限格子time operatorを構成し、coherent-state積補正を含めて連続$U,V$を独立導出した。
+\item Class 5：補正後の零曲率方程式とHamiltonian EOMのoff-shell同値性を確認した。
+\item Class 6：同じ手順を独立に行い、Class 5の単純な全微分補正をそのまま流用できないことを確認した。
+\item Class 5/6：共有格子点補正を二次モーメントsymbol差のadjoint covariant derivativeとして共通記法に整理した。
+\item Class 5：古典$r$-matrix／monodromy routeから得る時間Lax行列が、量子有限格子極限の時間Lax行列とスカラー項を除いて一致することを本報告で確認した。
+\end{enumerate}
+
+従って、soft particle productionの機構解明、任意spin-$j$への一般化、任意の量子可積分鎖に対する一般定理は、この研究を完了させるための必須条件ではない。それらは独立したfollow-upの候補である。
+
+次に必要なのは新しい計算を増やすことではなく、論文として
+\begin{enumerate}
+\item どの結果を主定理・主命題に置くか、
+\item Class 5とClass 6をどの順番で提示するか、
+\item standardな$r$-matrix routeとの差をどの程度本文で説明するか、
+\item 「何を初めて示した」と安全に書けるか、
+\end{enumerate}
+を決めることである。
+
+\subsection{まとめ}
+
+Class 5 Landau--Lifshitz模型について、古典$r$-matrixとmonodromyから時間成分を作る標準的な構成を、前報告の規約に合わせて実行した。連続古典$r$-matrixはrationalなpermutation項とJordanianな定数項からなり、空間Lax行列の線形Poisson algebraを厳密に再現する。
+
+小さい生成スペクトルパラメータ$\zeta$でmonodromyの局所rank-one projectorを展開すると、一次補正$\Pi_1$は式\eqref{audit5r:eq:Pi1}で決まる。transfer matrix hierarchyの一次係数から作る時間Lax行列$V_r$は、量子有限格子のtime operatorを連続極限へ移して得た時間Lax行列$V_q$と
+\[
+V_r-V_q=\frac{\ii}{4\mu^2}\Id_2
+\]
+だけ異なる。この差は零曲率方程式に影響しない。
+
+従って、Class 5の時間Lax成分は、量子finite-lattice routeと古典$r$-matrix routeという独立な二方向から同じものとして回収された。前回設定したClass 5/6 quantum--classical Lax bridgeの計算上のゴールは、ここで達成したと判断する。
+
