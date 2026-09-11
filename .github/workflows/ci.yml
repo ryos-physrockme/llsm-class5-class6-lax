@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-physics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run analytic and finite-lattice checks
+        run: |
+          make verify-class5
+          make verify-class6
+      - name: Enforce manuscript TeX style constraints
+        run: |
+          if grep -R -n -E '\\(mbox|boxed|fbox|framebox)' paper notes; then
+            echo "Forbidden TeX boxing/mbox command found."
+            exit 1
+          fi
+
+  verify-ml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Reproduce documented ML coefficient searches
+        run: make verify-ml
+
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install TeX Live and Japanese support
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-latex-recommended texlive-latex-extra \
+            texlive-luatex texlive-lang-japanese fonts-lmodern
+      - name: Build manuscript
+        run: make paper
+      - name: Build complete research note
+        run: make note
+      - uses: actions/upload-artifact@v4
+        with:
+          name: compiled-documents
+          path: |
+            paper/main.pdf
+            notes/full_research_note_ja.pdf
