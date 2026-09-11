@@ -62,8 +62,13 @@ Written in the current draft:
 3. Class 5 finite-lattice derivation of the time Lax matrix;
 4. Class 5 zero-curvature/EOM equivalence;
 5. Class 5 independent classical `r`-matrix comparison.
+6. Class 6 section 4.1: quantum Hamiltonian and `R`-matrix, continuum
+   scaling, exact spatial-operator expansion, and continuum spatial Lax matrix.
 
-Next technical section to write: **Class 6 model**. After that, write the Class 5/Class 6 comparison, scope, Introduction, and Conclusions.
+Next technical section to write: **Section 4.2, Class 6 time Lax matrix from
+the finite-lattice construction**. Section 4.3 will establish the
+zero-curvature/EOM equivalence. After that, write the Class 5/Class 6
+comparison, scope, Introduction, and Conclusions.
 
 Current planned paper structure:
 
@@ -82,6 +87,12 @@ Appendices
 - Quantum lattice pair: `L_{a,n}(u)` and `A_{a,n}(u)`.
 - Continuum pair: `U(x,t;λ)` and `V(x,t;λ)`.
 - `u` is the quantum spectral parameter; `λ` is the continuum Lax spectral parameter when that convention is used.
+- In manuscript section 4, `κ_6` and `α_6` denote the Class 6 lattice and
+  continuum deformation parameters, with `κ_6 = ε² α_6`. They correspond to
+  `a` and `alpha` in the existing Class 6 verification scripts and research
+  note; this is a notation change only. `K_6` is the four-dimensional
+  two-site deformation operator, and `L_6^(j)` denotes the coefficient of
+  `ε^j` in the normalized lattice spatial operator.
 - Repeated Cartesian indices are summed once this convention has been declared.
 - Symbols are introduced only after their physical meaning has been stated.
 

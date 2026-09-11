@@ -124,6 +124,15 @@ quantum_flow = at((d(f1,right,Y)-d(f1,left,Y)
     +d(d(f1,right,X),right,X)-d(d(f1,left,X),left,X))/2
     +d(f2,right,X)+d(f2,left,X)+d(R2,right,X)+d(L2,left,X)+R3-L3)
 U, M = at(Ur), at(Mr)
+raw_check('permutation_lower_symbol', at(low(embed(P,0,2)))-rho(S))
+raw_check('deformation_lower_symbol', at(low(embed(K,0,2)))
+    -s.Matrix([[S[0]/2,S[2]],[0,-S[0]/2]]))
+raw_check('deformation_square_lower_symbol', at(low(embed(K*K,0,2)))
+    -s.Matrix([[0,-S[0]],[0,0]]))
+bond_symbol = s.trace(s.kronecker_product(rho(left),rho(right))*h)
+bond_formula = (1+(left[0]*right[1]+left[1]*right[0])/2
+    +left[2]*right[2]+aq*(left[0]*right[2]+left[2]*right[0])/2)
+raw_check('two_site_Hamiltonian_lower_symbol',s.Matrix([bond_symbol-bond_formula]))
 raw_check('quantum_rhs_decomposition', quantum_flow-dx(Vdown)-comm(Vdown,U)-source)
 raw_check('coincident_A1', at(f1))
 

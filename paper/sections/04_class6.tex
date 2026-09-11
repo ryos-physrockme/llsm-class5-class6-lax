@@ -1,7 +1,264 @@
 \section{Class 6 model}
+\label{sec:class6-model}
+
+We now apply the finite-lattice construction to the Class 6 chain.  The name
+refers to the regular difference-form solution classified in
+Ref.~\cite{deLeeuwPribytokRyan2019}, subsequently identified with the
+eleven-vertex model in Ref.~\cite{CorcoranDeLeeuw2024}.  Its associated
+Landau--Lifshitz hierarchy has been studied in
+Ref.~\cite{LevinOlshanetskyZotov2014}.  Here we use the quantum-chain
+normalization of Appendix~A of
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} to construct the continuum Lax
+matrices.  The spatial expansion contains a nonzero second-order operator
+coefficient, which must be retained when taking the continuum limit of the
+time component.
 
 \subsection{Quantum Class 6 model and continuum limit}
-% To be written later.
+\label{sec:class6-spatial-lax}
+
+Let $\kappa_6\in\mathbb C$ denote the \emph{Class 6 lattice deformation
+parameter}.  We use the ordered two-spin basis
+$\{|\!\uparrow\uparrow\rangle,|\!\uparrow\downarrow\rangle,
+|\!\downarrow\uparrow\rangle,|\!\downarrow\downarrow\rangle\}$
+and fix the coefficient of the permutation interaction to be $2$.
+In this normalization the local Hamiltonian is
+\begin{equation}
+h_6(\kappa_6)
+=
+\begin{pmatrix}
+2&\kappa_6&\kappa_6&0\\
+0&0&2&-\kappa_6\\
+0&2&0&-\kappa_6\\
+0&0&0&2
+\end{pmatrix}
+=2P+\kappa_6 K_6,
+\label{eq:class6-local-hamiltonian}
+\end{equation}
+where $P$ is the permutation operator in
+Eq.~\eqref{eq:local-permutation-operator}, and the two-site deformation
+operator $K_6$ is defined by
+\begin{equation}
+K_6
+:=
+\begin{pmatrix}
+0&1&1&0\\
+0&0&0&-1\\
+0&0&0&-1\\
+0&0&0&0
+\end{pmatrix}.
+\label{eq:class6-K-definition}
+\end{equation}
+Its algebra with $P$ is
+\begin{equation}
+PK_6=K_6P=K_6,
+\qquad K_6^3=0,
+\qquad
+K_6^2=
+\begin{pmatrix}
+0&0&0&-2\\
+0&0&0&0\\
+0&0&0&0\\
+0&0&0&0
+\end{pmatrix}.
+\label{eq:class6-PK-algebra}
+\end{equation}
+For the periodic chain of $N$ sites, the quantum Hamiltonian is
+\begin{equation}
+H^{\rm lat}_6(\kappa_6)
+=\sum_{n=1}^{N}h_{6;n,n+1}(\kappa_6),
+\qquad h_{6;N,N+1}\equiv h_{6;N,1}.
+\label{eq:class6-lattice-hamiltonian}
+\end{equation}
+The Hamiltonian is non-Hermitian for $\kappa_6\neq0$ in the standard inner
+product.  At $\kappa_6=0$ it reduces to the spin-$\tfrac12$ XXX chain with
+the same exchange normalization as in Section~\ref{sec:class5-spatial-lax}.
+
+Using the quantum spectral parameter $u$ of
+Section~\ref{sec:quantum-lattice-setup}, the regular $R$-matrix generating
+Eq.~\eqref{eq:class6-local-hamiltonian} is
+\begin{align}
+R_6(u;\kappa_6)
+&=2u\Id_4+P+\kappa_6 u(1+2u)K_6
++\frac{\kappa_6^2u^2(1+2u)^2}{2}K_6^2
+\label{eq:class6-R-polynomial}\\
+&=
+\begin{pmatrix}
+1+2u&\kappa_6u(1+2u)&\kappa_6u(1+2u)&-\kappa_6^2u^2(1+2u)^2\\
+0&2u&1&-\kappa_6u(1+2u)\\
+0&1&2u&-\kappa_6u(1+2u)\\
+0&0&0&1+2u
+\end{pmatrix}.
+\label{eq:class6-R-matrix}
+\end{align}
+This is Eq.~(A.1) of Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} with the
+exchange normalization fixed above.  It satisfies the Yang--Baxter
+equation and
+\begin{equation}
+R_6(0;\kappa_6)=P,
+\qquad
+P\left.\partial_uR_6(u;\kappa_6)\right|_{u=0}
+=h_6(\kappa_6).
+\label{eq:class6-R-regularity-hamiltonian}
+\end{equation}
+All quantum spectral derivatives are taken at fixed $\kappa_6$.
+The identities in Eq.~\eqref{eq:class6-PK-algebra} also give
+\begin{equation}
+R_6(u;\kappa_6)R_6(-u;\kappa_6)
+=(1-4u^2)\Id_4.
+\label{eq:class6-R-inverse-relation}
+\end{equation}
+Thus the inverse required by the finite-lattice time operator exists for
+$u\neq\pm\tfrac12$.  Equation~\eqref{eq:class6-R-inverse-relation} is an
+algebraic inversion relation; it contains no Hermitian conjugation.
+
+To fix the continuum scaling, consider the lower symbol of a bond
+Hamiltonian.  The coherent states and the smooth unit spin field
+$\boldsymbol S(x,t)$ are those of Section~\ref{sec:coherent-long-wavelength}.
+We write the transverse components as
+\begin{equation}
+S^{\pm}:=S^1\pm\ii S^2,
+\qquad S_n^{\pm}:=S^{\pm}(x_n,t).
+\label{eq:class6-spin-pm}
+\end{equation}
+The algebraic expressions below also extend to complex spin components
+subject to $\boldsymbol S^{\mathsf T}\boldsymbol S=1$, with the transpose
+defining a bilinear product.  On this complexified spin space, $S^+$ and
+$S^-$ need not be complex conjugates.
+Direct evaluation of Eq.~\eqref{eq:class6-local-hamiltonian} gives
+\begin{equation}
+h_{6;n,n+1}^{\downarrow}
+=1+\boldsymbol S_n^{\mathsf T}\boldsymbol S_{n+1}
++\frac{\kappa_6}{2}
+\left(S_n^+S_{n+1}^3+S_n^3S_{n+1}^+\right).
+\label{eq:class6-bond-lower-symbol}
+\end{equation}
+After subtracting the constant $2$, the exchange term starts at order
+$\epsilon^2$ by Eq.~\eqref{eq:spin-kinematical-identities}, whereas the
+deformation term tends to $\kappa_6 S^+S^3$ for coincident spins.  Both
+terms therefore survive in the same continuum limit if the
+\emph{Class 6 continuum deformation coupling} $\alpha_6$ and the
+continuum spectral parameter $\lambda\neq0$ are held fixed under
+\begin{equation}
+\kappa_6=\epsilon^2\alpha_6,
+\qquad
+u=\frac{\lambda}{\epsilon},
+\qquad
+t=\epsilon^2t_{\rm lat},
+\qquad \lambda\neq0.
+\label{eq:class6-continuum-scaling}
+\end{equation}
+Here $\epsilon$ is the lattice spacing, $u$ and $\lambda$ are the quantum
+and continuum spectral parameters, and $t_{\rm lat}$ and $t$ are the
+lattice and continuum times.  The deformation scaling agrees with
+Appendix~A.1 of Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}; the spectral
+scaling ensures that the normalized spatial Lax operator approaches the
+identity.  If lattice parameters are dimensionless, $\lambda$ has the
+dimension of length and $\alpha_6$ has the dimension of inverse length
+squared.
+
+In the fundamental representation, define
+$L_{6;a,n}(u):=R_{6;a,n}(u;\kappa_6)$ on
+$\mathcal V_a\otimes\mathcal H_n$ and normalize it as
+\begin{equation}
+\widehat L_{6;a,n}(\epsilon,\lambda)
+:=\frac{1}{2u}L_{6;a,n}(u).
+\label{eq:class6-normalized-L}
+\end{equation}
+Substituting Eq.~\eqref{eq:class6-continuum-scaling} into
+Eq.~\eqref{eq:class6-R-polynomial} yields the exact finite expansion
+\begin{equation}
+\widehat L_{6;a,n}
+=\Id_{\mathcal V_a\otimes\mathcal H_n}
++\epsilon L^{(1)}_{6;a,n}
++\epsilon^2 L^{(2)}_{6;a,n}
++\epsilon^3 L^{(3)}_{6;a,n}.
+\label{eq:class6-L-expansion}
+\end{equation}
+The superscript labels the power of $\epsilon$, and each coefficient is
+the copy on $\mathcal V_a\otimes\mathcal H_n$ of the two-site operator
+\begin{align}
+L^{(1)}_6
+&=\frac{P}{2\lambda}
++\alpha_6\lambda K_6+\alpha_6^2\lambda^3K_6^2,
+\label{eq:class6-L-first-coefficient}\\
+L^{(2)}_6
+&=\frac{\alpha_6}{2}K_6+\alpha_6^2\lambda^2K_6^2,
+\qquad
+L^{(3)}_6=\frac{\alpha_6^2\lambda}{4}K_6^2.
+\label{eq:class6-L-higher-coefficients}
+\end{align}
+In particular, the operator square of the first coefficient satisfies
+\begin{equation}
+\bigl(L^{(1)}_6\bigr)^2
+=\frac{\Id_4}{4\lambda^2}+2L^{(2)}_6.
+\label{eq:class6-L-first-square}
+\end{equation}
+The second coefficient is therefore already present in products of the
+leading spatial coefficients.  It will enter the coherent-state product
+correction in the time Lax equation.
+
+For the lower-symbol evaluation at $x=x_n$, the permutation gives
+\begin{equation}
+P_{a,n}^{\downarrow}
+=\frac12
+\begin{pmatrix}
+1+S^3&S^-\\
+S^+&1-S^3
+\end{pmatrix},
+\label{eq:class6-P-lower-symbol}
+\end{equation}
+while the deformation operators give
+\begin{equation}
+K_{6;a,n}^{\downarrow}
+=\begin{pmatrix}
+S^+/2&S^3\\
+0&-S^+/2
+\end{pmatrix},
+\qquad
+\bigl(K_{6;a,n}^2\bigr)^{\downarrow}
+=\begin{pmatrix}
+0&-S^+\\
+0&0
+\end{pmatrix}.
+\label{eq:class6-K-lower-symbols}
+\end{equation}
+The second matrix is obtained by squaring the quantum operator before
+taking its lower symbol.  Using these matrices in
+Eq.~\eqref{eq:class6-L-first-coefficient}, the continuum spatial Lax
+matrix is
+\begin{align}
+U_6(x,t;\lambda)
+&:=\bigl(L^{(1)}_{6;a,n}\bigr)^{\downarrow}
+\big|_{x_n=x}
+\nonumber\\
+&=\frac{1}{4\lambda}
+\begin{pmatrix}
+1+S^3+2\alpha_6\lambda^2S^+
+&S^-+4\alpha_6\lambda^2S^3-4\alpha_6^2\lambda^4S^+\\
+S^+&1-S^3-2\alpha_6\lambda^2S^+
+\end{pmatrix}.
+\label{eq:class6-spatial-Lax}
+\end{align}
+It obeys
+\begin{equation}
+\widehat L_{6;a,n}^{\downarrow}
+=\Id_{\mathcal V_a}+\epsilon U_6(x_n,t;\lambda)
++\mathcal O(\epsilon^2),
+\qquad
+\tr U_6=\frac{1}{2\lambda}.
+\label{eq:class6-L-lower-expansion}
+\end{equation}
+We retain the complete $\mathfrak{gl}(2)$ matrix in the finite-lattice
+limit and denote its traceless part by
+\begin{equation}
+U_{6,0}:=U_6-\frac{1}{4\lambda}\Id_2.
+\label{eq:class6-traceless-U}
+\end{equation}
+At $\alpha_6=0$, Eq.~\eqref{eq:class6-spatial-Lax} reduces to
+$(\Id_2+S^i\sigma^i)/(4\lambda)$, the spatial Lax matrix of the isotropic
+Landau--Lifshitz model in the normalization used here.  For the deformed
+model, Eqs.~\eqref{eq:class6-L-expansion}--\eqref{eq:class6-L-first-square}
+provide the operator coefficients needed to construct the time component.
 
 \subsection{Time Lax matrix from the finite-lattice construction}
 % To be written later.
