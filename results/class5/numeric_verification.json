@@ -1,0 +1,25 @@
+{
+  "seed": 20260909,
+  "local_zero_curvature_cases": 24,
+  "max_relative_local_zero_curvature_residual": 4.737755340897035e-16,
+  "shared_site_star_cases": 32,
+  "max_absolute_star_residual": 6.778727589240029e-15,
+  "profile_x": 0.37,
+  "lambda": [0.8, 0.2],
+  "limits": {
+    "XXX": {
+      "correction_norm": 0.14957097491893567,
+      "naive_continuum_error": 0.14957097491893567,
+      "exact_flow_order": 1.9999486516646723,
+      "connected_order": 1.00757343051522
+    },
+    "Class5": {
+      "correction_norm": 0.36947300536693356,
+      "naive_continuum_error": 0.36947300536693356,
+      "exact_flow_order": 1.9999479727554053,
+      "connected_order": 1.0038793562863202
+    }
+  },
+  "numpy_version": "2.3.5",
+  "sympy_version": "1.14.0"
+}
