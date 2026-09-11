@@ -1,0 +1,564 @@
+\part{独立監査記録：模型別の詳細導出}
+\label{part:audits}
+以下の三章は、上の整理された本文とは別に、最終段階で実行した独立再導出を詳細な計算順のまま保存する。本文と式が重複する箇所があるが、ここでは「既知の古典時間成分を入力しなかったか」「どの数値検査を独立に行ったか」を監査可能にするため意図的に残す。
+
+\section{独立監査 A：Class 5 量子作用素積からの時間 Lax 成分}
+\subsection{問題設定と今回の到達点}
+
+Class 5 は、対角化不可能な transfer matrix を持ち得る可積分スピン鎖の一つである。de Leeuw--Fontanella--Nieto Garc\'ia はその連続極限を構成し、古典空間 Lax 成分を議論したが、対応する時間成分を得られなかったことを明記している。原論文は代わりに保存量と boost の構成を用いる\cite{DFN}。本報告では、その模型の局所的な量子--古典 Lax 対応に問題を限定する。粒子生成、散乱状態、境界 dressing の解析は行わない。
+
+先行する研究用計算ノートには、Class 5/6 の時間成分と lower-symbol 補正の明示式が収録されている。本報告の課題は、それらの式を再掲することではない。補正を $V_{\rm cont}-\vdown$ として定義する前に、量子側の積から独立に求められるかを検証する。既存ノートのプログラムや保存済み数値は今回の検証コードに読み込んでいない。
+
+以下で行う計算の順序は
+\begin{equation}
+R\ \longrightarrow\ h,\ \mathcal A
+\ \longrightarrow\ (\mathcal A L)^{\downarrow},\ (L\mathcal A)^{\downarrow}
+\ \longrightarrow\ \Cstar
+\ \longrightarrow\ \Delta V,\ V
+\label{audit5q:eq:order}
+\end{equation}
+である。古典運動方程式と照合するのは最後であり、$\Cstar$ の導出に既知の $V$ は用いない。
+
+量子スピン鎖の古典連続極限そのもの\cite{ADS}と、coherent-state star product\cite{KS}は既存の方法である。本報告で新たに検証する内容は、指定した Class 5 の表示における補正の独立導出と、その簡潔な行列表示である。この形が文献上初めてであること、あるいは原論文の計算が失敗した原因を特定したことは主張しない。
+
+\subsection{量子格子の規約}
+\subsubsection{基本 $R$ 行列と Hamiltonian}
+
+補助空間を $\mathcal V=\mathbb C^2$、各格子点の量子空間を $\mathcal H_n=\mathbb C^2$ とする。$R$ 行列は $\mathcal V\otimes\mathcal H_n$ 上に作用する。添字を省いた二空間上で
+\begin{equation}
+P=\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{pmatrix},
+\qquad
+K=\begin{pmatrix}0&1&-1&0\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix}
+\label{audit5q:eq:PK}
+\end{equation}
+を定義する。$P$ は二つの空間を交換する作用素、$K$ は本報告の表示を指定する二空間上の nilpotent 作用素である。両者は
+\begin{equation}
+P^2=\Id_4,\qquad K^2=0,\qquad PK=K,\qquad KP=-K
+\label{audit5q:eq:PKalgebra}
+\end{equation}
+を満たす。
+
+原論文の式 (1.1) に $a_1=1,\ a_2=2a,\ a_3=0$ を代入すると\cite{DFN}
+\begin{equation}
+R(u;a)=2u\Id_4+P+2auK
+=\begin{pmatrix}
+1+2u&2au&-2au&0\\
+0&2u&1&0\\
+0&1&2u&0\\
+0&0&0&1+2u
+\end{pmatrix}.
+\label{audit5q:eq:R}
+\end{equation}
+$u$ は量子スペクトルパラメータ、$a$ は量子変形パラメータである。正則性 $R(0)=P$ に基づき、格子 Hamiltonian を
+\begin{equation}
+h_{n,n+1}(a)=P_{n,n+1}\partial_uR_{n,n+1}(u;a)\big|_{u=0}
+=2P_{n,n+1}+2aK_{n,n+1},\qquad
+H_{\rm lat}=\sum_n h_{n,n+1}
+\label{audit5q:eq:h}
+\end{equation}
+と定める。周期鎖では格子添字を周期的に読む。以下の局所恒等式は隣接する二つの bond だけに依存する。
+
+\subsubsection{有限格子の時間成分}
+
+$L_n(u)=R_{0n}(u;a)$ と書き、$0$ を補助空間の添字に用いる。格子時間 $t_{\rm lat}$ に対する Heisenberg 方程式は
+\begin{equation}
+\partial_{t_{\rm lat}}L_n=\ii[H_{\rm lat},L_n]
+\label{audit5q:eq:Heisenberg}
+\end{equation}
+とする。必要な Sutherland relation は
+\begin{equation}
+[h_{n-1,n},L_nL_{n-1}]
+=L_n\partial_uL_{n-1}-(\partial_uL_n)L_{n-1}.
+\label{audit5q:eq:Sutherland}
+\end{equation}
+これは式\eqref{audit5q:eq:R}を代入して作用素恒等式として確認できる。これにより
+\begin{equation}
+\mathcal A_n=\ii h_{n-1,n}
+-\ii L_n^{-1}h_{n-1,n}L_n
+-\ii L_n^{-1}\partial_uL_n
+\label{audit5q:eq:rawA}
+\end{equation}
+を取れば
+\begin{equation}
+\ii[H_{\rm lat},L_n]=\mathcal A_{n+1}L_n-L_n\mathcal A_n
+\label{audit5q:eq:discreteZC}
+\end{equation}
+が成立する。逆行列は正則なスペクトル領域で用い、得られる式は有理関数として継続する。
+
+\subsubsection{格子間隔・時間・スカラー成分の規格化}
+
+格子間隔 $\eps$ に対し
+\begin{equation}
+a=\eps\alpha,\qquad u=\frac{\lambda}{\eps},\qquad
+x_n=n\eps,\qquad T=\eps^2t_{\rm lat},\qquad\lambda\ne0
+\label{audit5q:eq:scaling}
+\end{equation}
+を用いる。$\alpha$ は連続理論の変形パラメータ、$\lambda$ は連続スペクトルパラメータである。規格化した空間演算子は厳密に
+\begin{equation}
+\widehat L_n=\frac{L_n}{2u}=\Id+\eps\ell_{0n},\qquad
+\ell=\frac{P}{2\lambda}+\alpha K,\qquad
+\ell^2=\frac{\Id_4}{4\lambda^2}
+\label{audit5q:eq:Lhat}
+\end{equation}
+となる。最後の恒等式は式\eqref{audit5q:eq:PKalgebra}から従う。
+
+時間成分の共通スカラーを
+\begin{equation}
+\widehat{\mathcal A}_n=\mathcal A_n+\frac{\ii}{u}\Id
+=-\ii\widehat L_n^{-1}\bigl([h_{n-1,n},\widehat L_n]
++\partial_u\widehat L_n\bigr)
+\label{audit5q:eq:Ahat}
+\end{equation}
+によって除く。この変更は式\eqref{audit5q:eq:discreteZC}を変えない。$h$ は式\eqref{audit5q:eq:h}で、規格化前の正則な $R$ から定義したままである。微分 $\partial_u$ は量子変形パラメータ $a$ を固定して行い、その後に式\eqref{audit5q:eq:scaling}を代入するので
+\begin{equation}
+\partial_u\widehat L_n=-\frac{P_{0n}}{2u^2}
+=-\frac{\eps^2P_{0n}}{2\lambda^2}
+\label{audit5q:eq:udiff}
+\end{equation}
+である。
+
+\subsection{coherent-state lower symbol と共有格子点}
+\subsubsection{場と行列の定義}
+
+Pauli 行列を $\sigma_a$ とし、古典 spin 場 $\bs(T,x)$ は
+\begin{equation}
+\bs^{\mathsf T}\bs=1
+\label{audit5q:eq:spinconstraint}
+\end{equation}
+を満たすとする。実球面上で spin-$\tfrac12$ coherent state の密度行列は
+\begin{equation}
+\rho(\bs)=\frac{\Id_2+\bs\cdot\bm\sigma}{2}.
+\end{equation}
+非 Hermitian 模型の局所代数を扱う際にはこれを複素化する。その場合も $\tr\rho=1,\ \rho^2=\rho$ は成り立つが、正値性は主張しない。
+
+式を短くするため
+\begin{equation}
+p=S^1+\ii S^2,\qquad q=S^1-\ii S^2,\qquad z=S^3,
+\qquad pq+z^2=1
+\label{audit5q:eq:pqz}
+\end{equation}
+と書く。$p,q$ は spin の成分であって運動量ではなく、$z$ もスペクトルパラメータではない。複素化後は $p,q$ を独立に扱う。したがって
+\begin{equation}
+\rho=\frac12\begin{pmatrix}1+z&q\\p&1-z\end{pmatrix}.
+\end{equation}
+
+演算子 $B$ の lower symbol $B^{\downarrow}$ は物理空間だけの期待値である。例えば二格子点に依存する場合
+\begin{equation}
+B^{\downarrow}(\bs_1,\bs_2)
+=\tr_{1,2}\bigl[(\Id_{\mathcal V}\otimes\rho(\bs_1)\otimes\rho(\bs_2))B\bigr]
+\in\End(\mathcal V).
+\label{audit5q:eq:lower}
+\end{equation}
+補助空間上の行列積の順序は維持する。空間成分は
+\begin{equation}
+U=\ell^{\downarrow}
+=\frac1{4\lambda}
+\begin{pmatrix}
+1+z+2\alpha\lambda p&q-2\alpha\lambda(1+z)\\
+p&1-z
+\end{pmatrix}.
+\label{audit5q:eq:U}
+\end{equation}
+特に
+\begin{equation}
+\tr U=\frac1{2\lambda}+\frac\alpha2p,\qquad
+\det U=\frac{\alpha p}{4\lambda}
+\label{audit5q:eq:traceU}
+\end{equation}
+であり、trace は一般に場に依存する。以下の簡潔な補正式ではこの $\mathfrak{gl}(2)$ 表示を用いる。trace を捨てた $U$ に同じ補正式を無条件で適用してはいけない。
+
+後の線形写像を
+\begin{equation}
+\Qmap(\bm v)=\frac1{4\lambda}
+\begin{pmatrix}
+v^3+2\alpha\lambda(v^1+\ii v^2)&v^1-\ii v^2-2\alpha\lambda v^3\\
+v^1+\ii v^2&-v^3
+\end{pmatrix}
+\label{audit5q:eq:Qmap}
+\end{equation}
+と定義する。これは $U$ の spin 依存部分の線形係数であり、$U_T=\Qmap(\bs_T)$、$U_x=\Qmap(\bs_x)$ である。
+
+\subsubsection{通常積と star product の差}
+
+一つの物理格子点に対して
+\begin{equation}
+A=A_0\otimes\Id_2+\sum_{a=1}^3A_a\otimes\sigma_a,
+\qquad
+B=B_0\otimes\Id_2+\sum_{b=1}^3B_b\otimes\sigma_b
+\end{equation}
+と展開する。$A_a,B_b$ は補助空間上の行列で、互いに可換とは仮定しない。Pauli 行列の積から厳密に
+\begin{equation}
+(AB)^{\downarrow}-A^{\downarrow}B^{\downarrow}
+=\sum_{a,b}A_aB_b
+\bigl(\delta_{ab}-S^aS^b+\ii\epsilon_{abc}S^c\bigr)
+\label{audit5q:eq:star}
+\end{equation}
+を得る。ここで $\epsilon_{123}=1$ は Levi-Civita 記号であり、格子間隔 $\eps$ と区別する。一般に $(AB)^{\downarrow}=A^{\downarrow}\star B^{\downarrow}$ と書く star product の、spin-$\tfrac12$ における明示式である\cite{KS}。
+
+$\widehat{\mathcal A}_{n+1}$ と $\widehat L_n$ は物理格子点 $n$ を共有する。そのため全状態を product coherent state にしても、式\eqref{audit5q:eq:star}の右辺は消えない。異なる格子点間の因子化と、同一格子点上の作用素積の因子化は別である。
+
+\subsection{量子作用素積から補正を求める}
+\subsubsection{必要な展開次数}
+
+この節では三つの tensor factor を $(0,1,2)=($補助空間、左格子点、右格子点$)$ として固定する。略記
+\begin{equation}
+\ell_L=\ell_{01},\qquad\ell_R=\ell_{02},\qquad
+h_0=2P_{12},\qquad h_1=2\alpha K_{12}
+\end{equation}
+を用いる。式\eqref{audit5q:eq:Ahat}の作用素展開は
+\begin{align}
+\widehat{\mathcal A}&=\eps A_1+\eps^2 A_2+O(\eps^3),\label{audit5q:eq:Aexpand}\\
+A_1&=-\ii[h_0,\ell_R],\label{audit5q:eq:A1}\\
+A_2&=\ii\ell_R[h_0,\ell_R]-\ii[h_1,\ell_R]
++\frac{\ii P_{02}}{2\lambda^2}.\label{audit5q:eq:A2}
+\end{align}
+$A_1,A_2$ は補助空間を含む $8\times8$ 行列である。
+
+$\bm s_1,\bm s_2$ を二つの古典 spin とし
+\begin{equation}
+f_r(\bm s_1,\bm s_2)=A_r^{\downarrow}(\bm s_1,\bm s_2),\qquad r=1,2
+\end{equation}
+と置く。$\partial_1 f[\bm v]$ は第1引数の方向 $\bm v$ への微分、$\partial_2 f[\bm v]$ は第2引数についての同じ微分である。直接の Pauli contraction は
+\begin{equation}
+f_1(\bm s_1,\bm s_2)=-2\Qmap(\bm s_1\times\bm s_2),\qquad
+f_1(\bs,\bs)=0
+\label{audit5q:eq:f1}
+\end{equation}
+を与える。この零によって、作用素としては $O(\eps)$ の $\widehat{\mathcal A}$ の lower symbol は、滑らかな場上で $O(\eps^2)$ から始まる。
+
+$x_n=x$ で $\widehat{\mathcal A}_n$ の支持は $(x-\eps,x)$ なので
+\begin{equation}
+\vdown=\lim_{\eps\to0}\frac{\widehat{\mathcal A}_n^{\downarrow}}{\eps^2}
+=f_2(\bs,\bs)-\partial_1f_1(\bs,\bs)[\bs_x].
+\label{audit5q:eq:Vdown}
+\end{equation}
+一方、離散零曲率式の左辺は $\partial_{t_{\rm lat}}\widehat L_n=\eps^3U_T$ に対応する。従って右辺の作用素積は $O(\eps^3)$ まで保つ必要がある。
+
+\subsubsection{共有格子点の補正を分離する}
+
+二格子点の関数として
+\begin{align}
+C_{R,2}&=(A_1\ell_L)^{\downarrow}-f_1\ell_L^{\downarrow},&
+C_{L,2}&=(\ell_RA_1)^{\downarrow}-\ell_R^{\downarrow}f_1,\label{audit5q:eq:C2def}\\
+C_{R,3}&=(A_2\ell_L)^{\downarrow}-f_2\ell_L^{\downarrow},&
+C_{L,3}&=(\ell_RA_2)^{\downarrow}-\ell_R^{\downarrow}f_2
+\label{audit5q:eq:C3def}
+\end{align}
+を定義する。添字 $R,L$ は離散式の右側・左側の時間成分に対応し、2,3 は $\eps$ の次数である。これら四行列は式\eqref{audit5q:eq:A1}、\eqref{audit5q:eq:A2}、\eqref{audit5q:eq:lower}だけから決まる。
+
+連結部分は、右側の時間成分では $(\bs(x),\bs(x+\eps))$、左側では $(\bs(x-\eps),\bs(x))$ で評価される。$O(\eps^2)$ の差は
+\begin{equation}
+[C_{R,2}-C_{L,2}]_{(\bs,\bs)}=0
+\end{equation}
+であり、最初の有限の寄与は
+\begin{equation}
+\Cstar=\bigl[
+\partial_2 C_{R,2}[\bs_x]+\partial_1 C_{L,2}[\bs_x]
++C_{R,3}-C_{L,3}
+\bigr]_{(\bs,\bs)}.
+\label{audit5q:eq:Cfromquantum}
+\end{equation}
+$A_3$ の通常積部分は同一点で左右の差が相殺され、$A_3$ と $\ell$ の連結部分は $O(\eps^4)$ なので、この次数の計算には必要ない。
+
+式\eqref{audit5q:eq:Cfromquantum}を共有格子点の式\eqref{audit5q:eq:star}で評価すると
+\begin{equation}
+\Cstar=-2\ii\partial_x(U^2).
+\label{audit5q:eq:Cresult}
+\end{equation}
+この段階では古典時間成分も運動方程式も入力していない。成分ごとの結果は付録\ref{audit5q:app:C}に掲げる。評価には $\bs^2=1$ とその $x$ 微分だけを用いる。
+
+式\eqref{audit5q:eq:Lhat}に着目すると、同じ結果を一格子点の二次 moment の差で
+\begin{align}
+\Xi&=(\ell^2)^{\downarrow}-(\ell^{\downarrow})^2
+=\frac{\Id_2}{4\lambda^2}-U^2,\label{audit5q:eq:Xi}\\
+\Cstar&=2\ii\partial_x\Xi
+\end{align}
+と書ける。この簡約には Class 5 の式\eqref{audit5q:eq:PKalgebra}を用いており、任意の $R$ 行列に同じ式が成立するとは限らない。
+
+\subsection{局所補正と時間 Lax 成分}
+\subsubsection{通常の零曲率方程式への復元}
+
+量子側から得た式は
+\begin{equation}
+U_T=\partial_x\vdown+[\vdown,U]+\Cstar
+\label{audit5q:eq:projected}
+\end{equation}
+である。式\eqref{audit5q:eq:Cresult}に対して
+\begin{equation}
+\Delta V=-2\ii U^2+\frac{\ii}{4\lambda^2}\Id_2
+\label{audit5q:eq:DeltaV}
+\end{equation}
+を取る。$\Delta V$ は $U$ の多項式なので
+\begin{equation}
+[\Delta V,U]=0,\qquad
+\partial_x\Delta V+[\Delta V,U]=\Cstar
+\label{audit5q:eq:absorption}
+\end{equation}
+が成り立つ。従って
+\begin{equation}
+V=\vdown+\Delta V,\qquad
+F_{Tx}=U_T-\partial_xV+[U,V]=0
+\label{audit5q:eq:ZC}
+\end{equation}
+を得る。式\eqref{audit5q:eq:DeltaV}のスカラー項は規約の選択であり、任意の場・$x$ に依存しない $f(\lambda)\Id_2$ をさらに足しても曲率は変わらない。ここで行っているのは時間成分の補正であり、それ自体を gauge transformation と呼ばない。
+
+計算結果は次の短い形に整理できる：
+\begin{align}
+W&=-2\Qmap(\bs\times\bs_x),\label{audit5q:eq:Wdef}\\
+Z&=2\ii U^2-\frac{\ii}{4\lambda^2}\Id_2,\label{audit5q:eq:Zdef}\\
+\vdown&=W+2Z,\qquad
+\Delta V=-Z,\qquad
+V=W+Z.
+\label{audit5q:eq:WZ}
+\end{align}
+従って
+\begin{equation}
+V=-2\Qmap(\bs\times\bs_x)+2\ii U^2-rac{\ii}{4\lambda^2}\Id_2.
+\label{audit5q:eq:Vcompact}
+\end{equation}
+$W$ の成分を明示すると
+\begin{align}
+W_{11}&=-\frac{\ii}{4\lambda}
+\bigl[pq_x-p_xq+4\alpha\lambda(zp_x-pz_x)\bigr],\label{audit5q:eq:W11}\\
+W_{12}&=\frac{\ii}{2\lambda}
+\bigl[zq_x-qz_x+\alpha\lambda(pq_x-p_xq)\bigr],\\
+W_{21}&=\frac{\ii}{2\lambda}(pz_x-zp_x),\qquad
+W_{22}=\frac{\ii}{4\lambda}(pq_x-p_xq).
+\end{align}
+式\eqref{audit5q:eq:U}、\eqref{audit5q:eq:WZ}、\eqref{audit5q:eq:Vcompact}だけで $U,V$ の全成分を復元できる。
+
+\subsubsection{局所補正の限定的な一意性}
+
+$\Delta V$ を、明示的な $x$ 依存も場の微分も持たない $\Delta V(\bs;\lambda)$ のクラスで探す。二つの解の差を $B$ とすると
+\begin{equation}
+\partial_x B+[B,U]=0
+\label{audit5q:eq:homogeneous}
+\end{equation}
+が任意の滑らかな単位 spin 場に対して成り立たなければならない。同一点で接ベクトル $\bs_x$ を自由に変えると、$B$ は球面上で一定でなければならない。残る条件は、全ての $\bs$ に対して $[B,U(\bs)]=0$ である。
+
+$\lambda\ne0$ では、$\Qmap(\bm v)$ の trace-free 部分は、$\bm v$ を変えると三次元の trace-free 行列空間全体を張る。従ってそれら全てと可換な定数 $2\times2$ 行列はスカラーだけである。このクラスでは式\eqref{audit5q:eq:DeltaV}は場に依存しないスカラーを除いて一意となる。より高い場の微分を許したクラスや別の gauge 表示について、一意性を主張してはいない。
+
+\subsection{運動方程式による独立照合}
+\subsubsection{Hamiltonian の連続極限}
+
+$\widehat{\mathcal A}$ の計算とは独立に、式\eqref{audit5q:eq:h}の期待値を展開する。同じ規約で
+\begin{equation}
+h^{\downarrow}\bigl(\bs(x),\bs(x+\eps)\bigr)
+=2+\eps^2\mathcal H+O(\eps^3),
+\end{equation}
+\begin{equation}
+\mathcal H=-\frac12(p_xq_x+z_x^2)
++\frac\alpha2\bigl[(1+z)p_x-pz_x\bigr],\qquad
+H_{\rm cl}=\int dx\,\mathcal H.
+\label{audit5q:eq:Hcl}
+\end{equation}
+有限長を固定した滑らかな場では $(H_{\rm lat}-2N)/\eps$ の symbol が $H_{\rm cl}$ に対応する。$N$ は格子点数である。$\alpha p_x/2$ は全微分だが、表示の由来を明らかにするため式には残した。積分 Hamiltonian の同一視には、周期境界条件または対応する境界項の処理を仮定する。
+
+spin-$\tfrac12$ の $[\sigma_a,\sigma_b]=2\ii\epsilon_{abc}\sigma_c$ と式\eqref{audit5q:eq:scaling}に対応する連続 Poisson bracket を
+\begin{equation}
+\{S^a(x),S^b(y)\}_{\rm cl}
+=2\epsilon_{abc}S^c(x)\delta(x-y),\qquad
+\bs_T=\{\bs,H_{\rm cl}\}_{\rm cl}
+\label{audit5q:eq:Poisson}
+\end{equation}
+と取る。この係数2を落とすと、格子時間から導いた時間成分とは規格化が一致しない。複素成分では
+\begin{equation}
+\{p,q\}_{\rm cl}=-4\ii z\delta,\quad
+\{p,z\}_{\rm cl}=2\ii p\delta,\quad
+\{q,z\}_{\rm cl}=-2\ii q\delta
+\end{equation}
+である。式\eqref{audit5q:eq:Hcl}から
+\begin{align}
+p_T&=2\ii(pz_{xx}-zp_{xx}+\alpha pp_x),\label{audit5q:eq:Epflow}\\
+q_T&=2\ii(zq_{xx}-qz_{xx}+\alpha pq_x),\label{audit5q:eq:Eqflow}\\
+z_T&=\ii(qp_{xx}-pq_{xx}+2\alpha pz_x)\label{audit5q:eq:Ezflow}
+\end{align}
+を得る。これらは $\partial_T(pq+z^2)=0$ を満たす。
+
+さらに、量子離散零曲率式の右辺を作用素積のまま $O(\eps^3)$ まで展開しても、式\eqref{audit5q:eq:Epflow}--\eqref{audit5q:eq:Ezflow}による $U_T$ が得られる。したがって Hamiltonian、量子作用素積、および補正後の古典曲率の三者を同じ規約で照合できる。
+
+ここで議論しているのは coherent-state symbol 上の古典的なベクトル場である。厳密な量子時間発展が product coherent state の部分多様体を保つことや、任意の量子状態の相関関数がこの極限へ収束することは証明していない。
+
+\subsubsection{off-shell 因数分解と逆向きの含意}
+
+式\eqref{audit5q:eq:Epflow}--\eqref{audit5q:eq:Ezflow}の左辺から右辺を引いた残差を $E_p,E_q,E_z$ と定義する。$\bs^2=1$ と空間微分の拘束のみを使い、時間微分に運動方程式を課さず曲率を計算すると
+\begin{equation}
+F_{Tx}=\frac1{4\lambda}
+\begin{pmatrix}
+E_z+2\alpha\lambda E_p&E_q-2\alpha\lambda E_z\\
+E_p&-E_z
+\end{pmatrix}.
+\label{audit5q:eq:offshell}
+\end{equation}
+$\lambda\ne0$ では逆に
+\begin{equation}
+E_p=4\lambda F_{21},\qquad E_z=-4\lambda F_{22},\qquad
+E_q=4\lambda(F_{12}-2\alpha\lambda F_{22})
+\end{equation}
+と復元できる。従って $F_{Tx}=0$ と古典運動方程式は同値である。単に運動方程式の上で消える行列を作っただけではない。
+
+\subsubsection{原論文の場・時間との局所的な対応}
+
+原論文の式 (2.22) は、場 $\bm S_{\rm ref}$、変形パラメータ $\alpha_{\rm ref}$、時間 $t_{\rm ref}$ により\cite{DFN}
+\begin{equation}
+\partial_{t_{\rm ref}}\bm S_{\rm ref}
+=\bm S_{\rm ref}\times\bigl(\bm S_{{\rm ref},xx}
+-\alpha_{\rm ref}M_{\rm ref}\bm S_{{\rm ref},x}\bigr),\qquad
+M_{\rm ref}=\begin{pmatrix}0&0&-1\\0&0&\ii\\1&-\ii&0\end{pmatrix}
+\label{audit5q:eq:refEOM}
+\end{equation}
+と書ける。本報告の式との辞書は
+\begin{equation}
+\bm S_{\rm ref}=\operatorname{diag}(1,-1,1)\bs,\qquad
+\alpha_{\rm ref}=-\alpha,\qquad t_{\rm ref}=2T.
+\label{audit5q:eq:dictionary}
+\end{equation}
+反射により外積の符号が変わることを含めると、式\eqref{audit5q:eq:Epflow}--\eqref{audit5q:eq:Ezflow}は式\eqref{audit5q:eq:refEOM}に一致する。この辞書は局所方程式と時間規格化の照合であり、量子 Hilbert 空間上の unitary equivalence を主張するものではない。
+
+\subsection{XXX 極限と有限格子間隔での検証}
+\subsubsection{変形を消しても補正は必要である}
+
+$\alpha=0$ とし $\mathsf S=\bs\cdot\bm\sigma$ と書くと
+\begin{align}
+U&=\frac{\Id_2+\mathsf S}{4\lambda},\qquad
+W=-\frac{(\bs\times\bs_x)\cdot\bm\sigma}{2\lambda},\\
+\vdown&=W+\frac{\ii\mathsf S}{2\lambda^2},\qquad
+\Delta V=-\frac{\ii\mathsf S}{4\lambda^2},\qquad
+V=W+\frac{\ii\mathsf S}{4\lambda^2},\label{audit5q:eq:XXX}\\
+\Cstar&=-\frac{\ii\,\bs_x\cdot\bm\sigma}{4\lambda^2}.
+\end{align}
+正しい運動方程式は $\bs_T=-2\bs\times\bs_{xx}$ である。式\eqref{audit5q:eq:XXX}は、今回の差が Jordanian 変形だけに由来する問題ではなく、固定 spin-$\tfrac12$ での symbol 積の扱いに由来することを示す。
+
+\subsubsection{数値検証の定義}
+
+全ての以下の数値は本報告のコードを実行して得たものであり、既存ノートからの転記ではない。まず有限格子の局所恒等式\eqref{audit5q:eq:discreteZC}を、補助空間と三つの物理格子点からなる $16$ 次元空間で検査した。ランダムな複素 $a,u$ の24例で、相対 Frobenius residual の最大値は
+\begin{equation}
+4.74\times10^{-16}.
+\end{equation}
+相対 residual は $\|L-R\|_{\rm F}/\max(1,\|L\|_{\rm F},\|R\|_{\rm F})$ と定義する。また、非可換な補助行列係数を含む式\eqref{audit5q:eq:star}を32例で直接 trace と比較し、絶対 Frobenius residual の最大値は $6.78\times10^{-15}$ であった。
+
+格子間隔の検査には
+\begin{align}
+\theta(x)&=0.9+0.2\sin x,\qquad
+\phi(x)=0.3+0.4x+0.1\cos(2x),\\
+\bs(x)&=(\sin\theta\cos\phi,\ \sin\theta\sin\phi,\ \cos\theta),\qquad
+x=0.37,\quad\lambda=0.8+0.2\ii
+\end{align}
+を用いた。場の $x$ 微分はこの式から解析的に求める。$\alpha=0$ と $\alpha=0.7-0.2\ii$ を比較する。
+
+Taylor 展開を使わず有限 $\eps$ の行列逆と積を直接計算し
+\begin{align}
+J_{\rm exact}^{(\eps)}&=\eps^{-3}
+\bigl[(\widehat{\mathcal A}_{n+1}\widehat L_n)^{\downarrow}
+-(\widehat L_n\widehat{\mathcal A}_n)^{\downarrow}\bigr],\\
+J_{\rm fact}^{(\eps)}&=\eps^{-3}
+\bigl[\widehat{\mathcal A}_{n+1}^{\downarrow}\widehat L_n^{\downarrow}
+-\widehat L_n^{\downarrow}\widehat{\mathcal A}_n^{\downarrow}\bigr],\\
+C^{(\eps)}&=J_{\rm exact}^{(\eps)}-J_{\rm fact}^{(\eps)}
+\end{align}
+を得る。表\ref{audit5q:tab:eps}では
+\begin{equation}
+e_{\rm exact}=\|J_{\rm exact}^{(\eps)}-U_T\|_{\rm F},\qquad
+e_C=\|C^{(\eps)}-\Cstar\|_{\rm F},\qquad
+e_{\rm fact}=\|J_{\rm fact}^{(\eps)}-U_T\|_{\rm F}
+\end{equation}
+を示す。$U_T$ は式\eqref{audit5q:eq:Epflow}--\eqref{audit5q:eq:Ezflow}から評価した。
+
+\begin{table}[htbp]
+\centering
+\caption{有限格子間隔での直接行列計算。全て絶対 Frobenius norm。}
+\label{audit5q:tab:eps}
+\small
+\begin{tabular}{llrrr}
+\toprule
+模型 & $\eps$ & $e_{\rm exact}$ & $e_C$ & $e_{\rm fact}$\\
+\midrule
+XXX & $0.08$ &$6.213\times10^{-4}$ &$8.835\times10^{-3}$ &$0.15721$\\
+    & $0.02$ &$3.888\times10^{-5}$ &$2.116\times10^{-3}$ &$0.15137$\\
+    & $0.005$ &$2.430\times10^{-6}$ &$5.235\times10^{-4}$ &$0.15001$\\
+\addlinespace
+Class 5 & $0.08$ &$9.875\times10^{-4}$ &$3.090\times10^{-2}$ &$0.39991$\\
+        & $0.02$ &$6.179\times10^{-5}$ &$7.545\times10^{-3}$ &$0.37683$\\
+        & $0.005$ &$3.862\times10^{-6}$ &$1.876\times10^{-3}$ &$0.37130$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$\eps=0.02,0.01,0.005$ の3点に対する対数回帰では、$e_{\rm exact}$ の収束次数は両模型とも約 $2.000$、$e_C$ は XXX で約 $1.008$、Class 5 で約 $1.004$ である。一方、因子化した処方の誤差は零にならず
+\begin{equation}
+\lim_{\eps\to0} e_{\rm fact}=\|\Cstar\|_{\rm F}
+=\begin{cases}
+0.149571& (\alpha=0),\\
+0.369473& (\alpha=0.7-0.2\ii)
+\end{cases}
+\end{equation}
+という非零の値に近づく。単に格子を細かくしても、この処方の差は取り除けない。示した収束次数は選んだ滑らかな場での数値的確認であり、全ての初期条件に対する収束定理ではない。
+
+\subsection{結果の範囲と研究の終了条件}
+
+今回の段階で、Class 5 の指定した spin-$\tfrac12$ 表示について、量子 $R$ 行列から $h,\mathcal A$ を構成し、共有格子点上の作用素積から $\Cstar$ を独立に求め、局所補正により時間 Lax 成分を復元した。補正後の曲率は運動方程式と同値であり、XXX 極限でも同じ処方が必要であることを確認した。これは、既知の古典 $V$ を使って差を定義することと、量子側からその差を導くことを区別した検証である。
+
+この結果を述べる際には、次の範囲を保つ必要がある。第一に、$\Cstar=-2\ii\partial_x(U^2)$ は式\eqref{audit5q:eq:U}の規格化と表示に関する式であり、任意の gauge 表示で不変な公式ではない。第二に、coherent-state 期待値の非乗法性を、量子--古典対応そのものの一般的な障害と呼ぶ必要はない。正しい積を保つと、この模型では局所補正に吸収できる。
+
+第三に、spin-$j$ の正規化演算子 $J_a/j$ の二次 moment が $1/(2j)$ の補正を持つことは、一般の時間 Lax 演算子の補正全体が同じ係数で縮小することを直ちには意味しない。時間成分の逆行列や Hamiltonian は表現に依存する。本報告は高 spin の対応を実行しておらず、その一般化を今回の結論に含めない。
+
+第四に、原論文が companion を得られなかったことは文献上の事実であるが\cite{DFN}、その著者らが実際に式\eqref{audit5q:eq:star}の補正を落としたことは示されていない。本報告が特定した失敗は、明示的に定義した $J_{\rm fact}^{(\eps)}$ という処方についてのものである。
+
+Class 5 のこの局所的な量子--古典対応は、今回の段階で閉じた計算として提示できる。Class 5/6 を合わせた報告を完成させる際の次の限定された確認は、Class 6 でも同じ「作用素積から先に補正を求める」手順を実行し、模型依存の部分を区別することである。Class 6 の以前の結果は今回再計算していない。任意の模型の一般定理や soft particle production の説明を、現在の結果の完成条件へ追加する必要はない。投稿上の新規性の評価は、この計算の正しさとは別に文献との式レベルの比較を要する。
+
+% embedded standalone report appendix boundary removed
+\subsection{共有格子点の補正の成分表示}
+\label{audit5q:app:C}
+
+式\eqref{audit5q:eq:Cfromquantum}を直接評価した成分は、$pq+z^2=1$ と $qp_x+pq_x+2zz_x=0$ を用いて
+\begin{align}
+(\Cstar)_{11}&=-\frac{\ii}{4\lambda^2}
+\bigl[4\alpha^2\lambda^2pp_x+
+\alpha\lambda(pz_x+p_xz+p_x)+z_x\bigr],\\
+(\Cstar)_{12}&=\frac{\ii}{4\lambda^2}
+\bigl[2\alpha^2\lambda^2(pz_x+p_xz+p_x)
++2\alpha\lambda(z+1)z_x-q_x\bigr],\\
+(\Cstar)_{21}&=-\frac{\ii}{4\lambda^2}(2\alpha\lambda p+1)p_x,\\
+(\Cstar)_{22}&=\frac{\ii}{4\lambda^2}
+\bigl[\alpha\lambda(pz_x+p_xz+p_x)+z_x\bigr].
+\end{align}
+式\eqref{audit5q:eq:U}を二乗して微分すると、これら四成分が $-2\ii\partial_x(U^2)$ と一致する。
+
+この一致は既知の $V$ から逆算したものではない。再現コードでは式\eqref{audit5q:eq:A1}、\eqref{audit5q:eq:A2}の $8\times8$ 行列を作り、四つの連結積を物理空間で trace し、式\eqref{audit5q:eq:Cfromquantum}に代入した結果と比較している。
+
+\subsection{再現手順と検証項目}
+
+報告に添付したコードは Python 3、NumPy、SymPy だけを使用する。今回実行した版は NumPy 2.3.5、SymPy 1.14.0 である。ファイル構成は
+\begin{quote}\small\ttfamily
+report/class5\_lax\_coherent\_symbol\_ja.tex\\
+report/class5\_lax\_coherent\_symbol\_ja.pdf\\
+code/verify\_symbolic.py\\
+code/verify\_numeric.py\\
+results/symbolic\_verification.json\\
+results/symbolic\_expressions.json\\
+results/numeric\_verification.json\\
+results/finite\_spacing.csv
+\end{quote}
+である。パッケージの root directory から
+\begin{quote}\small\ttfamily
+python code/verify\_symbolic.py\\
+python code/verify\_numeric.py
+\end{quote}
+を実行する。\texttt{verify\_symbolic.py} は25個の厳密な等式検査を行い、いずれかに失敗すると停止する。検査には Sutherland relation、共有格子点の補正、$V^{\downarrow}=W+2Z$、補正後曲率、Hamiltonian の変分、原論文の運動方程式との辞書が含まれる。
+
+拘束を用いる記号計算では
+\begin{align}
+pq+z^2-1&=0,\\
+qp_x+pq_x+2zz_x&=0,\\
+qp_{xx}+pq_{xx}+2p_xq_x+2zz_{xx}+2z_x^2&=0
+\end{align}
+が生成する多項式 ideal で剰余を取る。係数体は $\mathbb Q(\ii,\lambda,\alpha)$、変数順序は
+\[
+(p_{xx},q_{xx},z_{xx},p_x,q_x,z_x,p,q,z)
+\]
+とした lexicographic order である。今回の25検査は全て厳密に零となった。これは数値的な低損失判定ではない。
+
+数値コードは Taylor 展開の係数を再利用せず、有限 $\eps$ の $R$、逆行列、作用素積を直接作る。乱数 seed は20260909に固定した。詳細なパラメータ、誤差、収束次数は JSON と CSV に保存される。LaTeX 原稿は LuaLaTeX で2回コンパイルする。
+
+\clearpage
+
