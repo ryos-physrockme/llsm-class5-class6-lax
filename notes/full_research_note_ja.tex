@@ -1,0 +1,84 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage[margin=22mm,headheight=16pt]{geometry}
+\usepackage{luatexja-fontspec}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}[Scale=.88]
+\setmainjfont{HaranoAjiMincho-Regular.otf}[BoldFont=HaranoAjiMincho-Bold.otf]
+\setsansjfont{HaranoAjiGothic-Regular.otf}[BoldFont=HaranoAjiGothic-Bold.otf]
+\usepackage{amsmath,amssymb,bm,mathtools,fix-cm}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xurl,hyperref}
+\usepackage{fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue,
+ pdftitle={Class 5 / Class 6 Landau--Lifshitz 系の量子--古典 Lax 対応：研究経緯を含む完全ノート},
+ pdfauthor={研究用完全計算ノート}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Class 5 / Class 6 量子--古典 Lax 対応：完全ノート}
+\fancyhead[R]{\small 2026年9月12日}\fancyfoot[C]{\thepage}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\setlength{\parskip}{.32em}
+\setlength{\parindent}{1em}
+\setlength{\emergencystretch}{2.5em}
+\allowdisplaybreaks[2]
+\numberwithin{equation}{section}
+\setcounter{tocdepth}{2}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\one}[1]{\mathbf 1_{#1}}
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Svec}{\boldsymbol S}
+\newcommand{\bs}{\boldsymbol S}
+\newcommand{\vvec}{\boldsymbol v}
+\newcommand{\Qmap}{\mathcal Q_{\lambda}}
+\newcommand{\comm}[2]{[#1,#2]}
+\newcommand{\down}{\downarrow}
+\newcommand{\eps}{\epsilon}
+\newcommand{\Cstar}{\mathcal C_{\star}}
+\newcommand{\vdown}{V^{\downarrow}}
+\newcommand{\Pup}{P_{\uparrow}}
+\newcommand{\Eplus}{E_{+}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\status}[1]{\par\noindent\textbf{出典区分：}#1\par}
+\newenvironment{historymemo}{\begin{quote}\small\noindent\textbf{研究経緯メモ.}\ }{\end{quote}}
+\newenvironment{cautionnote}{\begin{quote}\small\noindent\textbf{注意.}\ }{\end{quote}}
+\title{\vspace{-1.2em}\bfseries 対角化不可能な Class 5 / Class 6 Landau--Lifshitz 系の\\量子--古典 Lax 対応\\[2mm]
+\large 研究経緯を含む完全計算ノート\\[1mm]
+\normalsize ML Lax 探索から off-shell certificate、既知 hierarchy 同定、有限格子 time-Lax 極限、coherent-state 作用素積補正、古典 $r$-matrix 照合まで}
+\author{研究用完全計算ノート}
+\date{2026年9月12日}
+
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+
+\begin{abstract}
+本ノートは、対角化不可能な可積分 spin chain の Class 5 および Class 6 と、その Landau--Lifshitz 型 continuum limit について、研究開始から最終的な量子--古典 Lax 対応の閉鎖までに行った計算と判断を、外部の作業報告を参照しなくても追える形で保存するための研究ノートである。論文原稿のように最短の論理だけを残すのではなく、最初に何を未解決問題だと考えたか、機械学習による探索がどこで役立ちどこで不十分だったか、fake Lax を排除するため判定条件をどう強めたか、既知 hierarchy の発見により新規性評価をどう修正したか、coherent-state lower symbol の扱いで一度循環的な議論になった箇所をどう独立再導出したか、最後に古典 $r$-matrix / monodromy route とどう照合したかを記録する。
+
+Class 5 では、continuum 運動方程式から時間 Lax 成分を構成し、曲率が運動方程式残差の可逆な線形像になることを off shell に示す。さらに量子 Jordanian Drinfeld twist、$R/L$-operator、有限格子の時間 Lax 作用素、coherent-state 作用素積、continuum $U,V$、古典 $r$-matrix、保存量 $Q_2,Q_3,Q_4$、null-like warped $SL(2)$ Landau--Lifshitz hierarchy との局所辞書、境界 twist を一つの規約体系で接続する。量子有限格子から得た時間 Lax 行列は、独立な古典 $r$-matrix / monodromy 構成から得た行列と、曲率を変えない単位行列成分を除いて一致する。
+
+Class 6 では、三次 nilpotent anisotropy に対する行列平方根型 Lax pair と off-shell certificate を構成し、量子 $R_6$ から有限格子の時間 Lax 作用素を経て continuum $U,V$ を独立に回収する。Class 5 では共有格子点の coherent-state 補正が全微分へ簡単化するが、Class 6 では交換子を含む adjoint covariant derivative が必要になる。この差を正例と failure boundary として用いる。量子 Class 6 が eleven-vertex model であること自体は既知なので、新しい模型や新しい Lax hierarchy の発見とは主張しない。代わりに recent continuum Class 6 と既知 eleven-vertex Landau--Lifshitz hierarchy の局所的な Poisson / EOM / $r$-matrix / Lax 辞書を整理する。
+
+本ノートの目的は次段階の論文草稿に必要な圧縮前の母体を作ることである。したがって、文献入力、規約変換、本ノートでの導出、独立検証、研究上の評価を明示的に区別する。
+\end{abstract}
+
+\clearpage
+\begingroup\small\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\input{parts/01_history.tex}
+\input{parts/02_ml_search.tex}
+\input{parts/03_common_math.tex}
+\input{parts/04_class5.tex}
+\input{parts/05_class6.tex}
+\input{parts/06_common_correction.tex}
+\input{parts/07_research_branches.tex}
+\input{parts/08a_audit_class5_quantum.tex}
+\input{parts/08b_audit_class6_quantum.tex}
+\input{parts/08c_audit_class5_rmatrix.tex}
+\input{parts/09_index.tex}
+\input{parts/references.tex}
+\end{document}
