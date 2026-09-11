@@ -1,0 +1,61 @@
+{
+  "python_version": "3.13.5",
+  "sympy_version": "1.14.0",
+  "number_of_exact_checks": 40,
+  "checks": {
+    "regularity_R_zero_is_P": "exact_zero",
+    "Hamiltonian_from_R_derivative": "exact_zero",
+    "P_squared": "exact_zero",
+    "K_cubed": "exact_zero",
+    "P_K_equals_K": "exact_zero",
+    "K_P_equals_K": "exact_zero",
+    "inverse_relation_R_u_R_minus_u": "exact_zero",
+    "exact_spatial_epsilon_expansion": "exact_zero",
+    "ell_squared_contains_second_order": "exact_zero",
+    "fixed_coupling_spectral_derivative": "exact_zero",
+    "Sutherland_relation": "exact_zero",
+    "time_operator_expansion_to_second_order": "exact_zero",
+    "quantum_rhs_decomposition": "exact_zero",
+    "coincident_A1": "exact_zero",
+    "connected_order_epsilon_squared_cancels": "exact_zero",
+    "spatial_matrix_formula": "exact_zero",
+    "A1_two_site_formula": "exact_zero",
+    "source_equals_covariant_second_moment": "exact_zero",
+    "source_absorbed_by_local_correction": "exact_zero",
+    "local_correction_from_m": "exact_zero",
+    "local_correction_spectral_formula": "exact_zero",
+    "raw_time_symbol_spectral_formula": "exact_zero",
+    "corrected_time_component_spectral_formula": "exact_zero",
+    "corrected_time_component_trace_zero": "exact_zero",
+    "source_explicit_spatial_and_commutator_terms": "exact_zero",
+    "Hamiltonian_variation": "exact_zero",
+    "unit_spin_is_preserved": "exact_zero",
+    "quantum_rhs_equals_Hamiltonian_flow": "exact_zero",
+    "corrected_zero_curvature_on_flow": "exact_zero",
+    "off_shell_factorization": "exact_zero",
+    "inverse_EOM_map": "exact_zero",
+    "EOM_map_determinant": "exact_zero",
+    "energy_density_order_zero": "exact_zero",
+    "energy_density_order_one": "exact_zero",
+    "energy_density_order_two": "exact_zero",
+    "anisotropy_nilpotent": "exact_zero",
+    "vector_Hamiltonian_flow": "exact_zero",
+    "source_EOM_dictionary": "exact_zero",
+    "XXX_time_component": "exact_zero",
+    "uniform_spin_nonzero_connected_source": "exact_zero"
+  },
+  "negative_control": {
+    "Class5_only_correction_residual_at_uniform_spin": "Matrix([[0, -I*alpha/lambda], [0, 0]])",
+    "result": "nonzero_for_alpha_nonzero_and_lambda_nonzero"
+  },
+  "scope": "spin 1/2; Class 6 R of 2506.13598v2 (A.1), a1=1; a=epsilon^2 alpha, u=lambda/epsilon, T=epsilon^2 t_lat",
+  "constraint_polynomials": [
+    "p*q + z**2 - 1",
+    "p*q_x + p_x*q + 2*z*z_x",
+    "p*q_xx + 2*p_x*q_x + p_xx*q + 2*z*z_xx + 2*z_x**2"
+  ],
+  "groebner_variable_order": [
+    "p_xx", "q_xx", "z_xx", "p_x", "q_x", "z_x", "p", "q", "z"
+  ],
+  "groebner_coefficient_field": "QQ_I(lambda,alpha)"
+}
