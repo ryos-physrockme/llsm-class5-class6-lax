@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use the calculations or code in this repository, please cite this repository and the associated paper once available."
+title: "Class 5 / Class 6 Landau-Lifshitz Lax correspondence: calculations and reproducibility code"
+type: software
+authors:
+  - family-names: Suda
+    given-names: Ryosuke
+repository-code: "https://github.com/ryos-physrockme/llsm-class5-class6-lax"
+url: "https://github.com/ryos-physrockme/llsm-class5-class6-lax"
+version: "0.1.0"
+date-released: "2026-09-12"
+preferred-citation:
+  type: article
+  title: "Quantum-to-classical Lax correspondence for Class 5 and Class 6 models"
+  authors:
+    - family-names: Suda
+      given-names: Ryosuke
+  year: 2026
