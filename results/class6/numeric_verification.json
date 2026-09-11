@@ -1,0 +1,33 @@
+{
+  "python_version": "3.13.5",
+  "numpy_version": "2.3.5",
+  "sympy_version": "1.14.0",
+  "seed": 20260909,
+  "finite_zero_curvature_cases": 32,
+  "finite_zero_curvature_max_relative_error": 5.019431727938216e-15,
+  "Yang_Baxter_cases": 32,
+  "Yang_Baxter_max_relative_error": 4.456808814122253e-16,
+  "off_shell_cases": 128,
+  "off_shell_max_relative_error": 1.1837287513648144e-15,
+  "finite_Hamiltonian_match_max_relative_error": 7.675230263171539e-12,
+  "profile_x": 0.37,
+  "spectral_parameter": [0.8, 0.2],
+  "uniform_source_norm": 0.8828430011649195,
+  "limits": {
+    "XXX": {
+      "alpha": [0.0, 0.0],
+      "connected_source_norm": 0.14957097491893567,
+      "exact_leading_error_order": 1.999948961452112,
+      "exact_full_spatial_error_order": 1.999948961452112,
+      "connected_error_order": 1.0075734317482408
+    },
+    "Class6": {
+      "alpha": [0.7, -0.2],
+      "connected_source_norm": 0.7174722557366591,
+      "exact_leading_error_order": 1.001144301681188,
+      "exact_full_spatial_error_order": 2.0077565149146066,
+      "connected_error_order": 1.0024988139107713
+    }
+  },
+  "norm": "Frobenius; relative operator error divided by max(1,norm(lhs),norm(rhs)); finite-spacing errors absolute"
+}
