@@ -68,3 +68,31 @@ jobs:
           path: |
             paper/main.pdf
             notes/full_research_note_ja.pdf
+
+  publish-pdfs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [verify-physics, verify-ml, latex]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: compiled-documents
+          path: _compiled
+      - name: Update tracked PDFs
+        run: |
+          cp _compiled/paper/main.pdf paper/main.pdf
+          cp _compiled/notes/full_research_note_ja.pdf notes/full_research_note_ja.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f paper/main.pdf notes/full_research_note_ja.pdf
+          if git diff --cached --quiet; then
+            echo "Compiled PDFs are already up to date."
+            exit 0
+          fi
+          git commit -m "Update compiled PDFs [skip ci]"
+          git push
