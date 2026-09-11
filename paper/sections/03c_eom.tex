@@ -1,0 +1,232 @@
+\subsection{Zero-curvature equation and the Landau--Lifshitz equations of motion}
+\label{sec:class5-eom}
+
+We now determine the continuum Hamiltonian flow independently of the time Lax
+matrix derived in Section~\ref{sec:class5-time-lax}.  This fixes the dynamical
+identification left open in Section~\ref{sec:lattice-to-continuum-zc} and
+provides a direct test of the corrected matrix $V_5$.
+
+It is convenient to introduce the constant antisymmetric matrix
+\begin{equation}
+M_5
+:=
+\begin{pmatrix}
+0&0&-1\\
+0&0&-\ii\\
+1&\ii&0
+\end{pmatrix},
+\qquad
+M_5^{\mathsf T}=-M_5.
+\label{eq:class5-M-definition}
+\end{equation}
+The lower symbol of a single Class 5 bond Hamiltonian, evaluated on the
+coherent states at the neighbouring points $x$ and $x+\epsilon$, has the
+long-wavelength expansion
+\begin{equation}
+ h_5^{\downarrow}
+ \bigl(\boldsymbol S(x,t),\boldsymbol S(x+\epsilon,t)\bigr)
+ =2+\epsilon^2\mathcal H_5(x,t)+\mathcal O(\epsilon^3),
+\label{eq:class5-h-lower-expansion}
+\end{equation}
+where
+\begin{equation}
+\mathcal H_5
+=
+-\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
++\frac{\alpha}{2}
+\left(
+\boldsymbol S^{\mathsf T}M_5\partial_x\boldsymbol S
++\partial_x S^+
+\right).
+\label{eq:class5-hamiltonian-density-with-boundary}
+\end{equation}
+The last term is a total spatial derivative.  With the periodic boundary
+condition in \eqref{eq:continuum-spin-field}, the continuum Hamiltonian obtained
+from the lattice Hamiltonian is therefore
+\begin{align}
+H^{\rm cl}_5
+&:=
+\lim_{\epsilon\to0}
+\frac{
+\bigl(H^{\rm lat}_5\bigr)^{\downarrow}-2N
+}{\epsilon}
+\nonumber\\
+&=
+\int_0^{\ell}dx\left[
+-\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
++\frac{\alpha}{2}
+\boldsymbol S^{\mathsf T}M_5\partial_x\boldsymbol S
+\right].
+\label{eq:class5-continuum-hamiltonian}
+\end{align}
+The signs and the overall normalization in
+\eqref{eq:class5-continuum-hamiltonian} follow from the lattice Hamiltonian
+\eqref{eq:class5-lattice-hamiltonian}, the Heisenberg equation
+\eqref{eq:Heisenberg-lattice-time}, and the continuum time convention
+$t=\epsilon^2t_{\rm lat}$.
+
+For the unit spin field normalized in \eqref{eq:continuum-spin-field}, we use
+the continuum Poisson bracket
+\begin{equation}
+\{S^i(x),S^j(y)\}_5
+=
+2\,\varepsilon_{ijk}S^k(x)\,\delta(x-y),
+\qquad
+\varepsilon_{123}=1,
+\label{eq:class5-poisson-bracket}
+\end{equation}
+where $\delta(x-y)$ is the Dirac delta function.  The corresponding Hamiltonian
+flow is
+\begin{equation}
+\partial_t S^i(x)=\{S^i(x),H^{\rm cl}_5\}_5.
+\label{eq:class5-hamiltonian-flow-definition}
+\end{equation}
+Using the bilinear cross product
+$(\boldsymbol A\times\boldsymbol B)^i
+=\varepsilon_{ijk}A^jB^k$, the equations of motion take the compact form
+\begin{equation}
+\partial_t\boldsymbol S
+=
+-2\,\boldsymbol S\times
+\left(
+\partial_x^2\boldsymbol S
++\alpha M_5\partial_x\boldsymbol S
+\right).
+\label{eq:class5-vector-eom}
+\end{equation}
+The right-hand side is tangent to the unit-spin constraint, so
+$\partial_t(\boldsymbol S^{\mathsf T}\boldsymbol S)=0$.
+
+For comparison with the matrix entries of the Lax pair, the same equations
+can be written in terms of the transverse components $S^{\pm}$ defined in
+\eqref{eq:class5-spin-pm}.  Using
+$\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S=0$, one obtains
+\begin{align}
+\partial_t S^+
+&=
+2\ii\left(
+S^+\partial_x^2S^3
+-S^3\partial_x^2S^+
++\alpha S^+\partial_xS^+
+\right),
+\label{eq:class5-eom-plus}\\
+\partial_t S^-
+&=
+2\ii\left(
+S^3\partial_x^2S^-
+-S^-\partial_x^2S^3
++\alpha S^+\partial_xS^-
+\right),
+\label{eq:class5-eom-minus}\\
+\partial_t S^3
+&=
+\ii\left(
+S^-\partial_x^2S^+
+-S^+\partial_x^2S^-
++2\alpha S^+\partial_xS^3
+\right).
+\label{eq:class5-eom-three}
+\end{align}
+A direct expansion of the lower symbol of the lattice Heisenberg derivative
+then gives
+\begin{equation}
+\left(
+\partial_{t_{\rm lat}}\widehat L_{5;a,n}
+\right)^{\downarrow}
+=
+\epsilon^3\,\partial_tU_5(x_n,t;\lambda)
++\mathcal O(\epsilon^4),
+\label{eq:class5-heisenberg-to-Ut}
+\end{equation}
+with $\partial_t\boldsymbol S$ given by
+\eqref{eq:class5-vector-eom}.  Equation~\eqref{eq:class5-heisenberg-to-Ut}
+therefore supplies the dynamical identification required on the left-hand
+side of the continuum equation \eqref{eq:continuum-zc-with-C}.
+
+We finally test the relation between the corrected Lax pair and the equations
+of motion without imposing the equations of motion in the curvature.  Define
+the three equation-of-motion residuals
+\begin{align}
+E_+
+&:=
+\partial_t S^+
+-2\ii\left(
+S^+\partial_x^2S^3
+-S^3\partial_x^2S^+
++\alpha S^+\partial_xS^+
+\right),
+\label{eq:class5-residual-plus}\\
+E_-
+&:=
+\partial_t S^-
+-2\ii\left(
+S^3\partial_x^2S^-
+-S^-\partial_x^2S^3
++\alpha S^+\partial_xS^-
+\right),
+\label{eq:class5-residual-minus}\\
+E_3
+&:=
+\partial_t S^3
+-\ii\left(
+S^-\partial_x^2S^+
+-S^+\partial_x^2S^-
++2\alpha S^+\partial_xS^3
+\right).
+\label{eq:class5-residual-three}
+\end{align}
+The curvature of the matrices $U_5$ and $V_5$ in
+\eqref{eq:class5-spatial-Lax} and \eqref{eq:class5-time-Lax-final} is
+\begin{equation}
+F^{(5)}_{tx}
+:=
+\partial_tU_5-\partial_xV_5+[U_5,V_5].
+\label{eq:class5-curvature-definition}
+\end{equation}
+Using only the unit-spin constraint and its spatial derivatives, the curvature
+factorizes as
+\begin{equation}
+F^{(5)}_{tx}
+=
+\frac{1}{4\lambda}
+\begin{pmatrix}
+E_3+2\alpha\lambda E_+
+&
+E_- -2\alpha\lambda E_3\\
+E_+
+&
+-E_3
+\end{pmatrix}.
+\label{eq:class5-offshell-factorization}
+\end{equation}
+For $\lambda\neq0$, the residuals are recovered from the curvature entries by
+\begin{equation}
+E_+=4\lambda F^{(5)}_{21},
+\qquad
+E_3=-4\lambda F^{(5)}_{22},
+\qquad
+E_-=4\lambda\left(
+F^{(5)}_{12}-2\alpha\lambda F^{(5)}_{22}
+\right).
+\label{eq:class5-residuals-from-curvature}
+\end{equation}
+Hence the zero-curvature condition $F^{(5)}_{tx}=0$ is equivalent to the
+three continuum equations of motion
+\eqref{eq:class5-eom-plus}--\eqref{eq:class5-eom-three}.
+
+To compare with the direct continuum construction of
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}, we translate our conventions by
+\begin{equation}
+S^2\mapsto -S^2,
+\qquad
+\alpha\mapsto -\alpha,
+\qquad
+t\mapsto 2t.
+\label{eq:class5-reference-convention-change}
+\end{equation}
+With these substitutions, Eq.~\eqref{eq:class5-vector-eom} takes the form of
+the Class 5 continuum equation used in
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.  The reflection of the second
+spin axis conjugates $M_5$ by $\operatorname{diag}(1,-1,1)$, yielding the
+deformation matrix used there.
+
