@@ -1,0 +1,11 @@
+{
+  "scope": "Independent Class 5 classical r-matrix/monodromy comparison",
+  "checks": {
+    "linear_rmatrix_Poisson_algebra": "exact_zero",
+    "projector_constraint_at_first_order": "exact_zero",
+    "projector_transport_at_leading_order": "exact_zero",
+    "classical_rmatrix_vs_quantum_limit_V_up_to_scalar": "exact_zero"
+  },
+  "central_result": "V_rmatrix - V_quantum_limit = i I_2/(4 mu^2)",
+  "note": "The scalar difference has vanishing spatial derivative and commutes with the spatial Lax matrix. CI reruns scripts/class5/verify_rmatrix_comparison.py rather than trusting this committed summary."
+}
