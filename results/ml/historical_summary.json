@@ -1,0 +1,16 @@
+{
+  "provenance": "Values transcribed from the complete research note. Historical training scripts were not available as raw files in the current workspace when this repository was initialized; scripts/ml contains clean reconstructions from the documented equations.",
+  "class5": {
+    "number_of_runs": 9,
+    "max_beta_error": 1.04e-9,
+    "max_physical_coefficient_error": 1.15e-7,
+    "max_validation_mse": 7.99e-15,
+    "median_validation_mse": 8.86e-20,
+    "max_distractor_coefficient": 7.17e-8
+  },
+  "class6": {
+    "number_of_runs": 6,
+    "max_validation_rms": 1.64e-14,
+    "max_coefficient_error": 4.88e-15
+  }
+}
