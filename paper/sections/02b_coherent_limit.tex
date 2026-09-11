@@ -1,0 +1,190 @@
+\subsection{Coherent states and long-wavelength limit}
+\label{sec:coherent-long-wavelength}
+
+We next describe the common kinematical ingredients used to pass from the
+spin chain to a smooth classical spin field.  We use standard $SU(2)$ spin
+coherent states \cite{Perelomov1986}; their use in long-wavelength limits of
+integrable spin chains is reviewed, for example, in
+\cite{AvanDoikouSfetsos2010}.  The same construction is used in the direct
+continuum analysis of the Class 5 and Class 6 chains
+\cite{deLeeuwFontanellaNietoGarcia2026}.
+
+Let $\sigma^1,\sigma^2,\sigma^3$ denote the Pauli matrices on the reference
+local Hilbert space $\mathcal H_{\rm loc}\simeq\mathbb C^2$, and let
+$|\!\uparrow\rangle$ and $|\!\downarrow\rangle$ be the eigenvectors of
+$\sigma^3$ with eigenvalues $+1$ and $-1$, respectively.  The spin-$\tfrac12$
+operators are normalized as
+\begin{equation}
+s^i:=\frac12\sigma^i,
+\qquad i=1,2,3.
+\label{eq:spin-half-normalization}
+\end{equation}
+Throughout, repeated Cartesian indices $i,j,k\in\{1,2,3\}$ are summed.
+At the $n$th lattice site, a normalized spin coherent state is parametrized by
+polar and azimuthal angles $\theta_n$ and $\phi_n$ as
+\begin{equation}
+|\Omega_n\rangle
+=
+\cos\frac{\theta_n}{2}\,|\!\uparrow\rangle
++e^{\ii\phi_n}\sin\frac{\theta_n}{2}\,|\!\downarrow\rangle .
+\label{eq:spin-coherent-state}
+\end{equation}
+This phase convention fixes the associated unit vector.  We define the
+\emph{classical spin vector at site $n$} by
+\begin{equation}
+\boldsymbol S_n
+:=
+\langle\Omega_n|\boldsymbol\sigma|\Omega_n\rangle
+=
+\begin{pmatrix}
+\sin\theta_n\cos\phi_n\\
+\sin\theta_n\sin\phi_n\\
+\cos\theta_n
+\end{pmatrix},
+\qquad
+\boldsymbol\sigma:=(\sigma^1,\sigma^2,\sigma^3).
+\label{eq:site-classical-spin}
+\end{equation}
+It follows directly that
+\begin{equation}
+\boldsymbol S_n^{\mathsf T}\boldsymbol S_n=1,
+\qquad
+\langle\Omega_n|s^i|\Omega_n\rangle
+=\frac12 S_n^i.
+\label{eq:spin-coherent-expectation}
+\end{equation}
+Thus the normalization of the classical spin field is fixed independently of
+the model-dependent normalization of the Lax matrix.
+
+For a configuration of the full chain we use the normalized product coherent
+state
+\begin{equation}
+|\Omega\rangle
+:=
+|\Omega_1\rangle\otimes\cdots\otimes|\Omega_N\rangle
+\in\mathcal H^{(N)}.
+\label{eq:product-coherent-state}
+\end{equation}
+The coherent-state labels are allowed to depend on time.  We denote by $t$ the
+time coordinate of the continuum field theory.  Its relation to the quantum
+lattice time $t_{\rm lat}$ introduced in \eqref{eq:Heisenberg-lattice-time}
+is part of the continuum scaling.
+
+Let $\epsilon>0$ denote the \emph{lattice spacing}.  We assign the spatial
+coordinate
+\begin{equation}
+x_n:=(n-1)\epsilon,
+\qquad n=1,\ldots,N,
+\label{eq:lattice-coordinate}
+\end{equation}
+and take the long-wavelength limit
+\begin{equation}
+\epsilon\to0,
+\qquad
+N\to\infty,
+\qquad
+\ell:=N\epsilon\quad\text{fixed},
+\label{eq:long-wavelength-limit}
+\end{equation}
+where $\ell$ is the physical circumference of the continuum spatial circle.
+The long-wavelength assumption is that the coherent-state labels vary
+smoothly from one lattice site to the next.  Equivalently, there is a smooth
+unit spin field $\boldsymbol S(x,t)$ such that
+\begin{equation}
+\boldsymbol S_n(t)=\boldsymbol S(x_n,t),
+\qquad
+\boldsymbol S(x+\ell,t)=\boldsymbol S(x,t).
+\label{eq:continuum-spin-field}
+\end{equation}
+For neighbouring sites this gives the Taylor expansion
+\begin{equation}
+\boldsymbol S_{n+1}
+=
+\boldsymbol S
++\epsilon\,\partial_x\boldsymbol S
++\frac{\epsilon^2}{2}\,\partial_x^2\boldsymbol S
++\mathcal O(\epsilon^3),
+\label{eq:spin-long-wavelength-expansion}
+\end{equation}
+where the fields on the right-hand side are evaluated at $(x_n,t)$.  The unit
+length constraint in \eqref{eq:continuum-spin-field} implies the useful
+kinematical identities
+\begin{equation}
+\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S=0,
+\qquad
+\boldsymbol S^{\mathsf T}\partial_x^2\boldsymbol S
+=-(\partial_x\boldsymbol S)^{\mathsf T}(\partial_x\boldsymbol S).
+\label{eq:spin-kinematical-identities}
+\end{equation}
+For any smooth scalar density $f(x)$, the corresponding lattice sum obeys the
+usual Riemann-sum relation
+\begin{equation}
+\epsilon\sum_{n=1}^{N}f(x_n)
+\longrightarrow
+\int_0^{\ell}dx\,f(x).
+\label{eq:riemann-sum-continuum}
+\end{equation}
+The powers of $\epsilon$ that accompany the Hamiltonian, deformation
+parameters, and time coordinate are model dependent.
+
+We now define the operation that maps local quantum operators to classical
+quantities.  Let $X_a$ be an operator acting on the auxiliary space
+$\mathcal V_a$ and on any finite set of physical lattice sites.  Its
+\emph{coherent-state lower symbol}, denoted by the superscript $\downarrow$
+\cite{BiskupChayesStarr2007}, is the auxiliary-space operator
+\begin{equation}
+X_a^{\downarrow}
+:=
+\bigl(\Id_{\mathcal V_a}\otimes\langle\Omega|\bigr)
+X_a
+\bigl(\Id_{\mathcal V_a}\otimes|\Omega\rangle\bigr).
+\label{eq:lower-symbol-definition}
+\end{equation}
+Only the physical sites on which $X_a$ acts contribute to the matrix element;
+the remaining factors in \eqref{eq:product-coherent-state} cancel by
+normalization.  If $X$ has no auxiliary-space indices, $X^{\downarrow}$ is a
+scalar function of the coherent-state labels.  In particular, the lower
+symbol of the lattice Lax operator is
+\begin{equation}
+L_{a,n}^{\downarrow}(u)
+=
+\langle\Omega_n|L_{a,n}(u)|\Omega_n\rangle,
+\label{eq:lattice-Lax-lower-symbol}
+\end{equation}
+which is a $2\times2$ matrix acting on the auxiliary space.
+
+The continuum spatial Lax matrix is extracted after the model-dependent
+normalization and spectral scaling have been fixed.  Let $\lambda$ denote the
+\emph{continuum Lax spectral parameter}, to distinguish it from the quantum
+spectral parameter $u$ defined in Section~\ref{sec:quantum-lattice-setup}.
+For each model we choose a nonzero scalar normalization
+$c_L(\epsilon,\lambda)$ and a relation $u=u(\epsilon,\lambda)$ such that the
+normalized lattice operator
+\begin{equation}
+\widehat L_{a,n}(\epsilon,\lambda)
+:=
+c_L(\epsilon,\lambda)
+L_{a,n}\bigl(u(\epsilon,\lambda)\bigr)
+\label{eq:normalized-lattice-Lax}
+\end{equation}
+has a regular long-wavelength expansion.  When its lower symbol takes the
+form
+\begin{equation}
+\widehat L_{a,n}^{\downarrow}(\epsilon,\lambda)
+=
+\Id_{\mathcal V_a}
++\epsilon\,U(x_n,t;\lambda)
++\mathcal O(\epsilon^2),
+\label{eq:continuum-spatial-Lax-definition}
+\end{equation}
+we call the coefficient $U(x,t;\lambda)$ the \emph{continuum spatial Lax
+matrix}.  The choices of $c_L$, of the scaling $u(\epsilon,\lambda)$, and of
+any deformation parameters are part of the model-specific continuum limit;
+they are not fixed by the coherent-state construction alone.
+
+The lower symbol of a single local operator is therefore straightforward.
+The next step is more delicate because the discrete zero-curvature equation
+\eqref{eq:discrete-zero-curvature} contains products of operators with
+overlapping physical support.  We now determine how such products enter the
+continuum zero-curvature equation.
+
