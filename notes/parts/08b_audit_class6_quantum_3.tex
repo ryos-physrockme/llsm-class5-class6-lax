@@ -1,0 +1,218 @@
+であり、係数体を$\mathbb Q(\ii,\lambda,\alpha)$とするGröbner基底で還元する。変数の順序とすべての検査名は\path{results/symbolic_verification.json}に保存した。式\eqref{audit6q:eq:uniformC}を回収できない誤った補正も、零でない対照として記録した。
+
+\subsubsection{独立した数値実装}
+\path{code/verify_numeric.py}では、NumPyの有限行列積と逆行列を用い、記号計算の縮約結果を読み込まずに量子格子の等式を検査する。乱数seedは20260909である。行列ノルムにはFrobeniusノルム$\|M\|_{\rm F}=(\sum_{ij}|M_{ij}|^2)^{1/2}$を用いる。二つの行列$A,B$の相対誤差は
+\begin{equation}
+e_{\rm rel}(A,B)=\frac{\|A-B\|_{\rm F}}{\max(1,\|A\|_{\rm F},\|B\|_{\rm F})}
+\label{audit6q:eq:relerr}
+\end{equation}
+と定義した。
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{L{82mm}rr}
+\toprule
+検査&例数&最大相対誤差\\\midrule
+有限格子の作用素零曲率方程式&32&$5.02\times10^{-15}$\\
+量子Yang--Baxter方程式&32&$4.46\times10^{-16}$\\
+off-shell曲率の残差への因数分解&128&$1.18\times10^{-15}$\\
+有限格子Hamiltonianのsymbolとの一致&12&$7.68\times10^{-12}$\\
+\bottomrule
+\end{tabular}
+\caption{今回の実行で得た検算結果。最下段は連続極限の誤差ではなく、同じ有限格子間隔で二つの評価法を比べた誤差である。}
+\label{audit6q:tab:checks}
+\end{table}
+
+最下段の照合内容を明示する。中央と左右のスピンを$\boldsymbol s_0=\Svec(x)$、$\boldsymbol s_{\rm L}=\Svec(x-\epsilon)$、$\boldsymbol s_{\rm R}=\Svec(x+\epsilon)$とする。量子Hamiltonianの可換子を直積状態で評価して得る、連続時間単位での瞬間的なスピンの変化率は
+\begin{equation}
+\boldsymbol f_\epsilon=-2\boldsymbol s_0\times\left[
+\frac{\boldsymbol s_{\rm R}+\boldsymbol s_{\rm L}-2\boldsymbol s_0}{\epsilon^2}
+-\frac\alpha2 N(\boldsymbol s_{\rm R}+\boldsymbol s_{\rm L})\right].
+\label{audit6q:eq:finiteflow}
+\end{equation}
+式\eqref{audit6q:eq:Lseries}のlower symbolをこの変化率で微分した値と、有限格子の作用素積を直接部分トレースした値が一致する。$\epsilon^{-3}$で規格化した差を計算するため、最小の格子間隔では丸め誤差が増幅される。
+
+重要な限定として、式\eqref{audit6q:eq:finiteflow}は直積コヒーレント状態で評価した\emph{瞬間的なベクトル場}である。厳密な量子時間発展が直積コヒーレント状態の集合を保つことは仮定も証明もしていない。
+
+\subsubsection{有限格子間隔での収束と因子化誤差}
+連続極限の数値検査には、滑らかな実単位スピン
+\begin{align}
+\Svec(x)&=(\sin\theta(x)\cos\phi(x),\sin\theta(x)\sin\phi(x),\cos\theta(x))^{\mathsf T},\nonumber\\
+\theta(x)&=0.9+0.2\sin x,\qquad
+\phi(x)=0.3+0.4x+0.1\cos(2x)
+\label{audit6q:eq:profile}
+\end{align}
+を使う。評価位置は$x=0.37$、スペクトルパラメータは$\lambda=0.8+0.2\ii$とし、Class 6では$\alpha=0.7-0.2\ii$、変形のない等方的Heisenberg（XXX）鎖の対照では$\alpha=0$とする。
+
+次の二つの右辺を、同じ有限格子間隔$\epsilon$で計算する：
+\begin{align}
+J_{\rm exact}(\epsilon)&=\epsilon^{-3}\left[
+(\widehat{\mathcal A}_{n+1}\widehat L_n)^\downarrow
+-(\widehat L_n\widehat{\mathcal A}_n)^\downarrow\right],\nonumber\\
+J_{\rm fact}(\epsilon)&=\epsilon^{-3}\left[
+\widehat{\mathcal A}_{n+1}^\downarrow\widehat L_n^\downarrow
+-\widehat L_n^\downarrow\widehat{\mathcal A}_n^\downarrow\right].
+\label{audit6q:eq:Jnumerical}
+\end{align}
+前者は作用素積を保つ処方、後者は期待値を因子化した処方である。比較対象$\partial_TU$は式\eqref{audit6q:eq:EOM}によって計算する。三つの\emph{絶対誤差}を
+\begin{align}
+e_0&=\|J_{\rm exact}-\partial_TU\|_{\rm F},\nonumber\\
+e_{\mathcal C}&=\|J_{\rm exact}-J_{\rm fact}-\mathcal C\|_{\rm F},\nonumber\\
+e_{\rm fact}&=\|J_{\rm fact}-\partial_TU\|_{\rm F}
+\label{audit6q:eq:spacingerrors}
+\end{align}
+と定義する。さらに、空間作用素の二次・三次係数を残した比較対象
+\begin{equation}
+J_{\rm target}=\partial_TU+\epsilon\partial_T(\ell_2^\downarrow)
++\epsilon^2\partial_T(\ell_3^\downarrow),\qquad
+e_{\rm full}=\|J_{\rm exact}-J_{\rm target}\|_{\rm F}
+\label{audit6q:eq:fullerror}
+\end{equation}
+も評価する。式\eqref{audit6q:eq:fullerror}の各時間微分には同じ連続運動方程式を用いる。これは$e_0$と\emph{異なる比較対象}である。
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+模型&$\epsilon$&$e_0$&$e_{\rm full}$&$e_{\mathcal C}$&$e_{\rm fact}$\\\midrule
+Class 6&0.080&$6.43\times10^{-2}$&$1.31\times10^{-3}$&$4.65\times10^{-2}$&0.7522\\
+&0.020&$1.60\times10^{-2}$&$7.86\times10^{-5}$&$1.15\times10^{-2}$&0.7260\\
+&0.005&$3.99\times10^{-3}$&$4.86\times10^{-6}$&$2.85\times10^{-3}$&0.7196\\\midrule
+XXX&0.080&$6.21\times10^{-4}$&$6.21\times10^{-4}$&$8.84\times10^{-3}$&0.1572\\
+&0.020&$3.89\times10^{-5}$&$3.89\times10^{-5}$&$2.12\times10^{-3}$&0.1514\\
+&0.005&$2.43\times10^{-6}$&$2.43\times10^{-6}$&$5.24\times10^{-4}$&0.1500\\\bottomrule
+\end{tabular}
+\caption{有限格子間隔での絶対誤差。全六段階の格子間隔のデータは添付CSVにある。}
+\label{audit6q:tab:spacing}
+\end{table}
+
+Class 6では小さい方の三つの格子間隔から求めたべき指数が、$e_0$で1.001、$e_{\rm full}$で2.008、$e_{\mathcal C}$で1.002となった。$e_0$の一次収束は、式\eqref{audit6q:eq:Lseries}の二次係数によって、$\epsilon^{-1}\partial_T\widehat L^\downarrow$自体に$O(\epsilon)$の項があるためである。Class 6の$e_0$が二次収束するとは報告しない。
+
+一方、因子化した処方の誤差は零へ向かわず、
+\begin{equation}
+\lim_{\epsilon\to0}e_{\rm fact}=\|\mathcal C\|_{\rm F}
+=\begin{cases}0.7174723&\text{Class 6},\\0.1495710&\text{XXX}\end{cases}
+\label{audit6q:eq:limits}
+\end{equation}
+となる。これらは指定した場・パラメータに対する値であり、模型全体で一律の誤差ではない。$e_{\mathcal C}$の収束は、式\eqref{audit6q:eq:mainC}が実際に作用素積と期待値の積との差を表していることを数値的にも支持する。
+
+\subsection{Class 5との比較と到達点}
+\label{audit6q:sec:comparison}
+Class 5についての計算報告では、そこで指定した量子R行列の規格化において、空間作用素の一次係数の二乗が$\ell_1^2=\one4/(4\lambda^2)$となった。その結果、局所補正は$-2\ii U^2+\ii\one2/(4\lambda^2)$で足りた。ここでClass 5の$U$は\emph{同報告で定義した}空間行列を指し、Class 6の式\eqref{audit6q:eq:U}とは別の関数である。
+
+両模型の指定した規格化では、作用素の二乗とsymbolの二乗の差$\Xi$を使うと、同じ形$\Delta V=2\ii\Xi-\ii\one2/(4\lambda^2)$に整理できる。しかしClass 6では式\eqref{audit6q:eq:l1square}の$2\ell_2$が残り、式\eqref{audit6q:eq:Delta}の$4\ii\ell_2^\downarrow$が必要になる。二例で共通の式が得られたことから、任意の量子鎖にも成り立つと推論することはできない。スカラー規格化や局所表示を変えた場合にも係数を再計算する必要がある。
+
+今回で、Class 6の量子R行列から有限格子の時間作用素、共有格子点の作用素積、局所補正、古典時間Lax成分、運動方程式との同値性までが、既知の古典時間成分を入力しない順序でつながった。Class 5に対して既に行った計算と合わせて、\emph{指定した二模型の局所的な量子--古典Lax対応を独立に閉じて検算する}という作業範囲は満たした。
+
+論文化に際して残るのは、既存の連続極限の構成法やeleven-vertexの表示との比較を、今回の補正の導出に対して正確に位置づけることである。計算が成立したことと、導出・解釈が文献上新しいことは別に判断しなければならない。原著者が同じ因子化を行ったために時間Lax成分を得られなかった、といった研究過程についての推測はしない。
+
+また、粒子生成の機構、散乱状態のdressing、任意の量子鎖での一般命題は、この計算を完結させるための追加条件ではない。本報告はそれらを扱わず、指定した表示と連続極限における局所Lax構成を結論とする。
+
+% embedded standalone report appendix boundary removed
+\subsection{共有格子点の作用素積を縮約する手順}
+\label{audit6q:app:contraction}
+この付録は、式\eqref{audit6q:eq:mainC}を既知の時間成分から逆算せずに再計算するための手順を与える。物理空間1と2のスピンを$\boldsymbol s_1,\boldsymbol s_2$とする。時間作用素の係数のsymbolを$f_j(\boldsymbol s_1,\boldsymbol s_2)=A_j^\downarrow$（$j=1,2$）と定義する。直接の部分トレースから
+\begin{equation}
+f_1(\boldsymbol s_1,\boldsymbol s_2)=-2\Qmap(\boldsymbol s_1\times\boldsymbol s_2),
+\qquad f_1(\Svec,\Svec)=0
+\label{audit6q:eq:f1}
+\end{equation}
+を得る。
+
+二変数行列関数$G(\boldsymbol s_1,\boldsymbol s_2)$の、第$j$引数について方向$\boldsymbol v$に取る微分を
+\begin{equation}
+\partial_jG[\boldsymbol v]
+=\sum_{a=1}^3v^a\frac{\partial G}{\partial s_j^a}
+\label{audit6q:eq:directional}
+\end{equation}
+と定義する。また$[G]_{\rm same}$は、\emph{微分と行列積を実行した後に}$\boldsymbol s_1=\boldsymbol s_2=\Svec$を代入することを意味する。すると
+\begin{equation}
+V^\downarrow=[f_2-\partial_1f_1[\Svec_x]]_{\rm same}
+\label{audit6q:eq:Vdownextraction}
+\end{equation}
+である。
+
+この付録内だけで、左右に作用する空間係数を
+\begin{equation}
+\ell_{\rm L}=\ell_{1,01},\quad\ell_{\rm R}=\ell_{1,02},\qquad
+m_{\rm L}=\ell_{2,01},\quad m_{\rm R}=\ell_{2,02}
+\label{audit6q:eq:appendixaliases}
+\end{equation}
+と略記する。$m$は質量ではなく空間作用素の二次係数の別名である。右側の時間作用素を含む積から出る差を$C_{{\rm R},2},C_{{\rm R},3}$、左側の時間作用素を含む積から出る差を$C_{{\rm L},2},C_{{\rm L},3}$とする。末尾の2,3は格子間隔の次数であり、行列要素の添字ではない。それぞれ
+\begin{align}
+C_{{\rm R},2}&=(A_1\ell_{\rm L})^\downarrow-f_1\ell_{\rm L}^\downarrow,
+\nonumber\\
+C_{{\rm L},2}&=(\ell_{\rm R}A_1)^\downarrow-\ell_{\rm R}^\downarrow f_1,
+\label{audit6q:eq:C2}\\
+C_{{\rm R},3}&=(A_2\ell_{\rm L}+A_1m_{\rm L})^\downarrow
+-f_2\ell_{\rm L}^\downarrow-f_1m_{\rm L}^\downarrow,
+\nonumber\\
+C_{{\rm L},3}&=(\ell_{\rm R}A_2+m_{\rm R}A_1)^\downarrow
+-\ell_{\rm R}^\downarrow f_2-m_{\rm R}^\downarrow f_1
+\label{audit6q:eq:C3}
+\end{align}
+で計算する。同じ場に評価した二次の差は$[C_{{\rm R},2}-C_{{\rm L},2}]_{\rm same}=0$である。左右の場のTaylor展開を取ると、三次の差は
+\begin{equation}
+\mathcal C=
+[\partial_2C_{{\rm R},2}[\Svec_x]
++\partial_1C_{{\rm L},2}[\Svec_x]
++C_{{\rm R},3}-C_{{\rm L},3}]_{\rm same}
+\label{audit6q:eq:Cextraction}
+\end{equation}
+となる。右側の組では$(\boldsymbol s_1,\boldsymbol s_2)=(\Svec(x),\Svec(x+\epsilon))$、左側の組では$(\Svec(x-\epsilon),\Svec(x))$なので、式\eqref{audit6q:eq:Cextraction}の二つの方向微分は同符号になる。
+
+式\eqref{audit6q:eq:Cextraction}を、式\eqref{audit6q:eq:A1}--\eqref{audit6q:eq:A2}、\eqref{audit6q:eq:lower2}、\eqref{audit6q:eq:l1}--\eqref{audit6q:eq:l23}から評価し、その後に拘束\eqref{audit6q:eq:kinematic}で還元する。得られた行列と$2\ii(\partial_x\Xi+[\Xi,U])$との差が厳密に零であることが、記号計算の\path{source_equals_covariant_second_moment}検査である。
+
+\subsection{再現方法と記号一覧}
+\subsubsection{同梱ファイルと実行手順}
+検証コードはPython 3.13.5、SymPy 1.14.0、NumPy 2.3.5で実行した。パッケージのルートで、以下を順に実行する。
+\begin{verbatim}
+python -m pip install -r requirements.txt
+python code/verify_symbolic.py
+python code/verify_numeric.py
+cd report
+lualatex -interaction=nonstopmode -halt-on-error \
+  class6_lax_coherent_symbol_ja.tex
+lualatex -interaction=nonstopmode -halt-on-error \
+  class6_lax_coherent_symbol_ja.tex
+\end{verbatim}
+最後の二回は相互参照と目次を確定するためのコンパイルである。日本語組版にはLuaLaTeX、LuaTeX-ja、Harano Ajiフォントを備えたTeX環境を使う。フォント本体は添付しない。
+
+\path{results/symbolic_verification.json}は厳密検査の結果、
+\path{results/symbolic_expressions.json}は導出した各行列の式、
+\path{results/numeric_verification.json}は数値条件と最大誤差、
+\path{results/finite_spacing.csv}は各格子間隔での絶対誤差を保存する。コード内の$\ell_1,\ell_2,\ell_3$は、それぞれ\texttt{ell,m,n}と表記している。コード中の\texttt{Q}は式\eqref{audit6q:eq:Qmap}の写像であり、\texttt{source}は式\eqref{audit6q:eq:Cextraction}の直接縮約結果である。
+
+\subsubsection{主な記号}
+\small
+\begin{longtable}{L{26mm}L{103mm}}
+\toprule
+記号&意味と定義箇所\\\midrule\endfirsthead
+\toprule 記号&意味と定義箇所\\\midrule\endhead
+\bottomrule\endfoot
+$u,a$&量子スペクトルパラメータ、量子鎖の変形パラメータ。式\eqref{audit6q:eq:R}。\\
+$\epsilon,x_n$&格子間隔、格子点の位置$x_n=n\epsilon$。\\
+$\lambda,\alpha$&連続スペクトルパラメータと変形パラメータ。式\eqref{audit6q:eq:scaling}。\\
+$t_{\rm lat},T$&量子格子の時間と連続時間。$T=\epsilon^2t_{\rm lat}$。\\
+$P,K$&置換作用素と変形の四次行列。式\eqref{audit6q:eq:PK}。\\
+$h,H_{\rm lat}$&量子鎖の局所Hamiltonianと全Hamiltonian。式\eqref{audit6q:eq:hlat}。\\
+$\widehat L_n$&単位行列に近づく規格化の量子空間Lax作用素。式\eqref{audit6q:eq:Lnorm}。\\
+$\ell_1,\ell_2,\ell_3$&空間作用素の格子間隔一次・二次・三次の係数。式\eqref{audit6q:eq:Lseries}。\\
+$\widehat{\mathcal A}_n$&有限格子の規格化した時間Lax作用素。式\eqref{audit6q:eq:Anorm}。\\
+$A_1,A_2$&時間作用素の格子間隔一次・二次の係数。式\eqref{audit6q:eq:Aseries}。\\
+$\Svec,S^\pm$&古典スピン場と$S^1\pm\ii S^2$。$\Svec^{\mathsf T}\Svec=1$。\\
+$\rho,B^\downarrow$&コヒーレント状態の密度行列と、物理空間だけの期待値。式\eqref{audit6q:eq:rho}--\eqref{audit6q:eq:lower2}。\\
+$U,U_0$&連続空間Lax行列とそのトレース零の部分。式\eqref{audit6q:eq:U}--\eqref{audit6q:eq:U0}。\\
+$\Qmap$&三成分ベクトルをトレース零行列へ写す線形写像。式\eqref{audit6q:eq:Qmap}。\\
+$V^\downarrow$&量子時間作用素のlower symbolから直接得る連続行列。式\eqref{audit6q:eq:Vdown}。\\
+$\mathcal C$&作用素積を期待値の積へ置き換えると失われる連続の項。式\eqref{audit6q:eq:Cdefinition}。\\
+$\Xi$&$(\ell_1^2)^\downarrow-(\ell_1^\downarrow)^2$。式\eqref{audit6q:eq:Xi}。\\
+$\Delta V,V$&局所的な時間成分の補正と、補正した時間Lax行列。式\eqref{audit6q:eq:Delta}、\eqref{audit6q:eq:Vcorrected}。\\
+$N$&古典スピンの三次の異方性行列。式\eqref{audit6q:eq:N}。$K$とは別物。\\
+$H_{\rm cl},\mathcal H$&連続Hamiltonianとその密度。式\eqref{audit6q:eq:Hsymbol}--\eqref{audit6q:eq:Hcl}。\\
+$\boldsymbol{\mathcal E},F_{Tx}$&運動方程式の残差ベクトルとLax曲率。式\eqref{audit6q:eq:Eres}--\eqref{audit6q:eq:curvature}。\\
+$J_{\rm exact},J_{\rm fact}$&有限格子の右辺を、作用素積を保って／期待値を因子化して評価した行列。式\eqref{audit6q:eq:Jnumerical}。\\
+\end{longtable}
+\normalsize
+
+\clearpage
