@@ -1,0 +1,220 @@
+時間の再規格化$T=\epsilon^2t_{\rm lat}$と、空間作用素の一次項$\epsilon U$のため、格子零曲率方程式の三次係数が連続の時間発展を与える。従って、積の三次項には
+\begin{equation}
+A_2\ell_1\quad\hbox{に加えて}\quad A_1\ell_2
+\label{audit6q:eq:neededproducts}
+\end{equation}
+が必要である。同一の場に評価した時間作用素の三次係数は、隣接する二項の差で相殺される。その係数と空間作用素の一次項との積は四次であり、ここで求める三次係数には不要である。詳細な抽出式を付録\ref{audit6q:app:contraction}に与える。
+
+\subsection{量子作用素積から得られる局所補正}
+\subsubsection{時間作用素の期待値と作用素積の差}
+連続時間行列の候補を、時間作用素のlower symbolの極限
+\begin{equation}
+V^\downarrow(T,x;\lambda)
+=\lim_{\epsilon\to0}\epsilon^{-2}
+\widehat{\mathcal A}_n^\downarrow,
+\qquad x=x_n
+\label{audit6q:eq:Vdown}
+\end{equation}
+で定義する。左格子点の場は$\Svec(x-\epsilon)$、右格子点は$\Svec(x)$である。時間作用素の一次項は、同じスピンを両格子点に置くと期待値が消える。このため式\eqref{audit6q:eq:Vdown}は有限になる。
+
+次に、格子零曲率方程式の右辺について、\emph{作用素積のlower symbol}と\emph{lower symbolの行列積}との差を取り、その$\epsilon^3$係数を$\mathcal C$と呼ぶ。すなわち
+\begin{align}
+\mathcal C=\lim_{\epsilon\to0}\epsilon^{-3}\Big[&
+(\widehat{\mathcal A}_{n+1}\widehat L_n)^\downarrow
+-(\widehat L_n\widehat{\mathcal A}_{n})^\downarrow
+\nonumber\\
+&-\widehat{\mathcal A}_{n+1}^{\downarrow}\widehat L_n^\downarrow
++\widehat L_n^\downarrow\widehat{\mathcal A}_{n}^{\downarrow}\Big].
+\label{audit6q:eq:Cdefinition}
+\end{align}
+これは、単に期待値を因子化したために連続方程式から失われる局所行列である。正しい作用素積を使った連続の右辺は
+\begin{equation}
+\partial_x V^\downarrow+[V^\downarrow,U]+\mathcal C
+\label{audit6q:eq:rawcontinuum}
+\end{equation}
+となる。
+
+この差を式\eqref{audit6q:eq:A1}--\eqref{audit6q:eq:A2}と部分トレースから計算した。結果を表示するために、一次の空間作用素係数の二乗に関する差を$\Xi$と定義する：
+\begin{align}
+\Xi&=(\ell_1^2)^\downarrow-(\ell_1^\downarrow)^2
+\label{audit6q:eq:Xi}\\
+&=\frac1{4\lambda^2}\one2+2\ell_2^\downarrow-U^2.
+\label{audit6q:eq:Xi2}
+\end{align}
+$\Xi$は補助空間上の行列であって、正値な分散を意味しない。式\eqref{audit6q:eq:Xi2}は作用素恒等式\eqref{audit6q:eq:l1square}による。
+
+\emph{独立に計算した式\eqref{audit6q:eq:Cdefinition}の結果}が、次の形に整理されることを確認した：
+\begin{equation}
+\mathcal C=2\ii\left(\partial_x\Xi+[\Xi,U]\right).
+\label{audit6q:eq:mainC}
+\end{equation}
+この恒等式の検査が、既知の古典時間成分を使わない導出の中心である。$\Xi$から右辺を作って正しいと仮定したのではなく、8行8列の行列の作用素積を縮約して得た左辺と、拘束面上で比較した。
+
+\subsubsection{時間Lax成分の復元}
+時間Lax成分に加える局所行列を$\Delta V$とし、
+\begin{align}
+\Delta V&=2\ii\Xi-\frac{\ii}{4\lambda^2}\one2
+\label{audit6q:eq:DeltaXi}\\
+&=4\ii\ell_2^\downarrow-2\ii U^2+\frac{\ii}{4\lambda^2}\one2
+\label{audit6q:eq:Delta}
+\end{align}
+と取る。最後のスカラー項は$T,x$に依存せず、最終的な時間行列のトレースを零にする規格化である。式\eqref{audit6q:eq:mainC}から
+\begin{equation}
+\mathcal C=\partial_x\Delta V+[\Delta V,U]
+\label{audit6q:eq:absorb}
+\end{equation}
+が従う。従って、補正した連続時間Lax行列を
+\begin{equation}
+V=V^\downarrow+\Delta V
+\label{audit6q:eq:Vcorrected}
+\end{equation}
+とすれば、式\eqref{audit6q:eq:rawcontinuum}は$\partial_xV+[V,U]$にまとまる。この操作は、指定した空間行列$U$に対する時間成分の修正である。場のゲージ変換と同一視してはいない。
+
+補助空間の二成分ベクトルを$\psi(T,x;\lambda)$とすると、得られた二つの行列は補助線形問題
+\begin{equation}
+\partial_x\psi=U\psi,\qquad \partial_T\psi=V\psi
+\label{audit6q:eq:linearproblem}
+\end{equation}
+に現れる。その両微分の両立条件が$\partial_TU-\partial_xV+[U,V]=0$であり、次節で運動方程式との同値性を確認する。
+
+スピンの外積を通常の三次元外積とし、$\Svec_x=\partial_x\Svec$と書く。部分トレースの結果を明示的に整理すると、
+\begin{align}
+V^\downarrow&=-2\Qmap(\Svec\times\Svec_x)
+-2\ii\partial_\lambda U_0+\ii\alpha S^+S^3\one2,
+\label{audit6q:eq:Vdownexplicit}\\
+\Delta V&=\ii\partial_\lambda U_0-\ii\alpha S^+S^3\one2,
+\label{audit6q:eq:Deltaexplicit}\\
+V&=-2\Qmap(\Svec\times\Svec_x)-\ii\partial_\lambda U_0,
+\qquad \tr V=0.
+\label{audit6q:eq:Vfinal}
+\end{align}
+ここで$\partial_\lambda$はスピン場と$\alpha$を固定した\emph{スペクトルパラメータ微分}であり、時空微分ではない。線形写像$\Qmap$は式\eqref{audit6q:eq:Qmap}で既に明示したので、式\eqref{audit6q:eq:Vfinal}は任意のスピンとその一階空間微分から評価できる完全な式である。
+
+\subsubsection{空間的に一様な場にも残る補正}
+式\eqref{audit6q:eq:mainC}を空間行列の係数に戻すと、
+\begin{equation}
+\mathcal C=-2\ii\partial_x(U^2)
++4\ii\left(\partial_x\ell_2^\downarrow+[\ell_2^\downarrow,U]\right)
+\label{audit6q:eq:sourceexpanded}
+\end{equation}
+となる。Class 6では第二項があり、特に交換子が零とは限らない。
+
+具体的に、ある時刻の一様な配置$\Svec=(0,0,1)^{\mathsf T}$、$\Svec_x=0$を取る。このとき
+\begin{equation}
+U=\begin{pmatrix}1/(2\lambda)&\alpha\lambda\\0&0\end{pmatrix},\qquad
+\Delta V=\begin{pmatrix}-\ii/(4\lambda^2)&\ii\alpha\\0&\ii/(4\lambda^2)\end{pmatrix},
+\label{audit6q:eq:uniformmatrices}
+\end{equation}
+であり、
+\begin{equation}
+\partial_x\Delta V=0,\qquad
+\mathcal C=[\Delta V,U]
+=\begin{pmatrix}0&-\ii\alpha/\lambda\\0&0\end{pmatrix}.
+\label{audit6q:eq:uniformC}
+\end{equation}
+$\alpha\ne0$なら補正は有限に残る。これは\emph{一様な瞬間的配置}による検査であって、この場が定常解や真空であるとは述べていない。
+
+もし$4\ii\ell_2^\downarrow$を式\eqref{audit6q:eq:Delta}から落とせば、残りは$U$の多項式となる。一様な配置では空間微分も$U$との交換子も零になるため、式\eqref{audit6q:eq:uniformC}を復元できない。この例は、Class 5の簡略化した補正式をClass 6へそのまま適用できないことを直接示す。
+
+\subsection{Hamiltonianと運動方程式による独立検証}
+\subsubsection{古典Hamiltonianと規約}
+量子Hamiltonianとは別の記号として、連続Hamiltonianを$H_{\rm cl}$、その密度を$\mathcal H$とする。隣接場$\Svec(x)$と$\Svec(x+\epsilon)$を式\eqref{audit6q:eq:hlat}に入れると、単位スピンの拘束のもとで
+\begin{equation}
+h_{n,n+1}^\downarrow=2+\epsilon^2\mathcal H+O(\epsilon^3),\qquad
+\mathcal H=-\frac12\Svec_x^{\mathsf T}\Svec_x+\alpha S^+S^3.
+\label{audit6q:eq:Hsymbol}
+\end{equation}
+格子点数を$N_{\rm site}$とすれば、一定の空間長で
+$H_{\rm cl}=\lim_{\epsilon\to0}(H_{\rm lat}^\downarrow-2N_{\rm site})/\epsilon
+=\int dx\,\mathcal H$となる。変分では周期境界、または変分による境界項が消える条件を取る。
+
+古典スピンの異方性を表す三次行列を$N$と定義する：
+\begin{equation}
+N=\begin{pmatrix}0&0&-1\\0&0&-\ii\\-1&-\ii&0\end{pmatrix},\qquad N^3=0.
+\label{audit6q:eq:N}
+\end{equation}
+すると
+\begin{equation}
+H_{\rm cl}=\int dx\left[-\frac12\Svec_x^{\mathsf T}\Svec_x
+-\frac\alpha2\Svec^{\mathsf T}N\Svec\right].
+\label{audit6q:eq:Hcl}
+\end{equation}
+この符号は量子Hamiltonianと時間の規格化\eqref{audit6q:eq:hlat}、\eqref{audit6q:eq:scaling}から固定している。時間Lax成分との照合では、このHamiltonianの符号と時間の規格化を同時に固定する。
+
+Poisson括弧を
+\begin{equation}
+\{S^a(x),S^b(y)\}=2\sum_{c=1}^3\varepsilon_{abc}S^c(x)\delta(x-y)
+\label{audit6q:eq:PB}
+\end{equation}
+とする。ここで$\delta(x-y)$はDiracのデルタ関数である。式\eqref{audit6q:eq:Hcl}を変分し、$\partial_T\Svec=\{\Svec,H_{\rm cl}\}$を計算すると、
+\begin{equation}
+\partial_T\Svec=-2\Svec\times(\Svec_{xx}-\alpha N\Svec)
+\label{audit6q:eq:EOM}
+\end{equation}
+となる。一方、量子作用素積から得た連続右辺\eqref{audit6q:eq:rawcontinuum}も、
+$\Qmap[-2\Svec\times(\Svec_{xx}-\alpha N\Svec)]$
+と一致する。これは補正後の時間Lax成分を求めた後に行う独立な照合である。
+
+\subsubsection{零曲率方程式と運動方程式の同値性}
+運動方程式の残差ベクトルを$\boldsymbol{\mathcal E}$、Lax曲率を$F_{Tx}$と定義する：
+\begin{align}
+\boldsymbol{\mathcal E}&=\partial_T\Svec+2\Svec\times(\Svec_{xx}-\alpha N\Svec),
+\label{audit6q:eq:Eres}\\
+F_{Tx}&=\partial_TU-\partial_xV+[U,V].
+\label{audit6q:eq:curvature}
+\end{align}
+運動方程式を場へ代入することなく、
+\begin{equation}
+F_{Tx}=\Qmap(\boldsymbol{\mathcal E})
+\label{audit6q:eq:offShell}
+\end{equation}
+が成立する。ここで使う空間的な拘束は
+\begin{equation}
+\Svec^{\mathsf T}\Svec=1,\qquad
+\Svec^{\mathsf T}\Svec_x=0,\qquad
+\Svec^{\mathsf T}\Svec_{xx}=-\Svec_x^{\mathsf T}\Svec_x
+\label{audit6q:eq:kinematic}
+\end{equation}
+だけである。この意味で式\eqref{audit6q:eq:offShell}はoff shellの恒等式である。
+
+曲率の行列要素を$F_{ij}=(F_{Tx})_{ij}$、残差の複素成分を$\mathcal E^\pm=\mathcal E^1\pm\ii\mathcal E^2$と書くと、残差は
+\begin{align}
+\mathcal E^+&=4\lambda F_{21},\nonumber\\
+\mathcal E^3&=4\lambda(F_{11}-2\alpha\lambda^2F_{21}),\nonumber\\
+\mathcal E^-&=4\lambda(F_{12}-4\alpha\lambda^2F_{11}+12\alpha^2\lambda^4F_{21})
+\label{audit6q:eq:inverseQ}
+\end{align}
+と復元できる。成分の順序を$(\mathcal E^+,\mathcal E^-,\mathcal E^3)$から$(F_{21},F_{11},F_{12})$へ固定した係数行列の行列式は$-1/(64\lambda^3)$である。従って$\lambda\ne0$において
+\begin{equation}
+F_{Tx}=0\quad\Longleftrightarrow\quad\boldsymbol{\mathcal E}=0.
+\label{audit6q:eq:equivalence}
+\end{equation}
+単位スピンに独立な運動方程式は接平面の二成分で足りるが、式\eqref{audit6q:eq:inverseQ}は三成分表示でも情報を失わないことを示している。これだけを、保存量の相互のPoisson可換性や量子可積分性の新たな証明と言い換えることはしない。
+
+\subsubsection{文献の連続運動方程式との対応}
+文献\cite{DFN}の式(A.11)--(A.12)のスピン場、時間、異方性行列を、この小節に限り$\Svec_{\rm ref}$、$t_{\rm ref}$、$N_{\rm ref}$と表す。具体的には
+\begin{equation}
+N_{\rm ref}=\begin{pmatrix}0&0&1\\0&0&-\ii\\1&-\ii&0\end{pmatrix},\qquad
+\partial_{t_{\rm ref}}\Svec_{\rm ref}
+=\Svec_{\rm ref}\times(\partial_x^2\Svec_{\rm ref}-\alpha N_{\rm ref}\Svec_{\rm ref}).
+\label{audit6q:eq:refEOM}
+\end{equation}
+定数の反射行列$O=\operatorname{diag}(-1,1,1)$によって
+\begin{equation}
+\Svec_{\rm ref}=O\Svec,\qquad t_{\rm ref}=2T,\qquad
+N=O N_{\rm ref} O
+\label{audit6q:eq:dictionary}
+\end{equation}
+と対応させると式\eqref{audit6q:eq:EOM}と一致する。$\det O=-1$のため外積の符号も変わる。Hamiltonianの符号、Poisson括弧の規格化、時間の倍率を一緒に扱う必要がある。これは局所的な運動方程式の対応であり、実条件・境界条件を含めた大域的な量子理論の同値性ではない。
+
+\subsection{記号計算と有限行列による検算}
+\subsubsection{厳密な等式検査}
+再現用プログラム\path{code/verify_symbolic.py}は、R行列から計算を開始し、保存済みの古典時間行列を読み込まない。R行列の正則性、Hamiltonianの微分表示、逆行列関係、Sutherland relation、空間・時間作用素の展開、共有格子点の積の寄与、局所補正、Hamiltonian変分、off-shell曲率と残差の相互変換など、\textbf{40項目}の等式を厳密に検査し、すべて零になった。
+
+拘束面上の等式は、式\eqref{audit6q:eq:kinematic}の三多項式で還元して判定する。コード中だけの略記として$p=S^+$、$q=S^-$、$z=S^3$を用いる。これらは運動量でもスペクトルパラメータでもない。多項式は
+\begin{align}
+pq+z^2-1,&\nonumber\\
+qp_x+pq_x+2zz_x,&\nonumber\\
+qp_{xx}+pq_{xx}+2p_xq_x+2zz_{xx}+2z_x^2&
+\label{audit6q:eq:ideal}
+\end{align}
