@@ -1,0 +1,50 @@
+{
+  "sympy_version": "1.14.0",
+  "python_version": "3.13.5",
+  "number_of_checks": 25,
+  "checks": {
+    "P_squared": "exact_zero",
+    "K_squared": "exact_zero",
+    "PK_minus_K": "exact_zero",
+    "KP_plus_K": "exact_zero",
+    "ell_squared": "exact_zero",
+    "Sutherland_relation": "exact_zero",
+    "exact_rhs_decomposition": "exact_zero",
+    "order_epsilon_squared_connected_cancellation": "exact_zero",
+    "coincident_A1": "exact_zero",
+    "two_site_A1": "exact_zero",
+    "coincident_A2": "exact_zero",
+    "time_symbol_decomposition": "exact_zero",
+    "quantum_derived_connected_source": "exact_zero",
+    "local_correction_commutes_with_U": "exact_zero",
+    "local_correction_absorbs_source": "exact_zero",
+    "quantum_rhs_equals_continuum_flow": "exact_zero",
+    "unit_spin_flow": "exact_zero",
+    "corrected_curvature": "exact_zero",
+    "off_shell_EOM_factorization": "exact_zero",
+    "Hamiltonian_flow": "exact_zero",
+    "Hamiltonian_density_expansion": "exact_zero",
+    "Hamiltonian_density_order_zero": "exact_zero",
+    "Hamiltonian_density_order_one": "exact_zero",
+    "reference_EOM_dictionary": "exact_zero",
+    "XXX_reduction": "exact_zero"
+  },
+  "scope": "spin-1/2 Class 5, a1=1, a2=2a, a3=0, a=epsilon*alpha, u=lambda/epsilon",
+  "constraint_polynomials": [
+    "p*q + z**2 - 1",
+    "p*q_x + p_x*q + 2*z*z_x",
+    "p*q_xx + 2*p_x*q_x + p_xx*q + 2*z*z_xx + 2*z_x**2"
+  ],
+  "groebner_variable_order": [
+    "p_xx",
+    "q_xx",
+    "z_xx",
+    "p_x",
+    "q_x",
+    "z_x",
+    "p",
+    "q",
+    "z"
+  ],
+  "groebner_domain": "QQ_I(lambda,alpha)"
+}
