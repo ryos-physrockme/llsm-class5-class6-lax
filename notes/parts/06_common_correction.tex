@@ -1,0 +1,69 @@
+\part{Class 5/6 に共通する量子--古典補正と文献上の位置づけ}
+
+\section{二次モーメントの symbol 差による共通整理}
+Class 5/6 の規格化空間 Lax 作用素を一般に
+\begin{equation}
+\widehat L=\mathbf 1+\epsilon\ell_1+\epsilon^2\ell_2+\cdots
+\end{equation}
+と書く。空間 Lax 行列を $U:=\ell_1^\downarrow$ と定義し、二次モーメントの symbol 差を
+\begin{equation}
+\Xi:=(\ell_1^2)^\downarrow-(\ell_1^\downarrow)^2
+\label{eq:XiCommon}
+\end{equation}
+と定義する。$\Xi$ は確率論的な正値分散を意味せず、作用素積と lower-symbol 行列積の差をまとめた補助空間行列である。
+
+adjoint covariant derivative $D_x^{(U)}$ は式\eqref{eq:Dadj}で定義した。この二模型の独立計算は共通して
+\begin{equation}
+\mathcal C_{\rm site}=2\ii D_x^{(U)}\Xi
+\label{eq:commonC}
+\end{equation}
+と書ける。選んだ規格化では局所時間補正も
+\begin{equation}
+\Delta V=2\ii\Xi-\frac{\ii}{4\lambda^2}\one2
+\label{eq:commonDelta}
+\end{equation}
+という共通形を持つ。
+
+Class 5 では $\Xi_5=\one2/(4\lambda^2)-U_5^2$ で $[\Xi_5,U_5]=0$ となり、式\eqref{eq:commonC}は全微分へ簡単化する。Class 6 では $\Xi_6$ に $2\ell_2^\downarrow$ が残り、$[\Xi_6,U_6]$ が一般に nonzero である。従って Class 6 は「Class 5 の全微分公式を一般公式だと誤認しないための failure boundary」になっている。
+
+\begin{cautionnote}
+式\eqref{eq:commonC}を任意の量子可積分鎖に対する一般定理としては主張しない。現時点で示したのは Class 5 と Class 6 の指定表示・規格化・scaling に対する二つの worked examples である。
+\end{cautionnote}
+
+\section{既知の一般論と今回の具体的結果を切り分ける}
+今回の研究で一度過大評価しかけた点を明確にする。
+
+第一に、coherent-state lower symbol が作用素積を通常の積へ写さないこと自体は既知である\cite{SuzukiTsuchiya2017,Schlichenmaier2010}。従って「star-product correction を発見した」という主張はしない。
+
+第二に、可積分量子 spin chain から classical continuum Lax structure を取る systematic long-wavelength limit は既知である\cite{AvanDoikouSfetsos2010}。従って「量子鎖の coherent continuum limit を初めて正しく定式化した」という主張もしない。
+
+第三に、古典空間 Lax 行列と classical $r$-matrix / monodromy から時間 Lax 成分を生成する Semenov--Tian--Shansky 型の方法も既知である\cite{DoikouKaraiskos2011}。Class 5 の $V$ を classical $r$-matrix から構成できたこと自体を新一般論とはしない。
+
+現在の安全な中心は、次の限定された chain である：
+\begin{equation}
+\begin{aligned}
+&\text{finite-lattice quantum time Lax operator}
+\longrightarrow \text{shared-site lower-symbol correction}\\
+&\hspace{42mm}\longrightarrow \text{continuum }V
+\end{aligned}
+\label{eq:safeClaim}
+\end{equation}
+これを Class 5/6 で明示し、Class 5 では独立な classical $r$-matrix / monodromy route と閉じたことが計算上の核である。
+
+\section{現在の新規性・進歩性評価}
+この表は priority の不存在証明ではなく、論文化方針を固定する内部評価である。
+
+\begin{longtable}{L{42mm}L{48mm}L{48mm}}
+\toprule
+項目 & 新規性についての現在の評価 & 物理・方法論上の価値\\
+\midrule\endhead
+Class 5 Lax pair 自体 & Jordanian/null-like LL hierarchy に既知構造があるため新規とはしない。 & 単独では主結果にしない。\\
+Class 5 quantum--classical bridge & recent Class 5 quantum chain から finite-lattice time operator、continuum $V$、保存量、既知 Jordanian hierarchy までの明示的接続が主候補。 & 原論文が残した continuum time-component の穴に直接関係する。\\
+Class 6 Lax pair 自体 & quantum Class 6=eleven-vertex と LL hierarchy は既知。 & 単独では弱い。\\
+Class 6 continuum dictionary & recent continuum variables と eleven-vertex EOM/Poisson/$r/U,V$ の明示的 dictionary は整理価値がある。 & Class 5 の bridge を補強し、既知 hierarchy との関係を明確化。\\
+共有格子点 correction の共通整理 & star-product 非乗法性は既知。二模型の time-Lax continuum limit で $2\ii D_x^{(U)}\Xi$ に整理した点が具体的候補。 & Class 6 が Class 5 の単純全微分の failure boundary を与える。\\
+Class 5 STS closure & STS method 自体は既知。量子 finite-lattice route と独立 route が同じ $V$ に閉じたことが検証上重要。 & quantum--classical bridge の循環性を除き、終了判定を強める。\\
+ML & 別模型への適用自体は主新規性ではない。 & off-shell certificate、source audit、analytic ansatz への入口として有効。\\
+\bottomrule
+\end{longtable}
+
