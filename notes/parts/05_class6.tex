@@ -1,0 +1,245 @@
+\part{Class 6：nilpotent square-root Lax と eleven-vertex dictionary}
+
+\section{Class 6 continuum 方程式と三次 nilpotent anisotropy}
+Class 6 の文献基底の spin を $\boldsymbol S_{\rm paper}$ とし、反射行列
+\begin{equation}
+R_x:=\operatorname{diag}(-1,1,1)
+\end{equation}
+で計算基底の spin を $\boldsymbol S:=R_x\boldsymbol S_{\rm paper}$ と定義する。文献時間 $t_{\rm paper}$ に対し本節の連続時間を $T:=t_{\rm paper}/2$ とする。
+
+計算基底の異方性行列は
+\begin{equation}
+N:=R_xN_{\rm paper}R_x
+=\begin{pmatrix}0&0&-1\\0&0&-\ii\\-1&-\ii&0\end{pmatrix},
+\qquad N^3=0.
+\label{eq:N6}
+\end{equation}
+continuum coupling を $\alpha$ とし、運動方程式残差を
+\begin{equation}
+\boldsymbol E_6:=\boldsymbol S_T+2\boldsymbol S\times(\boldsymbol S_{xx}-\alpha N\boldsymbol S)
+\label{eq:E6res}
+\end{equation}
+と定義する。
+
+\section{Class 6 の有限行列平方根型 Lax pair と off-shell certificate}
+Class 6 の square-root 表示の spectral parameter を $\zeta_6$ と呼ぶ。三次 nilpotency $N^3=0$ により、対称行列
+\begin{equation}
+A_{\zeta_6}=\zeta_6\one3+\frac{\alpha}{2\zeta_6}N
+-\frac{\alpha^2}{8\zeta_6^3}N^2
+\label{eq:A6}
+\end{equation}
+は厳密に
+\begin{equation}
+A_{\zeta_6}^2=\zeta_6^2\one3+\alpha N
+\end{equation}
+を満たす。時間成分用の行列は
+\begin{equation}
+B_{\zeta_6}=-\zeta_6^2\one3+\frac\alpha2N-
+\frac{3\alpha^2}{8\zeta_6^2}N^2.
+\label{eq:B6}
+\end{equation}
+ベクトル Lax pair を
+\begin{equation}
+\boldsymbol U_6=A_{\zeta_6}\boldsymbol S,
+\qquad
+\boldsymbol V_6=-2\left[B_{\zeta_6}\boldsymbol S+A_{\zeta_6}(\boldsymbol S\times\boldsymbol S_x)\right]
+\label{eq:Lax6}
+\end{equation}
+と取ると、共通恒等式の時間規格化を合わせて
+\begin{equation}
+F_{Tx}=\iota(A_{\zeta_6}\boldsymbol E_6).
+\label{eq:QE6}
+\end{equation}
+$\det A_{\zeta_6}=\zeta_6^3$ なので generic な $\zeta_6\neq0$ で flatness と EOM は同値である。
+
+Class 6 の ML 探索の詳細は第\ref{sec:ml-class6}節にまとめた。有限 library $\{\one{3},N,N^2\}$ の係数として回収された関係は、式\eqref{eq:A6}の有限行列平方根と一致する。ML はこの square-root structure を認識する入口を与えたが、最終証明は式\eqref{eq:A6}--\eqref{eq:QE6}の解析恒等式である。
+
+\section{Class 6 量子 $R$-matrix と continuum 空間 Lax 行列}
+spin-$\tfrac12$ の量子表示で、二空間の permutation 作用素 $P$ と変形行列 $K$ を
+\begin{equation}
+K=\begin{pmatrix}
+0&1&1&0\\0&0&0&-1\\0&0&0&-1\\0&0&0&0
+\end{pmatrix}
+\label{eq:C6K}
+\end{equation}
+とする。$P^2=\one4$、$PK=KP=K$、$K^3=0$ である。量子 deformation parameter を $a$、量子 spectral parameter を $u$ とすると
+\begin{equation}
+R(u;a)=2u\one4+P+au(1+2u)K+
+\frac{a^2u^2(1+2u)^2}{2}K^2.
+\label{eq:C6R}
+\end{equation}
+局所 Hamiltonian density は $h=2P+aK$ であり、代数的 inverse relation
+\begin{equation}
+R(u;a)R(-u;a)=(1-4u^2)\one4
+\end{equation}
+を満たす。
+
+Class 6 では\textbf{格子間隔 $\epsilon$}に対して量子 deformation が二次で scaling する：
+\begin{equation}
+a=\epsilon^2\alpha,
+\qquad u=\frac{\lambda}{\epsilon},
+\qquad T=\epsilon^2t_{\rm lat}.
+\label{eq:C6scaling}
+\end{equation}
+規格化 Lax 作用素 $\widehat L=L/(2u)$ は
+\begin{equation}
+\widehat L=\one4+\epsilon\ell_1+\epsilon^2\ell_2+\epsilon^3\ell_3
+\label{eq:C6Lseries}
+\end{equation}
+という厳密な有限多項式になり、
+\begin{align}
+\ell_1&=\frac{P}{2\lambda}+\alpha\lambda K+\alpha^2\lambda^3K^2,\\
+\ell_2&=\frac\alpha2K+\alpha^2\lambda^2K^2,\\
+\ell_3&=\frac{\alpha^2\lambda}{4}K^2.
+\label{eq:C6ells}
+\end{align}
+ここで重要な恒等式は
+\begin{equation}
+\ell_1^2=\frac{\one4}{4\lambda^2}+2\ell_2.
+\label{eq:C6l1sq}
+\end{equation}
+Class 5 と違い、一次係数の二乗が二次係数を含む。
+
+spin の複素成分を $S^\pm:=S^1\pm\ii S^2$ と定義すると、lower symbol から得る空間 Lax 行列は
+\begin{equation}
+U=\frac1{4\lambda}
+\begin{pmatrix}
+1+S^3+2\alpha\lambda^2S^+&
+S^-+4\alpha\lambda^2S^3-4\alpha^2\lambda^4S^+\\
+S^+&1-S^3-2\alpha\lambda^2S^+
+\end{pmatrix}.
+\label{eq:C6U}
+\end{equation}
+traceless part を $U_0:=U-\one2/(4\lambda)$ と書く。
+
+\section{Class 6：共有格子点補正と Class 5 からの failure boundary}
+Class 6 でも、共有 site の作用素積を古典時間成分を使わず直接評価する。二次モーメントの symbol 差を
+\begin{equation}
+\Xi_6:=(\ell_1^2)^\downarrow-(\ell_1^\downarrow)^2
+=\frac{\one2}{4\lambda^2}+2\ell_2^\downarrow-U^2
+\label{eq:Xi6}
+\end{equation}
+と定義する。空間 Lax 行列 $U$ に対する\textbf{adjoint covariant derivative} を
+\begin{equation}
+D_x^{(U)}X:=\partial_xX+[X,U]
+\label{eq:Dadj}
+\end{equation}
+と定義すると、共有格子点補正は
+\begin{equation}
+\mathcal C_{\rm site}^{(6)}=2\ii D_x^{(U)}\Xi_6
+\label{eq:Csite6}
+\end{equation}
+と書ける。局所時間 Lax 補正は
+\begin{equation}
+\Delta V_6=2\ii\Xi_6-\frac{\ii}{4\lambda^2}\one2
+=4\ii\ell_2^\downarrow-2\ii U^2+\frac{\ii}{4\lambda^2}\one2
+\label{eq:DeltaV6}
+\end{equation}
+と取れ、$\mathcal C_{\rm site}^{(6)}=\partial_x\Delta V_6+[\Delta V_6,U]$ である。
+
+量子時間作用素の lower symbol だけから得る行列を $V_6^\downarrow$ と呼ぶと、補正後は
+\begin{equation}
+V_6=V_6^\downarrow+\Delta V_6
+=-2\mathcal Q_\lambda(\boldsymbol S\times\boldsymbol S_x)-\ii\partial_\lambda U_0.
+\label{eq:C6Vfinal}
+\end{equation}
+ここで古典ベクトル $\boldsymbol v$ を補助空間行列へ写す線形写像を
+\begin{equation}
+\mathcal Q_\lambda(\boldsymbol v):=\frac1{4\lambda}
+\begin{pmatrix}
+v^3+2\alpha\lambda^2v^+&v^-+4\alpha\lambda^2v^3-4\alpha^2\lambda^4v^+\\
+v^+&-v^3-2\alpha\lambda^2v^+
+\end{pmatrix}
+\label{eq:Qmap6}
+\end{equation}
+と定義した。$v^\pm=v^1\pm\ii v^2$ である。
+
+Class 6 が重要なのは、Class 5 の純粋な全微分型補正をそのまま一般化できないことを示す点である。例えば空間的に一様な瞬間配置 $\boldsymbol S=(0,0,1)^{\mathsf T}$、$\boldsymbol S_x=0$ でも、
+\begin{equation}
+\mathcal C_{\rm site}^{(6)}=[\Delta V_6,U]
+=\begin{pmatrix}0&-\ii\alpha/\lambda\\0&0\end{pmatrix}
+\label{eq:C6uniform}
+\end{equation}
+と nonzero である。従って correction の本質は「全微分」ではなく adjoint covariant derivative である。
+
+\section{Class 6：Hamiltonian EOM と off-shell 因数分解の独立検証}
+量子 Hamiltonian の continuum limit から、本節の規約の Hamiltonian density は
+\begin{equation}
+\mathcal H=-\frac12\boldsymbol S_x^{\mathsf T}\boldsymbol S_x+\alpha S^+S^3
+=-\frac12\boldsymbol S_x^{\mathsf T}\boldsymbol S_x-\frac\alpha2\boldsymbol S^{\mathsf T}N\boldsymbol S
+\label{eq:C6Hind}
+\end{equation}
+と得られる。Poisson bracket は
+\begin{equation}
+\{S^a(x),S^b(y)\}=2\varepsilon_{abc}S^c(x)\delta(x-y)
+\end{equation}
+とする。
+
+運動方程式残差 $\boldsymbol E=(E^1,E^2,E^3)$ の複素成分を $E^\pm=E^1\pm\ii E^2$ とすると、補正後の曲率は
+\begin{equation}
+F_{Tx}=\mathcal Q_\lambda(\boldsymbol E)
+\label{eq:C6Off}
+\end{equation}
+であり、逆に
+\begin{align}
+E^+&=4\lambda F_{21},\\
+E^3&=4\lambda(F_{11}-2\alpha\lambda^2F_{21}),\\
+E^-&=4\lambda(F_{12}-4\alpha\lambda^2F_{11}+12\alpha^2\lambda^4F_{21})
+\label{eq:C6inv}
+\end{align}
+と復元できる。係数写像の determinant は $-1/(64\lambda^3)$ であり、generic な $\lambda\neq0$ で可逆である。
+
+独立な symbolic audit では 40 個の等式が全て厳密に零となった。有限格子の discrete zero-curvature equation は 32 個の複素 parameter case で最大相対誤差 $5.02\times10^{-15}$、EOM を課さない局所 jet による factorization は 128 case で最大相対誤差 $1.18\times10^{-15}$ だった。有限格子間隔の比較では、leading continuum target と next-order target の収束次数が異なるため、同じ「誤差次数」として混同しない。
+
+\section{Class 6 と eleven-vertex hierarchy の局所辞書}
+\status{Class 6=eleven-vertex の量子同定と LOZ hierarchy は既知。以下は recent continuum variables との明示的規約辞書}
+量子段階では Class 6 が eleven-vertex model であること自体は既知である\cite{CdL2024}。Class 6 $R$-matrix は適切な parameter map と定数 gauge transformation により LOZ の eleven-vertex $R$-matrix へ写る\cite{LOZ2014}。従って「Class 6 が実は eleven-vertex だった」という主張はしない。
+
+continuum 側では、Class 6 の計算基底 spin $\boldsymbol S$ から $2\times2$ orbit matrix を
+\begin{equation}
+\Sigma:=\beta
+\begin{pmatrix}
+-S^3&S^1+\ii S^2\\S^1-\ii S^2&S^3
+\end{pmatrix},
+\qquad \beta^2=\frac\alpha8
+\label{eq:Sigma6}
+\end{equation}
+と定義する。$\alpha\neq0$ では $\beta$ の平方根 branch を固定する。undeformed point $\alpha=0$ はこの明示写像へ直接代入せず、$\alpha\to0$ の連続極限として扱う。spin constraint より
+\begin{equation}
+\Sigma^2=\beta^2\one2.
+\end{equation}
+
+Class 6 bracket を orbit matrix へ写すと
+\begin{equation}
+\{\Sigma_{ij}(x),\Sigma_{kl}(y)\}_6
+=\ii\beta(\Sigma_{kj}\delta_{il}-\Sigma_{il}\delta_{kj})\delta(x-y).
+\label{eq:SigmaPB}
+\end{equation}
+従って Poisson tensor と symplectic form は定数倍で対応する。
+
+LOZ flow の線形 map を、本ノートの generic anisotropy $\mathcal J$ と区別して
+\begin{equation}
+\mathcal J_{11}(\Sigma):=-
+\begin{pmatrix}\Sigma_{12}&0\\\Sigma_{11}-\Sigma_{22}&-\Sigma_{12}\end{pmatrix}
+\label{eq:J11}
+\end{equation}
+と書く。本ノートの zero-curvature / Poisson 規約に合わせた比較用 flow density を
+\begin{equation}
+\mathcal H_{11}^{\rm flow}:=\frac1{2\alpha}\tr(\Sigma_x^2)-\frac12\tr[\Sigma\mathcal J_{11}(\Sigma)]
+\label{eq:H11flow}
+\end{equation}
+と定義すると、Class 6 density と $\mathcal H_6=4\mathcal H_{11}^{\rm flow}$ という成分恒等式が得られる。時間は
+\begin{equation}
+t_{11}=\frac{\ii\alpha}{\beta}T
+\label{eq:t11}
+\end{equation}
+と再規格化される。spectral parameter も定数倍で写り、Poisson bracket、EOM、classical $r$-matrix、空間・時間 Lax 行列が同じ局所 dictionary の中で整合する。
+
+\begin{cautionnote}
+LOZ 論文が公開した Hamiltonian density そのものと Class 6 Hamiltonian を単純な定数倍として直接同一視しない。式\eqref{eq:H11flow}は flow を本ノートの規約で比較するための functional である。現在安全に主張するのは、複素化した局所 field space 上の EOM / Poisson / $r$-matrix / $U,V$ hierarchy の対応であり、global/unitary theory の同一性ではない。
+\end{cautionnote}
+
+\begin{historymemo}
+Class 6 の eleven-vertex identification 自体は早い段階で既知だと分かったため、Class 6 単独の「新 Lax」は主結果候補から外れた。ただし量子 time-Lax continuum limit の failure boundary としては Class 5 にはない情報を与えた。
+\end{historymemo}
+
