@@ -1,0 +1,131 @@
+\part{共通する数学と量子格子の準備}
+
+\section{固定規約：spin、行列表示、off shell}
+Class 5/6 では場と coupling が複素になるので、三成分ベクトル $\boldsymbol x,\boldsymbol y$ の内積は Hermitian 内積ではなく複素双線形な transpose contraction
+\begin{equation}
+\boldsymbol x\cdot\boldsymbol y:=\boldsymbol x^{\mathsf T}\boldsymbol y
+\label{eq:dot}
+\end{equation}
+とする。外積は Levi--Civita symbol を $\varepsilon_{123}=+1$ として複素線形に拡張する。後で格子間隔に $\epsilon$ を使うため、Levi--Civita symbol は必ず $\varepsilon_{abc}$ と書き分ける。
+
+spin 場は
+\begin{equation}
+\boldsymbol S^{\mathsf T}\boldsymbol S=1,
+\qquad \boldsymbol S^{\mathsf T}\boldsymbol S_x=0,
+\qquad \boldsymbol S^{\mathsf T}\boldsymbol S_{xx}=-\boldsymbol S_x^{\mathsf T}\boldsymbol S_x
+\label{eq:kin}
+\end{equation}
+を満たす。式\eqref{eq:kin}は運動学的拘束であり、これを使った恒等式は本ノートでは off shell と呼ぶ。
+
+Pauli 行列を $\sigma_a$ とし、三成分ベクトルから traceless $2\times2$ 行列への写像を
+\begin{equation}
+\iota(\boldsymbol x):=-\frac{\ii}{2}\boldsymbol x\cdot\boldsymbol\sigma
+\label{eq:iota}
+\end{equation}
+と定義する。この規約では
+\begin{equation}
+[\iota(\boldsymbol x),\iota(\boldsymbol y)]=\iota(\boldsymbol x\times\boldsymbol y).
+\label{eq:iotacomm}
+\end{equation}
+空間 Lax 行列を $U$、時間 Lax 行列を $V$ と呼び、その曲率を
+\begin{equation}
+F_{tx}:=\partial_tU-\partial_xV+[U,V]
+\label{eq:curv}
+\end{equation}
+と定義する。
+
+\section{対称 anisotropy を持つ Landau--Lifshitz 方程式の共通恒等式}
+\status{一般 anisotropic LL の可積分構造は既知。本節は Class 5/6 に共通な代数を自足的に再導出する}
+複素対称な $3\times3$ 行列を\textbf{異方性行列 $\mathcal J$} と呼び、$\mathcal J^{\mathsf T}=\mathcal J$ とする。運動方程式とその残差を
+\begin{equation}
+\boldsymbol S_t=\boldsymbol S\times(\boldsymbol S_{xx}-\mathcal J\boldsymbol S),\qquad
+\boldsymbol E_{\mathcal J}:=\boldsymbol S_t-\boldsymbol S\times(\boldsymbol S_{xx}-\mathcal J\boldsymbol S)
+\label{eq:genericLL}
+\end{equation}
+と定義する。
+
+spectral parameter を $\lambda$ とし、対称行列 $A_\lambda$ を
+\begin{equation}
+A_\lambda^{\mathsf T}=A_\lambda,\qquad A_\lambda^2=\lambda^2\one3+\mathcal J
+\label{eq:Aroot}
+\end{equation}
+で選ぶ。任意の $3\times3$ 行列 $A$ に対する余因子転置、すなわち adjugate matrix を
+\begin{equation}
+C_A:=A^2-(\tr A)A+\frac12\left[(\tr A)^2-\tr(A^2)\right]\one3
+\label{eq:adj}
+\end{equation}
+と書く。Cayley--Hamilton より $AC_A=C_AA=(\det A)\one3$ である。時間成分に使う行列を $B_\lambda:=-C_{A_\lambda}$ と定義する。
+
+ベクトル表示の Lax pair を
+\begin{equation}
+\boldsymbol U_\lambda=A_\lambda\boldsymbol S,
+\qquad
+\boldsymbol V_\lambda=B_\lambda\boldsymbol S+A_\lambda(\boldsymbol S\times\boldsymbol S_x)
+\label{eq:genLax}
+\end{equation}
+と置く。恒等式
+\begin{equation}
+(A\boldsymbol x)\times(A\boldsymbol y)=C_A^{\mathsf T}(\boldsymbol x\times\boldsymbol y)
+\label{eq:crossadj}
+\end{equation}
+と spin constraint を用いると、曲率は
+\begin{equation}
+\partial_t\boldsymbol U_\lambda-\partial_x\boldsymbol V_\lambda+\boldsymbol U_\lambda\times\boldsymbol V_\lambda
+=A_\lambda\boldsymbol E_{\mathcal J}
+\label{eq:genericFactor}
+\end{equation}
+と off shell に因数分解する。従って $\det A_\lambda\neq0$ なら zero curvature と EOM は同値である。
+
+Class 5/6 では $\mathcal J$ が nilpotent 行列の有限次数多項式になるので、平方根 $A_\lambda$ の二項展開が有限項で打ち切られる。ML が見つけた係数は、後から見るとこの有限行列平方根の係数だった。
+
+\section{量子格子 Lax 方程式、Sutherland relation、時間 Lax 作用素}
+格子 site $n$ の局所量子空間を $\mathcal H_n$、全量子空間を $\mathcal H_q=\bigotimes_n\mathcal H_n$、transfer matrix を作るための補助空間を $\mathcal V_a$ とする。局所 Lax 作用素を $L_{a,n}(u)\in\End(\mathcal V_a\otimes\mathcal H_n)$ と書き、$u$ を\textbf{量子スペクトルパラメータ}と呼ぶ。
+
+regular $R$-matrix は $R(0)=P$ を満たすとする。局所 Hamiltonian density を
+\begin{equation}
+h_{n-1,n}:=P_{n-1,n}\,\partial_uR_{n-1,n}(u)\big|_{u=0}
+\label{eq:hdef}
+\end{equation}
+と定義する。Yang--Baxter equation を regular point で微分すると Sutherland relation
+\begin{equation}
+[h_{n-1,n},L_{a,n}L_{a,n-1}]
+=L_{a,n}\partial_uL_{a,n-1}-(\partial_uL_{a,n})L_{a,n-1}
+\label{eq:SuthMain}
+\end{equation}
+を得る。量子格子の Heisenberg 時間を $t_{\rm lat}$ とし、$\partial_{t_{\rm lat}}X=\ii[H_{\rm lat},X]$ とする。一つの局所時間 Lax 作用素は
+\begin{equation}
+\mathcal A_{a,n}=\ii h_{n-1,n}-\ii L_{a,n}^{-1}h_{n-1,n}L_{a,n}-\ii L_{a,n}^{-1}\partial_uL_{a,n}
+\label{eq:Afinite}
+\end{equation}
+と取れ、
+\begin{equation}
+\ii[H_{\rm lat},L_{a,n}]
+=\mathcal A_{a,n+1}L_{a,n}-L_{a,n}\mathcal A_{a,n}
+\label{eq:discZC}
+\end{equation}
+を満たす。
+
+この有限格子の時間成分は、Class 5 原論文で continuum 側に見つからなかった companion matrix と概念的に同じ役割を量子格子上で担う。今回の量子--古典 bridge の中心は、式\eqref{eq:discZC}を coherent state で連続極限へ移し、古典 $V$ を得ることである。
+
+\section{coherent-state lower symbol と共有格子点の作用素積}
+各 site の規格化 coherent state を $|\mathfrak c_n\rangle\in\mathcal H_n$、全量子空間の product coherent state を $|\mathfrak C\rangle=\bigotimes_n|\mathfrak c_n\rangle$ とする。補助空間を持つ量子作用素 $X_a$ の\textbf{lower symbol} を
+\begin{equation}
+X_a^\downarrow:=(\one{\mathcal V_a}\otimes\langle\mathfrak C|)X_a(\one{\mathcal V_a}\otimes|\mathfrak C\rangle)
+\label{eq:lowerMain}
+\end{equation}
+と定義する。結果は補助空間上の行列として残る。
+
+lower symbol は作用素積の準同型ではない。二つの作用素について
+\begin{equation}
+(X_a^\downarrow\star Y_a^\downarrow):=(X_aY_a)^\downarrow
+\label{eq:starMain}
+\end{equation}
+と star product を定義すれば、一般に
+\begin{equation}
+X_a^\downarrow\star Y_a^\downarrow\neq X_a^\downarrow Y_a^\downarrow.
+\label{eq:nonmult}
+\end{equation}
+この事実自体は coherent-state / Berezin symbol の標準的な性質であり、新規性ではない\cite{SuzukiTsuchiya2017,Schlichenmaier2010}。
+
+重要なのは、式\eqref{eq:discZC}の積 $\mathcal A_{n+1}L_n$ と $L_n\mathcal A_n$ では、時間 Lax 作用素と空間 Lax 作用素が\textbf{同じ物理格子点}を共有することである。異なる site の product state expectation は因子化できるが、共有 site の作用素積は先に掛けてから expectation value を取る必要がある。Class 5/6 では、この connected な一 site 二次モーメントが、格子間隔 $\epsilon\to0$ の scaling と組み合わさって有限の時間 Lax 補正として残る。
+
