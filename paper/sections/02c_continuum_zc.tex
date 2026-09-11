@@ -1,0 +1,195 @@
+\subsection{From the lattice Lax equation to the continuum zero-curvature equation}
+\label{sec:lattice-to-continuum-zc}
+
+We now apply the lower-symbol operation to the finite-lattice equation
+\eqref{eq:discrete-zero-curvature}.  At this stage the lower symbol is taken at
+a fixed point of the coherent-state phase space.  Applying it to the operator
+identity gives the exact relation
+\begin{align}
+\bigl(\partial_{t_{\rm lat}}L_{a,n}(u)\bigr)^{\downarrow}
+={}&
+\bigl(A_{a,n+1}(u)L_{a,n}(u)\bigr)^{\downarrow}
+\nonumber\\
+&-
+\bigl(L_{a,n}(u)A_{a,n}(u)\bigr)^{\downarrow}.
+\label{eq:lower-symbol-discrete-zc}
+\end{align}
+No identification with the derivative of a time-dependent coherent-state
+label is made here.  For each model, the continuum Hamiltonian flow is
+derived independently and used to identify the continuum limit of the
+left-hand side with the time derivative of the classical spatial Lax matrix.
+The two products on the right-hand side cannot be simplified by applying the
+lower symbol to each factor separately, because the two factors in each
+product act on a common physical site.  To keep track of this point without
+introducing any model-dependent formula, define the two auxiliary-space
+matrices
+\begin{align}
+\mathcal D^{(+)}_{a,n}(u)
+:={}&
+\bigl(A_{a,n+1}(u)L_{a,n}(u)\bigr)^{\downarrow}
+-
+A_{a,n+1}^{\downarrow}(u)L_{a,n}^{\downarrow}(u),
+\label{eq:Rplus-definition}\\
+\mathcal D^{(-)}_{a,n}(u)
+:={}&
+\bigl(L_{a,n}(u)A_{a,n}(u)\bigr)^{\downarrow}
+-
+L_{a,n}^{\downarrow}(u)A_{a,n}^{\downarrow}(u).
+\label{eq:Rminus-definition}
+\end{align}
+These matrices measure the failure of the lower symbol to preserve the
+operator product at the overlapping physical site.  This nonmultiplicativity
+is standard in coherent-state symbol calculus and is commonly encoded by a
+Berezin star product \cite{Schlichenmaier2010}.
+
+With the definitions \eqref{eq:Rplus-definition} and
+\eqref{eq:Rminus-definition}, the lower-symbol form of the lattice Lax
+equation is the exact identity
+\begin{align}
+\bigl(\partial_{t_{\rm lat}}L_{a,n}(u)\bigr)^{\downarrow}
+={}&
+A_{a,n+1}^{\downarrow}(u)L_{a,n}^{\downarrow}(u)
+-
+L_{a,n}^{\downarrow}(u)A_{a,n}^{\downarrow}(u)
+\nonumber\\
+&+
+\mathcal D^{(+)}_{a,n}(u)-\mathcal D^{(-)}_{a,n}(u).
+\label{eq:exact-lower-symbol-lattice-zc}
+\end{align}
+For operators with disjoint physical support, the product coherent state
+\eqref{eq:product-coherent-state} makes the corresponding difference vanish.
+The difference terms in \eqref{eq:exact-lower-symbol-lattice-zc} can survive because
+of the overlap described at the end of Section~\ref{sec:quantum-lattice-setup}.
+
+We next state the common continuum scaling used by the two models studied in
+this paper.  The model-dependent spectral scaling and scalar normalization of
+the spatial Lax operator have already been represented abstractly by
+\eqref{eq:normalized-lattice-Lax}.  We also use the freedom described below
+\eqref{eq:discrete-zero-curvature} to shift the finite-lattice time Lax
+operator by a scalar function times the identity.  We denote the resulting operator by
+$\widehat{A}_{a,n}$.
+
+For both models, the continuum time coordinate $t$ is related to the quantum
+lattice time $t_{\rm lat}$ by
+\begin{equation}
+t=\epsilon^2 t_{\rm lat}.
+\label{eq:common-time-scaling}
+\end{equation}
+Equation~\eqref{eq:common-time-scaling} fixes the normalization of the
+continuum time used in this paper.  Since the scalar normalization of
+$\widehat L_{a,n}$ and the scalar shift defining
+$\widehat{A}_{a,n}$ are independent of $t_{\rm lat}$ and of the
+lattice site, the normalized operators obey the same discrete zero-curvature
+equation as $L_{a,n}$ and $A_{a,n}$.
+After the model-dependent spectral scaling has been imposed, the lower symbols
+of the normalized spatial and time Lax operators have the form
+\begin{align}
+\widehat L_{a,n}^{\downarrow}
+&=
+\Id_{\mathcal V_a}
++\epsilon U(x_n,t;\lambda)
++\mathcal O(\epsilon^2),
+\label{eq:L-lower-common-scaling}\\
+\widehat{A}_{a,n}^{\downarrow}
+&=
+\epsilon^2 V^{\downarrow}(x_n,t;\lambda)
++\mathcal O(\epsilon^3).
+\label{eq:A-lower-common-scaling}
+\end{align}
+Here $V^{\downarrow}(x,t;\lambda)$ denotes the continuum matrix obtained
+directly from the lower symbol of the finite-lattice time Lax operator.  The scalings \eqref{eq:common-time-scaling}--\eqref{eq:A-lower-common-scaling}
+are checked for each explicit model.
+
+The part of \eqref{eq:exact-lower-symbol-lattice-zc} containing only products
+of lower symbols now has a standard continuum limit.  Using
+$x_{n+1}=x_n+\epsilon$ together with
+\eqref{eq:L-lower-common-scaling} and
+\eqref{eq:A-lower-common-scaling}, one finds
+\begin{align}
+&\widehat{A}_{a,n+1}^{\downarrow}
+ \widehat L_{a,n}^{\downarrow}
+-
+ \widehat L_{a,n}^{\downarrow}
+ \widehat{A}_{a,n}^{\downarrow}
+\nonumber\\
+&\qquad=
+\epsilon^3
+\left(
+\partial_x V^{\downarrow}
++[V^{\downarrow},U]
+\right)_{(x_n,t;\lambda)}
++\mathcal O(\epsilon^4).
+\label{eq:factorized-continuum-zc}
+\end{align}
+The right-hand side of the lattice equation therefore starts at order
+$\epsilon^3$.  The coefficient of the lower symbol of the Heisenberg
+derivative at the same order is determined from the continuum Hamiltonian and
+its equations of motion for each model.  This dynamical step is separate from
+the algebraic treatment of the operator products.
+
+For the normalized operators, define the corresponding differences by
+\begin{align}
+\widehat{\mathcal D}^{(+)}_{a,n}
+:={}&
+\bigl(\widehat{A}_{a,n+1}\widehat L_{a,n}\bigr)^{\downarrow}
+-
+\widehat{A}_{a,n+1}^{\downarrow}
+\widehat L_{a,n}^{\downarrow},
+\label{eq:Rplus-hat-definition}\\
+\widehat{\mathcal D}^{(-)}_{a,n}
+:={}&
+\bigl(\widehat L_{a,n}\widehat{A}_{a,n}\bigr)^{\downarrow}
+-
+\widehat L_{a,n}^{\downarrow}
+\widehat{A}_{a,n}^{\downarrow}.
+\label{eq:Rminus-hat-definition}
+\end{align}
+Their continuum contribution, when the limit exists, is
+\begin{equation}
+\mathcal C(x,t;\lambda)
+:=
+\lim_{\epsilon\to0}
+\frac{
+\widehat{\mathcal D}^{(+)}_{a,n}
+-
+\widehat{\mathcal D}^{(-)}_{a,n}
+}{\epsilon^3},
+\qquad x=x_n.
+\label{eq:C-continuum-definition}
+\end{equation}
+Once the model-specific Hamiltonian check identifies the continuum limit of
+the lower symbol of the Heisenberg derivative on the left-hand side of
+\eqref{eq:exact-lower-symbol-lattice-zc} with $\partial_tU$, the
+order-$\epsilon^3$ equation becomes
+\begin{equation}
+\partial_t U
+=
+\partial_xV^{\downarrow}
++[V^{\downarrow},U]
++\mathcal C.
+\label{eq:continuum-zc-with-C}
+\end{equation}
+
+The continuum zero-curvature equation is recovered if the matrix
+$\mathcal C$ can be written in the local form
+\begin{equation}
+\mathcal C
+=
+\partial_x\Delta V+[\Delta V,U]
+\label{eq:C-absorbable-condition}
+\end{equation}
+for some auxiliary-space matrix $\Delta V(x,t;\lambda)$.  In that case the
+continuum time Lax matrix
+\begin{equation}
+V:=V^{\downarrow}+\Delta V
+\label{eq:corrected-continuum-V-definition}
+\end{equation}
+satisfies
+\begin{equation}
+\partial_tU-\partial_xV+[U,V]=0.
+\label{eq:continuum-zero-curvature}
+\end{equation}
+Equations \eqref{eq:C-continuum-definition}--\eqref{eq:continuum-zero-curvature}
+formulate the continuum problem.  The matrix $\Delta V$ is determined from
+the finite-lattice operator products for each model.
+
