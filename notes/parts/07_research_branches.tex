@@ -1,0 +1,90 @@
+\part{研究上の分岐、修正、保留した問題}
+
+\section{soft particle production の構造的起源をどこまで追ったか}
+Class 5 原論文の物理的に目立つ現象は、integrability と soft $1\to2$ particle production の共存である\cite{DFN2026}。一時期、この現象の構造的起源まで説明しないと研究として弱いのではないかと考えた。しかし、現在の quantum--classical Lax bridge の論理的完成条件とは別問題であると判断し、follow-up branch として保留した。
+
+それでも途中計算には興味深い構造があるため記録する。stereographic coordinates を $w,\widetilde w$ とし、場の再定義前後を bar の有無で区別すると、Class 5 の $x$ 依存 transformation は
+\begin{equation}
+w=\overline w-cx,
+\qquad
+\widetilde w=\frac{\overline{\widetilde w}}{1+cx\,\overline{\widetilde w}}
+\label{eq:Mobius}
+\end{equation}
+という parabolic M\"obius transformation になる。元の periodic field を長さ $\ell$ の空間円に置くと、再定義後の holonomy は
+\begin{equation}
+W_5=e^{-c\ell M}=\one3-c\ell M+\frac{(c\ell)^2}{2}M^2
+\label{eq:W5}
+\end{equation}
+で、generic な $c\ell\neq0$ では eigenvalue 1 の unipotent Jordan block を持つ。
+
+別 frame の quadratic linearization では、Fourier momentum を $k$ と書くと
+\begin{equation}
+K_{\rm lin}(k)=\begin{pmatrix}-k^2&\alpha^2/2\\0&k^2\end{pmatrix},
+\qquad
+K_{\rm lin}(0)^2=0
+\label{eq:Ksoft}
+\end{equation}
+となり、対角化可能でなくなる locus が $k=0$ に現れる。原論文の soft emission support と同じ momentum locus に nilpotent structure が現れることは示唆的である。
+
+\begin{cautionnote}
+この branch は未完成である。場の再定義は vacuum と boundary condition を変えるため、式\eqref{eq:Ksoft}をそのまま元 frame の S-matrix Hamiltonian と同一視できない。nilpotent charge / Drinfeld dressing の Ward identity から soft amplitude の係数を導くところまでは到達していない。従って現在の論文候補の必須主結果には含めない。
+\end{cautionnote}
+
+\section{途中で修正した主張と、最終的な安全な言い方}
+\begin{longtable}{L{50mm}L{88mm}}
+\toprule
+途中で考えた言い方 & 修正後の安全な記録\\
+\midrule\endhead
+「Class 5/6 に新しい Lax pair を発見した」 & 両者とも既知 hierarchy と対応する。新しい Lax hierarchy 自体は主張しない。\\
+「KLS は flatness だけ見ている」 & KLS も EOM equivalence を componentwise loss へ入れている。違いは本研究が off-shell $F=QE$ と rank を explicit certificate にした点。\\
+「公開 Class 5 generic $L$ は誤植」 & 本ノートの literal implementation では direct twist/RLL と不一致。未記載規約の可能性を排除しない。\\
+「coherent-state symbol の非乗法性が新規 mechanism」 & 非乗法性は既知。今回重要なのは finite-lattice time-Lax equation の共有 site で、その connected moment が continuum $V$ に有限寄与する具体的構造。\\
+「Class 5 correction は $-2\ii\partial_xU^2$ が一般式」 & Class 6 で破れる。共通形は二模型について $2\ii D_x^{(U)}\Xi$。一般 theorem は未証明。\\
+「LOZ Hamiltonian と Class 6 Hamiltonian が同じ」 & 公開 LOZ Hamiltonian の直接同一視はしない。局所 EOM / Poisson / $r/U,V$ dictionary と比較用 flow functional を区別する。\\
+「soft particle production の起源まで必要」 & 興味深い follow-up だが、quantum--classical Lax bridge の完成条件とは別。\\
+\bottomrule
+\end{longtable}
+
+\section{検証の階層：何をどの独立性で確認したか}
+本ノートでは、同じ結論を複数経路で確認する場合、どの入力を共有しているかを区別する。
+\begin{enumerate}[leftmargin=2.5em]
+\item \textbf{純粋代数：} nilpotency、行列平方根、$RLL$、Sutherland relation、有限格子 zero-curvature equation。
+\item \textbf{運動学的 off-shell：} spin constraint は使うが EOM を使わず、$F=QE$ を確認する。
+\item \textbf{Hamiltonian route：} 量子 Hamiltonian の coherent limit または continuum Hamiltonian の変分から EOM を独立に導き、Lax 曲率と比較する。
+\item \textbf{quantum time-Lax route：} finite-lattice $\mathcal A_n$ を構成し、作用素積を先に評価して continuum $V$ を得る。
+\item \textbf{classical $r$-matrix route：} Class 5 では monodromy generating function から $V_r$ を独立に作り、quantum route の $V_q$ と照合する。
+\item \textbf{known-hierarchy audit：} Class 5 は KY、Class 6 は eleven-vertex / LOZ と field、Poisson、時間、spectral parameter、Lax structure を比較する。
+\end{enumerate}
+
+\section{現在の計算上の終了点と、次の論文で圧縮すべきもの}
+現在の計算上のゴールは達成したと判断する。Class 5 について、
+\begin{equation}
+\begin{aligned}
+\text{quantum }R/L
+&\longrightarrow \text{finite-lattice time operator}
+\longrightarrow \text{shared-site correction}\\
+&\longrightarrow \text{continuum }U,V
+\end{aligned}
+\label{eq:endchain1}
+\end{equation}
+を閉じ、さらに
+\begin{equation}
+\text{classical }r\text{-matrix / monodromy}
+\longrightarrow V_r
+\simeq V_q
+\label{eq:endchain2}
+\end{equation}
+を確認した。Class 6 についても quantum finite-lattice route から continuum $U,V$ を独立に回収し、Class 5 の簡単化が一般ではないことを示した。
+
+次の論文草稿では、本ノートのすべてを残す必要はない。圧縮時の候補は次である。
+\begin{enumerate}[leftmargin=2.5em]
+\item 研究開始時の ML 探索は motivation / method history として短くする。
+\item continuum Lax pair の full derivation は必要な certificate だけ本文へ置き、長い algebra は appendix へ移す。
+\item Class 5/6 の量子 time-Lax continuum limit と共通 $\Xi$ 構造を主部に置く。
+\item Class 5 の STS closure を独立 cross-check として残す。
+\item KY / eleven-vertex dictionary は novelty overclaim を防ぐため重要だが、論文の主線を切らない長さへ圧縮する。
+\item soft particle branch は現段階では本文の主結果に入れない。
+\end{enumerate}
+
+ここで論文を書く前に必要なのは、新しい物理計算を無制限に増やすことではなく、今回の finite-lattice quantum time-Lax route が既存文献のどの具体式まで既知で、どこからが今回の明示的 bridge なのかを citation-level で最終精査することである。
+
