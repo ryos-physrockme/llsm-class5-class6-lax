@@ -273,49 +273,43 @@ $A_3$ の通常積部分は同一点で左右の差が相殺され、$A_3$ と $
 =\frac{\Id_2}{4\lambda^2}-U^2,\label{audit5q:eq:Xi}\\
 \Cstar&=2\ii\partial_x\Xi
 \end{align}
-と書ける。この簡約には Class 5 の式\eqref{audit5q:eq:PKalgebra}を用いており、任意の $R$ 行列に同じ式が成立するとは限らない。
+と書ける。この簡約には $\ell^2$ がスカラーであることを使っている。
 
-\subsection{局所補正と時間 Lax 成分}
-\subsubsection{通常の零曲率方程式への復元}
+\subsubsection{局所補正と時間成分}
 
-量子側から得た式は
+曲率補正は
 \begin{equation}
-U_T=\partial_x\vdown+[\vdown,U]+\Cstar
-\label{audit5q:eq:projected}
+\Cstar=\partial_x\Delta V+[\Delta V,U]
+\label{audit5q:eq:absorb}
 \end{equation}
-である。式\eqref{audit5q:eq:Cresult}に対して
+を満たす局所行列 $\Delta V$ に吸収できる。Class 5 では $\Xi$ は $U$ の二次多項式なので $[\Xi,U]=0$ であり、
 \begin{equation}
-\Delta V=-2\ii U^2+\frac{\ii}{4\lambda^2}\Id_2
+\Delta V=2\ii\Xi-\frac{\ii}{4\lambda^2}\Id_2
+=-2\ii U^2+\frac{\ii}{4\lambda^2}\Id_2
 \label{audit5q:eq:DeltaV}
 \end{equation}
-を取る。$\Delta V$ は $U$ の多項式なので
-\begin{equation}
-[\Delta V,U]=0,\qquad
-\partial_x\Delta V+[\Delta V,U]=\Cstar
-\label{audit5q:eq:absorption}
-\end{equation}
-が成り立つ。従って
-\begin{equation}
-V=\vdown+\Delta V,\qquad
-F_{Tx}=U_T-\partial_xV+[U,V]=0
-\label{audit5q:eq:ZC}
-\end{equation}
-を得る。式\eqref{audit5q:eq:DeltaV}のスカラー項は規約の選択であり、任意の場・$x$ に依存しない $f(\lambda)\Id_2$ をさらに足しても曲率は変わらない。ここで行っているのは時間成分の補正であり、それ自体を gauge transformation と呼ばない。
+と取れる。場に依存しないスカラー行列は曲率に寄与しないため、最後の項は最終表示を簡潔にする規約である。
 
-計算結果は次の短い形に整理できる：
-\begin{align}
-W&=-2\Qmap(\bs\times\bs_x),\label{audit5q:eq:Wdef}\\
-Z&=2\ii U^2-\frac{\ii}{4\lambda^2}\Id_2,\label{audit5q:eq:Zdef}\\
-\vdown&=W+2Z,\qquad
-\Delta V=-Z,\qquad
-V=W+Z.
-\label{audit5q:eq:WZ}
-\end{align}
-従って
+\subsubsection{微分項と代数項の分離}
+
+時間成分を読みやすくするため、二つの $2\times2$ 行列を
 \begin{equation}
-V=-2\Qmap(\bs\times\bs_x)+2\ii U^2-rac{\ii}{4\lambda^2}\Id_2.
+W=-2\Qmap(\bs\times\bs_x),\qquad
+Z=2\ii U^2-\frac{\ii}{4\lambda^2}\Id_2
+\label{audit5q:eq:WZ}
+\end{equation}
+と定義する。$W$ は空間微分に一次、$Z$ は空間微分を含まない。量子 symbol の計算は
+\begin{equation}
+f_2(\bs,\bs)=2Z,\qquad
+-\partial_1f_1(\bs,\bs)[\bs_x]=W
+\end{equation}
+を与えるので、最終的に
+\begin{equation}
+\vdown=W+2Z,\qquad \Delta V=-Z,\qquad V=W+Z
 \label{audit5q:eq:Vcompact}
 \end{equation}
+を得る。指定した表示では、単純な時間成分の lower symbol は正しい微分項を持つが、代数項の係数を2倍にしてしまう。共有格子点の補正が、その過剰な部分を取り除く。
+
 $W$ の成分を明示すると
 \begin{align}
 W_{11}&=-\frac{\ii}{4\lambda}
@@ -332,11 +326,8 @@ W_{22}=\frac{\ii}{4\lambda}(pq_x-p_xq).
 $\Delta V$ を、明示的な $x$ 依存も場の微分も持たない $\Delta V(\bs;\lambda)$ のクラスで探す。二つの解の差を $B$ とすると
 \begin{equation}
 \partial_x B+[B,U]=0
-\label{audit5q:eq:homogeneous}
 \end{equation}
-が任意の滑らかな単位 spin 場に対して成り立たなければならない。同一点で接ベクトル $\bs_x$ を自由に変えると、$B$ は球面上で一定でなければならない。残る条件は、全ての $\bs$ に対して $[B,U(\bs)]=0$ である。
-
-$\lambda\ne0$ では、$\Qmap(\bm v)$ の trace-free 部分は、$\bm v$ を変えると三次元の trace-free 行列空間全体を張る。従ってそれら全てと可換な定数 $2\times2$ 行列はスカラーだけである。このクラスでは式\eqref{audit5q:eq:DeltaV}は場に依存しないスカラーを除いて一意となる。より高い場の微分を許したクラスや別の gauge 表示について、一意性を主張してはいない。
+を任意の $\bs_x$ について満たさなければならない。$\partial_xB=(\partial B/\partial S^a)S_x^a$ と $[B,U]$ を独立に比較すると、generic な Class 5 に対して $B=f(\lambda)\Id_2$ だけが残る。従って式\eqref{audit5q:eq:DeltaV}は場に依存しないスカラーを除いて一意となる。より高い場の微分を許したクラスや別の gauge 表示について、一意性を主張してはいない。
 
 \subsection{運動方程式による独立照合}
 \subsubsection{Hamiltonian の連続極限}
