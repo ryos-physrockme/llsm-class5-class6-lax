@@ -1,0 +1,73 @@
+\part{研究課題と研究経緯}
+
+\section{このノートの目的と読み方}
+\label{sec:purpose}
+本ノートは論文原稿ではない。論文では最終結果に不要な探索の失敗、規約の揺れ、source audit、反証計算は通常削るが、ここではそれらも保存する。後に論文草稿を作る際には、本ノートを圧縮し、同じ結論への重複経路を削り、最終的な論理だけを残すことを想定する。
+
+本ノートは二つの並べ方を併用する。本文の数式は、最終的に正しいと確認された\textbf{論理依存}に沿って並べる。一方、各節末の「研究経緯メモ」では、実際の\textbf{発見の時系列}を保存する。これにより「後知恵で最初から答えを知っていた」ような記述を避ける。
+
+式や主張の出典は次の五区分に分ける。
+\begin{enumerate}[leftmargin=2.5em]
+\item \textbf{文献入力：} 先行論文から採用する $R$-matrix、Hamiltonian、運動方程式、既知 Lax pair など。
+\item \textbf{文献式の規約変換：} 文献式を本ノートの基底、時間、spectral parameter、Poisson bracket へ写したもの。
+\item \textbf{本ノートで導出：} 文献入力から途中式を明示して再導出した関係。priority claim を意味しない。
+\item \textbf{独立検証：} 発見時の helper や既知の古典時間成分を入力せず、別経路・別実装・有限行列計算で再確認した結果。
+\item \textbf{研究上の評価：} 文献監査を踏まえた新規性、進歩性、global sector、終了条件についての判断。
+\end{enumerate}
+
+未知の記号は初出時に物理的意味とともに宣言する。例えば、量子格子の連続極限で用いる小さい距離を\textbf{格子間隔 $\epsilon$}、monodromy hierarchy を展開する変数を\textbf{生成スペクトルパラメータ $\zeta$}と呼ぶ。同じ文字が別用途で現れる場合は、その節の冒頭で再定義する。
+
+\section{研究開始時の問題設定：Class 5 と Class 6 は何か}
+\status{文献入力と研究開始時の評価}
+Class 5 と Class 6 は、de Leeuw--Pribytok--Ryan による二状態最近接量子可積分 spin chain の分類に現れる模型である\cite{DPR2019}。ここで「対角化不可能」とは、対象の複素行列が複素数体上で対角化可能でないことをいう。de Leeuw--Fontanella--Nieto Garc\'ia は、この二つを XXX spin chain の対角化不可能な可積分変形として取り上げ、spin coherent state を用いた continuum limit から Landau--Lifshitz 型の場の理論を得た\cite{DFN2026}。
+
+Class 5 の continuum spin 場を三成分複素ベクトル $\boldsymbol S(x,t)$ とし、運動学的拘束 $\boldsymbol S^{\mathsf T}\boldsymbol S=1$ を課す。Class 5 の変形 coupling を $\alpha_5$ と書き、複素反対称行列
+\begin{equation}
+M=\begin{pmatrix}0&0&-1\\0&0&\ii\\1&-\ii&0\end{pmatrix},\qquad M^{\mathsf T}=-M
+\label{eq:intro:M5}
+\end{equation}
+を用いると、Hamiltonian と運動方程式は
+\begin{align}
+H_5&=\int dx\left[\frac12\boldsymbol S_x^{\mathsf T}\boldsymbol S_x+
+\frac{\alpha_5}{2}\boldsymbol S^{\mathsf T}M\boldsymbol S_x\right],
+\label{eq:intro:H5}\\
+\boldsymbol S_t&=\boldsymbol S\times(\boldsymbol S_{xx}-\alpha_5M\boldsymbol S_x)
+\label{eq:intro:E5}
+\end{align}
+と書ける\cite{DFN2026}。
+
+Class 6 では、後で使う計算基底に入る前の文献基底の異方性行列を
+\begin{equation}
+N_{\rm paper}=\begin{pmatrix}0&0&1\\0&0&-\ii\\1&-\ii&0\end{pmatrix}
+\label{eq:intro:N6paper}
+\end{equation}
+と書く。文献は continuum action、Hamiltonian、運動方程式、boost による高次保存量を与えている\cite{DFN2026}。量子 Class 6 が eleven-vertex model であること自体は Corcoran--de Leeuw に明記されており\cite{CdL2024}、eleven-vertex $R$-matrix に対応する Landau--Lifshitz 型 field theory は Levin--Olshanetsky--Zotov により既に研究されている\cite{LOZ2014}。
+
+研究開始時に Class 5 を第一対象とした理由は、2026 年論文が量子 $L$-operator の coherent-state limit から\textbf{空間 Lax 成分}と古典 $r$-matrix を得ながら、運動方程式を再現する\textbf{時間 Lax 成分}（同論文の呼称では companion matrix）を構成できなかったと明記していたためである\cite{DFN2026}。可積分性そのものは量子 Yang--Baxter structure と boost で生成される保存量 hierarchy により別経路で支持されていた。従って「存在するはずの構造を逆問題として探す」という制御された設定だった。
+
+\begin{historymemo}
+最初の研究目標は単純だった。「先行研究で未構成だった Class 5/6 の Lax pair を ML と記号計算で見つければよい」と考えた。ただし、Lax pair は gauge transformation、場の再定義、spectral reparametrization による非一意性が大きいので、式が新しく見えること自体を新規性とはみなさない、という警戒は当初から置いた。
+\end{historymemo}
+
+\section{研究の時系列：何を考え、何を修正したか}
+\label{sec:chronology}
+本節では計算の論理順ではなく、研究上の意思決定を時系列に並べる。
+
+\begin{longtable}{L{24mm}L{118mm}}
+\toprule
+段階 & 起きたことと、その時点での判断\\
+\midrule\endhead
+出発点 & Krippendorf--L\"ust--Syvaeri の ML Lax search を参考に、Class 5/6 の continuum EOM から Lax 構造を探索する方針を採った\cite{KLS2021}。\\
+判定条件の強化 & on-shell flatness loss だけでは恒等的に flat な接続や EOM の一部だけを載せる接続を排除できないと分かった。曲率を EOM 残差の線形像として off shell に因数分解し、係数写像の rank まで見る方針へ移った。\\
+Class 5 の解析化 & ML が回収した係数を、null vector と nilpotent matrix を使う局所 ansatz に落とし、解析 Lax pair と可逆な EOM coefficient matrix を得た。\\
+Class 6 の解析化 & 三次 nilpotent anisotropy に対して、有限項で打ち切られる行列平方根から Lax pair が得られることを認識した。\\
+最初の新規性修正 & 文献監査により、Class 5 は Jordanian / null-like warped Landau--Lifshitz hierarchy、Class 6 は eleven-vertex hierarchy と深く関連することが分かった。「新しい Lax pair」自体を主結果にする方針を撤回した。\\
+量子--古典 bridge へ & Class 5 の recent quantum chain から既知 Jordanian hierarchy までの $R/L$、有限格子、continuum $U,V$、$r$-matrix、保存量、境界条件の辞書を主候補に置いた。Class 6 は recent continuum model と eleven-vertex field theory の辞書として位置付け直した。\\
+coherent symbol の問題 & 量子有限格子の時間 Lax 成分を continuum 化すると、$\langle AB\rangle$ を $\langle A\rangle\langle B\rangle$ へ因子化した処方では有限差が残ることが分かった。最初は正しい古典 $V$ との差を $\Delta V$ と定義したため、説明として循環的だった。\\
+独立再導出 & Class 5 と Class 6 について、既知の古典 $V$ を入力せず、共有格子点上の作用素積を先に評価して補正を導出し直した。Class 6 では Class 5 の全微分型補正が破れ、交換子項が必要なことが分かった。\\
+文献位置づけの再修正 & coherent-state symbol の非乗法性、quantum spin-chain の連続極限、古典 $r$-matrix から $V$ を作る方法は既知であることを確認した。主張を「一般原理の発見」から、Class 5/6 の有限格子 time operator から continuum time Lax を直接閉じる具体的 bridge へ限定した。\\
+最後の閉鎖 & Class 5 について、古典 $r$-matrix / monodromy から独立に時間 Lax 行列を生成し、量子有限格子 route と場に依存しない単位行列成分を除いて一致することを確認した。\\
+現在 & soft particle production の構造的起源は興味深い follow-up だが、現在の quantum--classical Lax bridge を閉じるための必須条件から外した。\\
+\bottomrule
+\end{longtable}
+
