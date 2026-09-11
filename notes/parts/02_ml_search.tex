@@ -1,0 +1,279 @@
+\part{機械学習探索の完全記録}
+
+\section{この part の目的：発見経路と最終証明を分ける}
+\label{sec:ml-purpose}
+\status{KLS は文献入力。PCM、$S^2$、$T^{1,1}$、Class 5、Class 6 の探索経緯と数値結果は本研究の記録}
+本 part は、Class 5 / Class 6 の最終 Lax 構造を証明するための節ではなく、そこへ到達した機械学習（machine learning; ML）の発見経路を保存するための節である。KLS は Lax equation / zero-curvature equation を最適化問題として扱い、Heisenberg model や principal chiral model で既知構造を回収した\cite{KLS2021}。KLS 自身も非自明な field theory では対称性を ansatz に組み込んでおり、完全に unconstrained な函数探索ではない。
+
+本研究でも ML を最終証明には用いない。ML が担った役割は、有限個の局所 feature の中から必要な tensor structure と係数関係を選び、解析 ansatz を狭めることである。最終的な成立条件は、曲率と運動方程式の off-shell 因数分解、係数行列の可逆性、量子 $R/L$ 構造、Poisson bracket、既知 hierarchy との照合によって別に確認する。
+
+人間が与えた情報と学習で決めた情報を混同しないため、本 part では次の区別を用いる。
+\begin{longtable}{L{39mm}L{103mm}}
+\toprule
+区分 & 内容\\
+\midrule\endhead
+人間が与えた物理構造 & 模型の EOM、spin constraint、既知の対称性、Class 5 の null direction、Class 6 の nilpotency、許す空間微分次数、有限 feature library。\\
+ML が選んだもの & feature の係数、不要 feature の抑制、spectral parameter に沿う係数関係、複数 run で再現される低 residual branch。\\
+解析計算へ移したもの & 学習係数の簡単な函数形、曲率の $F=QE$ 因数分解、$Q$ の determinant / inverse、nilpotent matrix square root。\\
+ML では決めないもの & 新規性、既知 hierarchy との同一性、量子 $R$-matrix の正しさ、大域的 boundary sector。これらは解析計算と文献監査で判定する。\\
+\bottomrule
+\end{longtable}
+
+\section{方法開発の前史：PCM、$S^2$、$T^{1,1}$}
+\label{sec:ml-prehistory}
+Class 5 / Class 6 の探索以前に、二次元非線形 sigma model を用いて ML Lax search の成立条件を検討した。$SU(2)$ principal chiral model (PCM) と対称 coset $S^2=SU(2)/U(1)$ では、局所 current data を入力とする最適化から既知の連続 spectral-parameter family を回収できた。この段階で、単一の Lax connection を一つ当てるよりも、学習された係数の集合が一次元の solution manifold を形成することを確認する方が、spectral parameter family の検出として重要だと認識した。
+
+次に、非対称 coset $T^{1,1}$ の二次元 sigma model では、複数 run で再現する低い flatness loss と compact な block-diagonal candidate が得られた。しかし解析的に曲率を EOM residual と Maurer--Cartan 恒等式へ分解すると、algebraic remainder を消す条件が EOM に掛かる写像も同時に消してしまうことが分かった。EOM residual を $E$、coset 部分に作用する二つの線形写像を $\Phi_\pm$ とすると、曲率中の EOM coefficient は $\frac12(\Phi_- - \Phi_+)$ である。一方、学習された branch を exact に flat にする algebraic cancellation は $\Phi_+=\Phi_-$ を要求し、従って
+\begin{equation}
+\frac12(\Phi_- - \Phi_+)E=0
+\end{equation}
+となる。これは flatness が EOM を符号化していないことを意味する。二次元 field theory では fake Lax だった一方、point-particle reduction では genuine mechanical Lax pair が得られた。
+
+この失敗から、低い flatness loss だけを integrability の certificate にしてはいけないことが明確になった。Class 5 / Class 6 では、候補 connection の発見と、その候補が EOM 全体を忠実に符号化することの証明を明示的に分離する方針を採った。
+
+\section{on-shell flatness から off-shell $F=QE$ certificate へ}
+\label{sec:ml-offshell}
+Lax 曲率の独立成分を並べた数値ベクトルを $\boldsymbol f_{\rm curv}$、独立な EOM residual を並べた数値ベクトルを $\boldsymbol e_{\rm EOM}$ とする。ML で用いる係数行列を $Q_{\rm EOM}^{(\mathrm{fit})}$ と書き、基本 loss を
+\begin{equation}
+\mathcal L_{\rm off}
+=
+\left\langle
+\left\|
+\boldsymbol f_{\rm curv}
+-Q_{\rm EOM}^{(\mathrm{fit})}\boldsymbol e_{\rm EOM}
+\right\|^2
+\right\rangle
+\label{eq:ml-off-loss}
+\end{equation}
+とした。ここで $\boldsymbol f_{\rm curv}$ と $\boldsymbol e_{\rm EOM}$ は新しい物理量ではなく、局所 tensor / matrix component を学習用に並べたベクトルである。
+
+sampling では on-shell trajectory を必要としない。ある一点における spin field $\boldsymbol S$ とその局所微分を生成し、
+\begin{equation}
+\boldsymbol S^{\mathsf T}\boldsymbol S=1,
+\qquad
+\boldsymbol S^{\mathsf T}\boldsymbol S_x=0,
+\qquad
+\boldsymbol S^{\mathsf T}\boldsymbol S_{xx}=-\boldsymbol S_x^{\mathsf T}\boldsymbol S_x
+\label{eq:ml-kin-constraints}
+\end{equation}
+のような運動学的拘束だけを課す。時間微分 $\boldsymbol S_t$ は EOM から計算せず独立に与える。従って loss は EOM を満たす超曲面の外でも評価され、on-shell でだけ起きる cancellation と局所恒等式を区別できる。
+
+さらに、$Q_{\rm EOM}^{(\mathrm{fit})}$ が EOM の独立成分数と同じ column rank を持つことを確認する。最終解析では
+\begin{equation}
+\boldsymbol f_{\rm curv}=Q_{\rm EOM}\boldsymbol e_{\rm EOM},
+\qquad
+\operatorname{rank}Q_{\rm EOM}=\dim\boldsymbol e_{\rm EOM}
+\label{eq:ml-rank-certificate}
+\end{equation}
+まで示す。正方行列なら determinant または inverse を明示する。この条件により、恒等的に flat な connection と、EOM の一部しか含まない connection を genuine な Lax representation から区別する。
+
+$S^2=SU(2)/U(1)$ の練習計算では、coset current の $U(1)$ 成分を $J_\pm^{(0)}$、coset 成分を $J_\pm^{(1)}$ として
+\begin{equation}
+L_+=aJ_+^{(0)}+bJ_+^{(1)},
+\qquad
+L_-=cJ_-^{(0)}+dJ_-^{(1)}
+\end{equation}
+を入れると、EOM に乗らない項を消す条件が
+\begin{equation}
+a=c=1,
+\qquad
+bd=1
+\end{equation}
+となる。$b=\lambda$、$d=\lambda^{-1}$ とすれば spectral family を得る。一方、$\lambda=1$ では $L_\pm=J_\pm$ となり Maurer--Cartan 恒等式だけで off shell に flat である。この例も、単一点の flatness と EOM の faithful encoding を分ける必要性を示す。
+
+\section{Class 5：symmetry-informed feature library と係数回収}
+\label{sec:ml-class5}
+Class 5 の解析式を得る前の探索では、場の再定義後に現れる complex null direction を利用した。null vector を
+\begin{equation}
+\boldsymbol m_5=(-\ii,-1,0)^{\mathsf T},
+\qquad
+\boldsymbol m_5^{\mathsf T}\boldsymbol m_5=0
+\end{equation}
+とし、field-redefined spin を $\boldsymbol S_5^{\rm fr}$ と書く。Class 5 coupling $\alpha_5$ の半分を $c=\alpha_5/2$、continuum spectral parameter を $z_5$ とする。局所 scalar feature を
+\begin{equation}
+\chi:=\boldsymbol m_5^{\mathsf T}\boldsymbol S_5^{\rm fr},
+\qquad
+\xi:=\boldsymbol m_5^{\mathsf T}\boldsymbol S_{5,x}^{\rm fr},
+\qquad
+\varrho:=\boldsymbol m_5^{\mathsf T}
+(\boldsymbol S_5^{\rm fr}\times\boldsymbol S_{5,x}^{\rm fr})
+\label{eq:ml5-scalars}
+\end{equation}
+と定義した。
+
+spatial component には
+\begin{equation}
+\boldsymbol U_{5}^{\rm fr}
+=z_5\boldsymbol S_5^{\rm fr}+\beta_5\chi\boldsymbol m_5
+\label{eq:ml5-U}
+\end{equation}
+を用いた。temporal component の feature library には、最終的に必要だった
+\begin{equation}
+\boldsymbol S_5^{\rm fr}\times\boldsymbol S_{5,x}^{\rm fr},
+\qquad
+\varrho\boldsymbol m_5,
+\qquad
+\boldsymbol S_5^{\rm fr},
+\qquad
+\chi\boldsymbol m_5
+\label{eq:ml5-physical-features}
+\end{equation}
+に加え、不要な候補として
+\begin{equation}
+\boldsymbol S_{5,x}^{\rm fr},
+\qquad
+\chi\boldsymbol S_{5,x}^{\rm fr},
+\qquad
+\xi\boldsymbol S_5^{\rm fr},
+\qquad
+\boldsymbol m_5\times\boldsymbol S_{5,x}^{\rm fr}
+\label{eq:ml5-distractors}
+\end{equation}
+などを含めた。従って正解の係数を直接与えたわけではないが、null direction、外積、一次空間微分という物理的構造は人間が library に入れている。
+
+EOM residual を $\boldsymbol E_5^{\rm fr}$、曲率の三成分表示を $\boldsymbol F_5^{\rm fr}$ とし、$K_5:=\boldsymbol m_5\boldsymbol m_5^{\mathsf T}$ とすると、主要 loss は
+\begin{equation}
+\mathcal L_5
+=
+\left\langle
+\left\|
+\boldsymbol F_5^{\rm fr}
+-\left(z_5\one{3}+\beta_5K_5\right)
+\boldsymbol E_5^{\rm fr}
+\right\|^2
+\right\rangle
++\lambda_{\rm sparse}\mathcal R_{\rm sparse}
+\label{eq:ML5loss}
+\end{equation}
+である。sparsity penalty の重みを $\lambda_{\rm sparse}>0$ とし、各 feature の学習係数を $\theta_A$ と書いて
+\begin{equation}
+\mathcal R_{\rm sparse}
+:=
+\sum_A\sqrt{\theta_A^2+10^{-20}}
+\label{eq:ml5-sparse}
+\end{equation}
+を用いた。$10^{-20}$ は絶対値の微分不可能点を滑らかにするための数値 regularization である。
+
+複数の $(c,z_5)$ に対する九回の独立 run で、学習された主要係数は
+\begin{equation}
+\beta_5=\frac{c^2}{2z_5},
+\qquad
+\theta_{\boldsymbol S_5^{\rm fr}\times\boldsymbol S_{5,x}^{\rm fr}}=z_5,
+\qquad
+\theta_{\varrho\boldsymbol m_5}=\frac{c^2}{2z_5},
+\qquad
+\theta_{\boldsymbol S_5^{\rm fr}}=-z_5^2,
+\qquad
+\theta_{\chi\boldsymbol m_5}=\frac{c^2}{2}
+\label{eq:ml5-relations}
+\end{equation}
+という簡単な函数形へ整理された。保存済み集計を表\ref{tab:ml5-summary}に示す。
+\begin{table}[htbp]
+\centering
+\caption{Class 5 の symmetry-informed ML による係数回収。validation は学習に用いていない独立標本上の値。}
+\label{tab:ml5-summary}
+\begin{tabular}{lr}
+\toprule
+量 & 保存済み結果\\
+\midrule
+独立 run 数 & 9\\
+$\max|\beta_5-c^2/(2z_5)|$ & $1.04\times10^{-9}$\\
+physical coefficient の最大誤差 & $1.15\times10^{-7}$\\
+validation MSE の最大値 & $7.99\times10^{-15}$\\
+validation MSE の中央値 & $8.86\times10^{-20}$\\
+不要 feature の最大係数 & $7.17\times10^{-8}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+この係数関係を得た後、曲率を解析的に展開して coefficient equations を解き、式\eqref{eq:ml5-relations}が単なる近似 fit ではなく厳密な解であることを確認した。ML の役割は、過剰な feature library から解析すべき branch を選ぶところまでである。
+
+当時の保存記録では、集計結果を \path{results/class5_ml_aggregate.json}、再学習 script を \path{code/ml/class5_ml_recovery.py} に保存していた。これらのファイルがなくても本ノートの物理的定義は閉じるよう、式と数値集計を本文にも保存する。
+
+\section{Class 6：nilpotent matrix polynomial library と平方根構造}
+\label{sec:ml-class6}
+Class 6 では、計算基底での異方性行列を
+\begin{equation}
+N=
+\begin{pmatrix}
+0&0&-1\\
+0&0&-\ii\\
+-1&-\ii&0
+\end{pmatrix},
+\qquad
+N^3=0
+\label{eq:ml6-N}
+\end{equation}
+とする。三次 nilpotency が既知なので、場の函数 dependence を大きな neural network で探索するのではなく、行列 polynomial の有限 library
+\begin{equation}
+\left\{\one{3},N,N^2\right\}
+\end{equation}
+の係数を学習した。三つの係数行列を
+\begin{align}
+A_6^{\rm ML}&=a_0\one{3}+a_1N+a_2N^2,\\
+B_6^{\rm ML}&=b_0\one{3}+b_1N+b_2N^2,\\
+C_6^{\rm ML}&=c_0\one{3}+c_1N+c_2N^2
+\label{eq:ml6-polynomials}
+\end{align}
+とし、候補 Lax pair を
+\begin{equation}
+\boldsymbol U_6=A_6^{\rm ML}\boldsymbol S,
+\qquad
+\boldsymbol V_6=B_6^{\rm ML}\boldsymbol S
++C_6^{\rm ML}(\boldsymbol S\times\boldsymbol S_x)
+\label{eq:ml6-UV}
+\end{equation}
+とした。ここで $a_0$ は連続 family を parametrise する自由係数であり、後に spectral parameter と同定される。
+
+六回の独立 run から
+\begin{align}
+a_1=c_1&=\frac{\alpha}{2a_0},
+&
+a_2=c_2&=-\frac{\alpha^2}{8a_0^3},\\
+b_0&=-a_0^2,
+&
+b_1&=\frac{\alpha}{2},
+&
+b_2&=-\frac{3\alpha^2}{8a_0^2},
+&
+c_0&=a_0
+\label{eq:ml6-relations}
+\end{align}
+が回収された。保存済み validation RMS の最大値は $1.64\times10^{-14}$、解析係数との差の最大値は $4.88\times10^{-15}$ だった。
+
+この係数列を見て $A_6^{\rm ML}$ の二乗を計算すると、$N^3=0$ により
+\begin{equation}
+\left(A_6^{\rm ML}\right)^2=a_0^2\one{3}+\alpha N
+\label{eq:ml6-square}
+\end{equation}
+となる。従って
+\begin{equation}
+A_6^{\rm ML}
+=a_0\one{3}
++\frac{\alpha}{2a_0}N
+-\frac{\alpha^2}{8a_0^3}N^2
+\label{eq:ml6-root}
+\end{equation}
+は、nilpotent matrix square root の二項展開が有限項で打ち切られたものだと分かった。これは ML の係数列を解析構造へ蒸留した段階であり、その後の最終証明では $A_6^2=a_0^2\one{3}+\alpha N$ と曲率の off-shell 因数分解を直接用いる。
+
+当時の保存記録では、集計結果を \path{results/class6_ml_summary.json}、再学習 script を \path{code/ml/class6_ml_recovery.py} に保存していた。
+
+\section{数値 validation、解析式への移行、文献監査}
+\label{sec:ml-validation}
+ML run の loss が小さいことは、最終的な証明ではない。Class 5 / Class 6 では、候補係数を得た後に次の順で解析計算へ移した。
+\begin{enumerate}[leftmargin=2.5em]
+\item 学習係数を簡単な $c,z_5,\alpha,a_0$ の函数へ整理する。
+\item 曲率を symbolic に再計算し、EOM residual と独立 tensor structure の係数方程式を解く。
+\item $F=Q_{\rm EOM}E$ を off shell に示し、$Q_{\rm EOM}$ の determinant または inverse を求める。
+\item 量子 $R/L$ data、finite-lattice zero-curvature、Poisson bracket、classical $r$-matrix、保存量との整合性を別実装で確認する。
+\item 既知 hierarchy を検索し、候補が既知構造の別表示でないかを監査する。
+\end{enumerate}
+
+最終 verification でも on-shell trajectory は用いず、式\eqref{eq:ml-kin-constraints}だけを満たす局所 jet を生成し、$\boldsymbol S_t$ を EOM と独立にサンプルした。代表的な保存済み誤差には、Class 5 full $gl(2)$ off-shell factorization の RMS $1.95\times10^{-16}$、Class 6 off-shell Lax factorization の最大 residual $7.22\times10^{-15}$ 以下などがある。これらは数値安定性の確認であり、解析恒等式を置き換えるものではない。
+
+文献監査により、Class 5 は Jordanian / null-like warped Landau--Lifshitz hierarchy、Class 6 は eleven-vertex Landau--Lifshitz hierarchy と対応することが分かった。この時点で「ML が新しい Lax pair を発見した」という解釈を撤回した。ML の成功は、既知 hierarchy を知らない段階から正しい局所 branch と係数構造へ到達し、その後の quantum--classical dictionary と source audit の入口を与えたことにある。
+
+\begin{historymemo}
+この研究で ML の評価が変わった点は、低 loss の候補を得たことそのものではない。$T^{1,1}$ の fake Lax により「低 loss でも EOM を符号化しない」ことを経験し、Class 5 / Class 6 では off-shell certificate を探索段階から組み込んだ。その結果、Class 5 では過剰 feature library から必要項だけが残り、Class 6 では係数列から nilpotent square root という解析構造へ移行できた。ML は final claim ではなく、候補生成、反証可能性の確保、解析式への蒸留に有効だった。
+\end{historymemo}
+
