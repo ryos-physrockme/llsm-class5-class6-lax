@@ -1,0 +1,433 @@
+\part{Class 5：continuum Lax、量子 Jordanian chain、量子--古典 bridge}
+
+\section{Class 5 の nilpotent 構造と場の再定義}
+Class 5 の行列 $M$ は式\eqref{eq:intro:M5}で定義した。複素 null vector を
+\begin{equation}
+\boldsymbol m_5:=(-\ii,-1,0)^{\mathsf T}
+\label{eq:m5}
+\end{equation}
+と定義すると、
+\begin{equation}
+\boldsymbol m_5^{\mathsf T}\boldsymbol m_5=0,
+\qquad M\boldsymbol x=\boldsymbol m_5\times\boldsymbol x,
+\qquad M^2=\boldsymbol m_5\boldsymbol m_5^{\mathsf T}=:K_5,
+\qquad K_5^2=0,
+\label{eq:Mnil}
+\end{equation}
+従って $M^3=0$ である。$K_5$ は rank-one nilpotent matrix であり projector ではない。
+
+Class 5 の変形 coupling $\alpha_5$ の半分を
+\begin{equation}
+c:=\frac{\alpha_5}{2},\qquad k_5:=c^2=\frac{\alpha_5^2}{4}
+\label{eq:c5}
+\end{equation}
+と定義する。$x$ 依存の場の再定義
+\begin{equation}
+\boldsymbol S=e^{cxM}\boldsymbol S_5^{\rm fr}
+\label{eq:fieldredef5}
+\end{equation}
+で新しい spin 場 $\boldsymbol S_5^{\rm fr}$ を定義する。上付き ${\rm fr}$ は field redefinition 後という意味で、複素共役や微分を表さない。$M^{\mathsf T}=-M$ なので spin constraint は保たれる。
+
+新しい場で運動方程式は
+\begin{equation}
+\boldsymbol S_{5,t}^{\rm fr}
+=\boldsymbol S_5^{\rm fr}\times\left[
+\boldsymbol S_{5,xx}^{\rm fr}-c^2\boldsymbol m_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S_5^{\rm fr})
+\right]
+\label{eq:E5fr}
+\end{equation}
+となる。null direction への射影を
+\begin{equation}
+\chi:=\boldsymbol m_5^{\mathsf T}\boldsymbol S_5^{\rm fr}
+\label{eq:chi}
+\end{equation}
+と書けば、再定義後の Hamiltonian は
+\begin{equation}
+H_5^{\rm fr}=\int dx\left[
+\frac12(\boldsymbol S_{5,x}^{\rm fr})^{\mathsf T}\boldsymbol S_{5,x}^{\rm fr}
++\frac{k_5}{2}\chi^2\right].
+\label{eq:H5fr}
+\end{equation}
+
+\section{Class 5 continuum Lax pair と off-shell certificate}
+Class 5 の continuum spectral parameter を $z_5$ と呼ぶ。さらに、null direction に沿う一階微分を
+\begin{equation}
+\xi:=\boldsymbol m_5^{\mathsf T}\boldsymbol S_{5,x}^{\rm fr},
+\qquad
+\varrho:=\boldsymbol m_5^{\mathsf T}(\boldsymbol S_5^{\rm fr}\times\boldsymbol S_{5,x}^{\rm fr})
+\label{eq:xirho}
+\end{equation}
+と定義する。
+
+局所 ansatz
+\begin{align}
+\boldsymbol U_5^{\rm fr}&=a_5\boldsymbol S_5^{\rm fr}+b_5\chi\boldsymbol m_5,
+\\
+\boldsymbol V_5^{\rm fr}&=a_5\boldsymbol S_5^{\rm fr}\times\boldsymbol S_{5,x}^{\rm fr}
++b_5\varrho\boldsymbol m_5+d_5\boldsymbol S_5^{\rm fr}+e_5\chi\boldsymbol m_5
+\label{eq:ansatz5}
+\end{align}
+を曲率へ代入し、運動方程式に乗らない tensor structure を独立に消すと
+\begin{equation}
+d_5=-a_5^2,\qquad e_5=a_5b_5,\qquad 2a_5b_5=c^2
+\label{eq:coeff5}
+\end{equation}
+を得る。$a_5=z_5\neq0$ と選べば
+\begin{equation}
+b_5=\frac{c^2}{2z_5},\qquad d_5=-z_5^2,\qquad e_5=\frac{c^2}{2}.
+\end{equation}
+従って
+\begin{align}
+\boldsymbol U_5^{\rm fr}(z_5)&=z_5\boldsymbol S_5^{\rm fr}
++\frac{c^2}{2z_5}\chi\boldsymbol m_5,
+\label{eq:U5fr}\\
+\boldsymbol V_5^{\rm fr}(z_5)&=z_5\boldsymbol S_5^{\rm fr}\times\boldsymbol S_{5,x}^{\rm fr}
++\frac{c^2}{2z_5}\varrho\boldsymbol m_5-z_5^2\boldsymbol S_5^{\rm fr}
++\frac{c^2}{2}\chi\boldsymbol m_5.
+\label{eq:V5fr}
+\end{align}
+
+元の Class 5 変数で運動方程式残差を
+\begin{equation}
+\boldsymbol E_5:=\boldsymbol S_t-\boldsymbol S\times(\boldsymbol S_{xx}-\alpha_5M\boldsymbol S_x)
+\label{eq:E5res}
+\end{equation}
+と定義する。行列曲率は
+\begin{equation}
+F_{tx}(z_5)=\iota\!\left(Q_{{\rm EOM},5}(z_5)\boldsymbol E_5\right),
+\qquad
+Q_{{\rm EOM},5}(z_5)=z_5\one3+\frac{c^2}{2z_5}K_5
+\label{eq:QE5}
+\end{equation}
+と off shell に因数分解する。$K_5^2=0$ より
+\begin{equation}
+Q_{{\rm EOM},5}^{-1}=\frac1{z_5}\left(\one3-\frac{c^2}{2z_5^2}K_5\right),
+\qquad
+\det Q_{{\rm EOM},5}=z_5^3.
+\label{eq:QEinv5}
+\end{equation}
+従って generic な $z_5\neq0$ で flatness と Class 5 EOM は同値である。
+
+\begin{historymemo}
+この Lax pair が見つかった時点では「Class 5 の missing Lax pair を発見した」という見方が有力だった。しかし後の source audit で、Jordanian/null-like Landau--Lifshitz hierarchy に既知 Lax structure が存在することを確認し、主張を Lax pair 自体から量子--古典 bridge へ移した。
+\end{historymemo}
+
+\section{Class 5 の解析式と ML 発見経路の対応}
+Class 5 の ML 探索の feature library、loss、九回の独立 run、validation 結果は第\ref{sec:ml-class5}節にまとめた。そこで学習された
+\begin{equation}
+\beta_5=\frac{c^2}{2z_5}
+\end{equation}
+などの係数関係は、本 part で解析的に得た Lax pair と off-shell coefficient matrix の係数に一致する。従って ML は解析証明を置き換えるのではなく、式\eqref{eq:QE5}--\eqref{eq:QEinv5}へ至る局所 ansatz を絞り込んだ発見経路として位置付ける。
+
+\section{量子 Jordanian Drinfeld twist と generic $L$-operator の source audit}
+\status{Class 5 が XXX の Jordanian twist であることは文献入力。generic $L$ は twist definition から本ノートで再導出}
+Class 5 量子鎖は XXX spin chain の Jordanian Drinfeld twist として記述される\cite{DFN2026}。量子 spectral parameter を $u$ とし、fundamental XXX $R$-matrix を
+\begin{equation}
+R_{\rm XXX}(u)=2u\one4+P
+\label{eq:Rxxx}
+\end{equation}
+とする。twist parameter の一つを $a_2$ とし、$a_3=0$ の表示を使う。twist coefficient を
+\begin{equation}
+\vartheta:=\frac{a_2}{2}
+\end{equation}
+と定義する。physical spin generator を $\mathfrak s^a$ とし、$\mathfrak s^\pm=\mathfrak s^x\pm\ii\mathfrak s^y$ とする。Drinfeld twist $\mathcal F^{(5)}$ を定義式から作用させることで generic physical representation の $L$-operator を再導出した。
+
+この source audit で重要だったのは、公開された generic $L$ 表式を本ノートの通常の operator product 規約で文字通り実装したものと、twist definition から直接得た表式が一致しなかったことである。direct-twist branch は spin-$\tfrac12$ で fundamental $R_5$ に戻り、$RLL$ relation を満たした。一方、公開表式の literal implementation は本ノートの規約では nonzero residual を残した。
+
+\begin{cautionnote}
+ここから「公開式は誤植である」と断定しない。未記載の operator ordering、基底、規格化の可能性を排除していない。安全な記録は「本ノートの明示した規約では direct twist が内部整合し、printed expression の literal implementation とは一致しなかった」である。
+\end{cautionnote}
+
+この監査は、ML の continuum branch が direct twist と整合する方を選んでいたことを後から確認する役割も持った。
+
+\section{Class 5 の量子空間 Lax 作用素から continuum 空間 Lax 行列へ}
+ここからは独立な spin-$\tfrac12$ 表示を使う。二空間の permutation 作用素 $P$ と nilpotent 作用素 $K$ を
+\begin{equation}
+P=\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{pmatrix},\qquad
+K=\begin{pmatrix}0&1&-1&0\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix}
+\label{eq:C5PK}
+\end{equation}
+と定義する。この表示では $P^2=\one4$、$K^2=0$、$PK=K$、$KP=-K$ である。量子変形パラメータを $a$ と書くと
+\begin{equation}
+R(u;a)=2u\one4+P+2auK,
+\qquad
+h=2P+2aK.
+\label{eq:C5Rind}
+\end{equation}
+
+連続極限で\textbf{格子間隔 $\epsilon$}、\textbf{連続変形 coupling $\alpha$}、\textbf{連続スペクトルパラメータ $\lambda$}、\textbf{連続時間 $T$} を
+\begin{equation}
+a=\epsilon\alpha,\qquad u=\frac{\lambda}{\epsilon},\qquad x_n=n\epsilon,
+\qquad T=\epsilon^2t_{\rm lat}
+\label{eq:C5scaling}
+\end{equation}
+で定義する。この $\alpha,\lambda$ は本節の量子--連続照合用規約であり、前節の $\alpha_5,z_5$ とは定数変換を介して対応する。
+
+単位行列に近づく規格化 Lax 作用素を
+\begin{equation}
+\widehat L:=\frac{L}{2u}=\one4+\epsilon\ell,
+\qquad
+\ell=\frac{P}{2\lambda}+\alpha K
+\label{eq:C5Lhat}
+\end{equation}
+と定義する。ここでは厳密に $\ell^2=\one4/(4\lambda^2)$ が成り立つ。
+
+spin の複素成分を
+\begin{equation}
+p:=S^1+\ii S^2,\qquad q:=S^1-\ii S^2,\qquad z:=S^3,
+\qquad pq+z^2=1
+\label{eq:C5pqz}
+\end{equation}
+と定義する。\textbf{$p$ は運動量ではなく spin の複素成分}である。lower symbol による空間 Lax 行列 $U:=\ell^\downarrow$ は
+\begin{equation}
+U=\frac1{4\lambda}
+\begin{pmatrix}
+1+z+2\alpha\lambda p&q-2\alpha\lambda(1+z)\\
+p&1-z
+\end{pmatrix}.
+\label{eq:C5Uquant}
+\end{equation}
+場依存 trace を含む full $\mathfrak{gl}(2)$ connection であり、
+\begin{equation}
+\tr U=\frac1{2\lambda}+\frac\alpha2p,
+\qquad \det U=\frac{\alpha p}{4\lambda}
+\label{eq:C5trace}
+\end{equation}
+である。traceless part だけでなく scalar component も量子 $R$-matrix / classical $r$-matrix の照合では保持する。
+
+\section{Class 5 の保存量 hierarchy と量子 transfer hierarchy}
+Class 5 の continuum monodromy から Riccati expansion を行うと $Q_2,Q_3,Q_4$ を取り出せる。Riccati 用の定数基底変換後の spin を $\boldsymbol S_5^{\rm Ric}$ と書き、Riccati spectral parameter を $\zeta_5:=\ii/z_5$ と定義する。stereographic coordinates をこの小節だけ $w,v$ と呼ぶ。
+
+展開係数は
+\begin{equation}
+\Gamma=w+\zeta_5\gamma_1+\zeta_5^2\gamma_2+\cdots,
+\qquad
+\gamma_1=-w_x,
+\end{equation}
+\begin{equation}
+\gamma_2=w_{xx}-\frac{v w_x^2}{1+wv}-\frac{k_5w^3}{1+wv}
+\end{equation}
+と得られる。対応する局所密度 $j_r$ の積分を $I_{r,5}$ と書くと、境界項を除いて
+\begin{equation}
+I_{1,5}=-\frac12Q_{2,5},\qquad
+I_{2,5}=\frac{\ii}{4}Q_{3,5},\qquad
+I_{3,5}=\frac1{12}Q_{4,5}
+\label{eq:charges5}
+\end{equation}
+が得られた。$Q_{4,5}$ の場の再定義後の局所密度は
+\begin{align}
+\mathcal Q_{4,5}^{\rm fr}={}&3\boldsymbol S_{xx}^{\mathsf T}\boldsymbol S_{xx}
+-\frac{15}{4}(\boldsymbol S_x^{\mathsf T}\boldsymbol S_x)^2
++3k_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S_x)^2\notag\\
+&-\frac92k_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S)^2(\boldsymbol S_x^{\mathsf T}\boldsymbol S_x)
+-\frac34k_5^2(\boldsymbol m_5^{\mathsf T}\boldsymbol S)^4.
+\label{eq:Q45}
+\end{align}
+ここで式を短くするため、この式だけ $\boldsymbol S=\boldsymbol S_5^{\rm fr}$ と書いた。
+
+有限周期鎖の transfer matrix の logarithmic derivative から得る量子保存量との比較では、代表的な有限鎖で $Q_4^{\rm tr}-Q_4^{\rm local}$ の最大誤差が $3.59\times10^{-13}$、保存量間の commutator norm は $10^{-12}$ 程度以下だった。局所密度の差が全微分の場合、積分量の同一視には周期境界条件など境界項を消す条件が必要である。
+
+\section{Class 5 と null-like warped $SL(2)$ Landau--Lifshitz hierarchy}
+\status{Kameyama--Yoshida の Lax hierarchy は文献入力。以下は Class 5 変数との明示的規約辞書}
+Kameyama--Yoshida の null-like warped $SL(2)$ Landau--Lifshitz model は Jordanian twist と関連する既知の Lax structure を持つ\cite{KY2014}。従って Class 5 の Lax pair 自体を新規とは主張しない。
+
+Class 5 の場の再定義後の spin を $\boldsymbol S_5^{\rm fr}$ とし、比較先の orbit variable を $\boldsymbol n$ と呼ぶ。複素線形写像
+\begin{equation}
+\boldsymbol n=C_5\boldsymbol S_5^{\rm fr},
+\qquad C_5=\operatorname{diag}(1,\ii,-\ii)
+\label{eq:C5KYmap}
+\end{equation}
+を使う。KY 側の metric を $\eta=\operatorname{diag}(-1,1,1)$ とすると
+\begin{equation}
+C_5^{\mathsf T}\eta C_5=-\one3.
+\end{equation}
+従って compact complex sphere と noncompact real slice は同じ real theory ではないが、複素化した orbit 上では局所的な Hamiltonian / Poisson / Lax structure を比較できる。
+
+KY 側の定数を null deformation $C_K$、正規化長さ $L_K$、coupling $\lambda_s$ と呼ぶ。本ノートとの coupling dictionary は
+\begin{equation}
+\alpha_5^2=\frac{32\pi^2L_K^2C_K}{\lambda_s}.
+\label{eq:C5KYcoupling}
+\end{equation}
+Hamiltonian、Poisson tensor、symplectic form、時間は
+\begin{equation}
+H_K=-\frac{\lambda_s}{16\pi^2L_K}H_5^{\rm fr},
+\qquad
+\Pi_K=\frac2{L_K}\Pi_5^{\rm fr},
+\qquad
+\omega_K=\frac{L_K}{2}\omega_5^{\rm fr},
+\label{eq:C5KYPoisson}
+\end{equation}
+\begin{equation}
+t_K=\frac{8\pi^2L_K^2}{\lambda_s}t_5
+\label{eq:C5KYtime}
+\end{equation}
+と対応する。適切な spectral parameter 再規格化と定数共役 $G_5=\operatorname{diag}(\ii,1)$ を入れると、空間・時間 Lax 行列も同時に対応する。
+
+大域的には注意が必要である。元の Class 5 場が空間周期 $\ell_x$ で periodic でも、式\eqref{eq:fieldredef5}の再定義後は
+\begin{equation}
+\boldsymbol S_5^{\rm fr}(x+\ell_x)=e^{-\alpha_5\ell_xM/2}\boldsymbol S_5^{\rm fr}(x)
+\label{eq:C5twistBC}
+\end{equation}
+となる。従って安全な結論は「局所的な複素化 Hamiltonian / Poisson / Lax hierarchy が対応する」であり、「同じ実模型」「同じ global boundary sector」とは言わない。
+
+\begin{historymemo}
+この照合で「Class 5 に新しい Lax pair」という見方は退いた。しかし研究は弱くなっただけではなかった。recent quantum Class 5 chain から既知 Jordanian hierarchy まで、量子 $R/L$、finite lattice、continuum、Poisson、保存量、boundary twist を一続きにする bridge という別の主題が見えた。
+\end{historymemo}
+
+\section{最初の coherent-symbol 補正はなぜ論理的に不十分だったか}
+量子有限格子の時間 Lax 作用素を lower symbol へ移すと、既知の古典時間行列と単純には一致しなかった。初期段階では
+\begin{equation}
+\Delta V:=V_{\rm cont}-V^\downarrow
+\label{eq:circularDelta}
+\end{equation}
+と差を定義し、その差が star-product correction を吸収することを確認した。この計算は恒等式の検証としては正しいが、\textbf{量子側から時間成分を導いた}という主張には循環がある。なぜなら $V_{\rm cont}$ を先に知っているからである。
+
+この問題を解くため、後の独立監査では式\eqref{eq:discZC}に現れる $\mathcal A L$ と $L\mathcal A$ の共有格子点作用素積を、古典 $V$ を使わず直接 lower symbol へ縮約した。その結果として $\Delta V$ を後からではなく量子演算子積から構成し直した。
+
+\begin{historymemo}
+ここは研究の重要な自己修正である。「正しい答えとの差を補正と呼ぶ」だけでは mechanism の導出にならない。以後、補正の導出順序を $R\to h,\mathcal A\to(\mathcal AL)^\downarrow,(L\mathcal A)^\downarrow\to\mathcal C_{\rm site}\to\Delta V$ に固定した。
+\end{historymemo}
+
+\section{Class 5：共有格子点の作用素積から時間 Lax 補正を独立導出}
+式\eqref{eq:C5Lhat}の一次作用素係数 $\ell$ の lower symbol が空間 Lax 行列 $U$ である。作用素二乗を取ってから lower symbol を取る場合と、lower symbol を取った行列を二乗する場合の差を\textbf{二次モーメントの symbol 差 $\Xi_5$} と定義する：
+\begin{equation}
+\Xi_5:=(\ell^2)^\downarrow-(\ell^\downarrow)^2
+=\frac{\one2}{4\lambda^2}-U^2.
+\label{eq:Xi5}
+\end{equation}
+
+有限格子 zero-curvature equation の共有 site を先に作用素として掛け、格子間隔二次の continuum coefficient を取り出すと、因子化処方で失われる項は
+\begin{equation}
+\mathcal C_{\rm site}^{(5)}=-2\ii\,\partial_x(U^2)=2\ii\,\partial_x\Xi_5.
+\label{eq:Csite5}
+\end{equation}
+これは既知の古典時間 Lax 行列を入力せず得られる。
+
+通常の zero-curvature equation に戻すための局所補正を
+\begin{equation}
+\Delta V_5=-2\ii U^2+\frac{\ii}{4\lambda^2}\one2
+\label{eq:DeltaV5}
+\end{equation}
+と取ると $[\Delta V_5,U]=0$ であり、
+\begin{equation}
+\partial_x\Delta V_5+[\Delta V_5,U]=\mathcal C_{\rm site}^{(5)}.
+\end{equation}
+従って補正後の時間 Lax 行列
+\begin{equation}
+V_5=V_5^\downarrow+\Delta V_5
+\label{eq:V5corr}
+\end{equation}
+が通常の continuum zero-curvature equation を満たす。
+
+spin-$\tfrac12$ の一 site 二次モーメントは、spin coherent state の単位ベクトルを $\boldsymbol S$ として
+\begin{equation}
+\langle\widehat X_a\widehat X_b\rangle-\langle\widehat X_a\rangle\langle\widehat X_b\rangle
+=\delta_{ab}-S^aS^b+\ii\varepsilon_{abc}S^c
+\label{eq:spinhalf2nd}
+\end{equation}
+という形に整理できる。一般 spin-$j$ の affine operator class では同様の connected moment が $1/(2j)$ に比例するので、Class 5 の同じ affine class に限れば補正も $1/(2j)$ に比例する。任意の高次 operator ansatz へ一般化した定理ではない。
+
+\section{Class 5：Hamiltonian EOM との独立な off-shell 照合と XXX control}
+量子 Hamiltonian の coherent-state continuum limit から、独立に古典 Hamiltonian density
+\begin{equation}
+\mathcal H=-\frac12(p_xq_x+z_x^2)
++\frac\alpha2\left[(1+z)p_x-pz_x\right]
+\label{eq:C5Hind}
+\end{equation}
+を得る。本節の Poisson bracket 規約では
+\begin{equation}
+\{S^a(x),S^b(y)\}=2\varepsilon_{abc}S^c(x)\delta(x-y).
+\label{eq:C5PB2}
+\end{equation}
+運動方程式残差を $E_p,E_q,E_z$ と書くと、補正後の Lax 曲率は
+\begin{equation}
+F_{Tx}=\frac1{4\lambda}
+\begin{pmatrix}
+E_z+2\alpha\lambda E_p&E_q-2\alpha\lambda E_z\\
+E_p&-E_z
+\end{pmatrix}.
+\label{eq:C5OffInd}
+\end{equation}
+従って
+\begin{equation}
+E_p=4\lambda F_{21},\qquad
+E_z=-4\lambda F_{22},\qquad
+E_q=4\lambda(F_{12}-2\alpha\lambda F_{22})
+\label{eq:C5InverseInd}
+\end{equation}
+で曲率から EOM 残差を逆に復元できる。これは on-shell flatness より強い確認である。
+
+変形を消す $\alpha=0$ の XXX / isotropic Landau--Lifshitz 極限でも、共有 site の作用素積補正は残る。従ってこの現象は Jordanian deformation だけの特殊事故ではない。
+
+有限格子間隔 $\epsilon$ で直接作用素積を保持した近似は $\epsilon^2$ 程度で正しい continuum target へ収束した一方、factorized lower-symbol product は有限の差へ近づいた。ここから「原著者が誤った因子化をした」とは言わない。本ノートで明示的に定義した factorized procedure が失敗することだけを主張する。
+
+\section{Class 5：古典 $r$-matrix / monodromy route との最終照合}
+\status{Semenov--Tian--Shansky 型の生成公式は既知。本節の Class 5 への適用と量子 route との比較を独立検証}
+ここでは二種類のスペクトルパラメータを区別する。最終的な Lax pair に残るものを\textbf{Lax スペクトルパラメータ $\mu$}、transfer / monodromy hierarchy を小さい値で展開して Hamiltonian flow を選ぶものを\textbf{生成スペクトルパラメータ $\zeta$} と呼ぶ。
+
+spin の複素成分 $p,q,z$ は式\eqref{eq:C5pqz}と同じである。rank-one coherent-state projector を
+\begin{equation}
+\rho=\frac12\begin{pmatrix}1+z&q\\p&1-z\end{pmatrix},
+\qquad \rho^2=\rho,\qquad\tr\rho=1
+\label{eq:rhoSTS}
+\end{equation}
+と定義する。Class 5 空間 Lax 行列は
+\begin{equation}
+U(x,\mu)=\frac{\rho}{2\mu}+\alpha K,
+\qquad
+K:=\frac12\begin{pmatrix}p&-(1+z)\\0&0\end{pmatrix}.
+\label{eq:USTS}
+\end{equation}
+
+上向き基底への projector を $P_\uparrow:=\operatorname{diag}(1,0)$、raising matrix を $E_+:=\begin{psmallmatrix}0&1\\0&0\end{psmallmatrix}$ と定義し、Jordanian tensor を
+\begin{equation}
+C_{12}:=P_\uparrow\otimes E_+-E_+\otimes P_\uparrow
+\label{eq:C12}
+\end{equation}
+とする。本節の規約の古典 $r$-matrix は
+\begin{equation}
+r_{12}(\zeta,\mu)=\frac{\ii}{2(\zeta-\mu)}P_{12}+\ii\alpha C_{12}.
+\label{eq:rSTS}
+\end{equation}
+これは前節までの別 gauge / normalization で書いた $r$-matrix と同じ式そのものではないので、無条件に成分比較しない。重要なのはこの節の $U$ と組にして線形 Poisson algebra を満たすことである。
+
+monodromy を
+\begin{equation}
+T(x,y;\zeta)=\mathcal P\exp\!\left(\int_y^xU(s,\zeta)ds\right),
+\qquad t(\zeta)=\tr T(L,0;\zeta)
+\label{eq:monodromySTS}
+\end{equation}
+と定義する。標準的な $r$-matrix construction は
+\begin{equation}
+\mathbb V_b(x;\zeta,\mu)=t(\zeta)^{-1}\tr_a\!\left[
+T_a(L,x;\zeta)r_{ab}(\zeta,\mu)T_a(x,0;\zeta)
+\right]
+\label{eq:STSformula}
+\end{equation}
+で時間側の generating matrix を与える\cite{DoikouKaraiskos2011}。
+
+小さい生成スペクトルパラメータ $\zeta$ における局所 projector を
+\begin{equation}
+\Pi(x;\zeta)=\rho+\zeta\Pi_1+O(\zeta^2),
+\qquad \Pi^2=\Pi,
+\qquad \partial_x\Pi=[U,\Pi]
+\label{eq:PiexpMain}
+\end{equation}
+と置くと、一次係数は
+\begin{equation}
+\Pi_1=2[\rho,\rho_x]-2\alpha[\rho,[K,\rho]].
+\label{eq:Pi1Main}
+\end{equation}
+この一次係数が今回の Class 5 Hamiltonian flow に対応する。Poisson bracket の引数順による符号を合わせた physical time matrix を $V_r$、量子 finite-lattice route から得た時間行列を $V_q$ と呼ぶと、独立計算の結論は
+\begin{equation}
+V_r(x,\mu)-V_q(x,\mu)=\frac{\ii}{4\mu^2}\one2.
+\label{eq:VrVq}
+\end{equation}
+右辺は場にも空間座標にも依存しない単位行列成分なので、空間微分も $U$ との交換子も零であり、両者は同じ zero-curvature equation を生成する。
+
+この照合は局所的な $\zeta\to0$ の形式的漸近展開に基づく。$\exp(-c/\zeta)$ のような全てのべき級数で見えない monodromy 情報まで解析した、という主張ではない。
+
+\begin{historymemo}
+これが現在の Class 5 quantum--classical Lax bridge の計算上の終了点である。有限格子量子 time operator、独立 Hamiltonian/EOM、古典 $r$-matrix/monodromy の三経路が同じ $V$ へ閉じた。ここから別の模型を追加することを、現在の仕事を完成させる必須条件にはしない。
+\end{historymemo}
+
