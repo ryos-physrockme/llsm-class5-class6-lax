@@ -1,0 +1,235 @@
+\section{独立監査 C：Class 5 古典 $r$-matrix / monodromy route}
+\subsection{目的と今回の結論}
+
+2026年のClass 5原論文は、量子Lax作用素から古典空間Lax行列を構成し、Kostant--Kirillov型のPoisson bracketと古典$r$-matrixを得た一方、運動方程式を再現するcompanion matrixを見つけられなかったと記している\cite{DFN}。原論文はその代わりにboost法から保存量のtowerを構成して古典可積分性を示した。
+
+先行する我々の計算報告では、原論文とは別の方向から、有限格子の量子零曲率方程式に現れる時間Lax作用素を直接連続極限へ移した。その際、同じ物理格子点を共有する作用素積のlower symbolを因子化すると有限の項を失うことを確認し、その補正を保持することで時間Lax行列を得た。さらに零曲率方程式とHamiltonianからの運動方程式がoff-shellで同値であることを確認した。
+
+残っていた確認は、その時間Lax行列が、古典可積分系で標準的な$r$-matrix／monodromy routeから得る時間成分と一致するかどうかであった。Doikou--Karaiskosの記法では、transfer matrixを$t(\zeta)$、空間Lax行列を$\mathbb U(x,\mu)$とすると、生成Hamiltonian flowは
+\begin{equation}
+\{\ln t(\zeta),\mathbb U(x,\mu)\}
+=
+\partial_x\mathbb V(x;\zeta,\mu)
++[\mathbb V(x;\zeta,\mu),\mathbb U(x,\mu)]
+\label{audit5r:eq:STSflow}
+\end{equation}
+と書け、時間側の生成行列$\mathbb V$はmonodromyと古典$r$-matrixから構成される\cite{DK}。この種の関係を以下ではSemenov--Tian--Shansky型の構成と呼ぶ。
+
+今回の結論は、Class 5でこの照合が通った、というものである。二つの時間行列は場に依存しないスカラー行列を除いて一致する。従って、Class 5/6の量子--古典Lax bridgeについて、追加の模型計算を必須条件として残す必要はない。
+
+\subsection{記号と物理的意味}
+
+本報告では、monodromyを展開するためのスペクトルパラメータと、最終的なLax pairのスペクトルパラメータを区別する。この区別をしないと、式の意味が分かりにくくなるためである。
+
+\begin{longtable}{L{39mm}L{105mm}}
+\toprule
+記号 & 物理的意味と定義\\
+\midrule
+\endhead
+古典spin場 $\Svec(x)$ & 単位球面上の古典spin密度。成分を$S^1,S^2,S^3$とする。\\
+複素spin成分 $p,q,z$ & $p:=S^1+\ii S^2$, $q:=S^1-\ii S^2$, $z:=S^3$。従って$\Svec^2=1$は$pq+z^2=1$となる。$p$は運動量ではない。\\
+Laxスペクトルパラメータ $\mu$ & 最終的な空間Lax行列$U(x,\mu)$と時間Lax行列$V(x,\mu)$に残るスペクトルパラメータ。\\
+生成スペクトルパラメータ $\zeta$ & transfer matrix $t(\zeta)$を展開し、可積分hierarchyの各Hamiltonian flowを取り出すための別のスペクトルパラメータ。\\
+coherent-state projector $\rho$ & spin-$\tfrac12$ coherent stateに対応するrank-one行列。式\eqref{audit5r:eq:rho}で定義する。\\
+Jordanian有限項 $K$ & Class 5空間Lax行列のうち、$\mu\to0$で$1/\mu$極を持たない変形項。式\eqref{audit5r:eq:UK}で定義する。\\
+permutation作用素 $P_{12}$ & 二つの$2$次元補助空間を交換する$4\times4$行列。\\
+上向き基底へのprojector $\Pup$ & $\Pup:=\operatorname{diag}(1,0)$。\\
+raising matrix $\Eplus$ & $\Eplus:=\begin{psmallmatrix}0&1\\0&0\end{psmallmatrix}$。\\
+Jordanian tensor $C_{12}$ & $C_{12}:=\Pup\otimes\Eplus-\Eplus\otimes\Pup$。\\
+古典$r$-matrix $r_{12}(\zeta,\mu)$ & 空間Lax行列の線形Poisson algebraを与える$4\times4$行列。式\eqref{audit5r:eq:rcont}で定義する。\\
+monodromy $T(x,y;\zeta)$ & $\partial_xT(x,y;\zeta)=U(x,\zeta)T(x,y;\zeta)$を満たすpath-ordered exponential。\\
+局所monodromy projector $\Pi(x;\zeta)$ & $\zeta\to0$の局所漸近展開で、$\rho$へ近づくrank-one projector。式\eqref{audit5r:eq:Piexp}で定義する。\\
+$r$-matrix routeの時間行列 $V_r$ & transfer matrixの一次のlocal chargeが生成する時間Lax行列。\\
+量子極限の時間行列 $V_q$ & 前報告で有限格子の量子time operatorから直接得た連続時間Lax行列。\\
+\bottomrule
+\end{longtable}
+
+\subsection{Class 5の連続空間Lax行列}
+
+複素spin成分を
+\begin{equation}
+p=S^1+\ii S^2,\qquad q=S^1-\ii S^2,\qquad z=S^3,
+\qquad pq+z^2=1
+\label{audit5r:eq:spinconstraint}
+\end{equation}
+とする。spin-$\tfrac12$ coherent stateのrank-one projectorを
+\begin{equation}
+\rho(x)=\frac12
+\begin{pmatrix}
+1+z&q\\
+p&1-z
+\end{pmatrix},
+\qquad
+\rho^2=\rho,
+\qquad
+\tr\rho=1
+\label{audit5r:eq:rho}
+\end{equation}
+と定義する。
+
+前報告で量子$R$行列の長波長極限から得たClass 5の空間Lax行列は
+\begin{equation}
+U(x,\mu)
+=
+\frac{1}{4\mu}
+\begin{pmatrix}
+1+z+2\alpha\mu p&q-2\alpha\mu(1+z)\\
+p&1-z
+\end{pmatrix}
+\label{audit5r:eq:Uexplicit}
+\end{equation}
+である。ここで連続変形パラメータを$\alpha$とした。
+
+式\eqref{audit5r:eq:Uexplicit}を、小さい$\mu$で発散する部分と有限なJordanian変形に分けるため、有限項$K(x)$を
+\begin{equation}
+K(x)
+:=\frac12
+\begin{pmatrix}
+p&-(1+z)\\0&0\end{pmatrix}
+\label{audit5r:eq:K}
+\end{equation}
+と定義する。すると
+\begin{equation}
+U(x,\mu)=\frac{\rho(x)}{2\mu}+\alpha K(x)
+\label{audit5r:eq:UK}
+\end{equation}
+と書ける。この分解が以下の小さい生成スペクトルパラメータ$\zeta$の展開を簡単にする。
+
+Poisson bracketの規格化は前報告と同じく
+\begin{equation}
+\{p(x),q(y)\}=-4\ii z(x)\delta(x-y),\quad
+\{p(x),z(y)\}=2\ii p(x)\delta(x-y),\quad
+\{q(x),z(y)\}=-2\ii q(x)\delta(x-y)
+\label{audit5r:eq:PBpqz}
+\end{equation}
+とする。
+
+\subsection{連続古典$r$-matrixの固定}
+
+Class 5原論文では、古典Lax行列がquadraticなKostant--Kirillov型Poisson bracketを満たし、その$r$-matrixを量子$R$行列から与えている\cite{DFN}。本報告では長波長規格化後の空間Lax行列$U$に直接Poisson bracketを取り、連続線形algebraの$r$-matrixを固定する。
+
+まず、二つの補助空間を交換するpermutation作用素を
+\begin{equation}
+P_{12}=
+\begin{pmatrix}
+1&0&0&0\\
+0&0&1&0\\
+0&1&0&0\\
+0&0&0&1
+\end{pmatrix}
+\end{equation}
+とする。さらに、上向き基底へのprojectorとraising matrixを
+\begin{equation}
+\Pup=\begin{pmatrix}1&0\\0&0\end{pmatrix},
+\qquad
+\Eplus=\begin{pmatrix}0&1\\0&0\end{pmatrix}
+\end{equation}
+とし、Class 5のJordanian tensorを
+\begin{equation}
+C_{12}:=\Pup\otimes\Eplus-\Eplus\otimes\Pup
+\label{audit5r:eq:Cj}
+\end{equation}
+と定義する。
+
+このとき、前節のPoisson bracket規約に対応する連続古典$r$-matrixは
+\begin{equation}
+r_{12}(\zeta,\mu)
+=
+\frac{\ii}{2(\zeta-\mu)}P_{12}
++\ii\alpha C_{12}
+\label{audit5r:eq:rcont}
+\end{equation}
+である。実際、補助空間1と2に作用する空間Lax行列を
+\[
+U_1=U\otimes\Id_2,
+\qquad
+U_2=\Id_2\otimes U
+\]
+と書くと、成分を直接計算して
+\begin{equation}
+\{U_1(x,\zeta),U_2(y,\mu)\}
+=
+[r_{12}(\zeta,\mu),U_1(x,\zeta)+U_2(y,\mu)]\,\delta(x-y)
+\label{audit5r:eq:linearPB}
+\end{equation}
+が成立する。
+
+式\eqref{audit5r:eq:rcont}の第一項は通常のisotropic Landau--Lifshitz模型のrational $r$-matrixに対応し、第二項がClass 5のJordanian変形である。原論文の式(2.36)にも、量子$R$行列のClass 5変形に由来する同じrational部分とJordanian部分が現れる\cite{DFN}。ここでは係数と$\ii$の位置を原論文から読み替えるのではなく、式\eqref{audit5r:eq:PBpqz}と式\eqref{audit5r:eq:Uexplicit}から直接固定した。
+
+\subsection{monodromyから時間成分を生成する標準式}
+
+空間Lax行列$U(x,\zeta)$から、区間$[y,x]$のmonodromyを
+\begin{equation}
+T(x,y;\zeta)
+=
+\mathcal P\exp\!\left(\int_y^x U(s,\zeta)\,ds\right)
+\label{audit5r:eq:monodromy}
+\end{equation}
+と定義する。周期系ではtransfer matrixは
+\begin{equation}
+t(\zeta):=\tr T(L,0;\zeta)
+\end{equation}
+である。
+
+線形Poisson algebra\eqref{audit5r:eq:linearPB}に対する標準的なmonodromy計算から、生成時間行列は
+\begin{equation}
+\mathbb V_b(x;\zeta,\mu)
+=
+t(\zeta)^{-1}
+\tr_a\!\left[
+T_a(L,x;\zeta)
+\,r_{ab}(\zeta,\mu)\,
+T_a(x,0;\zeta)
+\right]
+\label{audit5r:eq:VSTS}
+\end{equation}
+となる\cite{DK}。添字$a$はtraceを取る補助空間、添字$b$は最終的に$2\times2$行列として残る補助空間を表す。
+
+ここで重要なのは、$\zeta$と$\mu$を区別することである。生成スペクトルパラメータ$\zeta$について$\ln t(\zeta)$と$\mathbb V(x;\zeta,\mu)$を展開し、その各係数が別々のHamiltonian flowを与える。一方、Laxスペクトルパラメータ$\mu$はそのflowのLax pairに残る。
+
+\subsection{小さい生成スペクトルパラメータの局所projector}
+
+Class 5の空間Lax行列は
+\[
+U(x,\zeta)=\frac{\rho(x)}{2\zeta}+\alpha K(x)
+\]
+なので、$\zeta\to0$ではrank-one projector $\rho$に比例する$1/\zeta$極が支配的である。monodromyのlocal chargeを得る標準的な漸近展開では、このleading eigenspaceに対応する局所rank-one projectorを用いる。
+
+そのprojectorを$\Pi(x;\zeta)$と書き、
+\begin{equation}
+\Pi^2=\Pi,
+\qquad
+\tr\Pi=1,
+\qquad
+\partial_x\Pi=[U(x,\zeta),\Pi]
+\label{audit5r:eq:Piconstraints}
+\end{equation}
+を満たし、$\zeta\to0$で$\rho$へ近づくbranchを選ぶ。展開を
+\begin{equation}
+\Pi(x;\zeta)=\rho(x)+\zeta\Pi_1(x)+O(\zeta^2)
+\label{audit5r:eq:Piexp}
+\end{equation}
+と定義する。
+
+式\eqref{audit5r:eq:Piconstraints}のprojector条件を$O(\zeta)$まで展開すると
+\begin{equation}
+\rho\Pi_1+\Pi_1\rho=\Pi_1
+\label{audit5r:eq:Pi1projector}
+\end{equation}
+となる。一方、輸送方程式の$O(\zeta^0)$は
+\begin{equation}
+\rho_x
+=
+\frac12[\rho,\Pi_1]
++\alpha[K,\rho]
+\label{audit5r:eq:Pi1transport}
+\end{equation}
+を与える。
+
+$\rho$がrank-one projectorであることを使うと、これら二式の解は
+\begin{equation}
+\Pi_1
+=
+2[\rho,\rho_x]
+-2\alpha[\rho,[K,\rho]]
+\label{audit5r:eq:Pi1}
