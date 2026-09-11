@@ -1,0 +1,263 @@
+\subsection{Time Lax matrix from the finite-lattice construction}
+\label{sec:class5-time-lax}
+
+We now take the long-wavelength limit of the finite-lattice time Lax
+operator.  The starting point is the operator $A_{a,n}(u)$ defined in
+Eq.~\eqref{eq:finite-lattice-time-Lax}.  Its addition by a scalar function of
+the quantum spectral parameter leaves the lattice zero-curvature equation
+unchanged.  We use the representative
+\begin{equation}
+\widehat A_{5;a,n}
+:=
+A_{5;a,n}+\frac{\ii}{u}\Id,
+\label{eq:class5-normalized-time-lax}
+\end{equation}
+where the identity acts on the auxiliary space and on the two physical sites
+$n-1,n$ supporting $A_{5;a,n}$.  In terms of the normalized spatial operator
+$\widehat L_{5;a,n}$ in Eq.~\eqref{eq:class5-normalized-L},
+\begin{equation}
+\widehat A_{5;a,n}
+=
+-\ii\widehat L_{5;a,n}^{-1}
+\left(
+[h_{5;n-1,n},\widehat L_{5;a,n}]
++\partial_u\widehat L_{5;a,n}
+\right).
+\label{eq:class5-time-lax-from-Lhat}
+\end{equation}
+The derivative with respect to $u$ is taken at fixed lattice deformation
+parameter $\kappa$.  After imposing the continuum scalings
+\eqref{eq:class5-deformation-scaling} and
+\eqref{eq:class5-spectral-scaling},
+\begin{equation}
+\partial_u\widehat L_{5;a,n}
+=-\frac{P_{a,n}}{2u^2}
+=-\epsilon^2\frac{P_{a,n}}{2\lambda^2}.
+\label{eq:class5-u-derivative-Lhat}
+\end{equation}
+
+The Hamiltonian on the neighbouring physical sites has the expansion
+\begin{equation}
+h_{5;n-1,n}
+=h^{(0)}_{n-1,n}+\epsilon h^{(1)}_{n-1,n},
+\qquad
+h^{(0)}:=2P,
+\qquad
+h^{(1)}:=2\alpha K.
+\label{eq:class5-h-expansion}
+\end{equation}
+Together with the exact relation
+$\widehat L_{5;a,n}=\Id+\epsilon L^{(1)}_{5;a,n}$ in
+Eq.~\eqref{eq:class5-L-expansion}, Eq.~\eqref{eq:class5-time-lax-from-Lhat}
+gives
+\begin{equation}
+\widehat A_{5;a,n}
+=
+\epsilon A^{(1)}_{a,n}
++\epsilon^2 A^{(2)}_{a,n}
++\mathcal O(\epsilon^3),
+\label{eq:class5-A-expansion}
+\end{equation}
+with
+\begin{align}
+A^{(1)}_{a,n}
+&=-\ii[h^{(0)}_{n-1,n},L^{(1)}_{5;a,n}],
+\label{eq:class5-A1}\\
+A^{(2)}_{a,n}
+&=
+\ii L^{(1)}_{5;a,n}[h^{(0)}_{n-1,n},L^{(1)}_{5;a,n}]
+-\ii[h^{(1)}_{n-1,n},L^{(1)}_{5;a,n}]
++\frac{\ii}{2\lambda^2}P_{a,n}.
+\label{eq:class5-A2}
+\end{align}
+Both coefficients act on the tensor product of the auxiliary space and the
+two neighbouring physical sites.
+
+We first evaluate the lower symbol of Eq.~\eqref{eq:class5-A-expansion}.
+Let $\boldsymbol S_{n-1}$ and $\boldsymbol S_n$ be the coherent-state spin
+vectors on the sites $n-1$ and $n$.  Direct contraction of
+Eq.~\eqref{eq:class5-A1} gives
+\begin{equation}
+\bigl(A^{(1)}_{a,n}\bigr)^\downarrow
+=
+-2
+(\boldsymbol S_{n-1}\times\boldsymbol S_n)^i
+\frac{\partial U_5}{\partial S^i}
+\bigg|_{\boldsymbol S=\boldsymbol S_n}.
+\label{eq:class5-A1-lower-symbol}
+\end{equation}
+Since
+\begin{equation}
+\boldsymbol S_{n-1}
+=
+\boldsymbol S(x_n,t)-\epsilon\,\partial_x\boldsymbol S(x_n,t)
++\mathcal O(\epsilon^2),
+\end{equation}
+we have
+\begin{equation}
+\boldsymbol S_{n-1}\times\boldsymbol S_n
+=
+\epsilon\,\boldsymbol S\times\partial_x\boldsymbol S
++\mathcal O(\epsilon^2).
+\label{eq:class5-neighbour-cross-product}
+\end{equation}
+The term $A^{(2)}_{a,n}$ already carries the prefactor $\epsilon^2$ in
+Eq.~\eqref{eq:class5-A-expansion}; its lower symbol is therefore needed only
+at coincident spin arguments at this order.  Using the lower symbols in
+Eqs.~\eqref{eq:class5-P-lower-symbol} and
+\eqref{eq:class5-K-lower-symbol}, together with
+$\boldsymbol S^{\mathsf T}\boldsymbol S=1$, gives
+\begin{equation}
+\left.\bigl(A^{(2)}_{a,n}\bigr)^\downarrow\right|_{\boldsymbol S_{n-1}=\boldsymbol S_n=\boldsymbol S}
+=
+4\ii U_5^2-\frac{\ii}{2\lambda^2}\Id_{\mathcal V_a}.
+\label{eq:class5-A2-lower-symbol}
+\end{equation}
+Equations~\eqref{eq:class5-A1-lower-symbol}--\eqref{eq:class5-A2-lower-symbol}
+then yield
+\begin{equation}
+\widehat A_{5;a,n}^{\downarrow}
+=
+\epsilon^2 V_5^{\downarrow}(x_n,t;\lambda)
++\mathcal O(\epsilon^3),
+\label{eq:class5-A-lower-expansion}
+\end{equation}
+where
+\begin{equation}
+V_5^{\downarrow}
+=
+-2
+(\boldsymbol S\times\partial_x\boldsymbol S)^i
+\frac{\partial U_5}{\partial S^i}
++4\ii U_5^2
+-\frac{\ii}{2\lambda^2}\Id_{\mathcal V_a}.
+\label{eq:class5-Vdown-direct}
+\end{equation}
+This is the continuum matrix obtained from the lower symbol of the finite-lattice
+time Lax operator itself.
+
+The remaining contribution comes from the overlapping operator products in the
+discrete zero-curvature equation.  Substituting
+Eqs.~\eqref{eq:class5-A-expansion} and \eqref{eq:class5-L-expansion} into the
+differences defined in Eqs.~\eqref{eq:Rplus-hat-definition} and
+\eqref{eq:Rminus-hat-definition}, and keeping the first non-vanishing order,
+gives
+\begin{align}
+&\widehat{\mathcal D}^{(+)}_{a,n}
+-\widehat{\mathcal D}^{(-)}_{a,n}
+\nonumber\\
+&\qquad=
+2\ii\epsilon^3\partial_x
+\left\{
+\left[\bigl(L^{(1)}_5\bigr)^2\right]^\downarrow
+-\left[\bigl(L^{(1)}_5\bigr)^\downarrow\right]^2
+\right\}
++\mathcal O(\epsilon^4).
+\label{eq:class5-product-difference-expansion}
+\end{align}
+The algebra in Eq.~\eqref{eq:class5-PK-algebra} implies
+\begin{equation}
+\bigl(L^{(1)}_5\bigr)^2
+=
+\frac{1}{4\lambda^2}\Id_4,
+\label{eq:class5-L1-square}
+\end{equation}
+and Eq.~\eqref{eq:class5-L-lower-expansion} gives
+$\bigl(L^{(1)}_5\bigr)^\downarrow=U_5$.  Hence
+\begin{equation}
+\left[\bigl(L^{(1)}_5\bigr)^2\right]^\downarrow
+-\left[\bigl(L^{(1)}_5\bigr)^\downarrow\right]^2
+=
+\frac{1}{4\lambda^2}\Id_{\mathcal V_a}-U_5^2,
+\label{eq:class5-symbol-square-difference}
+\end{equation}
+and the continuum contribution defined in
+Eq.~\eqref{eq:C-continuum-definition} is
+\begin{equation}
+\mathcal C_5
+=-2\ii\,\partial_x(U_5^2).
+\label{eq:class5-shared-site-correction}
+\end{equation}
+
+Equation~\eqref{eq:class5-shared-site-correction} is absorbed into the time
+component by choosing
+\begin{equation}
+\Delta V_5
+:=
+-2\ii U_5^2+\frac{\ii}{4\lambda^2}\Id_{\mathcal V_a}.
+\label{eq:class5-DeltaV}
+\end{equation}
+It obeys
+\begin{equation}
+[\Delta V_5,U_5]=0,
+\qquad
+\partial_x\Delta V_5+[\Delta V_5,U_5]=\mathcal C_5.
+\label{eq:class5-DeltaV-absorbs-C}
+\end{equation}
+The scalar term in Eq.~\eqref{eq:class5-DeltaV} fixes the representative; an
+$x$-independent scalar function of $\lambda$ leaves the curvature unchanged.
+Combining Eqs.~\eqref{eq:class5-Vdown-direct} and
+\eqref{eq:class5-DeltaV} gives
+\begin{equation}
+V_5
+=
+-2
+(\boldsymbol S\times\partial_x\boldsymbol S)^i
+\frac{\partial U_5}{\partial S^i}
++2\ii U_5^2
+-\frac{\ii}{4\lambda^2}\Id_{\mathcal V_a}.
+\label{eq:class5-time-Lax-compact}
+\end{equation}
+Using the explicit spatial matrix in Eq.~\eqref{eq:class5-spatial-Lax} and the
+unit-spin constraint, we write $S_x^a:=\partial_xS^a$ for
+$a\in\{+,-,3\}$.  The time Lax matrix is
+\begin{equation}
+V_5(x,t;\lambda)
+=
+\begin{pmatrix}
+(V_5)_{11}&(V_5)_{12}\\
+(V_5)_{21}&(V_5)_{22}
+\end{pmatrix},
+\label{eq:class5-time-Lax-final}
+\end{equation}
+with
+\begin{align}
+(V_5)_{11}
+={}&\frac{\ii}{4\lambda^2}
+\Bigl[
+S^3+\alpha\lambda S^+(1+S^3)+2\alpha^2\lambda^2(S^+)^2
+\nonumber\\
+&\hspace{3.2em}
++\lambda(S^-S_x^+-S^+S_x^-)
++4\alpha\lambda^2(S^+S_x^3-S^3S_x^+)
+\Bigr],
+\label{eq:class5-time-Lax-11}\\
+(V_5)_{12}
+={}&\frac{\ii}{4\lambda^2}
+\Bigl[
+S^- -\alpha\lambda(1+S^3)^2-2\alpha^2\lambda^2S^+(1+S^3)
+\nonumber\\
+&\hspace{3.2em}
++2\lambda(S^3S_x^--S^-S_x^3)
++2\alpha\lambda^2(S^+S_x^--S^-S_x^+)
+\Bigr],
+\label{eq:class5-time-Lax-12}\\
+(V_5)_{21}
+={}&\frac{\ii}{4\lambda^2}
+\Bigl[
+S^+ +\alpha\lambda(S^+)^2
++2\lambda(S^+S_x^3-S^3S_x^+)
+\Bigr],
+\label{eq:class5-time-Lax-21}\\
+(V_5)_{22}
+={}&\frac{\ii}{4\lambda^2}
+\Bigl[
+-S^3-\alpha\lambda S^+(1+S^3)
++\lambda(S^+S_x^--S^-S_x^+)
+\Bigr].
+\label{eq:class5-time-Lax-22}
+\end{align}
+The difference between Eqs.~\eqref{eq:class5-Vdown-direct} and
+\eqref{eq:class5-time-Lax-compact} is the contribution required by the
+overlapping operator products in the finite-lattice zero-curvature equation.
+
