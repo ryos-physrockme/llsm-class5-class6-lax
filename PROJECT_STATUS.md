@@ -104,11 +104,12 @@ text. It defines the quadratic and cubic coefficient functions, displays their
 Taylor extraction, and evaluates the spatial-derivative and coincident-spin
 contributions separately for both models. The single-site Pauli product identity
 is introduced in Section 2 before those calculations. The five empty appendix
-headings have been removed. A new Appendix A describes the original ML searches
-in the paper conventions, with ansatz spaces, loss functions, sampling,
-optimization settings and numerical checks. It explains the equivalent
-off-shell extension of the Class 6 search. The Introduction summarizes the
-discovery route and cites Krippendorf--Lüst--Syvaeri (2021). Execution commands
+headings have been removed. Appendix A presents both ML searches directly as
+off-shell coefficient fits, with explicit input data, fixed model parameters,
+trainable coefficients, loss functions, sampling and numerical checks. It
+contains the off-shell Class 6 formulation. Historical on-shell comparisons
+and changes between code versions are kept in the research record. The
+Introduction summarizes the method and cites Krippendorf--Lüst--Syvaeri (2021). Execution commands
 and file organization are documented in the repository guides.
 
 Next: review the expanded derivation and ML appendix, then write the Abstract.
@@ -171,3 +172,10 @@ narrative. The Introduction gives an ML overview, and Appendix A supplies the
 mathematical search formulation and numerical settings. Code execution
 instructions belong in the repository guides. The detailed overlapping-product
 derivation already present in the main text is retained there.
+
+Present the ML method independently of the development history: avoid
+unexplained references to an "original search", earlier implementations or
+convention changes. State the sampled input, fixed physical parameters,
+trainable coefficients and objective explicitly. The numerical definition of
+the losses is unchanged; the appendix uses an ordinary sample average and
+writes the common normalization as an explicit factor of `1/12`.

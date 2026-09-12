@@ -34,6 +34,7 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 - No `\boxed`, `\fbox`, `\framebox`, or `\mbox` in `paper/` or `notes/`.
 - Avoid unnecessary `\subsubsection` proliferation; use paragraph-level logical flow unless a real section boundary exists.
 - Avoid short-lived helper variables that make the derivation read like source code.
+- Present the ML appendix independently of development history. State the sampled input, fixed physical parameters, trainable coefficients and loss explicitly. Use only the off-shell formulation there; keep historical on-shell comparisons in the research record.
 - Use standard literature terminology; do not invent technical terms.
 - Quantum lattice time Lax operator: `A_{a,n}`. Continuum time Lax matrix: `V`.
 - Quantum lattice spatial Lax operator: `L_{a,n}`. Continuum spatial Lax matrix: `U`.
