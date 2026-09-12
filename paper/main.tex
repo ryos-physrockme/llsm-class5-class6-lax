@@ -6,10 +6,22 @@
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{geometry}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 
-\geometry{margin=28mm}
+\geometry{top=23mm,bottom=25mm,left=24mm,right=24mm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=blue!45!black,
+  urlcolor=blue!50!black,
+  pdftitle={Quantum-to-classical Lax correspondence for Class 5 and Class 6 models},
+  pdfauthor={Ryosuke Suda},
+  pdfkeywords={Integrable spin chains, Landau-Lifshitz models, Lax pairs, coherent states}
+}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.08em}
 \numberwithin{equation}{section}
 
 \newcommand{\ii}{\mathrm{i}}
@@ -19,14 +31,37 @@
 
 % \mathbbm is not assumed to be available; use \Id in the manuscript.
 
-\title{Quantum-to-classical Lax correspondence for Class 5 and Class 6 models}
-\author{}
-\date{}
-
 \begin{document}
-\maketitle
 
-% Abstract to be written after the technical sections are fixed.
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{22mm}
+{\Large\bfseries Quantum-to-classical Lax correspondence\\[2mm]
+for Class 5 and Class 6 models\par}
+\vspace{16mm}
+{\large Ryosuke Suda\footnotemark\par}
+\vspace{4mm}
+{\normalsize
+Graduate School of Science and Engineering, Saitama University,\\
+255 Shimo-Okubo, Sakura-ku, Saitama 338-8570, Japan\par}
+\vspace{18mm}
+\end{center}
+
+\noindent\textbf{Abstract.}
+\input{sections/00_abstract.tex}
+
+\vspace{8mm}
+\noindent\textbf{Keywords:} Integrable spin chains; Landau--Lifshitz models;
+Lax pairs; coherent states
+
+\vfill
+\footnotetext{E-mail: \texttt{r.suda.813 [at] ms.saitama-u.ac.jp}}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\setcounter{page}{1}
 
 \input{sections/01_introduction.tex}
 \input{sections/02_setup.tex}
@@ -34,6 +69,7 @@
 \input{sections/04_class6.tex}
 \input{sections/05_comparison.tex}
 \input{sections/06_conclusions.tex}
+\input{sections/backmatter.tex}
 \input{sections/appendix_ml.tex}
 \input{sections/references.tex}
 \end{document}

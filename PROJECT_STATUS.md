@@ -112,7 +112,17 @@ and changes between code versions are kept in the research record. The
 Introduction summarizes the method and cites Krippendorf--Lüst--Syvaeri (2021). Execution commands
 and file organization are documented in the repository guides.
 
-Next: review the expanded derivation and ML appendix, then write the Abstract.
+The expanded derivation and off-shell ML appendix were merged in PR #10.
+The next revision adds the Abstract and completes the front and back matter,
+following the author's `dbi-stress-tensor-flow/paper/paper.tex`: a separate
+title page, author, affiliation, e-mail footnote, keywords, matching margins
+and link colors, and PDF metadata. Acknowledgments disclose the use of
+ChatGPT and Codex. Data and code availability statements point to this
+repository and identify the source-code license. The Abstract summarizes
+the time-Lax construction, the surviving operator-product contributions,
+the Hamiltonian equivalence and the numerical coefficient searches.
+
+Next: review the Abstract and completed front/back matter.
 
 Current planned paper structure:
 
