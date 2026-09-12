@@ -170,9 +170,36 @@ In particular, Eq.~\eqref{eq:class6-K-lower-symbols} gives
 \end{pmatrix}.
 \label{eq:class6-second-spatial-lower-symbol}
 \end{equation}
-Expanding the spin arguments of the order-$\epsilon^2$ terms to first
-order, and evaluating the order-$\epsilon^3$ products at coincident spins,
-yields
+The first bracket in Eq.~\eqref{eq:class6-overlapping-product-expansion}
+is $\mathcal D^{(+)}_{6,2}$, and the second is
+$\mathcal D^{(+)}_{6,3}$, with the two spin arguments understood as
+in Eq.~\eqref{eq:overlap-plus-coefficients}.  The corresponding
+left-ordered products give $\mathcal D^{(-)}_{6,2}$ and
+$\mathcal D^{(-)}_{6,3}$.  Applying
+Eq.~\eqref{eq:single-site-pauli-symbol-product} at the shared physical
+site yields
+\begin{align}
+\mathcal D^{(+)}_{6,2}(\boldsymbol S,\boldsymbol S)
+&=\mathcal D^{(-)}_{6,2}(\boldsymbol S,\boldsymbol S)=2\ii\Xi_6,
+\label{eq:class6-coincident-quadratic-overlap}\\
+\partial_x S^i
+\left.
+\left(
+\frac{\partial\mathcal D^{(+)}_{6,2}}{\partial S_R^i}
++\frac{\partial\mathcal D^{(-)}_{6,2}}{\partial S_L^i}
+\right)\right|_{\boldsymbol S_L=\boldsymbol S_R=\boldsymbol S}
+&=2\ii\partial_x\Xi_6,
+\label{eq:class6-quadratic-overlap-taylor}\\
+\mathcal D^{(+)}_{6,3}(\boldsymbol S,\boldsymbol S)
+-\mathcal D^{(-)}_{6,3}(\boldsymbol S,\boldsymbol S)
+&=2\ii[\Xi_6,U_6].
+\label{eq:class6-coincident-cubic-overlap}
+\end{align}
+The first identity cancels the order-$\epsilon^2$ difference.  The
+remaining identities display separately the two contributions in
+Eq.~\eqref{eq:overlap-source-taylor}: the spatial variation supplies
+the derivative, and the cubic products at coincident spins supply
+the commutator.  Consequently,
 \begin{equation}
 \mathcal C_6
 :=\lim_{\epsilon\to0}\epsilon^{-3}

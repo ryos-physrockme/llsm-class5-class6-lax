@@ -123,6 +123,13 @@ check('quantum_derived_connected_source',C+2*I*dx(U*U))
 check('local_correction_commutes_with_U',comm(D,U),False)
 check('local_correction_absorbs_source',C-dx(D)-comm(D,U))
 Xi = at(low(lr*lr))-U*U
+# Resolve the two contributions in the manuscript's Taylor extraction.
+# Each left-hand side comes from the independent quantum product contractions.
+check('right_quadratic_overlap_at_equal_spins',at(CR2)-2*I*Xi)
+check('left_quadratic_overlap_at_equal_spins',at(CL2)-2*I*Xi)
+check('quadratic_overlap_Taylor_contribution',
+      at(d(CR2,b,X)+d(CL2,a,X))-2*I*dx(Xi))
+check('coincident_cubic_overlap_difference',at(CR3-CL3))
 check('source_equals_covariant_second_moment',C-2*I*(dx(Xi)+comm(Xi,U)))
 check('local_correction_from_second_moment',D-2*I*Xi+I*Id/(4*la**2))
 

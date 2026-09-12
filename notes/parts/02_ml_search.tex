@@ -1,9 +1,9 @@
 \part{機械学習探索の完全記録}
 
-\section{この part の目的：発見経路と最終証明を分ける}
+\section{この part の目的：機械学習による発見経路の記録}
 \label{sec:ml-purpose}
 \status{KLS は文献入力。PCM、$S^2$、$T^{1,1}$、Class 5、Class 6 の探索経緯と数値結果は本研究の記録}
-本 part は、Class 5 / Class 6 の最終 Lax 構造を証明するための節ではなく、そこへ到達した機械学習（machine learning; ML）の発見経路を保存するための節である。KLS は Lax equation / zero-curvature equation を最適化問題として扱い、Heisenberg model や principal chiral model で既知構造を回収した\cite{KLS2021}。KLS 自身も非自明な field theory では対称性を ansatz に組み込んでおり、完全に unconstrained な函数探索ではない。
+本 part は、Class 5 / Class 6 の Lax 構造に到達した機械学習（machine learning; ML）の発見経路を保存する。KLS は Lax equation / zero-curvature equation を最適化問題として扱い、Heisenberg model や principal chiral model で既知構造を回収した\cite{KLS2021}。field theory の探索では、対称性を ansatz に組み込んでいる。
 
 本研究でも ML を最終証明には用いない。ML が担った役割は、有限個の局所 feature の中から必要な tensor structure と係数関係を選び、解析 ansatz を狭めることである。最終的な成立条件は、曲率と運動方程式の off-shell 因数分解、係数行列の可逆性、量子 $R/L$ 構造、Poisson bracket、既知 hierarchy との照合によって別に確認する。
 
@@ -33,7 +33,9 @@ Class 5 / Class 6 の探索以前に、二次元非線形 sigma model を用い�
 
 \section{on-shell flatness から off-shell $F=QE$ certificate へ}
 \label{sec:ml-offshell}
-Lax 曲率の独立成分を並べた数値ベクトルを $\boldsymbol f_{\rm curv}$、独立な EOM residual を並べた数値ベクトルを $\boldsymbol e_{\rm EOM}$ とする。ML で用いる係数行列を $Q_{\rm EOM}^{(\mathrm{fit})}$ と書き、基本 loss を
+原コードでは、Class 5 は off-shell の残差を学習し、Class 6 は EOM から時間微分を与えた on-shell 曲率を学習した。両模型の最終的な解析検証には off-shell の因数分解を用いた。本節の loss と独立な時間微分の sampling は Class 5 の学習方法を説明する。
+
+Lax 曲率の独立成分を並べた数値ベクトルを $\boldsymbol f_{\rm curv}$、独立な EOM residual を並べた数値ベクトルを $\boldsymbol e_{\rm EOM}$ とする。空間 Lax ansatz の係数から定まる行列を $Q_{\rm EOM}^{(\mathrm{fit})}$ と書き、基本 loss を
 \begin{equation}
 \mathcal L_{\rm off}
 =
@@ -45,7 +47,7 @@ Lax 曲率の独立成分を並べた数値ベクトルを $\boldsymbol f_{\rm c
 \right\rangle
 \label{eq:ml-off-loss}
 \end{equation}
-とした。ここで $\boldsymbol f_{\rm curv}$ と $\boldsymbol e_{\rm EOM}$ は新しい物理量ではなく、局所 tensor / matrix component を学習用に並べたベクトルである。
+とした。ここで $\boldsymbol f_{\rm curv}$ と $\boldsymbol e_{\rm EOM}$ は、局所 tensor / matrix component を学習用に並べたベクトルである。$Q_{\rm EOM}^{(\mathrm{fit})}$ は空間 ansatz と係数を共有し、独立な学習対象にはしていない。
 
 sampling では on-shell trajectory を必要としない。ある一点における spin field $\boldsymbol S$ とその局所微分を生成し、
 \begin{equation}
@@ -120,16 +122,19 @@ spatial component には
 \end{equation}
 に加え、不要な候補として
 \begin{equation}
-\boldsymbol S_{5,x}^{\rm fr},
-\qquad
-\chi\boldsymbol S_{5,x}^{\rm fr},
-\qquad
-\xi\boldsymbol S_5^{\rm fr},
-\qquad
-\boldsymbol m_5\times\boldsymbol S_{5,x}^{\rm fr}
+\begin{gathered}
+\boldsymbol S_{5,x}^{\rm fr},\quad
+\chi\boldsymbol S_{5,x}^{\rm fr},\quad
+\xi\boldsymbol S_5^{\rm fr},\quad
+\boldsymbol m_5\times\boldsymbol S_{5,x}^{\rm fr},\\
+\chi(\boldsymbol m_5\times\boldsymbol S_5^{\rm fr}),\quad
+\varrho\boldsymbol S_5^{\rm fr},\quad
+\boldsymbol m_5,\quad
+\chi^2\boldsymbol m_5
+\end{gathered}
 \label{eq:ml5-distractors}
 \end{equation}
-などを含めた。従って正解の係数を直接与えたわけではないが、null direction、外積、一次空間微分という物理的構造は人間が library に入れている。
+の八項を含めた。時間成分の十二係数と $\beta_5$ の計十三個を実数として学習した。null direction、外積、一次空間微分という物理的構造は library の入力である。
 
 EOM residual を $\boldsymbol E_5^{\rm fr}$、曲率の三成分表示を $\boldsymbol F_5^{\rm fr}$ とし、$K_5:=\boldsymbol m_5\boldsymbol m_5^{\mathsf T}$ とすると、主要 loss は
 \begin{equation}
@@ -149,10 +154,11 @@ EOM residual を $\boldsymbol E_5^{\rm fr}$、曲率の三成分表示を $\bold
 \begin{equation}
 \mathcal R_{\rm sparse}
 :=
-\sum_A\sqrt{\theta_A^2+10^{-20}}
+\sqrt{\beta_5^2+10^{-20}}
++\sum_{A=1}^{12}\sqrt{\theta_A^2+10^{-20}}
 \label{eq:ml5-sparse}
 \end{equation}
-を用いた。$10^{-20}$ は絶対値の微分不可能点を滑らかにするための数値 regularization である。
+を用いた。罰則は十三係数すべてに一様に掛けた。$10^{-20}$ は絶対値の微分不可能点を滑らかにするための数値 regularization である。
 
 複数の $(c,z_5)$ に対する九回の独立 run で、学習された主要係数は
 \begin{equation}
@@ -186,7 +192,7 @@ validation MSE の中央値 & $8.86\times10^{-20}$\\
 \end{tabular}
 \end{table}
 
-この係数関係を得た後、曲率を解析的に展開して coefficient equations を解き、式\eqref{eq:ml5-relations}が単なる近似 fit ではなく厳密な解であることを確認した。ML の役割は、過剰な feature library から解析すべき branch を選ぶところまでである。
+この係数関係を得た後、曲率を解析的に展開して coefficient equations を解き、式\eqref{eq:ml5-relations}が厳密な解であることを確認した。ML は、過剰な feature library から解析すべき branch を選ぶ役割を担った。
 
 当時の保存記録では、集計結果を \path{results/class5_ml_aggregate.json}、再学習 script を \path{code/ml/class5_ml_recovery.py} に保存していた。これらのファイルがなくても本ノートの物理的定義は閉じるよう、式と数値集計を本文にも保存する。
 
@@ -204,7 +210,7 @@ N=
 N^3=0
 \label{eq:ml6-N}
 \end{equation}
-とする。三次 nilpotency が既知なので、場の函数 dependence を大きな neural network で探索するのではなく、行列 polynomial の有限 library
+とする。これは原コードの異方性行列に定数回転 $\operatorname{diag}(1,-1,-1)$ を施した表示であり、同じ回転を spin にも施す。三次 nilpotency を用い、行列 polynomial の有限 library
 \begin{equation}
 \left\{\one{3},N,N^2\right\}
 \end{equation}
@@ -223,7 +229,15 @@ C_6^{\rm ML}&=c_0\one{3}+c_1N+c_2N^2
 +C_6^{\rm ML}(\boldsymbol S\times\boldsymbol S_x)
 \label{eq:ml6-UV}
 \end{equation}
-とした。ここで $a_0$ は連続 family を parametrise する自由係数であり、後に spectral parameter と同定される。
+とした。ここで $a_0$ は連続 family を parametrise する自由係数であり、後に spectral parameter と同定される。各 run では $a_0$ を固定し、残りの八係数を実数として学習した。この探索での時間を $\tau$ とすると、EOM は
+\begin{equation}
+\partial_\tau\boldsymbol S
+=\boldsymbol S\times(\partial_x^2\boldsymbol S-\alpha N\boldsymbol S)
+\end{equation}
+である。曲率
+$\boldsymbol F_6=\partial_\tau\boldsymbol U_6-\partial_x\boldsymbol V_6
++\boldsymbol U_6\times\boldsymbol V_6$
+の評価時にはこの EOM から時間微分を与え、三成分の絶対値二乗の標本平均を最小化した。学習時の loss は on-shell flatness である。
 
 六回の独立 run から
 \begin{align}
@@ -274,6 +288,70 @@ ML run の loss が小さいことは、最終的な証明ではない。Class 5
 文献監査により、Class 5 は Jordanian / null-like warped Landau--Lifshitz hierarchy、Class 6 は eleven-vertex Landau--Lifshitz hierarchy と対応することが分かった。この時点で「ML が新しい Lax pair を発見した」という解釈を撤回した。ML の成功は、既知 hierarchy を知らない段階から正しい局所 branch と係数構造へ到達し、その後の quantum--classical dictionary と source audit の入口を与えたことにある。
 
 \begin{historymemo}
-この研究で ML の評価が変わった点は、低 loss の候補を得たことそのものではない。$T^{1,1}$ の fake Lax により「低 loss でも EOM を符号化しない」ことを経験し、Class 5 / Class 6 では off-shell certificate を探索段階から組み込んだ。その結果、Class 5 では過剰 feature library から必要項だけが残り、Class 6 では係数列から nilpotent square root という解析構造へ移行できた。ML は final claim ではなく、候補生成、反証可能性の確保、解析式への蒸留に有効だった。
+$T^{1,1}$ の fake Lax を通じて、低 loss の候補が EOM を符号化するかを別に検証する必要性を認識した。Class 5 では off-shell 残差を探索段階に組み込み、Class 6 では on-shell の探索で得た係数列を nilpotent square root として整理した後に off-shell 因数分解を証明した。ML は局所構造の選択と解析すべき係数関係の抽出に有効だった。
 \end{historymemo}
 
+\section{原コードの復元と論文規約への変換}
+\label{sec:ml-restored-conventions}
+2026 年 9 月に、当時の Class 5 の学習 script と Class 5 / Class 6 の保存 package を再取得した。添付されたファイルと Library 内の原ファイルはバイト単位で一致した。リポジトリ初期化時に作った最小二乗法による再構成版は、Class 5 の候補を八項に減らし疎性罰則を省いており、Class 6 の学習も off-shell に変更していた。今回、実行対象を原コードに基づくものへ置き換え、再構成版の集計は由来が分かる形で archive に移した。
+
+原コード中の場を $\boldsymbol y_5(x,\tau)$、$\boldsymbol y_6(x,\tau)$ とし、論文の場と時間を $\boldsymbol S(x,t)$ とする。定数回転を
+\begin{equation}
+R_5=\operatorname{diag}(-1,1,-1),\qquad
+R_6=\operatorname{diag}(1,-1,-1)
+\end{equation}
+と定める。論文基底での Class 5 の null vector は
+$\boldsymbol m_5^{\rm paper}=(\ii,-1,0)^{\mathsf T}=R_5\boldsymbol m_5$
+であり、$M_5^{\rm paper}\boldsymbol v
+:=\boldsymbol m_5^{\rm paper}\times\boldsymbol v$ と定義する。
+場とパラメータの対応は
+\begin{align}
+\boldsymbol S(x,t)
+&=e^{-\alpha_5xM_5^{\rm paper}/2}R_5\boldsymbol y_5(x,-2t),
+&c&=\frac{\alpha_5}{2},
+&z_5&=\frac{\ii}{2\lambda},
+\label{eq:ml5-paper-dictionary}\\
+\boldsymbol S(x,t)
+&=R_6\boldsymbol y_6(x,-2t),
+&\alpha&=\alpha_6,
+&a_0&=\frac{\ii}{2\lambda}
+\label{eq:ml6-paper-dictionary}
+\end{align}
+である。第一式では Class 5、第二式では Class 6 の場を表す。
+Class 6 の変換後の異方性行列は式\eqref{eq:ml6-N}である。
+Class 5 の原コードの空間微分は、論文変数では
+$\mathcal D_x:=\partial_x+(\alpha_5/2)M_5^{\rm paper}$
+に対応する。さらに補助空間のベクトル表示に
+$O_5:=e^{\alpha_5\lambda M_5^{\rm paper}}$
+を作用させると、論文の空間 Lax 行列と一致する。
+この回転は複素直交行列であり、$O_5^{\mathsf T}O_5=\one{3}$、$\det O_5=1$ を満たす。
+
+論文の曲率のベクトル成分を $\boldsymbol{\mathcal F}^{(m)}$、EOM residual を $\boldsymbol E^{(m)}$ と書く。
+Class 5 の空間係数行列は
+\begin{equation}
+\mathsf Q_5
+=O_5\left(\frac{\ii}{2\lambda}\one{3}
++\beta_5\boldsymbol m_5^{\rm paper}(\boldsymbol m_5^{\rm paper})^{\mathsf T}\right)
+\end{equation}
+となる。元の正のノルムで評価した loss を保つため、Class 5 では
+$-\tfrac12O_5^{-1}(\boldsymbol{\mathcal F}^{(5)}-\mathsf Q_5\boldsymbol E^{(5)})$、
+Class 6 では $-\tfrac12\boldsymbol{\mathcal F}^{(6)}|_{\boldsymbol E^{(6)}=0}$
+を数値残差に用いた。時間の変換に由来する $-1/2$ と、Class 5 の $O_5^{-1}$ を含めることで、任意の学習係数における元の loss とその勾配が保存される。
+行列への写像を $\iota(\boldsymbol v):=-\ii v^i\sigma^i/2$ とし、論文で固定された scalar part も加えると、回収された $U_5,V_5,U_6,V_6$ は論文の行列要素と厳密に一致した。scalar part に追加の学習係数は導入していない。
+
+sampling、初期化、Adam と L-BFGS の設定も原コードから維持した。Class 5 は学習 768 点、検証 4096 点、Adam 600 step、L-BFGS 最大 50 iteration で九回、Class 6 は学習 768 点、検証 3072 点、Adam 1300 step、L-BFGS 最大 120 iteration で六回実行した。Class 5 の疎性罰則の重みは Adam で $10^{-9}$、L-BFGS で $5\times10^{-11}$ である。
+
+Python 3.12、PyTorch 2.10.0 の CPU 実行で、Class 5 の physical coefficient の最大誤差は $3.61\times10^{-7}$、不要項の最大係数は $8.10\times10^{-8}$、validation MSE の最大値は $4.94\times10^{-14}$ だった。Class 6 の最大係数誤差は $4.33\times10^{-12}$、validation RMS の最大値は $1.12\times10^{-11}$ だった。これらは今回の再実行値であり、表\ref{tab:ml5-summary}などの当時の保存値はそのまま保持した。規約変換、任意係数での loss と勾配の一致、解析解での論文行列との一致を検査する実行可能な検証を追加し、二十五項目すべてが通過した。
+
+
+さらに、Class 6 の標準実行を off-shell の loss に拡張した。
+元の on-shell 実行も選択可能であり、ansatz、空間標本、最適化設定は維持した。
+$\boldsymbol u_6=\mathsf A_6\boldsymbol S$ の $\mathsf A_6$ は場に依存しないので、
+$\boldsymbol{\mathcal F}^{(6)}-\mathsf A_6\boldsymbol E^{(6)}$
+中の $\mathsf A_6\partial_t\boldsymbol S$ は相殺する。
+従って、この off-shell 残差は任意の学習係数で on-shell 曲率と一致する。
+独立な接ベクトルとして時間微分を生成し、原コードとの loss と勾配の一致を検査した。
+この変更により探索する係数条件は増えない。
+off-shell の六回の再実行では最大係数誤差が $1.12\times10^{-11}$、
+validation RMS の最大値が $2.92\times10^{-11}$ となった。
+論文補遺ではこの off-shell 設定と結果を採用し、元の on-shell loss との等価性も示した。

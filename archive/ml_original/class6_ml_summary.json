@@ -1,0 +1,7 @@
+{
+  "runs": 6,
+  "max_validation_rms": 1.636021952867374e-14,
+  "median_validation_rms": 2.1894153328948174e-15,
+  "max_coefficient_error": 4.884981308350689e-15,
+  "median_coefficient_error": 1.1102230246251565e-16
+}

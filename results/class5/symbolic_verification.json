@@ -1,7 +1,7 @@
 {
   "sympy_version": "1.14.0",
-  "python_version": "3.13.5",
-  "number_of_checks": 25,
+  "python_version": "3.12.14",
+  "number_of_checks": 34,
   "checks": {
     "P_squared": "exact_zero",
     "K_squared": "exact_zero",
@@ -12,12 +12,19 @@
     "exact_rhs_decomposition": "exact_zero",
     "order_epsilon_squared_connected_cancellation": "exact_zero",
     "coincident_A1": "exact_zero",
+    "single_site_Pauli_product_difference": "exact_zero",
     "two_site_A1": "exact_zero",
     "coincident_A2": "exact_zero",
     "time_symbol_decomposition": "exact_zero",
     "quantum_derived_connected_source": "exact_zero",
     "local_correction_commutes_with_U": "exact_zero",
     "local_correction_absorbs_source": "exact_zero",
+    "right_quadratic_overlap_at_equal_spins": "exact_zero",
+    "left_quadratic_overlap_at_equal_spins": "exact_zero",
+    "quadratic_overlap_Taylor_contribution": "exact_zero",
+    "coincident_cubic_overlap_difference": "exact_zero",
+    "source_equals_covariant_second_moment": "exact_zero",
+    "local_correction_from_second_moment": "exact_zero",
     "quantum_rhs_equals_continuum_flow": "exact_zero",
     "unit_spin_flow": "exact_zero",
     "corrected_curvature": "exact_zero",
@@ -27,7 +34,9 @@
     "Hamiltonian_density_order_zero": "exact_zero",
     "Hamiltonian_density_order_one": "exact_zero",
     "reference_EOM_dictionary": "exact_zero",
-    "XXX_reduction": "exact_zero"
+    "XXX_reduction": "exact_zero",
+    "XXX_local_correction": "exact_zero",
+    "XXX_connected_source": "exact_zero"
   },
   "scope": "spin-1/2 Class 5, a1=1, a2=2a, a3=0, a=epsilon*alpha, u=lambda/epsilon",
   "constraint_polynomials": [

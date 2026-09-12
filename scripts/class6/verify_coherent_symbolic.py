@@ -183,6 +183,12 @@ check('spatial_matrix_determinant',s.Matrix([U.det()+al*p*z/2]))
 raw_check('spectral_derivative_from_second_spatial_symbol',
     U0.diff(la)-4*M+U0/la)
 Xi = at(low(lr*lr))-U*U
+# Check the derivative and algebraic pieces separately, before combining them.
+check('right_quadratic_overlap_at_equal_spins',at(CR2)-2*I*Xi)
+check('left_quadratic_overlap_at_equal_spins',at(CL2)-2*I*Xi)
+check('quadratic_overlap_Taylor_contribution',
+      at(d(CR2,right,X)+d(CL2,left,X))-2*I*dx(Xi))
+check('coincident_cubic_overlap_commutator',at(CR3-CL3)-2*I*comm(Xi,U))
 # The following identity is verified against the independently contracted source.
 check('source_equals_covariant_second_moment', source-2*I*(dx(Xi)+comm(Xi,U)))
 # Construct Delta V only AFTER the previous identity has been verified.

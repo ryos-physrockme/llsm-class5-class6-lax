@@ -142,9 +142,35 @@ The remaining contribution comes from the overlapping operator products in
 the discrete zero-curvature equation.  For Class 5, denote the differences
 in Eqs.~\eqref{eq:Rplus-hat-definition} and
 \eqref{eq:Rminus-hat-definition} by
-$\widehat{\mathcal D}^{(\pm)}_{5;a,n}$.  Substituting
-Eqs.~\eqref{eq:class5-A-expansion} and \eqref{eq:class5-L-expansion} into
-these differences gives
+$\widehat{\mathcal D}^{(\pm)}_{5;a,n}$.  The quadratic coefficients in
+Eqs.~\eqref{eq:overlap-plus-coefficients} and
+\eqref{eq:overlap-minus-coefficients} contain the products of
+$A_5^{(1)}$ with $L_5^{(1)}$; the cubic coefficients contain the
+products of $A_5^{(2)}$ with $L_5^{(1)}$.  Evaluating the shared-site
+Pauli products with Eq.~\eqref{eq:single-site-pauli-symbol-product}
+gives
+\begin{align}
+\mathcal D^{(+)}_{5,2}(\boldsymbol S,\boldsymbol S)
+&=\mathcal D^{(-)}_{5,2}(\boldsymbol S,\boldsymbol S)
+=2\ii\left(\frac{\Id_{\mathcal V_a}}{4\lambda^2}-U_5^2\right),
+\label{eq:class5-coincident-quadratic-overlap}\\
+\partial_x S^i
+\left.
+\left(
+\frac{\partial\mathcal D^{(+)}_{5,2}}{\partial S_R^i}
++\frac{\partial\mathcal D^{(-)}_{5,2}}{\partial S_L^i}
+\right)\right|_{\boldsymbol S_L=\boldsymbol S_R=\boldsymbol S}
+&=-2\ii\partial_x(U_5^2),
+\label{eq:class5-quadratic-overlap-taylor}\\
+\mathcal D^{(+)}_{5,3}(\boldsymbol S,\boldsymbol S)
+-\mathcal D^{(-)}_{5,3}(\boldsymbol S,\boldsymbol S)
+&=0.
+\label{eq:class5-coincident-cubic-overlap}
+\end{align}
+The first and third identities use the unit-spin constraint.  The
+second also uses $\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S=0$.
+Thus the surviving contribution comes entirely from the first line of
+Eq.~\eqref{eq:overlap-source-taylor}.  In terms of the spatial operator,
 \begin{align}
 &\widehat{\mathcal D}^{(+)}_{5;a,n}
 -\widehat{\mathcal D}^{(-)}_{5;a,n}

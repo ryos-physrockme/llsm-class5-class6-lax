@@ -1,0 +1,339 @@
+\appendix
+\section{Machine-learning searches for the Lax pairs}
+\label{sec:ml-search}
+
+We determine coefficients in finite Lax ans\"atze by minimizing an
+off-shell residual, following the optimization approach of
+Ref.~\cite{KrippendorfLustSyvaeri2021}.  The input data are local values
+of the spin and its derivatives,
+$(\boldsymbol S,\partial_x\boldsymbol S,
+\partial_x^2\boldsymbol S,\partial_t\boldsymbol S)$.
+These are sampled subject to the unit-spin constraint and its differentiated
+identities, with the time derivative independent of the equations of motion.
+The sampling distributions are specified in Section~\ref{sec:ml-numerics}.
+
+For each model $m\in\{5,6\}$, a run holds the deformation parameter
+$\alpha_m$ and spectral parameter $\lambda$ fixed.  The equations of motion
+and the tensor structures allowed in the Lax ansatz are also supplied.
+The trainable parameters are the coefficients of those structures: thirteen
+real coefficients for Class 5 and eight for Class 6, each shared by all
+samples in a run.  They are adjusted so that the curvature agrees with the
+equation-of-motion residual multiplied by the coefficient map determined
+from the spatial ansatz.  This yields a candidate Lax pair at the chosen
+$(\alpha_m,\lambda)$.  Training requires no target values of a Lax pair.
+The numerical runs use real $\alpha_m$ and $\lambda\in\ii\mathbb R_{>0}$,
+for which the coefficient relations below are real.  Their analytic verification applies
+to complex $\lambda\ne0$.
+
+To write the ans\"atze, represent traceless matrices by three-component
+vectors.  With the Pauli matrices of Section~\ref{sec:setup}, define
+\begin{equation}
+\iota(\boldsymbol v):=-\frac{\ii}{2}v^i\sigma^i,
+\qquad
+[\iota(\boldsymbol v),\iota(\boldsymbol w)]
+=\iota(\boldsymbol v\times\boldsymbol w).
+\label{eq:ml-iota}
+\end{equation}
+Write the candidate matrices as
+$U_m^{\rm fit}=\mu_m\Id_2+\iota(\boldsymbol u_m)$ and
+$V_m^{\rm fit}=\nu_m\Id_2+\iota(\boldsymbol v_m)$.
+Here $\boldsymbol u_m,\boldsymbol v_m$ contain the trainable coefficients,
+while the scalar parts $\mu_m,\nu_m$ are prescribed functions, specified
+below.  The superscript distinguishes the fitted candidate from the
+analytic matrices in the main text.
+The vector part of its curvature is
+\begin{equation}
+\boldsymbol{\mathcal F}^{(m)}
+:=\partial_t\boldsymbol u_m-\partial_x\boldsymbol v_m
+  +\boldsymbol u_m\times\boldsymbol v_m.
+\label{eq:ml-vector-curvature}
+\end{equation}
+The vectors $\boldsymbol E^{(5)}$ and $\boldsymbol E^{(6)}$ denote
+$\partial_t\boldsymbol S$ minus the right-hand side of
+Eqs.~\eqref{eq:class5-vector-eom} and \eqref{eq:class6-vector-eom},
+respectively.  They are computed from the input data at each sampled point.
+All spin contractions and cross products are complex bilinear.
+In the losses, $\|\boldsymbol v\|^2=\sum_i|v^i|^2$ is the positive
+Euclidean norm squared, and angle brackets denote the arithmetic mean
+over the training samples.
+
+\subsection{Class 5}
+\label{sec:ml-class5-paper}
+
+The constant matrix $M_5$ in Eq.~\eqref{eq:class5-M-definition} can be
+written as $M_5\boldsymbol v=\boldsymbol m_5\times\boldsymbol v$, where
+\begin{equation}
+\boldsymbol m_5=(\ii,-1,0)^{\mathsf T},
+\qquad \boldsymbol m_5^{\mathsf T}\boldsymbol m_5=0,
+\qquad M_5^2=\boldsymbol m_5\boldsymbol m_5^{\mathsf T}.
+\label{eq:ml-null-vector}
+\end{equation}
+The ansatz uses the spatial differential operator
+$\mathcal D_x\boldsymbol v:=\partial_x\boldsymbol v
++(\alpha_5/2)M_5\boldsymbol v$ and the constant auxiliary-basis rotation
+\begin{equation}
+O_5(\lambda):=\exp(\alpha_5\lambda M_5)
+=\Id_3+\alpha_5\lambda M_5
+ +\frac{\alpha_5^2\lambda^2}{2}M_5^2,
+\qquad O_5^{\mathsf T}O_5=\Id_3,
+\qquad\det O_5=1.
+\label{eq:ml-class5-rotation}
+\end{equation}
+Both $\mathcal D_x$ and $O_5$ are fixed by $M_5$, $\alpha_5$ and
+$\lambda$ throughout a run.
+
+Define the scalar contractions
+$\chi:=\boldsymbol m_5^{\mathsf T}\boldsymbol S$,
+$\xi:=\boldsymbol m_5^{\mathsf T}\mathcal D_x\boldsymbol S$, and
+$\varrho:=\boldsymbol m_5^{\mathsf T}
+(\boldsymbol S\times\mathcal D_x\boldsymbol S)$.
+The twelve vector structures $\boldsymbol W_j$ used for the time
+component are
+\begin{equation}
+\begin{aligned}
+\boldsymbol W_1&=\boldsymbol S\times\mathcal D_x\boldsymbol S,
+&\boldsymbol W_2&=\varrho\boldsymbol m_5,\\
+\boldsymbol W_3&=\boldsymbol S,
+&\boldsymbol W_4&=\chi\boldsymbol m_5,\\
+\boldsymbol W_5&=\mathcal D_x\boldsymbol S,
+&\boldsymbol W_6&=\chi\mathcal D_x\boldsymbol S,\\
+\boldsymbol W_7&=\xi\boldsymbol S,
+&\boldsymbol W_8&=\boldsymbol m_5\times\mathcal D_x\boldsymbol S,\\
+\boldsymbol W_9&=\chi(\boldsymbol m_5\times\boldsymbol S),
+&\boldsymbol W_{10}&=\varrho\boldsymbol S,\\
+\boldsymbol W_{11}&=\boldsymbol m_5,
+&\boldsymbol W_{12}&=\chi^2\boldsymbol m_5.
+\end{aligned}
+\label{eq:ml-class5-features}
+\end{equation}
+The trainable coefficients are the spatial coefficient $\beta_5$ and
+the twelve temporal coefficients $\theta_1,\ldots,\theta_{12}$.
+The candidate vectors are
+\begin{align}
+\boldsymbol u_5
+&=O_5\left(\frac{\ii}{2\lambda}\boldsymbol S
+ +\beta_5\chi\boldsymbol m_5\right)
+ -\frac{\alpha_5}{2}\boldsymbol m_5,
+\label{eq:ml-class5-u}\\
+\boldsymbol v_5
+&=-2O_5\sum_{j=1}^{12}\theta_j\boldsymbol W_j.
+\label{eq:ml-class5-v}
+\end{align}
+The coefficient of $\partial_t\boldsymbol S$ in
+$\partial_t\boldsymbol u_5$ determines the matrix
+\begin{equation}
+\mathsf Q_5
+:=O_5\left(\frac{\ii}{2\lambda}\Id_3
+       +\beta_5\boldsymbol m_5\boldsymbol m_5^{\mathsf T}\right).
+\label{eq:ml-class5-Q}
+\end{equation}
+Thus $\mathsf Q_5$ depends on the same $\beta_5$ as the spatial ansatz.
+For a prescribed sparsity weight $\eta>0$ and smoothing scale
+$\delta=10^{-10}$, the loss minimized over these thirteen coefficients is
+\begin{align}
+\mathcal L_5
+={}&\frac{1}{12}\left\langle\left\|
+O_5^{-1}
+\bigl(\boldsymbol{\mathcal F}^{(5)}-\mathsf Q_5\boldsymbol E^{(5)}\bigr)
+\right\|^2\right\rangle
+\nonumber\\
+&+\eta\left(\sqrt{\beta_5^2+\delta^2}
+ +\sum_{j=1}^{12}\sqrt{\theta_j^2+\delta^2}\right).
+\label{eq:ml-class5-loss}
+\end{align}
+The first term measures the curvature mismatch with a fixed, invertible
+weighting $O_5^{-1}$ of its components.  The second term is a smooth
+$\ell^1$ penalty applied uniformly to all thirteen coefficients.  The weight
+$\eta$ is held fixed during each optimization stage, with the values
+given in Section~\ref{sec:ml-numerics}.
+
+The prescribed scalar parts are
+\begin{align}
+\mu_5&=\frac{1}{4\lambda}+\frac{\alpha_5}{4}S^+,
+\nonumber\\
+\nu_5&=\frac{\ii\alpha_5}{2}
+ (S^+\partial_xS^3-S^3\partial_xS^+)
+ +\frac{\ii\alpha_5^2}{4}(S^+)^2.
+\label{eq:ml-class5-scalars}
+\end{align}
+They obey
+$\partial_t\mu_5-\partial_x\nu_5=(\alpha_5/4)E^{(5)}_+$,
+where $E^{(5)}_+$ is defined in Eq.~\eqref{eq:class5-residual-plus}.
+The scalar curvature therefore already has the required factorization.
+
+The numerical coefficients approach the relations
+\begin{align}
+\beta_5&=-\frac{\ii\alpha_5^2\lambda}{4},
+&\theta_1&=\frac{\ii}{2\lambda},
+&\theta_2&=\beta_5,
+\nonumber\\
+\theta_3&=\frac{1}{4\lambda^2},
+&\theta_4&=\frac{\alpha_5^2}{8},
+&\theta_5&=\cdots=\theta_{12}=0.
+\label{eq:ml-class5-coefficients}
+\end{align}
+Substitution gives exactly the matrices in
+Eqs.~\eqref{eq:class5-spatial-Lax} and
+\eqref{eq:class5-time-Lax-compact}.  The identity
+$\det\mathsf Q_5=(\ii/(2\lambda))^3$ and the inverse relations
+\eqref{eq:class5-residuals-from-curvature} establish the local
+equivalence to the equations of motion.
+
+\subsection{Class 6}
+\label{sec:ml-class6-paper}
+
+For Class 6, the known nilpotency $N_6^3=0$ of
+Eq.~\eqref{eq:class6-N-definition} determines the finite matrix basis
+$\{\Id_3,N_6,N_6^2\}$.  The eight real coefficients
+$a_1,a_2,b_0,b_1,b_2,c_0,c_1,c_2$ are the trainable parameters.
+They enter three coefficient matrices,
+\begin{align}
+\mathsf A_6&=\frac{\ii}{2\lambda}\Id_3+a_1N_6+a_2N_6^2,
+\nonumber\\
+\mathsf B_6&=b_0\Id_3+b_1N_6+b_2N_6^2,
+\nonumber\\
+\mathsf C_6&=c_0\Id_3+c_1N_6+c_2N_6^2.
+\label{eq:ml-class6-matrices}
+\end{align}
+The coefficient $\ii/(2\lambda)$ of $\Id_3$ in $\mathsf A_6$ is
+fixed throughout a run.
+The candidate vectors and scalar parts are
+\begin{align}
+\boldsymbol u_6&=\mathsf A_6\boldsymbol S,
+&\mu_6&=\frac{1}{4\lambda},
+\nonumber\\
+\boldsymbol v_6&=-2\bigl[\mathsf B_6\boldsymbol S
+ +\mathsf C_6(\boldsymbol S\times\partial_x\boldsymbol S)\bigr],
+&\nu_6&=0.
+\label{eq:ml-class6-ansatz}
+\end{align}
+Since $\partial_t\boldsymbol u_6=\mathsf A_6\partial_t\boldsymbol S$,
+the spatial ansatz fixes the coefficient map multiplying
+$\boldsymbol E^{(6)}$ to be $\mathsf A_6$.  The loss minimized over
+the eight coefficients is
+\begin{equation}
+\mathcal L_6
+=\frac{1}{12}\left\langle\left\|
+\boldsymbol{\mathcal F}^{(6)}-\mathsf A_6\boldsymbol E^{(6)}
+\right\|^2\right\rangle,
+\label{eq:ml-class6-loss}
+\end{equation}
+evaluated on the independently sampled spin derivatives.  The nilpotency
+of $N_6$ gives
+$\det\mathsf A_6=(\ii/(2\lambda))^3$ for every choice of the fitted
+coefficients, so its coefficient map is invertible for $\lambda\ne0$.
+
+The recovered coefficient relations are
+\begin{align}
+a_1=c_1&=-\ii\alpha_6\lambda,
+&a_2=c_2&=-\ii\alpha_6^2\lambda^3,
+\nonumber\\
+b_0&=\frac{1}{4\lambda^2},
+&b_1&=\frac{\alpha_6}{2},
+\nonumber\\
+b_2&=\frac{3\alpha_6^2\lambda^2}{2},
+&c_0&=\frac{\ii}{2\lambda}.
+\label{eq:ml-class6-coefficients}
+\end{align}
+They give $\mathsf C_6=\mathsf A_6$ and the finite matrix-square-root
+identity
+\begin{equation}
+\mathsf A_6^2=-\frac{1}{4\lambda^2}\Id_3+\alpha_6N_6.
+\label{eq:ml-class6-square}
+\end{equation}
+The corresponding $U_6^{\rm fit},V_6^{\rm fit}$ coincide with
+Eqs.~\eqref{eq:class6-spatial-Lax} and
+\eqref{eq:class6-time-Lax-compact}.  Their subsequent analytic
+verification gives
+$\boldsymbol{\mathcal F}^{(6)}=\mathsf A_6\boldsymbol E^{(6)}$
+off shell, with $\det\mathsf A_6=(\ii/(2\lambda))^3$.
+Thus the final equivalence to the equations of motion follows from an
+invertible coefficient map, as displayed explicitly in
+Section~\ref{sec:class6-eom}.
+
+\subsection{Sampling and numerical checks}
+\label{sec:ml-numerics}
+
+The following distributions generate the input data.  All dimensionful
+quantities are expressed in a fixed length unit.
+In Class 5, draw a real unit vector $\boldsymbol S$ by normalizing a
+three-dimensional standard Gaussian vector.  Let
+$\Pi_{\boldsymbol S}:=\Id_3-\boldsymbol S\boldsymbol S^{\mathsf T}$
+be its tangent projection, and draw independent standard real Gaussian
+vectors $\boldsymbol g_1,\boldsymbol g_2,\boldsymbol g_t$.  The local
+derivatives are
+\begin{align}
+\partial_x\boldsymbol S
+&=\Pi_{\boldsymbol S}\boldsymbol g_1-\frac{\alpha_5}{2}M_5\boldsymbol S,
+\nonumber\\
+\partial_x^2\boldsymbol S
+&=\Pi_{\boldsymbol S}\boldsymbol g_2
+ -(\Pi_{\boldsymbol S}\boldsymbol g_1)^{\mathsf T}
+   (\Pi_{\boldsymbol S}\boldsymbol g_1)\boldsymbol S
+\nonumber\\
+&\quad-\alpha_5M_5\Pi_{\boldsymbol S}\boldsymbol g_1
+ +\frac{\alpha_5^2}{4}M_5^2\boldsymbol S,
+\nonumber\\
+\partial_t\boldsymbol S&=-2\Pi_{\boldsymbol S}\boldsymbol g_t.
+\label{eq:ml-class5-sampling}
+\end{align}
+These data satisfy the unit-spin constraint and its differentiated
+identities; the time derivative is sampled independently of the
+equations of motion.  Each run uses 768 training points and 4096
+independent validation points.  The pairs $(\alpha_5,\lambda)$ are
+$(0.8,5\ii/7)$, $(0.8,5\ii/12)$, and $(1.4,5\ii/12)$, with three
+initializations for each pair.
+
+For Class 6, draw a complex Gaussian vector $\boldsymbol z$, whose
+real and imaginary components have independent unit variance, and set
+$\boldsymbol S=\boldsymbol z/\sqrt{\boldsymbol z^{\mathsf T}\boldsymbol z}$.
+Samples with $|\boldsymbol z^{\mathsf T}\boldsymbol z|\le0.25$ are rejected.
+Using independent complex Gaussian vectors $\boldsymbol g_1,\boldsymbol g_2$
+with the same distribution, set
+\begin{align}
+\partial_x\boldsymbol S&=0.8\Pi_{\boldsymbol S}\boldsymbol g_1,
+\nonumber\\
+\partial_x^2\boldsymbol S&=0.8\Pi_{\boldsymbol S}\boldsymbol g_2
+ -(\partial_x\boldsymbol S)^{\mathsf T}(\partial_x\boldsymbol S)\boldsymbol S.
+\label{eq:ml-class6-sampling}
+\end{align}
+For the off-shell loss, an independent complex Gaussian vector
+$\boldsymbol g_t$ with the same distribution gives
+$\partial_t\boldsymbol S=-2\Pi_{\boldsymbol S}\boldsymbol g_t$.
+Each run uses 768 training points and 3072 independent validation points.
+The pairs $(\alpha_6,\lambda)$ are $(0.35,10\ii/13)$,
+$(0.7,\ii/2)$, and $(1.1,10\ii/29)$, with two initializations each.
+
+Class 5 starts with independent zero-mean Gaussian coefficients of standard
+deviation $0.25$.  Class 6 starts from the undeformed values
+$b_0=1/(4\lambda^2)$, $c_0=\ii/(2\lambda)$, and zero for the remaining
+coefficients, with independent zero-mean real Gaussian perturbations of
+standard deviation $0.08$.
+Both searches use Adam followed by the limited-memory
+Broyden--Fletcher--Goldfarb--Shanno method (L-BFGS).
+For Class 5, Adam has 600 steps and learning rate $0.03$;
+L-BFGS has at most 50 iterations and learning rate $0.8$.
+The sparsity weight in Eq.~\eqref{eq:ml-class5-loss} is
+$\eta=10^{-9}$ during Adam and $5\times10^{-11}$ during L-BFGS.
+For Class 6, Adam has 1300 steps and learning rate $0.02$;
+L-BFGS has at most 120 iterations and learning rate $0.7$.
+At every step, the loss is evaluated on the full, fixed training set,
+and its gradients update the ansatz coefficients.  Both searches use
+double precision.  After optimization, the same residuals are evaluated
+on independently generated validation samples; the sparsity penalty is
+excluded from the Class 5 validation residual.
+
+Across the runs specified above, the largest absolute
+coefficient error was $3.61\times10^{-7}$ in Class 5 and
+$1.12\times10^{-11}$ in Class 6.  The largest absolute coefficient of
+$\boldsymbol W_5,\ldots,\boldsymbol W_{12}$ was $8.10\times10^{-8}$.
+The maximum validation mean-square residual in the first term of
+Eq.~\eqref{eq:ml-class5-loss} was $4.94\times10^{-14}$.
+For Class 6, the maximum validation root-mean-square residual,
+$\sqrt{\mathcal L_6}$, was $2.92\times10^{-11}$.
+The analytic coefficient relations were used only for evaluation after
+optimization.  Their exact substitution into the Lax matrices and the
+off-shell identities in Sections~\ref{sec:class5-eom} and
+\ref{sec:class6-eom} establish the physical results.  The evaluation of
+overlapping quantum products in the main text supplies the further
+connection to the finite lattice time operators.

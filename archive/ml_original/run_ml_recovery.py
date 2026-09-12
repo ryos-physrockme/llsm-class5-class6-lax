@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Original 12-feature Class 5 search in the manuscript conventions.
+"""ML recovery of a Class-5 companion matrix from an overcomplete local ansatz.
 
-Adapted from archive/ml_original/run_ml_recovery.py. The candidate space,
-sampling distribution, loss, sparsity penalty and optimizer settings are
-preserved under the documented changes of field, basis, time and spectrum.
-Exact coefficients enter only the post-training evaluation.
+The exact coefficients are used only after training for evaluation.  The
+training objective is the off-shell certificate ||F-QE||^2 plus a uniform, very light
+sparsity penalty on all coefficients in the overcomplete library.
 """
 from __future__ import annotations
 
@@ -17,39 +16,34 @@ from typing import Dict, List, NamedTuple, Tuple
 import numpy as np
 import pandas as pd
 import torch
-from paper_conventions import (M5, m5, ROTATION5, apply_matrix, class5_rotation,
-                               class5_scalar_parts, spectral_coefficient, spinor)
 
 
 torch.set_default_dtype(torch.float64)
 torch.set_num_threads(1)
-M = m5
+M = torch.tensor([-1j, -1.0, 0.0], dtype=torch.complex128)
 FEATURE_NAMES = [
-    "S_cross_covariant_Sx", "varrho_m", "S", "chi_m",
-    "covariant_Sx", "chi_covariant_Sx", "xi_S", "m_cross_covariant_Sx",
-    "chi_m_cross_S", "varrho_S", "m", "chi_squared_m",
+    "S_cross_Sx", "r_m", "S", "q_m",
+    "Sx", "q_Sx", "p_S", "m_cross_Sx",
+    "q_m_cross_S", "r_S", "m", "q2_m",
 ]
 
 
 class Prepared(NamedTuple):
     S: torch.Tensor
-    Sx: torch.Tensor
-    Sxx: torch.Tensor
     St: torch.Tensor
-    chi: torch.Tensor
-    chi_t: torch.Tensor
+    q: torch.Tensor
+    qt: torch.Tensor
     features: torch.Tensor
     features_x: torch.Tensor
     E: torch.Tensor
     m_dot_E: torch.Tensor
-    alpha5: float
 
 
 def dot_m(x: torch.Tensor) -> torch.Tensor:
     return torch.einsum("i,bi->b", M, x)
 
 
-def sample_jets(n: int, seed: int, alpha5: float) -> Tuple[torch.Tensor, ...]:
+def sample_jets(n: int, seed: int) -> Tuple[torch.Tensor, ...]:
     g = torch.Generator().manual_seed(seed)
     S = torch.randn((n, 3), generator=g)
     S = S / torch.linalg.vector_norm(S, dim=1, keepdim=True)
@@ -60,102 +54,75 @@ def sample_jets(n: int, seed: int, alpha5: float) -> Tuple[torch.Tensor, ...]:
     Sxx_tan = torch.randn((n, 3), generator=g)
     Sxx_tan -= torch.sum(S * Sxx_tan, dim=1, keepdim=True) * S
     Sxx = Sxx_tan - torch.sum(Sx * Sx, dim=1, keepdim=True) * S
-    S, Sx, Sxx, St = tuple(apply_matrix(ROTATION5, x.to(torch.complex128))
-                           for x in (S, Sx, Sxx, St))
-    # Push the original local data into the paper's spin and time at x=0.
-    # Covariant derivatives of the paper spin equal the rotated original jets.
-    return (S, Sx - alpha5/2 * apply_matrix(M5, S),
-            Sxx - alpha5 * apply_matrix(M5, Sx)
-            + alpha5**2/4 * apply_matrix(M5 @ M5, S), -2 * St)
+    return tuple(x.to(torch.complex128) for x in (S, Sx, Sxx, St))
 
 
-def prepare(n: int, seed: int, alpha5: float) -> Prepared:
-    S, spin_x, spin_xx, St = sample_jets(n, seed, alpha5)
-    Sx = spin_x + alpha5/2 * apply_matrix(M5, S)
-    Sxx = spin_xx + alpha5 * apply_matrix(M5, spin_x) + alpha5**2/4 * apply_matrix(M5 @ M5, S)
-    chi, xi, xi_x, chi_t = dot_m(S), dot_m(Sx), dot_m(Sxx), dot_m(St)
+def prepare(n: int, seed: int, c: float) -> Prepared:
+    S, Sx, Sxx, St = sample_jets(n, seed)
+    q, p, px, qt = dot_m(S), dot_m(Sx), dot_m(Sxx), dot_m(St)
     Sx_cross = torch.linalg.cross(S, Sx)
     Sxx_cross = torch.linalg.cross(S, Sxx)
-    varrho, varrho_x = dot_m(Sx_cross), dot_m(Sxx_cross)
+    r, rx = dot_m(Sx_cross), dot_m(Sxx_cross)
     mxS = torch.linalg.cross(M.expand_as(S), S)
     mxSx = torch.linalg.cross(M.expand_as(S), Sx)
     mxSxx = torch.linalg.cross(M.expand_as(S), Sxx)
 
     f = torch.stack([
         Sx_cross,
-        varrho[:, None] * M,
+        r[:, None] * M,
         S,
-        chi[:, None] * M,
+        q[:, None] * M,
         Sx,
-        chi[:, None] * Sx,
-        xi[:, None] * S,
+        q[:, None] * Sx,
+        p[:, None] * S,
         mxSx,
-        chi[:, None] * mxS,
-        varrho[:, None] * S,
+        q[:, None] * mxS,
+        r[:, None] * S,
         M.expand_as(S),
-        chi[:, None] ** 2 * M,
+        q[:, None] ** 2 * M,
     ], dim=1)
     fx = torch.stack([
         Sxx_cross,
-        varrho_x[:, None] * M,
+        rx[:, None] * M,
         Sx,
-        xi[:, None] * M,
+        p[:, None] * M,
         Sxx,
-        xi[:, None] * Sx + chi[:, None] * Sxx,
-        xi_x[:, None] * S + xi[:, None] * Sx,
+        p[:, None] * Sx + q[:, None] * Sxx,
+        px[:, None] * S + p[:, None] * Sx,
         mxSxx,
-        xi[:, None] * mxS + chi[:, None] * mxSx,
-        varrho_x[:, None] * S + varrho[:, None] * Sx,
+        p[:, None] * mxS + q[:, None] * mxSx,
+        rx[:, None] * S + r[:, None] * Sx,
         torch.zeros_like(S),
-        2.0 * chi[:, None] * xi[:, None] * M,
+        2.0 * q[:, None] * p[:, None] * M,
     ], dim=1)
-    # fx above is the covariant derivative; the paper curvature uses d/dx.
-    fx = fx - alpha5/2 * apply_matrix(M5, f)
-    E = St + 2 * torch.linalg.cross(S, spin_xx + alpha5 * apply_matrix(M5, spin_x))
-    return Prepared(S, spin_x, spin_xx, St, chi, chi_t, f, fx, E, dot_m(E), alpha5)
+    E = St - torch.linalg.cross(S, Sxx - c * c * q[:, None] * M)
+    return Prepared(S, St, q, qt, f, fx, E, dot_m(E))
 
 
-def lax_vectors(data: Prepared, lambda_: complex, beta: torch.Tensor, coeff: torch.Tensor):
+def residual(data: Prepared, z: float, beta: torch.Tensor, coeff: torch.Tensor) -> torch.Tensor:
     cc = coeff.to(torch.complex128)
     bc = beta.to(torch.complex128)
-    rotation = class5_rotation(data.alpha5, lambda_)
-    U = apply_matrix(rotation, spectral_coefficient(lambda_) * data.S
-                     + bc * data.chi[:, None] * M) - data.alpha5/2 * M
-    V = -2 * apply_matrix(rotation, torch.einsum("k,bki->bi", cc, data.features))
-    return U, V
-
-
-def lax_matrices(data: Prepared, lambda_: complex, beta: torch.Tensor, coeff: torch.Tensor):
-    U, V = lax_vectors(data, lambda_, beta, coeff)
-    mu, nu = class5_scalar_parts(data.S, data.Sx, data.alpha5, lambda_)
-    identity = torch.eye(2, dtype=torch.complex128)
-    return spinor(U) + mu[:, None, None] * identity, spinor(V) + nu[:, None, None] * identity
-
-
-def residual(data: Prepared, lambda_: complex, beta: torch.Tensor, coeff: torch.Tensor) -> torch.Tensor:
-    rotation = class5_rotation(data.alpha5, lambda_)
-    U, V = lax_vectors(data, lambda_, beta, coeff)
-    Vx = -2 * apply_matrix(rotation, torch.einsum("k,bki->bi", coeff.to(torch.complex128), data.features_x))
-    Ut = apply_matrix(rotation, spectral_coefficient(lambda_) * data.St + beta * data.chi_t[:, None] * M)
+    V = torch.einsum("k,bki->bi", cc, data.features)
+    Vx = torch.einsum("k,bki->bi", cc, data.features_x)
+    U = z * data.S + bc * data.q[:, None] * M
+    Ut = z * data.St + bc * data.qt[:, None] * M
     F = Ut - Vx + torch.linalg.cross(U, V)
-    QE = apply_matrix(rotation, spectral_coefficient(lambda_) * data.E + beta * data.m_dot_E[:, None] * M)
-    # The fixed scalar part obeys its conservation identity independently.
-    # Pull back the time and auxiliary-basis change to preserve the old loss.
-    return -0.5 * apply_matrix(class5_rotation(data.alpha5, lambda_, inverse=True), F - QE)
+    QE = z * data.E + bc * data.m_dot_E[:, None] * M
+    return F - QE
 
 
-def objective(data: Prepared, lambda_: complex, beta: torch.Tensor, coeff: torch.Tensor, l1: float) -> torch.Tensor:
-    R = residual(data, lambda_, beta, coeff)
+def objective(data: Prepared, z: float, beta: torch.Tensor, coeff: torch.Tensor, l1: float) -> torch.Tensor:
+    R = residual(data, z, beta, coeff)
     mse = torch.mean(torch.abs(R) ** 2)
     # Uniform sparsity prior: no feature is labelled as physical during training.
     penalty = torch.sum(torch.sqrt(coeff ** 2 + 1e-20)) + torch.sqrt(beta ** 2 + 1e-20)
     return mse + l1 * penalty
 
 
-def train_one(alpha5: float, lambda_: complex, seed: int, train_n: int, val_n: int,
+def train_one(c: float, z: float, seed: int, train_n: int, val_n: int,
               adam_steps: int, lbfgs_steps: int, l1: float) -> Tuple[Dict[str, float], pd.DataFrame]:
-    train = prepare(train_n, 1000 + seed, alpha5)
-    val = prepare(val_n, 100000 + seed, alpha5)
+    train = prepare(train_n, 1000 + seed, c)
+    val = prepare(val_n, 100000 + seed, c)
     gen = torch.Generator().manual_seed(seed)
     beta = torch.nn.Parameter(0.25 * torch.randn((), generator=gen))
     coeff = torch.nn.Parameter(0.25 * torch.randn((len(FEATURE_NAMES),), generator=gen))
@@ -165,16 +132,16 @@ def train_one(alpha5: float, lambda_: complex, seed: int, train_n: int, val_n: i
 
     for step in range(adam_steps):
         opt.zero_grad(set_to_none=True)
-        value = objective(train, lambda_, beta, coeff, l1)
+        value = objective(train, z, beta, coeff, l1)
         value.backward()
         torch.nn.utils.clip_grad_norm_([beta, coeff], 100.0)
         opt.step()
         if step % 10 == 0 or step == adam_steps - 1:
             with torch.no_grad():
-                vmse = torch.mean(torch.abs(residual(val, lambda_, beta, coeff)) ** 2)
+                vmse = torch.mean(torch.abs(residual(val, z, beta, coeff)) ** 2)
             history.append({"stage": "adam", "step": step,
                             "train_objective": float(value.detach()),
-                            "validation_mse": float(vmse), "beta": float(beta.detach())})
+                            "validation_mse": float(vmse), "beta": float(beta)})
 
     solver = torch.optim.LBFGS([beta, coeff], lr=0.8, max_iter=lbfgs_steps,
                                tolerance_grad=1e-12, tolerance_change=1e-14,
@@ -183,28 +150,26 @@ def train_one(alpha5: float, lambda_: complex, seed: int, train_n: int, val_n: i
     def closure() -> torch.Tensor:
         nonlocal calls
         solver.zero_grad(set_to_none=True)
-        value = objective(train, lambda_, beta, coeff, l1 * 0.05)
+        value = objective(train, z, beta, coeff, l1 * 0.05)
         value.backward()
         calls += 1
         return value
     solver.step(closure)
 
     with torch.no_grad():
-        tr = residual(train, lambda_, beta, coeff)
-        vr = residual(val, lambda_, beta, coeff)
+        tr = residual(train, z, beta, coeff)
+        vr = residual(val, z, beta, coeff)
         train_mse = float(torch.mean(torch.abs(tr) ** 2))
         val_mse = float(torch.mean(torch.abs(vr) ** 2))
         point_norm = torch.linalg.vector_norm(vr, dim=1)
         learned = coeff.detach().numpy()
         beta_val = float(beta)
 
-    leading = spectral_coefficient(lambda_)
-    beta_exact = alpha5**2 / (8 * leading)
+    beta_exact = c * c / (2.0 * z)
     exact = np.zeros(len(FEATURE_NAMES))
-    exact[:4] = [leading, beta_exact, -leading**2, alpha5**2 / 8]
+    exact[:4] = [z, beta_exact, -z * z, c * c / 2.0]
     row: Dict[str, float] = {
-        "alpha5": alpha5, "lambda_real": complex(lambda_).real,
-        "lambda_imag": complex(lambda_).imag, "seed": seed,
+        "c": c, "alpha": 2*c, "z": z, "seed": seed,
         "beta_learned": beta_val, "beta_exact": beta_exact,
         "beta_abs_error": abs(beta_val-beta_exact),
         "train_mse": train_mse, "validation_mse": val_mse,
@@ -221,13 +186,13 @@ def train_one(alpha5: float, lambda_: complex, seed: int, train_n: int, val_n: i
                     "train_objective": train_mse,
                     "validation_mse": val_mse, "beta": beta_val})
     h = pd.DataFrame(history)
-    h["alpha5"], h["lambda_imag"], h["seed"] = alpha5, complex(lambda_).imag, seed
+    h["c"], h["z"], h["seed"] = c, z, seed
     return row, h
 
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[2] / "results/ml/class5")
+    p.add_argument("--out", type=Path, required=True)
     p.add_argument("--train-n", type=int, default=768)
     p.add_argument("--val-n", type=int, default=4096)
     p.add_argument("--adam-steps", type=int, default=600)
@@ -237,14 +202,14 @@ def main() -> None:
     args = p.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
 
-    cases = [(0.8, 5j/7), (0.8, 5j/12), (1.4, 5j/12)]
+    cases = [(0.4, 0.7), (0.4, 1.2), (0.7, 1.2)]
     rows, histories = [], []
-    for alpha5, lambda_ in cases:
+    for c, z in cases:
         for seed in range(args.seeds):
-            row, hist = train_one(alpha5, lambda_, seed, args.train_n, args.val_n,
+            row, hist = train_one(c, z, seed, args.train_n, args.val_n,
                                   args.adam_steps, args.lbfgs_steps, args.l1)
             rows.append(row); histories.append(hist)
-            print(f"alpha5={alpha5:.2f} lambda={lambda_} seed={seed} "
+            print(f"c={c:.2f} z={z:.2f} seed={seed} "
                   f"beta_err={row['beta_abs_error']:.2e} "
                   f"coef_err={row['max_physical_coeff_error']:.2e} "
                   f"val={row['validation_mse']:.2e} "
@@ -255,12 +220,6 @@ def main() -> None:
     df.to_csv(args.out / "ml_recovery_summary.csv", index=False)
     hist.to_csv(args.out / "ml_training_history.csv", index=False)
     aggregate = {
-        "protocol": "restored original code in manuscript conventions",
-        "torch_version": torch.__version__,
-        "train_samples": args.train_n, "validation_samples": args.val_n,
-        "adam_steps": args.adam_steps, "lbfgs_max_iter": args.lbfgs_steps,
-        "sparsity_weight_adam": args.l1, "sparsity_weight_lbfgs": args.l1 * 0.05,
-        "temporal_features": len(FEATURE_NAMES), "learned_real_parameters": 13,
         "runs": len(df),
         "max_beta_abs_error": float(df.beta_abs_error.max()),
         "median_beta_abs_error": float(df.beta_abs_error.median()),
@@ -273,8 +232,6 @@ def main() -> None:
     }
     (args.out / "ml_aggregate.json").write_text(json.dumps(aggregate, indent=2), encoding="utf-8")
     print(json.dumps(aggregate, indent=2), flush=True)
-    if aggregate["max_validation_mse"] > 1e-10 or aggregate["max_physical_coeff_error"] > 1e-4:
-        raise SystemExit("Class 5 original-protocol recovery failed.")
 
 
 if __name__ == "__main__":

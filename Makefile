@@ -14,6 +14,7 @@ verify-class6:
 	$(PYTHON) scripts/class6/verify_coherent_numeric.py
 
 verify-ml:
+	$(PYTHON) scripts/ml/verify_conventions.py
 	$(PYTHON) scripts/ml/class5_ml_recovery.py
 	$(PYTHON) scripts/ml/class6_ml_recovery.py
 

@@ -6,7 +6,7 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 
 - `paper/main.tex`: current compressed manuscript draft.
 - `notes/full_research_note_ja.tex`: self-contained long-form calculation/history note.
-- `scripts/`: executable verification and reconstructed ML searches.
+- `scripts/`: executable verification and original-derived ML searches in the manuscript conventions.
 - `results/`: current machine-readable outputs.
 - `archive/`: independent reports kept for provenance, not the current manuscript source.
 
@@ -34,6 +34,7 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 - No `\boxed`, `\fbox`, `\framebox`, or `\mbox` in `paper/` or `notes/`.
 - Avoid unnecessary `\subsubsection` proliferation; use paragraph-level logical flow unless a real section boundary exists.
 - Avoid short-lived helper variables that make the derivation read like source code.
+- Present the ML appendix independently of development history. State the sampled input, fixed physical parameters, trainable coefficients and loss explicitly. Use only the off-shell formulation there; keep historical on-shell comparisons in the research record.
 - Use standard literature terminology; do not invent technical terms.
 - Quantum lattice time Lax operator: `A_{a,n}`. Continuum time Lax matrix: `V`.
 - Quantum lattice spatial Lax operator: `L_{a,n}`. Continuum spatial Lax matrix: `U`.
@@ -50,4 +51,6 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 
 ## CI expectations
 
-The main branch should pass `.github/workflows/ci.yml`, including physics verification, reconstructed ML searches, manuscript compilation, and complete-note compilation.
+The main branch should pass `.github/workflows/ci.yml`, including physics verification, original-code convention checks and ML searches, manuscript compilation, and complete-note compilation.
+
+The original ML sources are preserved in `archive/ml_original/`. Preserve their candidate spaces, sampling, losses, and optimizer settings when changing conventions: Class 5 uses twelve temporal features plus one spatial coefficient, a uniform sparsity penalty, and off-shell training; Class 6 originally used eight coefficients and on-shell training. The current Class 6 default uses the user-approved, exactly equivalent off-shell `F-A6 E` objective; `--training-mode on-shell` retains the original formulation. Both final analytic certificates are off-shell. See `REPRODUCIBILITY.md` for the exact dictionary and commands. The paper describes mathematical setup, numerical settings and results; keep execution commands and file organization in the repository guides.

@@ -155,6 +155,59 @@ Their continuum contribution, when the limit exists, is
 \qquad x=x_n.
 \label{eq:C-continuum-definition}
 \end{equation}
+The evaluation of this limit requires both the operator expansion and
+the Taylor expansion of the spin arguments.  Let $m\in\{5,6\}$ label
+the model, and write $\mathcal C_m$ for its continuum contribution.
+For independent spin vectors $\boldsymbol S_L$ and
+$\boldsymbol S_R$ on the left and right physical sites, define the
+auxiliary-space matrix functions $\mathcal D^{(\pm)}_{m,2}$ and
+$\mathcal D^{(\pm)}_{m,3}$ as the coefficients
+\begin{align}
+\widehat{\mathcal D}^{(+)}_{m;a,n}
+&=\epsilon^2\mathcal D^{(+)}_{m,2}
+  (\boldsymbol S_n,\boldsymbol S_{n+1})
+ +\epsilon^3\mathcal D^{(+)}_{m,3}
+  (\boldsymbol S_n,\boldsymbol S_{n+1})
+ +\mathcal O(\epsilon^4),
+\label{eq:overlap-plus-coefficients}\\
+\widehat{\mathcal D}^{(-)}_{m;a,n}
+&=\epsilon^2\mathcal D^{(-)}_{m,2}
+  (\boldsymbol S_{n-1},\boldsymbol S_n)
+ +\epsilon^3\mathcal D^{(-)}_{m,3}
+  (\boldsymbol S_{n-1},\boldsymbol S_n)
+ +\mathcal O(\epsilon^4).
+\label{eq:overlap-minus-coefficients}
+\end{align}
+The dependence on the spectral parameter and continuum coupling is
+suppressed.  The final subscript denotes the power of $\epsilon$ in
+the operator-product difference before expanding the spin arguments.
+For both models, the quadratic coefficients agree at coincident spins,
+$\mathcal D^{(+)}_{m,2}(\boldsymbol S,\boldsymbol S)
+=\mathcal D^{(-)}_{m,2}(\boldsymbol S,\boldsymbol S)$,
+as verified in the model calculations below.  Taylor expansion at
+$x=x_n$ then gives
+\begin{align}
+\mathcal C_m
+={}&\partial_x S^i
+\left.
+\left(
+\frac{\partial\mathcal D^{(+)}_{m,2}}{\partial S_R^i}
++\frac{\partial\mathcal D^{(-)}_{m,2}}{\partial S_L^i}
+\right)\right|_{\boldsymbol S_L=\boldsymbol S_R=\boldsymbol S}
+\nonumber\\
+&+\mathcal D^{(+)}_{m,3}(\boldsymbol S,\boldsymbol S)
+ -\mathcal D^{(-)}_{m,3}(\boldsymbol S,\boldsymbol S).
+\label{eq:overlap-source-taylor}
+\end{align}
+The Cartesian derivatives act on the polynomial lower symbols before
+imposing the unit-spin constraints and before setting the two arguments
+equal.  Both derivatives have a plus sign:
+the shift $\boldsymbol S_{n-1}=\boldsymbol S-\epsilon\partial_x
+\boldsymbol S+\cdots$ occurs in the term subtracted in
+Eq.~\eqref{eq:C-continuum-definition}.  Equation~\eqref{eq:overlap-source-taylor}
+separates the contribution from the spatial variation of the quadratic
+coefficients from the cubic coefficients at coincident spins.
+
 Once the model-specific Hamiltonian check identifies the continuum limit of
 the lower symbol of the Heisenberg derivative on the left-hand side of
 \eqref{eq:exact-lower-symbol-lattice-zc} with $\partial_tU$, the
