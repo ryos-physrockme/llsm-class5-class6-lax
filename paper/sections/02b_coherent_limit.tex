@@ -159,6 +159,19 @@ $\boldsymbol S^{\mathsf T}\boldsymbol S=1$.  Here $\mathsf T$ denotes the
 transpose.  Scalar and vector products are bilinear on this complexified
 spin space.
 
+The product of two Pauli matrices on the same site satisfies
+$\sigma^i\sigma^j=\delta_{ij}\Id_2+\ii\varepsilon_{ijk}\sigma^k$,
+where $\delta_{ij}$ is the Kronecker delta and $\varepsilon_{ijk}$
+is completely antisymmetric with $\varepsilon_{123}=1$.  Thus
+\begin{equation}
+(\sigma^i\sigma^j)^\downarrow
+-(\sigma^i)^\downarrow(\sigma^j)^\downarrow
+=\delta_{ij}-S^iS^j+\ii\varepsilon_{ijk}S^k.
+\label{eq:single-site-pauli-symbol-product}
+\end{equation}
+Together with factorization between distinct physical sites, this
+identity evaluates all overlapping operator products used below.
+
 The continuum spatial Lax matrix is extracted after the model-dependent
 normalization and spectral scaling have been fixed.  Let $\lambda$ denote the
 \emph{continuum Lax spectral parameter}, to distinguish it from the quantum

@@ -1,7 +1,7 @@
 {
-  "python_version": "3.13.5",
+  "python_version": "3.12.14",
   "sympy_version": "1.14.0",
-  "number_of_exact_checks": 40,
+  "number_of_exact_checks": 58,
   "checks": {
     "regularity_R_zero_is_P": "exact_zero",
     "Hamiltonian_from_R_derivative": "exact_zero",
@@ -15,11 +15,23 @@
     "fixed_coupling_spectral_derivative": "exact_zero",
     "Sutherland_relation": "exact_zero",
     "time_operator_expansion_to_second_order": "exact_zero",
+    "permutation_lower_symbol": "exact_zero",
+    "deformation_lower_symbol": "exact_zero",
+    "deformation_square_lower_symbol": "exact_zero",
+    "two_site_Hamiltonian_lower_symbol": "exact_zero",
     "quantum_rhs_decomposition": "exact_zero",
     "coincident_A1": "exact_zero",
     "connected_order_epsilon_squared_cancels": "exact_zero",
     "spatial_matrix_formula": "exact_zero",
     "A1_two_site_formula": "exact_zero",
+    "second_spatial_lower_symbol_formula": "exact_zero",
+    "coincident_second_time_coefficient": "exact_zero",
+    "spatial_matrix_determinant": "exact_zero",
+    "spectral_derivative_from_second_spatial_symbol": "exact_zero",
+    "right_quadratic_overlap_at_equal_spins": "exact_zero",
+    "left_quadratic_overlap_at_equal_spins": "exact_zero",
+    "quadratic_overlap_Taylor_contribution": "exact_zero",
+    "coincident_cubic_overlap_commutator": "exact_zero",
     "source_equals_covariant_second_moment": "exact_zero",
     "source_absorbed_by_local_correction": "exact_zero",
     "local_correction_from_m": "exact_zero",
@@ -27,6 +39,7 @@
     "raw_time_symbol_spectral_formula": "exact_zero",
     "corrected_time_component_spectral_formula": "exact_zero",
     "corrected_time_component_trace_zero": "exact_zero",
+    "corrected_time_component_explicit_entries": "exact_zero",
     "source_explicit_spatial_and_commutator_terms": "exact_zero",
     "Hamiltonian_variation": "exact_zero",
     "unit_spin_is_preserved": "exact_zero",
@@ -39,9 +52,14 @@
     "energy_density_order_one": "exact_zero",
     "energy_density_order_two": "exact_zero",
     "anisotropy_nilpotent": "exact_zero",
+    "anisotropy_Hamiltonian_density": "exact_zero",
     "vector_Hamiltonian_flow": "exact_zero",
+    "finite_lattice_spin_Heisenberg_symbol": "exact_zero",
+    "finite_lattice_spin_continuum_limit": "exact_zero",
     "source_EOM_dictionary": "exact_zero",
     "XXX_time_component": "exact_zero",
+    "XXX_local_correction": "exact_zero",
+    "XXX_connected_source": "exact_zero",
     "uniform_spin_nonzero_connected_source": "exact_zero"
   },
   "negative_control": {
@@ -55,7 +73,15 @@
     "p*q_xx + 2*p_x*q_x + p_xx*q + 2*z*z_xx + 2*z_x**2"
   ],
   "groebner_variable_order": [
-    "p_xx", "q_xx", "z_xx", "p_x", "q_x", "z_x", "p", "q", "z"
+    "p_xx",
+    "q_xx",
+    "z_xx",
+    "p_x",
+    "q_x",
+    "z_x",
+    "p",
+    "q",
+    "z"
   ],
   "groebner_coefficient_field": "QQ_I(lambda,alpha)"
 }

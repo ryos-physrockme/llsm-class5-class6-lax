@@ -85,11 +85,18 @@ The literature and editorial comparison is recorded in
 Kruczenski (2004) and Kameyama--Yoshida (2014) were added for the spin-chain
 and string-theory context. Numbered references follow first citation order.
 
-Section 4 was merged in PR #8, and CI published its updated PDF on `main`.
-Section 5 and the structural revision are prepared for review in PR #9.
+Sections 4 and 5 and the Introduction/Summary revision were merged in
+PRs #8 and #9. CI published the reviewed manuscript on `main` after each merge.
 
-Next: review the Introduction and Summary and discussion drafts, write
-the Abstract, and decide the appendix content when completing the paper.
+The current revision expands the overlapping-product calculation in the main
+text. It defines the quadratic and cubic coefficient functions, displays their
+Taylor extraction, and evaluates the spatial-derivative and coincident-spin
+contributions separately for both models. The single-site Pauli product identity
+is introduced in Section 2 before those calculations. The five empty appendix
+headings have been removed. No appendix on code or reproducibility is planned.
+
+Next: review the expanded derivation, write the Abstract, and decide how briefly
+to describe the machine-learning discovery path in the manuscript.
 
 Current planned paper structure:
 
@@ -100,7 +107,6 @@ Current planned paper structure:
 4 Class 6 model
 5 Comparison of Class 5 and Class 6
 6 Summary and discussion
-Appendices
 ```
 
 ## Notation decisions
@@ -144,4 +150,4 @@ Appendices
 
 ## Open editorial decision
 
-The physics calculation is currently strong enough to remain the main paper narrative. The ML part should at minimum be mentioned as the discovery path and preserved in the research note/repository. After the Class 6 paper section is written, decide whether the ML details belong in an appendix/supplement or deserve a more central role.
+The physics calculation is currently strong enough to remain the main paper narrative. The ML part should at minimum be mentioned as the discovery path and preserved in the research note/repository. The remaining decision is how much of the coefficient-search method to describe in the manuscript; the current main result is the analytic quantum-to-classical time-Lax construction.
