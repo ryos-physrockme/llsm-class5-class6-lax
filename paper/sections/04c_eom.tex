@@ -7,18 +7,17 @@ Section~\ref{sec:class6-time-lax}.  The Hamiltonian also fixes the
 continuum limit of the Heisenberg derivative on the left-hand side of
 the lattice zero-curvature equation.
 
-Expanding the bond lower symbol in
-Eq.~\eqref{eq:class6-bond-lower-symbol} with
-$\kappa_6=\epsilon^2\alpha_6$ gives
+With $\boldsymbol S_n(t)=\boldsymbol S(x_n,t)$ and
+$\kappa_6=\epsilon^2\alpha_6$, expanding the bond lower symbol in
+Eq.~\eqref{eq:class6-bond-lower-symbol} gives
 \begin{equation}
-h_6^\downarrow
-\bigl(\boldsymbol S(x,t),\boldsymbol S(x+\epsilon,t)\bigr)
-=2+\epsilon^2\mathcal H_6(x,t)+\mathcal O(\epsilon^3),
+h_{6;n,n+1}^\downarrow
+=2+\epsilon^2\mathcal H_6(x_n,t)+\mathcal O(\epsilon^3),
 \label{eq:class6-h-lower-expansion}
 \end{equation}
-where the continuum Hamiltonian density is
+where the continuum Hamiltonian density at $(x,t)$ is
 \begin{equation}
-\mathcal H_6
+\mathcal H_6(x,t)
 =-\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
 +\alpha_6 S^+S^3.
 \label{eq:class6-hamiltonian-density}
@@ -37,8 +36,7 @@ N_6:=\begin{pmatrix}
 \label{eq:class6-N-definition}
 \end{equation}
 Since $\boldsymbol S^{\mathsf T}N_6\boldsymbol S=-2S^+S^3$, the
-continuum Hamiltonian on the periodic interval of length $\ell=N\epsilon$
-is
+continuum Hamiltonian at fixed circumference $\ell=N\epsilon$ is
 \begin{align}
 H^{\rm cl}_6
 &:=\lim_{\epsilon\to0}
@@ -51,7 +49,7 @@ H^{\rm cl}_6
 \label{eq:class6-continuum-hamiltonian}
 \end{align}
 
-We use the spin Poisson bracket with the same normalization as in
+We use the equal-time spin Poisson bracket with the same normalization as in
 Eq.~\eqref{eq:class5-poisson-bracket},
 \begin{equation}
 \{S^i(x),S^j(y)\}_6
@@ -60,8 +58,11 @@ Eq.~\eqref{eq:class5-poisson-bracket},
 \label{eq:class6-poisson-bracket}
 \end{equation}
 where $\varepsilon_{ijk}$ is completely antisymmetric and $\delta(x-y)$
-is the Dirac delta function.  Integration by parts with periodic
-variations gives
+is the Dirac delta function.  The common time argument is suppressed
+in Eq.~\eqref{eq:class6-poisson-bracket}.
+We take the functional derivative with respect to the Cartesian spin
+components before imposing $\boldsymbol S^{\mathsf T}\boldsymbol S=1$.
+Integration by parts with periodic variations then gives
 $\delta H^{\rm cl}_6/\delta\boldsymbol S
 =\partial_x^2\boldsymbol S-\alpha_6N_6\boldsymbol S$.
 The Hamiltonian equation
@@ -98,10 +99,12 @@ S^-\partial_x^2S^+-S^+\partial_x^2S^-
 \end{align}
 
 The relation to the quantum time evolution can also be checked at
-finite lattice spacing.  Let
+finite lattice spacing.  Let $\sigma_n^i$ denote the Pauli matrix
+$\sigma^i$ acting at site $n$, with identity operators on the other
+sites, and write
 $\boldsymbol\sigma_n=(\sigma_n^1,\sigma_n^2,\sigma_n^3)^{\mathsf T}$.
-Evaluating the Heisenberg commutator on a product of coherent states
-at a fixed lattice time gives
+Taking the lower symbol of the Heisenberg derivative componentwise on
+a product of coherent states at a fixed lattice time gives
 \begin{align}
 \frac{1}{\epsilon^2}
 \left(\partial_{t_{\rm lat}}\boldsymbol\sigma_n\right)^\downarrow
@@ -142,7 +145,8 @@ equation-of-motion residual vector
 \left(\partial_x^2\boldsymbol S-\alpha_6N_6\boldsymbol S\right),
 \label{eq:class6-residual-vector}
 \end{equation}
-and write its transverse components as
+Writing $E^{(6)}_i$ for its Cartesian components, we define the
+transverse components by
 $E^{(6)}_\pm:=E^{(6)}_1\pm\ii E^{(6)}_2$.
 The curvature of the matrices in
 Eqs.~\eqref{eq:class6-spatial-Lax} and

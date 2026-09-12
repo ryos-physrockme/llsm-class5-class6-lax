@@ -109,6 +109,12 @@ Appendices
 - Equation-of-motion residuals carry model superscripts, `E^(5)` and
   `E^(6)`, matching the curvature notation. The component formulas for
   `V_5` and `V_6` are introduced in prose without matrix index-range suffixes.
+- Retain the explicit matrix elements of `V_5` and `V_6`; a generator-basis
+  rewrite has not been adopted.
+- Bond lower symbols retain their lattice indices, `h_(m;n,n+1)^downarrow`,
+  with the continuum density evaluated at `(x_n,t)` for model `m = 5,6`.
+  Section 4.3 explicitly defines the site Pauli operators and Cartesian
+  residual components, and states the equal-time and variation conventions.
 
 ## Authoring rules
 
