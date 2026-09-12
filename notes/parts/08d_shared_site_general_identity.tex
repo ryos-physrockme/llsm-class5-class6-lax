@@ -1,0 +1,297 @@
+\section{局所演算子積補正の解析的導出と成立条件}
+\label{sec:shared-site-analytic-proof}
+
+量子スピン鎖の時間Lax演算子から連続時間行列を得る際には、物理サイトを共有する演算子の積を先に計算し、その後でcoherent-state lower symbolを取る必要がある。本節では、この操作によって生じる補正を交換演算子とrank-one射影の恒等式から導出する。補助空間の行列成分を数値に置き換えることも、補助空間に固有のCayley--Hamilton恒等式を使うことも必要ない。
+
+連続極限による空間Lax行列の構成と、量子系における時間Lax演算子の構成は、それぞれ文献\cite{ADS2010,DoikouFindlay2017}で扱われている。以下で導出するのは、指定した局所時間方程式の展開に現れる補正の恒等式である。symbolの非乗法性自体の発見とは区別する。また、本節の導出は文献上の優先性を確定するものではない。
+
+\subsection{局所空間、展開と仮定}
+
+一つの物理サイトのHilbert空間を$\mathcal H\simeq\mathbb C^2$、補助空間を$\mathcal V_a\simeq\mathbb C^{d_a}$とする。$d_a$は正の整数であり、以下の証明では固定の値を指定しない。二つの物理サイトを1、2で区別し、それらを交換する演算子を$P_{12}$と書く。$P_{12}$は補助空間には作用しない。
+
+格子間隔を$\epsilon$、量子および連続理論のスペクトルパラメータをそれぞれ$u,\lambda$とする。規格化された空間Lax演算子と二サイトHamiltonianを
+\begin{align}
+\widehat L_{a,n}&=\Id+\epsilon X_{a,n}+\epsilon^2Y_{a,n}+O(\epsilon^3),\label{eq:ssp-L}\\
+h_{12}&=2P_{12}+\epsilon h^{(1)}_{12}+O(\epsilon^2),\qquad
+\partial_u\widehat L_{a,n}=\epsilon^2Z_{a,n}+O(\epsilon^3)\label{eq:ssp-hZ}
+\end{align}
+と展開する。$X,Y,Z$は$\mathcal V_a\otimes\mathcal H$上の演算子、$h^{(1)}$は$\mathcal H\otimes\mathcal H$上の演算子である。各サイトには同じ演算子を埋め込む。以下では補助添字$a$を省略して$X_1,X_2$などと書く。物理サイトが異なっていても補助空間は共有されるため、一般に$[X_1,X_2]\ne0$である。
+
+$u=\lambda/\epsilon$とし、微分時に連続結合定数を固定できる場合には$Z=\partial_\lambda X$となる。ただし、演算子恒等式を導く段階ではこの関係を使わず、$Z$を式\eqref{eq:ssp-hZ}で定義した係数として扱う。
+
+必要なHamiltonianの仮定を明示する。三重項部分空間への射影
+\begin{equation}
+P_{\mathrm{sym}}:=\frac{\Id+P_{12}}2
+\end{equation}
+に対して、スピンの向きに依存しないスカラー$c$が存在し、
+\begin{equation}
+P_{\mathrm{sym}}h^{(1)}P_{\mathrm{sym}}=cP_{\mathrm{sym}}
+\label{eq:ssp-triplet}
+\end{equation}
+と仮定する。これは十分条件であり、必要条件とは主張しない。同じ向きのスピンの積状態は三重項部分空間に属するため、この条件は、その状態における$h^{(1)}$の期待値がスピン方向に依存しないことを意味する。したがって、$\epsilon$一次の方向依存ポテンシャルが$\epsilon$二次の交換エネルギーを支配しない連続スケーリングと整合する。
+
+Sutherland relationの向きは
+\begin{equation}
+[h_{12},\widehat L_2\widehat L_1]
+=\widehat L_2\partial_u\widehat L_1-(\partial_u\widehat L_2)\widehat L_1
+\label{eq:ssp-Suth}
+\end{equation}
+で固定する。その二次係数の左辺から右辺を引いた残差を
+\begin{equation}
+\mathcal B:=[2P_{12},X_2X_1+Y_2+Y_1]
++[h^{(1)},X_1+X_2]-Z_1+Z_2
+\label{eq:ssp-B}
+\end{equation}
+と定義する。正しく式\eqref{eq:ssp-Suth}を満たす模型では$\mathcal B=0$である。ただし、補正式を導出する途中ではこの残差を残しておく。$[P_{12},Y_1+Y_2]=0$は交換演算子の恒等式だけから従う。
+
+\subsection{純粋状態のsymbolと時間演算子}
+
+各サイトで使うrank-one射影を$\rho(x)$とする。最初は$\rho=|\Omega\rangle\langle\Omega|$を正規化した純粋状態の射影として定義し、得られた恒等式を
+\begin{equation}
+\rho^2=\rho,\qquad\tr\rho=1
+\label{eq:ssp-rho}
+\end{equation}
+を満たす複素射影へ代数的に拡張する。$\rho_x:=\partial_x\rho$は
+\begin{equation}
+\rho\rho_x+\rho_x\rho=\rho_x,\qquad\tr\rho_x=0
+\label{eq:ssp-rhox}
+\end{equation}
+を満たす。一サイト演算子$Q$のlower symbolと、二サイト演算子$T$の同一点でのsymbolを
+\begin{equation}
+Q^\downarrow:=\tr_{\mathcal H}(\rho Q),\qquad
+\langle T\rangle:=\tr_{12}[(\rho\otimes\rho)T]
+\label{eq:ssp-symbols}
+\end{equation}
+と定義する。いずれも補助空間の行列を残す。異なるサイトを一度ずつ含む積では$\langle X_1Y_2\rangle=X^\downarrow Y^\downarrow$となるが、補助空間の積の順序を交換してはならない。
+
+連続空間行列と、第二モーメントの差を
+\begin{equation}
+U:=X^\downarrow,\qquad\Xi:=(X^2)^\downarrow-U^2
+\label{eq:ssp-Xi}
+\end{equation}
+と定義する。$\Xi$は行列であり、正のスカラー分散として扱うものではない。
+
+規格化した時間Lax演算子を
+\begin{equation}
+\widehat A=-i\widehat L_2^{-1}
+\bigl([h_{12},\widehat L_2]+\partial_u\widehat L_2\bigr)
+=\epsilon A^{(1)}+\epsilon^2A^{(2)}+O(\epsilon^3)
+\label{eq:ssp-A}
+\end{equation}
+とする。逆行列を展開すると
+\begin{align}
+A^{(1)}&=-2i[P_{12},X_2],\label{eq:ssp-A1}\\
+A^{(2)}&=2iX_2[P_{12},X_2]-2i[P_{12},Y_2]
+-i[h^{(1)},X_2]-iZ_2.\label{eq:ssp-A2}
+\end{align}
+この式は式\eqref{eq:ssp-triplet}も$\mathcal B=0$も使っていない。
+
+交換演算子の性質から
+\begin{equation}
+P_{12}X_1=X_2P_{12},\qquad
+P_{12}(\rho\otimes\rho)=(\rho\otimes\rho)P_{12}=\rho\otimes\rho
+\label{eq:ssp-perm}
+\end{equation}
+である。したがって
+\begin{align}
+\langle A^{(1)}\rangle&=0,\label{eq:ssp-A1bar}\\
+\langle A^{(2)}\rangle&=-2i\Xi-iW-iZ^\downarrow,
+\qquad W:=\langle[h^{(1)},X_2]\rangle.\label{eq:ssp-A2bar}
+\end{align}
+$W$は一次のHamiltonian補正による同一点の交換子のsymbolであり、後で補正後の時間行列にも現れる。
+
+\subsection{二次係数の相殺と空間Taylor項}
+
+格子零曲率式の二つの積に対して
+\begin{align}
+\mathcal D^+_n&:=(\widehat A_{n+1}\widehat L_n)^\downarrow
+-\widehat A_{n+1}^\downarrow\widehat L_n^\downarrow,\\
+\mathcal D^-_n&:=(\widehat L_n\widehat A_n)^\downarrow
+-\widehat L_n^\downarrow\widehat A_n^\downarrow
+\end{align}
+を定義する。前者の物理サイトは$n,n+1$、後者は$n-1,n$である。これらを左・右の射影を引数とする行列関数として
+\begin{equation}
+\mathcal D_n^\pm=\epsilon^2\mathcal D_2^\pm
++\epsilon^3\mathcal D_3^\pm+O(\epsilon^4)
+\label{eq:ssp-Dseries}
+\end{equation}
+と展開する。添字2、3は隣接射影をTaylor展開する前の$\epsilon$の次数を表す。
+
+同一点では$A^{(1)}=-2i(X_1-X_2)P_{12}$と式\eqref{eq:ssp-perm}より
+\begin{equation}
+\mathcal D_2^+(\rho,\rho)=\mathcal D_2^-(\rho,\rho)=2i\Xi.
+\label{eq:ssp-D2}
+\end{equation}
+例えば$\langle A^{(1)}X_1\rangle=-2i\langle(X_1-X_2)X_2\rangle
+=2i[(X^2)^\downarrow-U^2]$である。二つの積の差の二次項は相殺する。
+
+空間Taylor項は同一点での式を単に微分して得られるとは限らない。右引数の微分と左引数の微分を別々に計算するため、ある空間点で定数の物理基底変換を行い、
+\begin{equation}
+\rho=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+\rho_x=\begin{pmatrix}0&p\\q&0\end{pmatrix},\qquad
+X=\sum_{i,j=0}^1 X_{ij}\otimes|i\rangle\langle j|
+\label{eq:ssp-blocks}
+\end{equation}
+と書く。$p,q$は複素射影の一般の接ベクトルを指定する数であり、$X_{ij}$は補助空間の行列である。基底は評価点の近傍で固定しており、全空間点で$\rho$を一定に置いているわけではない。この表示で
+\begin{align}
+U&=X_{00},\qquad \Xi=X_{01}X_{10},\\
+\partial_x\Xi&=p(X_{11}-X_{00})X_{10}
++qX_{01}(X_{11}-X_{00}).\label{eq:ssp-Xix-block}
+\end{align}
+最後の式では式\eqref{eq:ssp-Xi}の射影を微分している。
+
+$\delta_L,\delta_R$をそれぞれ左・右の射影引数に関する方向微分とすると、式\eqref{eq:ssp-A1}の直接の縮約から
+\begin{align}
+\delta_R\mathcal D_2^+(\rho,\rho)[\rho_x]
+&=2ip(X_{11}-X_{00})X_{10},\\
+\delta_L\mathcal D_2^-(\rho,\rho)[\rho_x]
+&=2iqX_{01}(X_{11}-X_{00})
+\end{align}
+を得る。したがって、これらの和は$2i\partial_x\Xi$である。二つが加算されるのは、$\mathcal D^-_n$を引くことと$\rho(x-\epsilon)=\rho-\epsilon\rho_x+\cdots$の負号による。この結果にも可積分性の条件は使っていない。
+
+\subsection{三次係数とSutherland relation}
+
+三次係数の差を$\mathcal C_3:=\mathcal D_3^+(\rho,\rho)-\mathcal D_3^-(\rho,\rho)$と定義する。式\eqref{eq:ssp-A1bar}を使うと
+\begin{equation}
+\mathcal C_3=\langle A^{(2)}X_1-X_2A^{(2)}
++A^{(1)}Y_1-Y_2A^{(1)}\rangle-[\langle A^{(2)}\rangle,U].
+\label{eq:ssp-C3start}
+\end{equation}
+ここで第三時間係数は、空間演算子の先頭の単位行列を掛ける項として、symbolの差の内部で相殺している。
+
+まず明示的な$Y$依存をまとめる。$A^{(2)}$の$Y$部分は$-2i[P_{12},Y_2]$なので、対応する式\eqref{eq:ssp-C3start}の演算子積は
+\begin{equation}
+-2i\bigl([Y_1,X_2]+[X_1,Y_2]\bigr)P_{12}
+\end{equation}
+となる。その同一点のsymbolは
+$-2i([Y^\downarrow,U]+[U,Y^\downarrow])=0$である。$Y$を途中で省略したのではなく、すべての寄与を合わせた結果として相殺している。
+
+残った項を展開すると
+\begin{align}
+\mathcal C_3={}&2i[\Xi,U]
++2i\bigl(\langle X_2X_1X_2\rangle-(X^2)^\downarrow U\bigr)\nonumber\\
+&-i\langle[h^{(1)},X_2]X_1-X_2[h^{(1)},X_2]\rangle
++i[W,U]\nonumber\\
+&+i\bigl((XZ)^\downarrow-UZ^\downarrow\bigr).
+\label{eq:ssp-C3expanded}
+\end{align}
+一方、式\eqref{eq:ssp-B}の左から$X_1$を掛けてsymbolを取ると
+\begin{align}
+\langle X_1\mathcal B\rangle={}&
+2\bigl((X^2)^\downarrow U-\langle X_2X_1X_2\rangle\bigr)\nonumber\\
+&+\langle X_1[h^{(1)},X_1+X_2]\rangle
+-(XZ)^\downarrow+UZ^\downarrow.
+\label{eq:ssp-Bcontract}
+\end{align}
+混合三次モーメントには、同一点でのサイト交換対称性
+$\langle X_1X_2X_1\rangle=\langle X_2X_1X_2\rangle$を用いた。
+
+残るのは$h^{(1)}$を含む二つの縮約の比較である。式\eqref{eq:ssp-triplet}から
+\begin{align}
+&\langle[h^{(1)},X_2]X_1-X_2[h^{(1)},X_2]\rangle\nonumber\\
+&\qquad-\langle X_1[h^{(1)},X_1+X_2]\rangle=[W,U]
+\label{eq:ssp-hidentity}
+\end{align}
+が従う。このステップがHamiltonianの十分条件を使う箇所である。以下にその導出を示す。
+
+$X_1+X_2$は$P_{12}$と交換するため、三重項部分空間を保存する。したがって
+\begin{equation}
+\langle(X_1+X_2)h^{(1)}(X_1+X_2)\rangle
+=c\langle(X_1+X_2)^2\rangle.
+\label{eq:ssp-hsym}
+\end{equation}
+同じ理由で$\langle(X_1^2+X_2^2)h^{(1)}\rangle=2c(X^2)^\downarrow$である。残る混合項を、式\eqref{eq:ssp-blocks}の物理基底で評価する。式\eqref{eq:ssp-triplet}と一重項部分空間が一次元であることから、あるスカラー$a,b$を用いて
+\begin{align}
+h^{(1)}|00\rangle&=c|00\rangle+b(|01\rangle-|10\rangle),\\
+\langle00|h^{(1)}&=c\langle00|+a(\langle01|-\langle10|)
+\end{align}
+と書ける。Hermiticityは仮定しないので$a,b$は独立でよい。これより
+\begin{align}
+W&=aX_{10}-bX_{01},\\
+\langle h^{(1)}X_2X_1\rangle&=cU^2+a[X_{10},U],\\
+\langle X_1X_2h^{(1)}\rangle&=cU^2+b[U,X_{01}].
+\end{align}
+後二式の和は$2cU^2+[W,U]$となる。式\eqref{eq:ssp-hidentity}の左辺の演算子を展開すると
+\begin{align}
+&-[h^{(1)},X_2]X_1+X_2[h^{(1)},X_2]
++X_1[h^{(1)},X_1+X_2]\nonumber\\
+&\quad=(X_1+X_2)h^{(1)}(X_1+X_2)
+-(X_1^2+X_2^2)h^{(1)}\nonumber\\
+&\qquad-h^{(1)}X_2X_1-X_1X_2h^{(1)}.
+\end{align}
+そのsymbolは$-[W,U]$なので、式\eqref{eq:ssp-hidentity}が従う。
+
+式\eqref{eq:ssp-C3expanded}--\eqref{eq:ssp-hidentity}を合わせると
+\begin{equation}
+\mathcal C_3=2i[\Xi,U]-i\langle X_1\mathcal B\rangle.
+\label{eq:ssp-C3final}
+\end{equation}
+これで、三次係数の主張は一般成分の記号計算に依存せずに導出された。
+
+\subsection{局所補正と適用範囲}
+
+二次項のTaylor係数を加えると、共有サイト積の連続寄与は
+\begin{equation}
+\mathcal C:=\lim_{\epsilon\to0}\epsilon^{-3}
+(\mathcal D^+_n-\mathcal D^-_n)
+=2i\bigl(\partial_x\Xi+[\Xi,U]\bigr)-i\langle X_1\mathcal B\rangle.
+\label{eq:ssp-main}
+\end{equation}
+この式は式\eqref{eq:ssp-triplet}のもとで、$\mathcal B$をゼロにせずに成立する。さらに$\mathcal B=0$ならば
+\begin{equation}
+\Delta V=2i\Xi+f(\lambda)\Id,\qquad
+\partial_x\Delta V+[\Delta V,U]=\mathcal C
+\label{eq:ssp-DeltaV}
+\end{equation}
+である。$f(\lambda)$はスピン、位置、時刻に依存しない任意のスカラーである。
+
+格子時間を$t_{\rm lat}$、連続時間を$t=\epsilon^2t_{\rm lat}$とすると、$\widehat L^\downarrow=\Id+\epsilon U+\cdots$の時間発展は$\epsilon^3$から始まる。したがって式\eqref{eq:ssp-main}は、その時間発展と同じ次数に寄与する。ここで$\epsilon\to0$は長波長極限であり、物理スピンを大きくする極限ではない。
+
+時間行列も整理できる。Pauli行列を$\sigma^i$、古典スピンを$\boldsymbol S$とし、$\rho=(\Id+S^i\sigma^i)/2$、$S^iS^i=1$と書く。$i=1,2,3$について和を取る。$\boldsymbol S\times\partial_x\boldsymbol S$は複素双線形の外積である。$X$はスピンに依存しない固定の量子係数なので、$U$はスピンにaffineである。隣接射影を式\eqref{eq:ssp-A1}に代入すると、直接の時間symbolは
+\begin{equation}
+V^\downarrow=-2(\boldsymbol S\times\partial_x\boldsymbol S)^i
+\frac{\partial U}{\partial S^i}-2i\Xi-iW-iZ^\downarrow
+\end{equation}
+となる。$\Delta V$を加えた結果は
+\begin{equation}
+V=-2(\boldsymbol S\times\partial_x\boldsymbol S)^i
+\frac{\partial U}{\partial S^i}-iW-iZ^\downarrow+f(\lambda)\Id.
+\label{eq:ssp-V}
+\end{equation}
+$h^{(1)}=0$かつ$Z=\partial_\lambda X$ならば$W=0$であり、最後の非スカラー項は$-i\partial_\lambda U$になる。
+
+この証明は局所物理空間が二次元であることを使うが、補助空間行列の次元固有の恒等式は使わない。したがって任意の有限$d_a$に成立する。ただし、これは高スピン物理表現への拡張ではない。また、$\mathcal B=0$という展開の一つの次数だけからYang--Baxter方程式全体や新しい模型の可積分性が従うわけではない。
+
+連続零曲率式をHamiltonianの運動方程式と同一視するには、量子Heisenberg微分のsymbolの連続極限を独立に調べる必要がある。さらに、曲率から運動方程式の全成分を戻すには、$\partial U/\partial S^i$が定める写像の単射性も必要となる。本節の演算子積の恒等式だけではこれらを証明していない。純粋積状態からの有限時間の量子発展や相関生成の誤差評価も対象外である。
+
+\subsection{模型への適用と研究上の判断}
+
+二つの非Hermitianスピン鎖への適用を明示する。物理スピンと二次元補助空間の基底を$\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}$の順に取り、
+\begin{equation}
+K_5=\begin{pmatrix}0&1&-1&0\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix},\qquad
+K_6=\begin{pmatrix}0&1&1&0\\0&0&0&-1\\0&0&0&-1\\0&0&0&0\end{pmatrix}
+\end{equation}
+と定義する。Class 5とClass 6は、これらの行列を使う既存の量子スピン鎖の名称である\cite{DFN2026}。連続変形結合をそれぞれ$\alpha_5,\alpha_6$とすると、展開係数は
+\begin{align}
+X_5&=\frac{P}{2\lambda}+\alpha_5K_5,
+&Y_5&=0,&h^{(1)}_5&=2\alpha_5K_5,\\
+X_6&=\frac{P}{2\lambda}+\alpha_6\lambda K_6+\alpha_6^2\lambda^3K_6^2,
+&Y_6&=\frac{\alpha_6}{2}K_6+\alpha_6^2\lambda^2K_6^2,
+&h^{(1)}_6&=0.
+\end{align}
+ここで$P$は一補助空間と一物理空間の交換演算子であり、各二サイト行列を必要な因子へ同じ基底順で埋め込む。両者とも$Z_m=\partial_\lambda X_m$、$m=5,6$である。Class 5では$PK_5P=-K_5$、Class 6では$h^{(1)}_6=0$なので、式\eqref{eq:ssp-triplet}を満たす。一般式は既存の時間行列を回収する。
+
+Class 6には$X_6^2=\Id/(4\lambda^2)+2Y_6$という模型固有の恒等式がある。このため$\Xi$を$Y_6$を使って表すと、その交換子寄与が見える。しかし一般導出では明示的な$Y$依存は相殺している。したがって「第二空間係数は、第一係数とは独立の追加情報として必ず必要」という解釈は採用しない。$Y$を含む途中の項を勝手に捨ててよい、という意味でもない。
+
+第三例のXXZ鎖では、格子異方性を$\eta=\epsilon\gamma$とする。$\gamma$は固定した連続異方性のスケールである。スペクトル関数$a(\lambda)=\gamma\coth(2\gamma\lambda)$、$b(\lambda)=\gamma/\sinh(2\gamma\lambda)$を定義すると
+\begin{equation}
+X=\begin{pmatrix}a&0&0&0\\0&0&b&0\\0&b&0&0\\0&0&0&a\end{pmatrix},\quad
+Y=\frac{\gamma^2}{2}\operatorname{diag}(1,0,0,1),\quad h^{(1)}=0
+\end{equation}
+である。これらは正則six-vertex演算子の展開係数であり、$a'=-2b^2$、$b'=-2ab$、$a^2-b^2=\gamma^2$から$\mathcal B=0$と補正式を確認できる。プライムは$\lambda$微分を表す。この例は既知模型による適用範囲の検算であり、新しいXXZ模型の主張ではない。
+
+2026年9月13日の独立再実行で、一般成分およびClass 5、Class 6、XXZを含む既存の50チェックを再確認した。さらに本節の各式変形を、$X_{ij},Y_{ij},Z_{ij}$を自由な非可換記号として検証するプログラムを作成し、26のゼロ恒等式を確認した。行列の各成分を可換な数に置き換えないため、この追加検証は補助空間の行列積の順序も検査する。解析的証明は本節に記載しており、検証プログラムはその補助である。
+
+文献\cite{ADS2010}の長波長極限はmonodromyや保存量に対する総和の次数を追跡しており、期待値と非線形演算が一般には交換しない点にも言及している。本節の局所時間方程式は、時間を再スケールした後の$\epsilon^3$係数を取り出す。この二つは異なる対象を扱っているため、先行研究が共有サイトの寄与を見落としたという説明はしない。文献\cite{DoikouFindlay2017}も量子時間Lax行列の一般的構成を扱う。今回の局所補正式の優先性を主張するには、これらを含めた式レベルの比較をさらに行う必要がある。
+
+原稿への追加候補は、仮定\eqref{eq:ssp-triplet}とSutherland relationの二次係数を明示したうえでの式\eqref{eq:ssp-main}、およびその解析的導出である。これにより二模型の共通パターンに成立条件を与えられる。一方、既知の方法を使うことや模型の新規性に関する限界が消えるわけではない。現段階では研究ノートに証明を保存し、原稿の再構成と文献上の新規性の判断を区別して進める。
