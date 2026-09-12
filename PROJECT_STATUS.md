@@ -67,11 +67,12 @@ Written in the current draft:
 7. Class 6 section 4.2: finite-lattice time-operator expansion, overlapping
    lower-symbol products, local correction involving the second spatial
    coefficient, and the corrected time Lax matrix with explicit entries.
+8. Class 6 section 4.3: continuum Hamiltonian and component equations of
+   motion, the instantaneous finite-lattice Heisenberg spin derivative,
+   and the off-shell curvature/EOM factorization with explicit inverse.
 
-Next technical section to write: **Section 4.3, Class 6 zero-curvature/EOM
-equivalence**, including the independent Hamiltonian flow and the off-shell
-factorization. After that, write the Class 5/Class 6
-comparison, scope, Introduction, and Conclusions.
+Next section to write: **Section 5, comparison of Class 5 and Class 6**.
+After that, write the scope, Introduction, and Conclusions.
 
 Current planned paper structure:
 
@@ -105,6 +106,9 @@ Appendices
   in the Class 5 scripts and research note. Model subscripts are also retained
   on `A^(j)` and the overlapping-product differences in both model sections.
 - Symbols are introduced only after their physical meaning has been stated.
+- Equation-of-motion residuals carry model superscripts, `E^(5)` and
+  `E^(6)`, matching the curvature notation. The component formulas for
+  `V_5` and `V_6` are introduced in prose without matrix index-range suffixes.
 
 ## Authoring rules
 

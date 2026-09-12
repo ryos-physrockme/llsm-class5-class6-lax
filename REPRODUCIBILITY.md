@@ -36,7 +36,7 @@ Exact symbolic derivation:
 python scripts/class6/verify_coherent_symbolic.py
 ```
 
-This retains the second spatial coefficient required in Class 6, verifies the shared-site correction including its commutator contribution, checks the Hamiltonian flow and off-shell Lax factorization, and includes a negative control showing that the Class-5-only total-derivative correction fails in Class 6.
+This retains the second spatial coefficient required in Class 6, verifies the shared-site correction including its commutator contribution, checks the Hamiltonian flow and off-shell Lax factorization, and includes a negative control showing that the Class-5-only total-derivative correction fails in Class 6. It also derives the instantaneous spin derivative from the two adjacent quantum bonds and checks its continuum limit against the Hamiltonian flow used in manuscript section 4.3.
 
 Finite-spacing, Yang-Baxter, finite-lattice zero-curvature, and independent off-shell checks:
 

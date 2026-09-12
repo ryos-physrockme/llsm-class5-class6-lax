@@ -238,7 +238,30 @@ check('energy_density_order_one',s.Matrix([hsymbol.coeff(eps,1)]))
 check('energy_density_order_two',s.Matrix([hsymbol.coeff(eps,2)-H]))
 N=s.Matrix([[0,0,-1],[0,0,-I],[-1,-I,0]])
 raw_check('anisotropy_nilpotent',N**3)
+raw_check('anisotropy_Hamiltonian_density',
+    s.Matrix([H+cart(X).dot(cart(X))/2+al*(cart(S).T*N*cart(S))[0]/2]))
 raw_check('vector_Hamiltonian_flow',cart(flow)+2*cart(S).cross(cart(Y)-al*N*cart(S)))
+
+# The instantaneous spin derivative printed in manuscript section 4.3 is
+# checked directly from the two adjacent quantum bonds, before taking a limit.
+pauli = [s.Matrix([[0,1],[1,0]]), s.Matrix([[0,-I],[I,0]]), s.diag(1,-1)]
+spin_hamiltonian = embed(h,0,1)+embed(h,1,2)
+spin_state = s.kronecker_product(rho(left),rho(S),rho(right))
+quantum_spin_flow = s.Matrix([
+    s.trace(spin_state*I*comm(spin_hamiltonian,
+        s.kronecker_product(s.eye(2),sigma,s.eye(2)))) for sigma in pauli
+]).applyfunc(s.expand)
+neighbors = cart(left)+cart(right)
+raw_check('finite_lattice_spin_Heisenberg_symbol',
+    quantum_spin_flow+2*cart(S).cross(neighbors-aq*N*neighbors/2))
+spin_taylor = dict(zip(left,S-eps*X+eps**2*Y/2))
+spin_taylor.update(zip(right,S+eps*X+eps**2*Y/2))
+spin_taylor[aq] = eps**2*al
+continuum_spin_flow = quantum_spin_flow.subs(spin_taylor,simultaneous=True)
+raw_check('finite_lattice_spin_continuum_limit',
+    continuum_spin_flow.applyfunc(lambda value:s.expand(value).coeff(eps,2))
+    -cart(flow))
+
 reflection=s.diag(-1,1,1)
 Nref=s.Matrix([[0,0,1],[0,0,-I],[1,-I,0]])
 Sref,Yref=reflection*cart(S),reflection*cart(Y)
