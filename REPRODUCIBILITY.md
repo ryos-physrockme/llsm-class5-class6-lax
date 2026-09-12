@@ -12,6 +12,8 @@ python scripts/class5/verify_coherent_symbolic.py
 
 This checks the fundamental operator identities, Sutherland relation, coherent-state product correction, corrected time-Lax matrix, Hamiltonian flow, off-shell EOM factorization, and the undeformed XXX limit. Results are written to `results/class5/symbolic_verification.json` and `results/class5/symbolic_expressions.json`.
 
+The Section 5 comparison is checked against the same direct operator contractions: the single-site Pauli product, the common expression for the connected source in terms of the difference of second moments, and the isotropic source and time correction. The Class 6 script below checks the corresponding common expression and isotropic formulas independently.
+
 Finite-spacing and finite-lattice checks:
 
 ```bash

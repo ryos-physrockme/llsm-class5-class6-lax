@@ -70,9 +70,26 @@ Written in the current draft:
 8. Class 6 section 4.3: continuum Hamiltonian and component equations of
    motion, the instantaneous finite-lattice Heisenberg spin derivative,
    and the off-shell curvature/EOM factorization with explicit inverse.
+9. Section 5: the common operator-product correction, comparison of
+   deformation scalings and spatial coefficients, and the isotropic limit.
+10. Introduction and Summary and discussion: revised using the introductions
+    and closing sections of related papers. The Introduction develops the
+    physical context, established constructions, and the specific time-Lax
+    question; Section 6 emphasizes results, interpretation, and extensions.
+    Section 5.3 has been removed; Section 5 retains the technical comparison.
+    Sections 2--5 each introduce their purpose and sequence before the
+    first subsection.
 
-Next section to write: **Section 5, comparison of Class 5 and Class 6**.
-After that, write the scope, Introduction, and Conclusions.
+The literature and editorial comparison is recorded in
+[`paper/literature_review.md`](paper/literature_review.md).
+Kruczenski (2004) and Kameyama--Yoshida (2014) were added for the spin-chain
+and string-theory context. Numbered references follow first citation order.
+
+Section 4 was merged in PR #8, and CI published its updated PDF on `main`.
+Section 5 and the structural revision are prepared for review in PR #9.
+
+Next: review the Introduction and Summary and discussion drafts, write
+the Abstract, and decide the appendix content when completing the paper.
 
 Current planned paper structure:
 
@@ -82,7 +99,7 @@ Current planned paper structure:
 3 Class 5 model
 4 Class 6 model
 5 Comparison of Class 5 and Class 6
-6 Conclusions
+6 Summary and discussion
 Appendices
 ```
 
