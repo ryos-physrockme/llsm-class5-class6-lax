@@ -38,8 +38,8 @@ def comm(a: sp.MatrixBase, b: sp.MatrixBase) -> sp.Matrix:
 
 
 def zero(name: str, matrix: sp.MatrixBase, checks: dict[str, str]) -> None:
-    result = matrix.applyfunc(sp.factor)
-    if result != sp.zeros(*result.shape):
+    result = matrix.applyfunc(lambda entry: sp.simplify(sp.expand(entry)))
+    if any(entry != 0 for entry in result):
         raise AssertionError(f"{name}: {result}")
     checks[name] = "exact_zero"
     print(f"{name}: exact_zero")
