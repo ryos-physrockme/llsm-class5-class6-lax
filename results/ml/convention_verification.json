@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "class5_sampler_spin": 0.0,
+    "class5_sampler_time": 0.0,
+    "class5_residual_for_arbitrary_coefficients": 5.329070518200751e-15,
+    "class5_loss": 0.0,
+    "class5_loss_gradient_0": 5.329070518200751e-15,
+    "class5_loss_gradient_1": 3.552713678800501e-15,
+    "class6_sampler_spin": 0.0,
+    "class6_sampler_spin_x": 0.0,
+    "class6_sampler_spin_xx": 0.0,
+    "class6_paper_eom": 0.0,
+    "class6_training_curvature_for_arbitrary_coefficients": 0.0,
+    "class6_loss": 0.0,
+    "class6_loss_gradient": 8.881784197001252e-16,
+    "class6_independent_time_is_tangent": 2.8435583831733384e-15,
+    "class6_offshell_matches_original_onshell": 3.552713678800501e-15,
+    "class6_offshell_time_independence": 3.552713678800501e-15,
+    "class6_offshell_loss": 7.105427357601002e-15,
+    "class6_offshell_loss_gradient": 3.552713678800501e-15,
+    "class5_exact_spatial_matrix_matches_paper": "exact_zero",
+    "class5_exact_time_matrix_matches_paper": "exact_zero",
+    "class5_rotation_orthogonality": "exact_zero",
+    "class5_rotation_determinant": 1,
+    "class6_exact_spatial_matrix_matches_paper": "exact_zero",
+    "class6_exact_time_matrix_matches_paper": "exact_zero",
+    "class6_square_root": "exact_zero"
+  },
+  "all_passed": true
+}

@@ -41,15 +41,26 @@ Primary verification code: `scripts/class6/`.
 
 ## Machine-learning discovery path
 
-Machine learning is a discovery/audit tool rather than the final proof.
+Machine learning selected local structures and coefficient relations for subsequent analytic verification.
 
 - Earlier PCM and symmetric-coset tests recovered spectral-parameter families.
 - A low-loss `T^{1,1}` candidate was shown analytically to be a fake Lax connection, motivating the off-shell `F = Q E` certificate and rank test.
-- Class 5 used a symmetry-informed over-complete local feature library. Nine historical runs selected the correct physical coefficients and suppressed distractors.
-- Class 6 used the finite nilpotent matrix library `{I, N, N^2}`. Six historical runs exposed the finite matrix-square-root coefficient pattern.
+- Class 5 used twelve temporal structures plus a spatial coefficient, with an off-shell residual and a uniform sparsity penalty. Nine historical runs selected the physical coefficients and suppressed eight extra terms.
+- Class 6 used eight coefficients in the finite nilpotent matrix library `{I, N, N^2}`, with on-shell curvature training. Six historical runs exposed the finite matrix-square-root coefficient pattern. The restored implementation also supports an exactly equivalent off-shell `F-A6 E` objective, now the default; the time-derivative terms cancel for arbitrary fitted coefficients.
 - Final claims are established by analytic factorization, symbolic verification, finite-lattice checks, and literature comparison.
 
-Historical aggregate metrics are in `results/ml/historical_summary.json`. The executable scripts in `scripts/ml/` are clean reconstructions from the documented equations, because the original historical scripts were not available as raw files when this repository was initialized.
+Historical aggregate metrics are in `results/ml/historical_summary.json`. The
+original training scripts have been recovered from the user attachments and
+Library files; matching hashes and unchanged sources are preserved in
+`archive/ml_original/`. The active scripts now derive directly from them, using
+the manuscript spin, time, deformation and spectral conventions. They retain
+the original candidate spaces, spatial sampling, initialization, sparsity and
+Adam/L-BFGS settings. `scripts/ml/verify_conventions.py` checks losses and
+gradients at arbitrary coefficients, the on/off-shell equivalence for Class 6,
+and exact agreement with the manuscript Lax matrices. Current numerical results
+are in `results/ml/class5/` and `results/ml/class6/`, with the original on-shell
+Class 6 rerun in `results/ml/class6_onshell/`. Earlier least-squares reconstruction
+outputs have been moved to `archive/ml_reconstructed/`.
 
 ## Manuscript status
 
@@ -93,10 +104,14 @@ text. It defines the quadratic and cubic coefficient functions, displays their
 Taylor extraction, and evaluates the spatial-derivative and coincident-spin
 contributions separately for both models. The single-site Pauli product identity
 is introduced in Section 2 before those calculations. The five empty appendix
-headings have been removed. No appendix on code or reproducibility is planned.
+headings have been removed. A new Appendix A describes the original ML searches
+in the paper conventions, with ansatz spaces, loss functions, sampling,
+optimization settings and numerical checks. It explains the equivalent
+off-shell extension of the Class 6 search. The Introduction summarizes the
+discovery route and cites Krippendorf--Lüst--Syvaeri (2021). Execution commands
+and file organization are documented in the repository guides.
 
-Next: review the expanded derivation, write the Abstract, and decide how briefly
-to describe the machine-learning discovery path in the manuscript.
+Next: review the expanded derivation and ML appendix, then write the Abstract.
 
 Current planned paper structure:
 
@@ -107,6 +122,7 @@ Current planned paper structure:
 4 Class 6 model
 5 Comparison of Class 5 and Class 6
 6 Summary and discussion
+A Machine-learning searches for the Lax pairs
 ```
 
 ## Notation decisions
@@ -148,6 +164,10 @@ Current planned paper structure:
 - Do not claim that coherent-state symbol non-multiplicativity is new.
 - Keep literature input, convention changes, new derivations, and novelty assessment logically separate.
 
-## Open editorial decision
+## Editorial scope
 
-The physics calculation is currently strong enough to remain the main paper narrative. The ML part should at minimum be mentioned as the discovery path and preserved in the research note/repository. The remaining decision is how much of the coefficient-search method to describe in the manuscript; the current main result is the analytic quantum-to-classical time-Lax construction.
+The analytic quantum-to-classical time-Lax construction remains the main paper
+narrative. The Introduction gives an ML overview, and Appendix A supplies the
+mathematical search formulation and numerical settings. Code execution
+instructions belong in the repository guides. The detailed overlapping-product
+derivation already present in the main text is retained there.

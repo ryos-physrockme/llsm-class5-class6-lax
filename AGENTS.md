@@ -6,7 +6,7 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 
 - `paper/main.tex`: current compressed manuscript draft.
 - `notes/full_research_note_ja.tex`: self-contained long-form calculation/history note.
-- `scripts/`: executable verification and reconstructed ML searches.
+- `scripts/`: executable verification and original-derived ML searches in the manuscript conventions.
 - `results/`: current machine-readable outputs.
 - `archive/`: independent reports kept for provenance, not the current manuscript source.
 
@@ -50,4 +50,6 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 
 ## CI expectations
 
-The main branch should pass `.github/workflows/ci.yml`, including physics verification, reconstructed ML searches, manuscript compilation, and complete-note compilation.
+The main branch should pass `.github/workflows/ci.yml`, including physics verification, original-code convention checks and ML searches, manuscript compilation, and complete-note compilation.
+
+The original ML sources are preserved in `archive/ml_original/`. Preserve their candidate spaces, sampling, losses, and optimizer settings when changing conventions: Class 5 uses twelve temporal features plus one spatial coefficient, a uniform sparsity penalty, and off-shell training; Class 6 originally used eight coefficients and on-shell training. The current Class 6 default uses the user-approved, exactly equivalent off-shell `F-A6 E` objective; `--training-mode on-shell` retains the original formulation. Both final analytic certificates are off-shell. See `REPRODUCIBILITY.md` for the exact dictionary and commands. The paper describes mathematical setup, numerical settings and results; keep execution commands and file organization in the repository guides.

@@ -44,8 +44,8 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Reproduce documented ML coefficient searches
+          pip install -r requirements-ml.txt
+      - name: Verify conventions and rerun original ML searches
         run: make verify-ml
 
   latex:

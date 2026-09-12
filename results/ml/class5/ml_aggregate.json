@@ -1,0 +1,21 @@
+{
+  "protocol": "restored original code in manuscript conventions",
+  "torch_version": "2.10.0+cpu",
+  "train_samples": 768,
+  "validation_samples": 4096,
+  "adam_steps": 600,
+  "lbfgs_max_iter": 50,
+  "sparsity_weight_adam": 1e-09,
+  "sparsity_weight_lbfgs": 5.000000000000001e-11,
+  "temporal_features": 12,
+  "learned_real_parameters": 13,
+  "runs": 9,
+  "max_beta_abs_error": 3.133615118777744e-08,
+  "median_beta_abs_error": 8.847106380827086e-10,
+  "max_physical_coeff_error": 3.605821321528424e-07,
+  "median_physical_coeff_error": 5.5838358936632915e-09,
+  "max_validation_mse": 4.943739137166108e-14,
+  "median_validation_mse": 9.395567575065895e-18,
+  "max_distractor_abs": 8.09872586758702e-08,
+  "median_distractor_abs": 1.1199789626450672e-09
+}

@@ -1,0 +1,15 @@
+{
+  "protocol": "original-derived search in manuscript conventions; equivalent off-shell extension",
+  "training_mode": "off-shell",
+  "torch_version": "2.10.0+cpu",
+  "train_samples": 768,
+  "validation_samples": 3072,
+  "adam_steps": 1300,
+  "lbfgs_max_iter": 120,
+  "learned_real_parameters": 8,
+  "runs": 6,
+  "max_validation_rms": 2.9211182871568086e-11,
+  "median_validation_rms": 3.4254506892507537e-15,
+  "max_coefficient_error": 1.1193365678785483e-11,
+  "median_coefficient_error": 2.220446049250313e-16
+}

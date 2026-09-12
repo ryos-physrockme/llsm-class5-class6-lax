@@ -1,0 +1,11 @@
+{
+  "runs": 9,
+  "max_beta_abs_error": 1.0408105211023866e-09,
+  "median_beta_abs_error": 5.18291826123729e-10,
+  "max_physical_coeff_error": 1.1492745377594815e-07,
+  "median_physical_coeff_error": 5.562604127318238e-10,
+  "max_validation_mse": 7.994909678224073e-15,
+  "median_validation_mse": 8.862128656775234e-20,
+  "max_distractor_abs": 7.173525765869266e-08,
+  "median_distractor_abs": 4.6544855565684306e-12
+}
