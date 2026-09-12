@@ -112,7 +112,33 @@ and changes between code versions are kept in the research record. The
 Introduction summarizes the method and cites Krippendorf--Lüst--Syvaeri (2021). Execution commands
 and file organization are documented in the repository guides.
 
-Next: review the expanded derivation and ML appendix, then write the Abstract.
+The expanded derivation and off-shell ML appendix were merged in PR #10.
+The next revision adds the Abstract and completes the front and back matter,
+following the author's `dbi-stress-tensor-flow/paper/paper.tex`: a separate
+title page, author, affiliation, e-mail footnote, keywords, matching margins
+and link colors, and PDF metadata. Acknowledgments disclose the use of
+ChatGPT and Codex. Data and code availability statements point to this
+repository and identify the source-code license. The Abstract summarizes
+the time-Lax construction, the surviving operator-product contributions,
+the Hamiltonian equivalence and the numerical coefficient searches.
+
+The subsequent manuscript audit clarifies the formal local expansion used
+in the Class 5 monodromy comparison and displays its generating Hamiltonian
+flow and first projector recursion. The reference convention dictionary now
+specifies the old and new fields and times explicitly. Both Hamiltonian
+sections state the same variation convention.
+
+Appendix A now explains that time derivatives cancel in both off-shell fits
+for arbitrary coefficients, identifies the conservation-law origin of the
+fixed Class 5 scalar parts, and distinguishes supplied normalizations and
+initial values from fitted coefficients and analytically verified spectral
+dependence. The Abstract, Introduction and Summary describe the numerical
+role consistently. Verification of these statements extends
+`scripts/ml/verify_conventions.py`; the audit is recorded in
+[`paper/manuscript_audit.md`](paper/manuscript_audit.md).
+
+Next: review the audited manuscript and the completed front/back matter in
+PR #11.
 
 Current planned paper structure:
 

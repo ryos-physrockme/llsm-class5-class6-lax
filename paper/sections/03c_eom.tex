@@ -74,8 +74,12 @@ the continuum Poisson bracket
 \varepsilon_{123}=1,
 \label{eq:class5-poisson-bracket}
 \end{equation}
-where $\delta(x-y)$ is the Dirac delta function.  The corresponding Hamiltonian
-flow is
+where $\delta(x-y)$ is the Dirac delta function and the common time argument
+is suppressed.  Varying the Cartesian spin components before imposing the
+unit-spin constraint, and integrating by parts with periodic variations,
+gives $\delta H^{\rm cl}_5/\delta\boldsymbol S
+=\partial_x^2\boldsymbol S+\alpha_5M_5\partial_x\boldsymbol S$.
+The corresponding Hamiltonian flow is
 \begin{equation}
 \partial_t S^i(x)=\{S^i(x),H^{\rm cl}_5\}_5.
 \label{eq:class5-hamiltonian-flow-definition}
@@ -215,16 +219,20 @@ three continuum equations of motion
 \eqref{eq:class5-eom-plus}--\eqref{eq:class5-eom-three}.
 
 To compare with the direct continuum construction of
-Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}, we translate our conventions by
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}, denote its spin field, coupling,
+and time by $\boldsymbol S_{\rm ref}$, $\alpha_{\rm ref}$, and
+$t_{\rm ref}$.  The convention dictionary is
 \begin{equation}
-S^2\mapsto -S^2,
-\qquad
-\alpha_5\mapsto -\alpha_5,
-\qquad
-t\mapsto 2t.
+\begin{gathered}
+t_{\rm ref}=2t,
+\qquad \alpha_{\rm ref}=-\alpha_5,\\
+\boldsymbol S_{\rm ref}(x,t_{\rm ref})
+=\operatorname{diag}(1,-1,1)\,
+\boldsymbol S(x,t_{\rm ref}/2).
+\end{gathered}
 \label{eq:class5-reference-convention-change}
 \end{equation}
-With these substitutions, Eq.~\eqref{eq:class5-vector-eom} takes the form of
+With these identifications, Eq.~\eqref{eq:class5-vector-eom} takes the form of
 the Class 5 continuum equation used in
 Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.  The reflection of the second
 spin axis conjugates $M_5$ by $\operatorname{diag}(1,-1,1)$, yielding the

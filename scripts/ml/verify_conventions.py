@@ -57,6 +57,21 @@ def check_original_losses():
     for i, (left, right) in enumerate(zip(gradients_new, gradients_old)):
         close(f"class5_loss_gradient_{i}", left, right)
 
+    # Changing independent time data must leave the off-shell fit unchanged
+    # even away from the analytic coefficients: u_t and Q E cancel it.
+    changed_time = data._replace(
+        St=3 * data.St,
+        chi_t=3 * data.chi_t,
+        E=data.E + 2 * data.St,
+        m_dot_E=data.m_dot_E + 2 * data.chi_t,
+    )
+    close("class5_offshell_time_independence",
+          current5.residual(changed_time, lambda_, beta, coeff), new_r)
+    changed_loss = current5.objective(changed_time, lambda_, beta, coeff, 1e-9)
+    for i, (left, right) in enumerate(zip(
+            torch.autograd.grad(changed_loss, (beta, coeff)), gradients_new)):
+        close(f"class5_time_independent_loss_gradient_{i}", left, right)
+
     spin, sx, sxx = old6.sample_complex_jets(32, 234)
     spin_new, sx_new, sxx_new = pc.sample_complex_jets(32, 234)
     for name, left, right in zip(("spin", "spin_x", "spin_xx"),
@@ -138,7 +153,24 @@ def check_exact_matrices():
     assert sp.factor(rotation.det()) == 1
     checks["class5_rotation_determinant"] = 1
 
+    # The scalar representative is fixed by the S+ conservation law; its
+    # curvature factorization holds before imposing the equations of motion.
+    pt, pxx, zxx = sp.symbols("pt pxx zxx")
+    nu5_x = (sp.diff(nu5, p)*px + sp.diff(nu5, z)*zx
+             + sp.diff(nu5, px)*pxx + sp.diff(nu5, zx)*zxx)
+    e5_plus = pt - 2*ii*(p*zxx - z*pxx + alpha*p*px)
+    zero("class5_fixed_scalar_curvature_factorization",
+         sp.Matrix([sp.diff(mu5, p)*pt - nu5_x - alpha*e5_plus/4]))
+    beta_fit = sp.symbols("beta_fit")
+    q5_fit = rotation*(leading*sp.eye(3) + beta_fit*m*m.T)
+    assert sp.factor(q5_fit.det() - leading**3) == 0
+    checks["class5_coefficient_map_invertible_for_arbitrary_fit"] = "exact_zero"
+
     n6 = sp.Matrix([[0, 0, -1], [0, 0, -ii], [-1, -ii, 0]])
+    a1_fit, a2_fit = sp.symbols("a1_fit a2_fit")
+    a6_fit = leading*sp.eye(3) + a1_fit*n6 + a2_fit*n6**2
+    assert sp.factor(a6_fit.det() - leading**3) == 0
+    checks["class6_coefficient_map_invertible_for_arbitrary_fit"] = "exact_zero"
     spatial6 = leading*sp.eye(3) + alpha/(2*leading)*n6 - alpha**2/(8*leading**3)*n6**2
     temporal6 = -leading**2*sp.eye(3) + alpha/2*n6 - 3*alpha**2/(8*leading**2)*n6**2
     U6 = iota(spatial6*spin) + sp.eye(2)/(4*lam)
