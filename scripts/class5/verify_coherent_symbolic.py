@@ -98,6 +98,16 @@ def cart(v):
     return s.Matrix([(v[0]+v[1])/2,(v[0]-v[1])/(2*I),v[2]])
 def components(v):
     return s.Matrix([v[0]+I*v[1],v[0]-I*v[1],v[2]])
+
+# Section 5 compares the common-site product with its coherent-state symbol.
+spin_cart = cart(S)
+pauli_product_difference = s.Matrix(3,3,lambda i,j:
+    s.trace(rho(S)*sig[i]*sig[j])
+    -s.trace(rho(S)*sig[i])*s.trace(rho(S)*sig[j])
+    -s.KroneckerDelta(i,j)+spin_cart[i]*spin_cart[j]
+    -I*sum(s.LeviCivita(i,j,k)*spin_cart[k] for k in range(3)))
+check('single_site_Pauli_product_difference',pauli_product_difference,False)
+
 def Q(v):
     # v is expressed in p,q,z components here.
     return s.Matrix([[v[2]+2*al*la*v[0],v[1]-2*al*la*v[2]],[v[0],-v[2]]])/(4*la)
@@ -112,6 +122,9 @@ check('time_symbol_decomposition',Vdown-W-2*Z)
 check('quantum_derived_connected_source',C+2*I*dx(U*U))
 check('local_correction_commutes_with_U',comm(D,U),False)
 check('local_correction_absorbs_source',C-dx(D)-comm(D,U))
+Xi = at(low(lr*lr))-U*U
+check('source_equals_covariant_second_moment',C-2*I*(dx(Xi)+comm(Xi,U)))
+check('local_correction_from_second_moment',D-2*I*Xi+I*Id/(4*la**2))
 
 p,q,z=S; px,qx,zx=X; pxx,qxx,zxx=Y
 flow=s.Matrix([2*I*(p*zxx-z*pxx+al*p*px),
@@ -146,6 +159,10 @@ Mref=s.Matrix([[0,0,-1],[0,0,I],[1,-I,0]])
 reference_rhs=Sref.cross(Yref+al*Mref*Xref) # alpha_reference=-alpha
 check('reference_EOM_dictionary',reflect*cart(flow)-2*reference_rhs)
 check('XXX_reduction',V.subs(al,0)-(-2*Q(components(cart(S).cross(cart(X)))).subs(al,0)+I*(2*rho(S)-s.eye(2))/(4*la**2)))
+isotropic_spin = sum((cart(S)[k]*sig[k] for k in range(3)),s.zeros(2))
+isotropic_spin_x = sum((cart(X)[k]*sig[k] for k in range(3)),s.zeros(2))
+check('XXX_local_correction',D.subs(al,0)+I*isotropic_spin/(4*la**2))
+check('XXX_connected_source',C.subs(al,0)+I*isotropic_spin_x/(4*la**2))
 
 summary={"sympy_version":s.__version__,"python_version":sys.version.split()[0],
          "number_of_checks":len(checks),"checks":checks,

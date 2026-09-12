@@ -70,9 +70,15 @@ Written in the current draft:
 8. Class 6 section 4.3: continuum Hamiltonian and component equations of
    motion, the instantaneous finite-lattice Heisenberg spin derivative,
    and the off-shell curvature/EOM factorization with explicit inverse.
+9. Section 5: the common operator-product correction, comparison of
+   deformation scalings and spatial coefficients, the isotropic limit,
+   and the local and dynamical scope of the construction.
 
-Next section to write: **Section 5, comparison of Class 5 and Class 6**.
-After that, write the scope, Introduction, and Conclusions.
+Section 4 was merged in PR #8, and CI published its updated PDF on `main`.
+Section 5 is prepared for review in a separate pull request.
+
+Next sections to write: **Introduction and Conclusions**, followed by
+the Abstract. Decide the appendix content when completing the paper.
 
 Current planned paper structure:
 

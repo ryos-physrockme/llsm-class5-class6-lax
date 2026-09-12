@@ -269,6 +269,10 @@ raw_check('source_EOM_dictionary',reflection*cart(flow)-2*Sref.cross(Yref-al*Nre
 
 # XXX limit and a negative control: a spatially uniform spin is not stationary.
 check('XXX_time_component',V.subs(al,0)-W.subs(al,0)-I*(2*rho(S)-s.eye(2))/(4*la**2))
+isotropic_spin = sum((cart(S)[k]*pauli[k] for k in range(3)),s.zeros(2))
+isotropic_spin_x = sum((cart(X)[k]*pauli[k] for k in range(3)),s.zeros(2))
+check('XXX_local_correction',D.subs(al,0)+I*isotropic_spin/(4*la**2))
+check('XXX_connected_source',source.subs(al,0)+I*isotropic_spin_x/(4*la**2))
 uniform=dict(zip(list(S)+list(X)+list(Y),[0,0,1]+[0]*6))
 uniform_source=s.Matrix([[0,-I*al/la],[0,0]])
 raw_check('uniform_spin_nonzero_connected_source',source.subs(uniform)-uniform_source)
