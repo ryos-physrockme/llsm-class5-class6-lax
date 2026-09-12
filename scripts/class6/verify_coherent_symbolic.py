@@ -173,6 +173,15 @@ raw_check('spatial_matrix_formula', U-s.eye(2)/(4*la)-Q(S))
 raw_check('A1_two_site_formula', f1+2*Q(components(cart(left).cross(cart(right)))))
 W = -2*Q(components(cart(S).cross(cart(X))))
 U0 = U-s.eye(2)/(4*la)
+# Intermediate formulas and component entries printed in manuscript section 4.2
+# are checked against the independently contracted quantum coefficients.
+raw_check('second_spatial_lower_symbol_formula',
+    M-s.Matrix([[al*p/4,al*z/2-al**2*la**2*p],[0,-al*p/4]]))
+check('coincident_second_time_coefficient',
+    at(f2)+2*I*U0.diff(la)-I*al*p*z*s.eye(2))
+check('spatial_matrix_determinant',s.Matrix([U.det()+al*p*z/2]))
+raw_check('spectral_derivative_from_second_spatial_symbol',
+    U0.diff(la)-4*M+U0/la)
 Xi = at(low(lr*lr))-U*U
 # The following identity is verified against the independently contracted source.
 check('source_equals_covariant_second_moment', source-2*I*(dx(Xi)+comm(Xi,U)))
@@ -185,6 +194,14 @@ check('local_correction_spectral_formula', D-I*U0.diff(la)+I*al*p*z*s.eye(2))
 check('raw_time_symbol_spectral_formula', Vdown-W+2*I*U0.diff(la)-I*al*p*z*s.eye(2))
 check('corrected_time_component_spectral_formula', V-W+I*U0.diff(la))
 check('corrected_time_component_trace_zero',s.Matrix([s.trace(V)]))
+v11 = I*(z-2*al*la**2*p+la*(q*px-p*qx)
+         +4*al*la**3*(p*zx-z*px))/(4*la**2)
+v12 = I*(q-4*al*la**2*z+12*al**2*la**4*p
+         +2*la*(z*qx-q*zx)+4*al*la**3*(q*px-p*qx)
+         +8*al**2*la**5*(z*px-p*zx))/(4*la**2)
+v21 = I*(p+2*la*(p*zx-z*px))/(4*la**2)
+check('corrected_time_component_explicit_entries',
+    V-s.Matrix([[v11,v12],[v21,-v11]]))
 check('source_explicit_spatial_and_commutator_terms',
       source+2*I*dx(U*U)-4*I*dx(M)-4*I*comm(M,U))
 

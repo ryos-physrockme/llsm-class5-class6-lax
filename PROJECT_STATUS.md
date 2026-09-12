@@ -64,10 +64,13 @@ Written in the current draft:
 5. Class 5 independent classical `r`-matrix comparison.
 6. Class 6 section 4.1: quantum Hamiltonian and `R`-matrix, continuum
    scaling, exact spatial-operator expansion, and continuum spatial Lax matrix.
+7. Class 6 section 4.2: finite-lattice time-operator expansion, overlapping
+   lower-symbol products, local correction involving the second spatial
+   coefficient, and the corrected time Lax matrix with explicit entries.
 
-Next technical section to write: **Section 4.2, Class 6 time Lax matrix from
-the finite-lattice construction**. Section 4.3 will establish the
-zero-curvature/EOM equivalence. After that, write the Class 5/Class 6
+Next technical section to write: **Section 4.3, Class 6 zero-curvature/EOM
+equivalence**, including the independent Hamiltonian flow and the off-shell
+factorization. After that, write the Class 5/Class 6
 comparison, scope, Introduction, and Conclusions.
 
 Current planned paper structure:
