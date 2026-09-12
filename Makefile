@@ -13,6 +13,7 @@ verify-class5:
 verify-class6: verify-generalization
 	$(PYTHON) scripts/class6/verify_coherent_symbolic.py
 	$(PYTHON) scripts/class6/verify_coherent_numeric.py
+	$(PYTHON) scripts/class6/verify_eleven_vertex_comparison.py
 
 verify-generalization:
 	$(PYTHON) scripts/generalization/verify_shared_site_identity.py
