@@ -305,10 +305,10 @@ The pairs $(\alpha_6,\lambda)$ are $(0.35,10\ii/13)$,
 $(0.7,\ii/2)$, and $(1.1,10\ii/29)$, with two initializations each.
 
 Class 5 starts with independent zero-mean Gaussian coefficients of standard
-deviation $0.25$.  Class 6 starts at the undeformed values
-$(a_1,a_2,b_0,b_1,b_2,c_0,c_1,c_2)
-=(0,0,1/(4\lambda^2),0,0,\ii/(2\lambda),0,0)$,
-with independent real Gaussian perturbations of standard deviation $0.08$.
+deviation $0.25$.  Class 6 starts from the undeformed values
+$b_0=1/(4\lambda^2)$, $c_0=\ii/(2\lambda)$, and zero for the remaining
+coefficients, with independent zero-mean real Gaussian perturbations of
+standard deviation $0.08$.
 Both searches use Adam followed by the limited-memory
 Broyden--Fletcher--Goldfarb--Shanno method (L-BFGS).
 For Class 5, Adam has 600 steps and learning rate $0.03$;
