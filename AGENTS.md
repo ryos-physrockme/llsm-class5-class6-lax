@@ -37,6 +37,7 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 - Use standard literature terminology; do not invent technical terms.
 - Quantum lattice time Lax operator: `A_{a,n}`. Continuum time Lax matrix: `V`.
 - Quantum lattice spatial Lax operator: `L_{a,n}`. Continuum spatial Lax matrix: `U`.
+- In the manuscript, use `κ_5, α_5` for the Class 5 lattice and continuum deformation parameters, and `κ_6, α_6` for Class 6. Their scalings are `κ_5 = ε α_5` and `κ_6 = ε² α_6`.
 
 ## Scientific-claim constraints
 

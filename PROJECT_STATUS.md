@@ -87,6 +87,10 @@ Appendices
 - Quantum lattice pair: `L_{a,n}(u)` and `A_{a,n}(u)`.
 - Continuum pair: `U(x,t;λ)` and `V(x,t;λ)`.
 - `u` is the quantum spectral parameter; `λ` is the continuum Lax spectral parameter when that convention is used.
+- In manuscript section 3, `κ_5` and `α_5` denote the Class 5 lattice and
+  continuum deformation parameters, with `κ_5 = ε α_5`. They correspond to
+  `a` and `alpha` in the Class 5 verification scripts. The added model
+  subscripts are a notation change only; the normalizations are unchanged.
 - In manuscript section 4, `κ_6` and `α_6` denote the Class 6 lattice and
   continuum deformation parameters, with `κ_6 = ε² α_6`. They correspond to
   `a` and `alpha` in the existing Class 6 verification scripts and research

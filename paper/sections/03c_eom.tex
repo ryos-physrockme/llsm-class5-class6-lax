@@ -33,7 +33,7 @@ where
 \mathcal H_5
 =
 -\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
-+\frac{\alpha}{2}
++\frac{\alpha_5}{2}
 \left(
 \boldsymbol S^{\mathsf T}M_5\partial_x\boldsymbol S
 +\partial_x S^+
@@ -54,7 +54,7 @@ H^{\rm cl}_5
 &=
 \int_0^{\ell}dx\left[
 -\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
-+\frac{\alpha}{2}
++\frac{\alpha_5}{2}
 \boldsymbol S^{\mathsf T}M_5\partial_x\boldsymbol S
 \right].
 \label{eq:class5-continuum-hamiltonian}
@@ -90,7 +90,7 @@ $(\boldsymbol A\times\boldsymbol B)^i
 -2\,\boldsymbol S\times
 \left(
 \partial_x^2\boldsymbol S
-+\alpha M_5\partial_x\boldsymbol S
++\alpha_5 M_5\partial_x\boldsymbol S
 \right).
 \label{eq:class5-vector-eom}
 \end{equation}
@@ -107,7 +107,7 @@ $\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S=0$, one obtains
 2\ii\left(
 S^+\partial_x^2S^3
 -S^3\partial_x^2S^+
-+\alpha S^+\partial_xS^+
++\alpha_5 S^+\partial_xS^+
 \right),
 \label{eq:class5-eom-plus}\\
 \partial_t S^-
@@ -115,7 +115,7 @@ S^+\partial_x^2S^3
 2\ii\left(
 S^3\partial_x^2S^-
 -S^-\partial_x^2S^3
-+\alpha S^+\partial_xS^-
++\alpha_5 S^+\partial_xS^-
 \right),
 \label{eq:class5-eom-minus}\\
 \partial_t S^3
@@ -123,7 +123,7 @@ S^3\partial_x^2S^-
 \ii\left(
 S^-\partial_x^2S^+
 -S^+\partial_x^2S^-
-+2\alpha S^+\partial_xS^3
++2\alpha_5 S^+\partial_xS^3
 \right).
 \label{eq:class5-eom-three}
 \end{align}
@@ -153,7 +153,7 @@ E_+
 -2\ii\left(
 S^+\partial_x^2S^3
 -S^3\partial_x^2S^+
-+\alpha S^+\partial_xS^+
++\alpha_5 S^+\partial_xS^+
 \right),
 \label{eq:class5-residual-plus}\\
 E_-
@@ -162,7 +162,7 @@ E_-
 -2\ii\left(
 S^3\partial_x^2S^-
 -S^-\partial_x^2S^3
-+\alpha S^+\partial_xS^-
++\alpha_5 S^+\partial_xS^-
 \right),
 \label{eq:class5-residual-minus}\\
 E_3
@@ -171,7 +171,7 @@ E_3
 -\ii\left(
 S^-\partial_x^2S^+
 -S^+\partial_x^2S^-
-+2\alpha S^+\partial_xS^3
++2\alpha_5 S^+\partial_xS^3
 \right).
 \label{eq:class5-residual-three}
 \end{align}
@@ -190,9 +190,9 @@ F^{(5)}_{tx}
 =
 \frac{1}{4\lambda}
 \begin{pmatrix}
-E_3+2\alpha\lambda E_+
+E_3+2\alpha_5\lambda E_+
 &
-E_- -2\alpha\lambda E_3\\
+E_- -2\alpha_5\lambda E_3\\
 E_+
 &
 -E_3
@@ -206,7 +206,7 @@ E_+=4\lambda F^{(5)}_{21},
 E_3=-4\lambda F^{(5)}_{22},
 \qquad
 E_-=4\lambda\left(
-F^{(5)}_{12}-2\alpha\lambda F^{(5)}_{22}
+F^{(5)}_{12}-2\alpha_5\lambda F^{(5)}_{22}
 \right).
 \label{eq:class5-residuals-from-curvature}
 \end{equation}
@@ -219,7 +219,7 @@ Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}, we translate our conventions by
 \begin{equation}
 S^2\mapsto -S^2,
 \qquad
-\alpha\mapsto -\alpha,
+\alpha_5\mapsto -\alpha_5,
 \qquad
 t\mapsto 2t.
 \label{eq:class5-reference-convention-change}
