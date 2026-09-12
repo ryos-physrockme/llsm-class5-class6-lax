@@ -1,11 +1,10 @@
 \subsection{Comparison with the classical \texorpdfstring{$r$}{r}-matrix construction}
 \label{sec:class5-rmatrix-comparison}
 
-The time Lax matrix in Eq.~\eqref{eq:class5-time-Lax-final} was obtained by
+The time Lax matrix in Eq.~\eqref{eq:class5-time-Lax-compact} was obtained by
 starting from the finite-lattice time operator.  We now construct the time
 component independently from the classical $r$-matrix and monodromy of the
-continuum model.  This provides a check that does not use the finite-lattice
-time operator $A_{a,n}$.
+continuum model.
 
 To keep the two roles of the spectral parameter separate, let
 $\zeta\in\mathbb C$ denote the \emph{generating spectral parameter} used to
@@ -49,14 +48,16 @@ U_5(x,t;\lambda)
 \label{eq:class5-U-rho-K}
 \end{equation}
 
-We first fix the classical $r$-matrix in the conventions of this paper.  Let
+We suppress the common time argument in the following formulas and first
+fix the classical $r$-matrix in the conventions of this paper.  Let
 $P_{12}$ be the permutation operator on two copies of the two-dimensional
-auxiliary space.  We also define
+auxiliary space.  On either copy, define the projector $P_{\uparrow}$ and
+the matrix unit $E_{12}$ by
 \begin{equation}
 P_{\uparrow}:=
 \begin{pmatrix}1&0\\0&0\end{pmatrix},
 \qquad
-E_{+}:=
+E_{12}:=
 \begin{pmatrix}0&1\\0&0\end{pmatrix},
 \label{eq:class5-rmatrix-elementary-matrices}
 \end{equation}
@@ -64,9 +65,9 @@ and the constant Jordanian tensor
 \begin{equation}
 C_{12}
 :=
-P_{\uparrow}\otimes E_{+}
+P_{\uparrow}\otimes E_{12}
 -
-E_{+}\otimes P_{\uparrow}.
+E_{12}\otimes P_{\uparrow}.
 \label{eq:class5-jordanian-tensor}
 \end{equation}
 A direct calculation with the spin Poisson bracket
@@ -98,17 +99,17 @@ deformation.  This structure is consistent with the classical $r$-matrix
 obtained from the Class 5 quantum model in
 Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.
 
-For completeness, define the classical monodromy matrix by
+Let $\mathcal P$ denote path ordering with larger spatial coordinates to
+the left.  The classical monodromy matrix is
 \begin{equation}
 T(x,y;\zeta)
 :=
 \mathcal P\exp\!\left(
-\int_y^x U_5(s,t;\zeta)\,ds
-\right),
+\int_y^x U_5(s;\zeta)\,ds
+\right).
 \label{eq:class5-classical-monodromy}
 \end{equation}
-and the associated transfer matrix on the periodic interval of length $\ell$
-by
+The associated transfer matrix on the periodic interval of length $\ell$ is
 \begin{equation}
 \tau(\zeta):=\tr T(\ell,0;\zeta).
 \label{eq:class5-classical-transfer}
@@ -130,8 +131,8 @@ T_1(x,0;\zeta)
 where the trace is taken over the first auxiliary space
 \cite{SemenovTianShansky1983,DoikouKaraiskos2011}.
 
-The pole of Eq.~\eqref{eq:class5-U-rho-K} at small $\zeta$ is proportional to
-the rank-one projector $\rho$.  The local expansion of the monodromy is
+The pole of $U_5(x;\zeta)$ at $\zeta=0$ has residue $\rho/2$, by
+Eq.~\eqref{eq:class5-U-rho-K}.  The local expansion of the monodromy is
 therefore governed by a rank-one projector $\Pi(x;\zeta)$ satisfying
 \begin{equation}
 \Pi^2=\Pi,
@@ -157,9 +158,6 @@ the coefficient uniquely as
 -2\alpha_5[\rho,[K^{\mathrm{cl}}_5,\rho]].
 \label{eq:class5-Pi1-solution}
 \end{equation}
-Thus the first correction contains both the ordinary spatial-gradient term
-and the deformation term.
-
 Using Eq.~\eqref{eq:class5-local-projector-expansion} in the generating
 matrix \eqref{eq:class5-rmatrix-generating-V}, write
 \begin{equation}
@@ -180,8 +178,8 @@ The coefficient relevant for the Class 5 Hamiltonian flow is
 \right)
 \nonumber\\
 &+\ii\alpha_5\left[
-\tr(\Pi_1P_{\uparrow})E_{+}
--\tr(\Pi_1E_{+})P_{\uparrow}
+\tr(\Pi_1P_{\uparrow})E_{12}
+-\tr(\Pi_1E_{12})P_{\uparrow}
 \right].
 \label{eq:class5-generating-V-first-coefficient}
 \end{align}
@@ -204,10 +202,7 @@ V_{5,r}(x;\lambda)-V_5(x;\lambda)
 \frac{\ii}{4\lambda^2}\Id_2.
 \label{eq:class5-rmatrix-vs-quantum-V}
 \end{equation}
-The matrix on the right-hand side is independent of the spin field and of the
-spatial coordinate.  Its spatial derivative vanishes and it commutes with
-$U_5$.  Hence $V_{5,r}$ and the finite-lattice result $V_5$ generate the same
-zero-curvature equation.  The two constructions thus recover the same Class
-5 time Lax component up to the scalar freedom already encountered in
-Eq.~\eqref{eq:class5-DeltaV}.
-
+The matrix on the right-hand side is independent of the spin field and of
+the spatial coordinate.  Its spatial derivative vanishes and it commutes
+with $U_5$, so $V_{5,r}$ and $V_5$ generate the same zero-curvature equation.
+This is the scalar freedom described after Eq.~\eqref{eq:class5-DeltaV}.

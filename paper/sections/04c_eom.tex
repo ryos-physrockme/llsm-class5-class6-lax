@@ -1,0 +1,199 @@
+\subsection{Zero-curvature equation and the Landau--Lifshitz equations of motion}
+\label{sec:class6-eom}
+
+We derive the continuum Hamiltonian flow from the Class 6 bond Hamiltonian
+and compare it with the corrected Lax pair of
+Section~\ref{sec:class6-time-lax}.  The Hamiltonian also fixes the
+continuum limit of the Heisenberg derivative on the left-hand side of
+the lattice zero-curvature equation.
+
+With $\boldsymbol S_n(t)=\boldsymbol S(x_n,t)$ and
+$\kappa_6=\epsilon^2\alpha_6$, expanding the bond lower symbol in
+Eq.~\eqref{eq:class6-bond-lower-symbol} gives
+\begin{equation}
+h_{6;n,n+1}^\downarrow
+=2+\epsilon^2\mathcal H_6(x_n,t)+\mathcal O(\epsilon^3),
+\label{eq:class6-h-lower-expansion}
+\end{equation}
+where the continuum Hamiltonian density at $(x,t)$ is
+\begin{equation}
+\mathcal H_6(x,t)
+=-\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
++\alpha_6 S^+S^3.
+\label{eq:class6-hamiltonian-density}
+\end{equation}
+Here we used the spatial derivatives of the unit-spin constraint in
+Eq.~\eqref{eq:spin-kinematical-identities}.  The anisotropy can be written
+in terms of the constant symmetric matrix
+\begin{equation}
+N_6:=\begin{pmatrix}
+0&0&-1\\
+0&0&-\ii\\
+-1&-\ii&0
+\end{pmatrix},
+\qquad N_6^{\mathsf T}=N_6,
+\qquad N_6^3=0.
+\label{eq:class6-N-definition}
+\end{equation}
+Since $\boldsymbol S^{\mathsf T}N_6\boldsymbol S=-2S^+S^3$, the
+continuum Hamiltonian at fixed circumference $\ell=N\epsilon$ is
+\begin{align}
+H^{\rm cl}_6
+&:=\lim_{\epsilon\to0}
+\frac{\bigl(H^{\rm lat}_6\bigr)^\downarrow-2N}{\epsilon}
+\nonumber\\
+&=\int_0^\ell dx\left[
+-\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
+-\frac{\alpha_6}{2}\boldsymbol S^{\mathsf T}N_6\boldsymbol S
+\right].
+\label{eq:class6-continuum-hamiltonian}
+\end{align}
+
+We use the equal-time spin Poisson bracket with the same normalization as in
+Eq.~\eqref{eq:class5-poisson-bracket},
+\begin{equation}
+\{S^i(x),S^j(y)\}_6
+=2\,\varepsilon_{ijk}S^k(x)\,\delta(x-y),
+\qquad \varepsilon_{123}=1,
+\label{eq:class6-poisson-bracket}
+\end{equation}
+where $\varepsilon_{ijk}$ is completely antisymmetric and $\delta(x-y)$
+is the Dirac delta function.  The common time argument is suppressed
+in Eq.~\eqref{eq:class6-poisson-bracket}.
+We take the functional derivative with respect to the Cartesian spin
+components before imposing $\boldsymbol S^{\mathsf T}\boldsymbol S=1$.
+Integration by parts with periodic variations then gives
+$\delta H^{\rm cl}_6/\delta\boldsymbol S
+=\partial_x^2\boldsymbol S-\alpha_6N_6\boldsymbol S$.
+The Hamiltonian equation
+$\partial_tS^i=\{S^i,H^{\rm cl}_6\}_6$ therefore reads
+\begin{equation}
+\partial_t\boldsymbol S
+=-2\,\boldsymbol S\times
+\left(\partial_x^2\boldsymbol S-\alpha_6N_6\boldsymbol S\right).
+\label{eq:class6-vector-eom}
+\end{equation}
+The cross product is bilinear, as in
+Section~\ref{sec:class5-eom}, and the right-hand side preserves
+$\boldsymbol S^{\mathsf T}\boldsymbol S=1$.
+In terms of $S^\pm$ and $S^3$, Eq.~\eqref{eq:class6-vector-eom} becomes
+\begin{align}
+\partial_tS^+
+&=2\ii\left(
+S^+\partial_x^2S^3-S^3\partial_x^2S^+
++\alpha_6(S^+)^2
+\right),
+\label{eq:class6-eom-plus}\\
+\partial_tS^-
+&=2\ii\left(
+S^3\partial_x^2S^--S^-\partial_x^2S^3
++2\alpha_6(S^3)^2-\alpha_6S^+S^-
+\right),
+\label{eq:class6-eom-minus}\\
+\partial_tS^3
+&=\ii\left(
+S^-\partial_x^2S^+-S^+\partial_x^2S^-
+-2\alpha_6S^+S^3
+\right).
+\label{eq:class6-eom-three}
+\end{align}
+
+The relation to the quantum time evolution can also be checked at
+finite lattice spacing.  Let $\sigma_n^i$ denote the Pauli matrix
+$\sigma^i$ acting at site $n$, with identity operators on the other
+sites, and write
+$\boldsymbol\sigma_n=(\sigma_n^1,\sigma_n^2,\sigma_n^3)^{\mathsf T}$.
+Taking the lower symbol of the Heisenberg derivative componentwise on
+a product of coherent states at a fixed lattice time gives
+\begin{align}
+\frac{1}{\epsilon^2}
+\left(\partial_{t_{\rm lat}}\boldsymbol\sigma_n\right)^\downarrow
+={}&-2\boldsymbol S_n\times\Biggl[
+\frac{\boldsymbol S_{n-1}+\boldsymbol S_{n+1}-2\boldsymbol S_n}
+{\epsilon^2}
+\nonumber\\
+&\hspace{6em}
+-\frac{\alpha_6}{2}N_6
+\left(\boldsymbol S_{n-1}+\boldsymbol S_{n+1}\right)
+\Biggr].
+\label{eq:class6-finite-lattice-spin-flow}
+\end{align}
+This identity follows from the two bonds adjacent to site $n$ and the
+Pauli commutation relations.  Its smooth-field limit is
+Eq.~\eqref{eq:class6-vector-eom}, with the time convention
+$t=\epsilon^2t_{\rm lat}$.  Applying the same commutator to the
+normalized spatial operator gives
+\begin{equation}
+\left(\partial_{t_{\rm lat}}\widehat L_{6;a,n}\right)^\downarrow
+=\epsilon^3\,\partial_tU_6(x_n,t;\lambda)
++\mathcal O(\epsilon^4),
+\label{eq:class6-heisenberg-to-Ut}
+\end{equation}
+where $\partial_t\boldsymbol S$ is given by
+Eq.~\eqref{eq:class6-vector-eom}.
+Together with the correction identity
+\eqref{eq:class6-DeltaV-absorbs-C}, this supplies both sides of the
+continuum zero-curvature equation.
+
+To establish equivalence with the equations of motion, we now treat
+the time derivatives as independent variables.  Define the
+equation-of-motion residual vector
+\begin{equation}
+\boldsymbol E^{(6)}
+:=\partial_t\boldsymbol S
++2\boldsymbol S\times
+\left(\partial_x^2\boldsymbol S-\alpha_6N_6\boldsymbol S\right),
+\label{eq:class6-residual-vector}
+\end{equation}
+Write $E^{(6)}_i$ for its Cartesian components and
+$E^{(6)}_\pm:=E^{(6)}_1\pm\ii E^{(6)}_2$ for its transverse components.
+The curvature of the matrices in
+Eqs.~\eqref{eq:class6-spatial-Lax} and
+\eqref{eq:class6-time-Lax-compact} is
+\begin{equation}
+F^{(6)}_{tx}:=\partial_tU_6-\partial_xV_6+[U_6,V_6].
+\label{eq:class6-curvature-definition}
+\end{equation}
+Using only
+$\boldsymbol S^{\mathsf T}\boldsymbol S=1$,
+$\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S=0$, and
+$\boldsymbol S^{\mathsf T}\partial_x^2\boldsymbol S
+=-\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S$,
+we obtain the off-shell identity
+\begin{equation}
+F^{(6)}_{tx}
+=\frac{1}{4\lambda}
+\begin{pmatrix}
+E^{(6)}_3+2\alpha_6\lambda^2E^{(6)}_+
+&E^{(6)}_-+4\alpha_6\lambda^2E^{(6)}_3
+-4\alpha_6^2\lambda^4E^{(6)}_+\\
+E^{(6)}_+
+&-E^{(6)}_3-2\alpha_6\lambda^2E^{(6)}_+
+\end{pmatrix}.
+\label{eq:class6-offshell-factorization}
+\end{equation}
+For $\lambda\ne0$, the inverse relations are
+\begin{align}
+E^{(6)}_+
+&=4\lambda\bigl(F^{(6)}_{tx}\bigr)_{21},
+\label{eq:class6-residual-plus-from-curvature}\\
+E^{(6)}_3
+&=4\lambda\left[
+\bigl(F^{(6)}_{tx}\bigr)_{11}
+-2\alpha_6\lambda^2\bigl(F^{(6)}_{tx}\bigr)_{21}
+\right],
+\label{eq:class6-residual-three-from-curvature}\\
+E^{(6)}_-
+&=4\lambda\Bigl[
+\bigl(F^{(6)}_{tx}\bigr)_{12}
+-4\alpha_6\lambda^2\bigl(F^{(6)}_{tx}\bigr)_{11}
+\nonumber\\
+&\hspace{4.5em}
++12\alpha_6^2\lambda^4\bigl(F^{(6)}_{tx}\bigr)_{21}
+\Bigr].
+\label{eq:class6-residual-minus-from-curvature}
+\end{align}
+Thus $F^{(6)}_{tx}=0$ is equivalent to all three component equations
+\eqref{eq:class6-eom-plus}--\eqref{eq:class6-eom-three} for every
+$\lambda\ne0$ and every $\alpha_6$.  This equivalence is a local
+identity on the unit-spin constraint surface.

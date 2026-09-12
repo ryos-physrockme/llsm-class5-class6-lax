@@ -4,17 +4,16 @@
 The name ``Class 5'' refers to one of the regular $4\times4$ difference-form
 solutions of the Yang--Baxter equation found in the classification of
 nearest-neighbour integrable spin-$\tfrac12$ chains in
-Ref.~\cite{deLeeuwPribytokRyan2019}.  Its continuum limit was subsequently
-studied in Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}, where it was shown to
-be a non-Hermitian integrable deformation of the XXX spin chain whose
-long-wavelength limit is a deformed Landau--Lifshitz model.  We use the same
-model, but choose from the outset a one-parameter representative convenient
-for the quantum-to-classical Lax calculation.  This representative is
+Ref.~\cite{deLeeuwPribytokRyan2019}.  The long-wavelength limit of this chain
+is the deformed Landau--Lifshitz model studied in
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.  We use a one-parameter
+representative of the quantum chain for the quantum-to-classical Lax
+calculation.  This representative is
 related to the general Class 5 $R$-matrix by the spectral normalization and
 local basis transformation described in
 Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.
 
-Let $\kappa_5\in\mathbb C$ denote the \emph{lattice deformation parameter}.
+Let $\kappa_5\in\mathbb C$ denote the \emph{Class 5 lattice deformation parameter}.
 It corresponds to the parameter denoted by $a$ in
 Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.  In the
 ordered two-spin basis
@@ -51,7 +50,7 @@ H^{\rm lat}_5(\kappa_5)
 h_{5;N,N+1}\equiv h_{5;N,1}.
 \label{eq:class5-lattice-hamiltonian}
 \end{equation}
-For $\kappa_5\neq0$ this Hamiltonian is not Hermitian in the standard inner product.
+For $\kappa_5\neq0$ this Hamiltonian is non-Hermitian in the standard inner product.
 The undeformed value $\kappa_5=0$ reduces, up to the normalization fixed in
 Section~\ref{sec:quantum-lattice-setup}, to the spin-$\tfrac12$ XXX chain.
 
@@ -87,10 +86,9 @@ in agreement with the general relation
 \eqref{eq:class5-R-matrix} fix the model and the normalizations used in this
 section.
 
-For the continuum expansion it is useful to isolate the deformation in a
-fixed two-site operator.  Define
+We isolate the deformation in the two-site operator $K_5$, defined by
 \begin{equation}
-K
+K_5
 :=
 \begin{pmatrix}
 0&1&-1&0\\
@@ -104,25 +102,25 @@ K
 With the permutation operator $P$ defined in
 \eqref{eq:local-permutation-operator}, the Class 5 data become
 \begin{equation}
-R_5(u;\kappa_5)=2u\Id_4+P+2\kappa_5 uK,
+R_5(u;\kappa_5)=2u\Id_4+P+2\kappa_5 uK_5,
 \qquad
-h_5(\kappa_5)=2P+2\kappa_5 K.
+h_5(\kappa_5)=2P+2\kappa_5 K_5.
 \label{eq:class5-R-h-PK}
 \end{equation}
-The operator $K$ is nilpotent and satisfies
+The operator $K_5$ is nilpotent and satisfies
 \begin{equation}
-K^2=0,
+K_5^2=0,
 \qquad
-PK=K,
+PK_5=K_5,
 \qquad
-KP=-K.
+K_5P=-K_5.
 \label{eq:class5-PK-algebra}
 \end{equation}
-These elementary identities simplify the finite-lattice time Lax operator.
+These identities simplify the finite-lattice time Lax operator.
 
 We now specify the long-wavelength scaling.  The lattice deformation is sent
 to zero together with the lattice spacing $\epsilon$, while the
-\emph{continuum deformation coupling} $\alpha_5$ is held fixed:
+\emph{Class 5 continuum deformation coupling} $\alpha_5$ is held fixed:
 \begin{equation}
 \kappa_5=\epsilon\alpha_5.
 \label{eq:class5-deformation-scaling}
@@ -146,12 +144,12 @@ part,
 \begin{equation}
 \widehat L_{5;a,n}(\epsilon,\lambda)
 :=
-\frac{1}{2u}L_{5;a,n}(u),
+\frac{1}{2u}L_{5;a,n}(u).
 \label{eq:class5-normalized-L}
 \end{equation}
-where the scaling \eqref{eq:class5-deformation-scaling}--
-\eqref{eq:class5-spectral-scaling} is understood after the derivative-based
-quantum quantities have been formed.  The normalized operator has the exact
+The quantum spectral derivatives are taken at fixed $\kappa_5$, before
+applying the scalings \eqref{eq:class5-deformation-scaling} and
+\eqref{eq:class5-spectral-scaling}.  The normalized operator has the exact
 expansion
 \begin{equation}
 \widehat L_{5;a,n}
@@ -161,7 +159,7 @@ expansion
 \qquad
 L^{(1)}_5
 =
-\frac{P}{2\lambda}+\alpha_5 K.
+\frac{P}{2\lambda}+\alpha_5 K_5.
 \label{eq:class5-L-expansion}
 \end{equation}
 Here $L^{(1)}_{5;a,n}$ denotes the copy of the fixed two-site operator $L^{(1)}_5$
@@ -177,7 +175,7 @@ S^-(x,t):=S^1(x,t)-\ii S^2(x,t).
 \end{equation}
 Throughout this section, $S^{\pm}$ denotes these components of the classical
 unit spin field defined in \eqref{eq:continuum-spin-field}.  At the point $x=x_n$, the lower symbols of
-$P_{a,n}$ and $K_{a,n}$ are
+$P_{a,n}$ and $K_{5;a,n}$ are
 \begin{align}
 P_{a,n}^{\downarrow}
 &=
@@ -187,7 +185,7 @@ P_{a,n}^{\downarrow}
 S^+&1-S^3
 \end{pmatrix},
 \label{eq:class5-P-lower-symbol}\\
-K_{a,n}^{\downarrow}
+K_{5;a,n}^{\downarrow}
 &=
 \frac12
 \begin{pmatrix}
@@ -219,9 +217,5 @@ S^+
 \end{pmatrix}.
 \label{eq:class5-spatial-Lax}
 \end{equation}
-We use the complete $\mathfrak{gl}(2)$ matrix in
-\eqref{eq:class5-spatial-Lax}.
-
-Equation~\eqref{eq:class5-spatial-Lax} completes the spatial part of the
-quantum-to-classical Lax map.
-
+The finite-lattice limit retains the complete $\mathfrak{gl}(2)$ matrix in
+Eq.~\eqref{eq:class5-spatial-Lax}, including its scalar part.

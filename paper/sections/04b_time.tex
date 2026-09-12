@@ -1,0 +1,295 @@
+\subsection{Time Lax matrix from the finite-lattice construction}
+\label{sec:class6-time-lax}
+
+We apply the finite-lattice construction of
+Eq.~\eqref{eq:finite-lattice-time-Lax} to the Class 6 operators of
+Section~\ref{sec:class6-spatial-lax}.  As in the Class 5 calculation, we
+remove a field-independent scalar term by choosing
+\begin{equation}
+\widehat A_{6;a,n}
+:=A_{6;a,n}+\frac{\ii}{u}\Id,
+\label{eq:class6-normalized-time-lax}
+\end{equation}
+where the identity acts on the auxiliary space and the physical sites
+$n-1,n$.  The normalized spatial operator then gives
+\begin{equation}
+\widehat A_{6;a,n}
+=-\ii\widehat L_{6;a,n}^{-1}
+\left(
+[h_{6;n-1,n},\widehat L_{6;a,n}]
++\partial_u\widehat L_{6;a,n}
+\right).
+\label{eq:class6-time-lax-from-Lhat}
+\end{equation}
+The derivative is taken at fixed lattice coupling $\kappa_6$.  With the
+scaling in Eq.~\eqref{eq:class6-continuum-scaling}, the exact expansion
+\eqref{eq:class6-L-expansion} therefore implies
+\begin{equation}
+\partial_u\widehat L_{6;a,n}
+=\epsilon^2\partial_\lambda L^{(1)}_{6;a,n}
++\epsilon^3\partial_\lambda L^{(2)}_{6;a,n}
++\epsilon^4\partial_\lambda L^{(3)}_{6;a,n}.
+\label{eq:class6-u-derivative-Lhat}
+\end{equation}
+Here and below, $\partial_\lambda$ holds $\alpha_6$ fixed, and also holds the
+spin fixed when acting on a classical matrix.
+
+The bond Hamiltonian is
+\begin{equation}
+h_{6;n-1,n}
+=h^{(0)}_{n-1,n}+\epsilon^2\alpha_6K_{6;n-1,n},
+\qquad h^{(0)}:=2P.
+\label{eq:class6-h-expansion}
+\end{equation}
+Expanding Eq.~\eqref{eq:class6-time-lax-from-Lhat} gives
+\begin{equation}
+\widehat A_{6;a,n}
+=\epsilon A^{(1)}_{6;a,n}
++\epsilon^2 A^{(2)}_{6;a,n}
++\mathcal O(\epsilon^3),
+\label{eq:class6-A-expansion}
+\end{equation}
+where
+\begin{align}
+A^{(1)}_{6;a,n}
+&=-\ii[h^{(0)}_{n-1,n},L^{(1)}_{6;a,n}],
+\label{eq:class6-A1}\\
+A^{(2)}_{6;a,n}
+&=\ii L^{(1)}_{6;a,n}
+[h^{(0)}_{n-1,n},L^{(1)}_{6;a,n}]
+\nonumber\\
+&\quad-\ii[h^{(0)}_{n-1,n},L^{(2)}_{6;a,n}]
+-\ii\partial_\lambda L^{(1)}_{6;a,n}.
+\label{eq:class6-A2}
+\end{align}
+The deformation of the bond Hamiltonian first contributes explicitly at
+order $\epsilon^3$, since its commutator with the leading identity in
+$\widehat L_6$ vanishes.  The dependence on $\alpha_6$ in
+Eqs.~\eqref{eq:class6-A1} and \eqref{eq:class6-A2} enters through
+$L_6^{(1)}$ and $L_6^{(2)}$.
+
+Taking the lower symbol on the two physical sites gives
+\begin{equation}
+\bigl(A^{(1)}_{6;a,n}\bigr)^\downarrow
+=-2(\boldsymbol S_{n-1}\times\boldsymbol S_n)^i
+\frac{\partial U_6}{\partial S^i}.
+\label{eq:class6-A1-lower-symbol}
+\end{equation}
+The Cartesian derivatives in this formula act on the explicit matrix
+\eqref{eq:class6-spatial-Lax}, with $S^\pm=S^1\pm\ii S^2$, before imposing
+the unit-spin constraint.  Since $U_6$ is affine in the spin components,
+these derivatives are independent of the spin.  At $x=x_n$,
+\begin{equation}
+\boldsymbol S_{n-1}\times\boldsymbol S_n
+=\epsilon\boldsymbol S\times\partial_x\boldsymbol S
++\mathcal O(\epsilon^2).
+\label{eq:class6-neighbour-cross-product}
+\end{equation}
+The second time coefficient is needed only at coincident spin arguments.
+Using $S^+S^-+(S^3)^2=1$ and the traceless spatial matrix
+$U_{6,0}$ of Eq.~\eqref{eq:class6-traceless-U}, we obtain
+\begin{equation}
+\left.\bigl(A^{(2)}_{6;a,n}\bigr)^\downarrow
+\right|_{\boldsymbol S_{n-1}=\boldsymbol S_n=\boldsymbol S}
+=-2\ii\partial_\lambda U_{6,0}
++\ii\alpha_6S^+S^3\Id_{\mathcal V_a}.
+\label{eq:class6-A2-lower-symbol}
+\end{equation}
+Consequently,
+\begin{equation}
+\widehat A_{6;a,n}^\downarrow
+=\epsilon^2V_6^\downarrow(x_n,t;\lambda)
++\mathcal O(\epsilon^3),
+\label{eq:class6-A-lower-expansion}
+\end{equation}
+with
+\begin{equation}
+V_6^\downarrow
+=-2(\boldsymbol S\times\partial_x\boldsymbol S)^i
+\frac{\partial U_6}{\partial S^i}
+-2\ii\partial_\lambda U_{6,0}
++\ii\alpha_6S^+S^3\Id_{\mathcal V_a}.
+\label{eq:class6-Vdown-direct}
+\end{equation}
+
+The products in the discrete zero-curvature equation require a separate
+calculation.  Let $\widehat{\mathcal D}^{(\pm)}_{6;a,n}$ denote
+Eqs.~\eqref{eq:Rplus-hat-definition} and
+\eqref{eq:Rminus-hat-definition} evaluated for Class 6.  For the first
+product, the operator expansions give
+\begin{align}
+\widehat{\mathcal D}^{(+)}_{6;a,n}
+={}&\epsilon^2\Bigl[
+\bigl(A^{(1)}_{6;a,n+1}L^{(1)}_{6;a,n}\bigr)^\downarrow
+-\bigl(A^{(1)}_{6;a,n+1}\bigr)^\downarrow
+ \bigl(L^{(1)}_{6;a,n}\bigr)^\downarrow
+\Bigr]
+\nonumber\\
+&+\epsilon^3\Bigl[
+\bigl(A^{(2)}_{6;a,n+1}L^{(1)}_{6;a,n}
++A^{(1)}_{6;a,n+1}L^{(2)}_{6;a,n}\bigr)^\downarrow
+\nonumber\\
+&\hspace{3.4em}
+-\bigl(A^{(2)}_{6;a,n+1}\bigr)^\downarrow
+ \bigl(L^{(1)}_{6;a,n}\bigr)^\downarrow
+-\bigl(A^{(1)}_{6;a,n+1}\bigr)^\downarrow
+ \bigl(L^{(2)}_{6;a,n}\bigr)^\downarrow
+\Bigr]
++\mathcal O(\epsilon^4).
+\label{eq:class6-overlapping-product-expansion}
+\end{align}
+The expression for $\widehat{\mathcal D}^{(-)}_{6;a,n}$ has the spatial
+factor on the left and the time factor at $n$, supported on $n-1,n$.
+Terms involving the third time coefficient cancel within each difference,
+because they multiply the leading identity in $\widehat L_6$.
+The coefficient $L_6^{(3)}$ first enters these differences at order
+$\epsilon^4$.  The continuum source therefore requires the products
+displayed in Eq.~\eqref{eq:class6-overlapping-product-expansion}, including
+those involving $L_6^{(2)}$.
+
+At coincident spins, the order-$\epsilon^2$ terms cancel between
+$\widehat{\mathcal D}^{(+)}_{6;a,n}$ and
+$\widehat{\mathcal D}^{(-)}_{6;a,n}$.  To express the surviving contribution,
+define $\Xi_6$ as the difference between the lower symbol of the square of
+the first spatial coefficient and the square of its lower symbol:
+\begin{align}
+\Xi_6
+&:=\left[\bigl(L_6^{(1)}\bigr)^2\right]^\downarrow-U_6^2
+\nonumber\\
+&=\frac{1}{4\lambda^2}\Id_{\mathcal V_a}
++2\bigl(L_6^{(2)}\bigr)^\downarrow-U_6^2.
+\label{eq:class6-symbol-square-difference}
+\end{align}
+The second equality follows from Eq.~\eqref{eq:class6-L-first-square}.
+In particular, Eq.~\eqref{eq:class6-K-lower-symbols} gives
+\begin{equation}
+\bigl(L_6^{(2)}\bigr)^\downarrow
+=\begin{pmatrix}
+\alpha_6 S^+/4&\alpha_6 S^3/2-\alpha_6^2\lambda^2S^+\\
+0&-\alpha_6 S^+/4
+\end{pmatrix}.
+\label{eq:class6-second-spatial-lower-symbol}
+\end{equation}
+Expanding the spin arguments of the order-$\epsilon^2$ terms to first
+order, and evaluating the order-$\epsilon^3$ products at coincident spins,
+yields
+\begin{equation}
+\mathcal C_6
+:=\lim_{\epsilon\to0}\epsilon^{-3}
+\left(\widehat{\mathcal D}^{(+)}_{6;a,n}
+-\widehat{\mathcal D}^{(-)}_{6;a,n}\right)
+=2\ii\bigl(\partial_x\Xi_6+[\Xi_6,U_6]\bigr).
+\label{eq:class6-shared-site-correction}
+\end{equation}
+This calculation uses the unit-spin constraint and its spatial derivative
+and holds for arbitrary time dependence of the spin.
+
+The local time correction
+\begin{align}
+\Delta V_6
+&:=2\ii\Xi_6-\frac{\ii}{4\lambda^2}\Id_{\mathcal V_a}
+\nonumber\\
+&=4\ii\bigl(L_6^{(2)}\bigr)^\downarrow
+-2\ii U_6^2+\frac{\ii}{4\lambda^2}\Id_{\mathcal V_a}
+\label{eq:class6-DeltaV}
+\end{align}
+then satisfies
+\begin{equation}
+\partial_x\Delta V_6+[\Delta V_6,U_6]=\mathcal C_6.
+\label{eq:class6-DeltaV-absorbs-C}
+\end{equation}
+The field-independent scalar in Eq.~\eqref{eq:class6-DeltaV} fixes a
+representative with traceless final time matrix.  To simplify it, the
+explicit spatial matrix gives
+\begin{align}
+\det U_6&=-\frac{\alpha_6}{2}S^+S^3,
+\nonumber\\
+\partial_\lambda U_{6,0}
+&=4\bigl(L_6^{(2)}\bigr)^\downarrow-\frac{1}{\lambda}U_{6,0}.
+\label{eq:class6-spatial-spectral-identities}
+\end{align}
+The determinant identity uses the unit-spin constraint.  The
+Cayley--Hamilton identity, together with $\tr U_6=1/(2\lambda)$, now
+reduces Eq.~\eqref{eq:class6-DeltaV} to
+\begin{equation}
+\Delta V_6
+=\ii\partial_\lambda U_{6,0}
+-\ii\alpha_6S^+S^3\Id_{\mathcal V_a}.
+\label{eq:class6-DeltaV-spectral}
+\end{equation}
+Adding this correction to Eq.~\eqref{eq:class6-Vdown-direct} yields
+\begin{equation}
+V_6:=V_6^\downarrow+\Delta V_6
+=-2(\boldsymbol S\times\partial_x\boldsymbol S)^i
+\frac{\partial U_6}{\partial S^i}
+-\ii\partial_\lambda U_{6,0},
+\qquad \tr V_6=0.
+\label{eq:class6-time-Lax-compact}
+\end{equation}
+
+We write $S_x^a:=\partial_x S^a$ for $a\in\{+,-,3\}$.  The matrix elements are
+\begin{align}
+(V_6)_{11}
+={}&\frac{\ii}{4\lambda^2}\Bigl[
+S^3-2\alpha_6\lambda^2S^+
++\lambda(S^-S_x^+-S^+S_x^-)
+\nonumber\\
+&\hspace{3.2em}
++4\alpha_6\lambda^3(S^+S_x^3-S^3S_x^+)
+\Bigr],
+\label{eq:class6-time-Lax-11}\\
+(V_6)_{12}
+={}&\frac{\ii}{4\lambda^2}\Bigl[
+S^--4\alpha_6\lambda^2S^3+12\alpha_6^2\lambda^4S^+
+\nonumber\\
+&\hspace{3.2em}
++2\lambda(S^3S_x^--S^-S_x^3)
++4\alpha_6\lambda^3(S^-S_x^+-S^+S_x^-)
+\nonumber\\
+&\hspace{3.2em}
++8\alpha_6^2\lambda^5(S^3S_x^+-S^+S_x^3)
+\Bigr],
+\label{eq:class6-time-Lax-12}\\
+(V_6)_{21}
+={}&\frac{\ii}{4\lambda^2}\Bigl[
+S^++2\lambda(S^+S_x^3-S^3S_x^+)
+\Bigr],
+\label{eq:class6-time-Lax-21}\\
+(V_6)_{22}
+={}&-(V_6)_{11}.
+\label{eq:class6-time-Lax-22}
+\end{align}
+
+The role of the second spatial coefficient is also visible directly in
+the source.  Expanding Eq.~\eqref{eq:class6-shared-site-correction} gives
+\begin{equation}
+\mathcal C_6
+=-2\ii\partial_x(U_6^2)
++4\ii\partial_x\bigl(L_6^{(2)}\bigr)^\downarrow
++4\ii\left[\bigl(L_6^{(2)}\bigr)^\downarrow,U_6\right].
+\label{eq:class6-source-expanded}
+\end{equation}
+At a fixed time, consider the spatially uniform spin configuration
+$\boldsymbol S=(0,0,1)^{\mathsf T}$.  Then
+\begin{equation}
+U_6=\begin{pmatrix}
+1/(2\lambda)&\alpha_6\lambda\\
+0&0
+\end{pmatrix},
+\qquad
+\mathcal C_6=\begin{pmatrix}
+0&-\ii\alpha_6/\lambda\\
+0&0
+\end{pmatrix}.
+\label{eq:class6-uniform-source}
+\end{equation}
+The source is nonzero for $\alpha_6\ne0$.
+Omitting the term involving $L_6^{(2)}$ from
+Eq.~\eqref{eq:class6-DeltaV} would leave a polynomial in $U_6$, whose
+spatial derivative and commutator with $U_6$ both vanish in this example.
+The total-derivative correction sufficient for Class 5 therefore fails
+for Class 6.
+
+In Section~\ref{sec:class6-eom} we derive the Hamiltonian equations
+independently and establish their off-shell equivalence to the
+zero-curvature equation for $(U_6,V_6)$.

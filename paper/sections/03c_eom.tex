@@ -19,18 +19,17 @@ M_5
 M_5^{\mathsf T}=-M_5.
 \label{eq:class5-M-definition}
 \end{equation}
-The lower symbol of a single Class 5 bond Hamiltonian, evaluated on the
-coherent states at the neighbouring points $x$ and $x+\epsilon$, has the
-long-wavelength expansion
+With $\boldsymbol S_n(t)=\boldsymbol S(x_n,t)$ and
+$\kappa_5=\epsilon\alpha_5$, the lower symbol of the Class 5 bond
+Hamiltonian has the long-wavelength expansion
 \begin{equation}
- h_5^{\downarrow}
- \bigl(\boldsymbol S(x,t),\boldsymbol S(x+\epsilon,t)\bigr)
- =2+\epsilon^2\mathcal H_5(x,t)+\mathcal O(\epsilon^3),
+ h_{5;n,n+1}^{\downarrow}
+ =2+\epsilon^2\mathcal H_5(x_n,t)+\mathcal O(\epsilon^3),
 \label{eq:class5-h-lower-expansion}
 \end{equation}
-where
+where the Hamiltonian density at $(x,t)$ is
 \begin{equation}
-\mathcal H_5
+\mathcal H_5(x,t)
 =
 -\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
 +\frac{\alpha_5}{2}
@@ -143,11 +142,11 @@ with $\partial_t\boldsymbol S$ given by
 therefore supplies the dynamical identification required on the left-hand
 side of the continuum equation \eqref{eq:continuum-zc-with-C}.
 
-We finally test the relation between the corrected Lax pair and the equations
-of motion without imposing the equations of motion in the curvature.  Define
+To establish the off-shell relation between the curvature and the equations
+of motion, we treat the time derivatives as independent variables and define
 the three equation-of-motion residuals
 \begin{align}
-E_+
+E^{(5)}_+
 &:=
 \partial_t S^+
 -2\ii\left(
@@ -156,7 +155,7 @@ S^+\partial_x^2S^3
 +\alpha_5 S^+\partial_xS^+
 \right),
 \label{eq:class5-residual-plus}\\
-E_-
+E^{(5)}_-
 &:=
 \partial_t S^-
 -2\ii\left(
@@ -165,7 +164,7 @@ S^3\partial_x^2S^-
 +\alpha_5 S^+\partial_xS^-
 \right),
 \label{eq:class5-residual-minus}\\
-E_3
+E^{(5)}_3
 &:=
 \partial_t S^3
 -\ii\left(
@@ -176,7 +175,7 @@ S^-\partial_x^2S^+
 \label{eq:class5-residual-three}
 \end{align}
 The curvature of the matrices $U_5$ and $V_5$ in
-\eqref{eq:class5-spatial-Lax} and \eqref{eq:class5-time-Lax-final} is
+\eqref{eq:class5-spatial-Lax} and \eqref{eq:class5-time-Lax-compact} is
 \begin{equation}
 F^{(5)}_{tx}
 :=
@@ -190,26 +189,27 @@ F^{(5)}_{tx}
 =
 \frac{1}{4\lambda}
 \begin{pmatrix}
-E_3+2\alpha_5\lambda E_+
+E^{(5)}_3+2\alpha_5\lambda E^{(5)}_+
 &
-E_- -2\alpha_5\lambda E_3\\
-E_+
+E^{(5)}_- -2\alpha_5\lambda E^{(5)}_3\\
+E^{(5)}_+
 &
--E_3
+-E^{(5)}_3
 \end{pmatrix}.
 \label{eq:class5-offshell-factorization}
 \end{equation}
 For $\lambda\neq0$, the residuals are recovered from the curvature entries by
-\begin{equation}
-E_+=4\lambda F^{(5)}_{21},
+\begin{align}
+E^{(5)}_+&=4\lambda\bigl(F^{(5)}_{tx}\bigr)_{21},
 \qquad
-E_3=-4\lambda F^{(5)}_{22},
-\qquad
-E_-=4\lambda\left(
-F^{(5)}_{12}-2\alpha_5\lambda F^{(5)}_{22}
+E^{(5)}_3=-4\lambda\bigl(F^{(5)}_{tx}\bigr)_{22},
+\nonumber\\
+E^{(5)}_-&=4\lambda\left(
+\bigl(F^{(5)}_{tx}\bigr)_{12}
+-2\alpha_5\lambda\bigl(F^{(5)}_{tx}\bigr)_{22}
 \right).
 \label{eq:class5-residuals-from-curvature}
-\end{equation}
+\end{align}
 Hence the zero-curvature condition $F^{(5)}_{tx}=0$ is equivalent to the
 three continuum equations of motion
 \eqref{eq:class5-eom-plus}--\eqref{eq:class5-eom-three}.
@@ -229,4 +229,3 @@ the Class 5 continuum equation used in
 Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.  The reflection of the second
 spin axis conjugates $M_5$ by $\operatorname{diag}(1,-1,1)$, yielding the
 deformation matrix used there.
-
