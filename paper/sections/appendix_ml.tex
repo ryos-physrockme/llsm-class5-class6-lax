@@ -26,7 +26,8 @@ for which the coefficient relations below are real.  Their analytic verification
 to complex $\lambda\ne0$.
 
 To write the ans\"atze, represent traceless matrices by three-component
-vectors.  With the Pauli matrices of Section~\ref{sec:setup}, define
+vectors.  With the Pauli matrices acting on the two-dimensional auxiliary
+space, define
 \begin{equation}
 \iota(\boldsymbol v):=-\frac{\ii}{2}v^i\sigma^i,
 \qquad
@@ -70,7 +71,7 @@ written as $M_5\boldsymbol v=\boldsymbol m_5\times\boldsymbol v$, where
 \end{equation}
 The ansatz uses the spatial differential operator
 $\mathcal D_x\boldsymbol v:=\partial_x\boldsymbol v
-+(\alpha_5/2)M_5\boldsymbol v$ and the constant auxiliary-basis rotation
++(\alpha_5/2)M_5\boldsymbol v$ and the constant complex orthogonal matrix
 \begin{equation}
 O_5(\lambda):=\exp(\alpha_5\lambda M_5)
 =\Id_3+\alpha_5\lambda M_5
@@ -128,6 +129,11 @@ $\partial_t\boldsymbol u_5$ determines the matrix
 \label{eq:ml-class5-Q}
 \end{equation}
 Thus $\mathsf Q_5$ depends on the same $\beta_5$ as the spatial ansatz.
+Since $\boldsymbol E^{(5)}$ contains $\partial_t\boldsymbol S$ with unit
+coefficient, the time-derivative terms in
+$\boldsymbol{\mathcal F}^{(5)}-\mathsf Q_5\boldsymbol E^{(5)}$ cancel
+for every value of the fitted coefficients.  The optimization matches the
+remaining spatial-derivative and algebraic terms to the supplied dynamics.
 For a prescribed sparsity weight $\eta>0$ and smoothing scale
 $\delta=10^{-10}$, the loss minimized over these thirteen coefficients is
 \begin{align}
@@ -147,7 +153,9 @@ $\ell^1$ penalty applied uniformly to all thirteen coefficients.  The weight
 $\eta$ is held fixed during each optimization stage, with the values
 given in Section~\ref{sec:ml-numerics}.
 
-The prescribed scalar parts are
+The scalar parts are fixed using the local conservation law for $S^+$
+in Eq.~\eqref{eq:class5-eom-plus}.  Choosing the scalar representative
+of the main-text Lax pair gives
 \begin{align}
 \mu_5&=\frac{1}{4\lambda}+\frac{\alpha_5}{4}S^+,
 \nonumber\\
@@ -159,7 +167,8 @@ The prescribed scalar parts are
 They obey
 $\partial_t\mu_5-\partial_x\nu_5=(\alpha_5/4)E^{(5)}_+$,
 where $E^{(5)}_+$ is defined in Eq.~\eqref{eq:class5-residual-plus}.
-The scalar curvature therefore already has the required factorization.
+This identity holds independently of the fitted coefficients, so the
+numerical search determines the traceless parts of the pair.
 
 The numerical coefficients approach the relations
 \begin{align}
@@ -222,6 +231,12 @@ evaluated on the independently sampled spin derivatives.  The nilpotency
 of $N_6$ gives
 $\det\mathsf A_6=(\ii/(2\lambda))^3$ for every choice of the fitted
 coefficients, so its coefficient map is invertible for $\lambda\ne0$.
+As in Class 5, the terms containing $\partial_t\boldsymbol S$ cancel
+between $\boldsymbol{\mathcal F}^{(6)}$ and
+$\mathsf A_6\boldsymbol E^{(6)}$ for arbitrary fitted coefficients.
+The sampled time derivative therefore supplies no additional fitting
+constraint.  The constant scalar parts in
+Eq.~\eqref{eq:ml-class6-ansatz} have identically zero scalar curvature.
 
 The recovered coefficient relations are
 \begin{align}
@@ -331,9 +346,12 @@ The maximum validation mean-square residual in the first term of
 Eq.~\eqref{eq:ml-class5-loss} was $4.94\times10^{-14}$.
 For Class 6, the maximum validation root-mean-square residual,
 $\sqrt{\mathcal L_6}$, was $2.92\times10^{-11}$.
-The analytic coefficient relations were used only for evaluation after
-optimization.  Their exact substitution into the Lax matrices and the
-off-shell identities in Sections~\ref{sec:class5-eom} and
-\ref{sec:class6-eom} establish the physical results.  The evaluation of
+The fixed normalizations and the undeformed Class 6 initial point are
+inputs to the searches.  The deformation-dependent coefficient relations
+are checked after optimization.  Each run fits a finite set of coefficients
+at one chosen $(\alpha_m,\lambda)$; the general spectral dependence is
+established by exact substitution into the Lax matrices and the off-shell
+identities in Sections~\ref{sec:class5-eom} and \ref{sec:class6-eom}.
+The evaluation of
 overlapping quantum products in the main text supplies the further
 connection to the finite lattice time operators.

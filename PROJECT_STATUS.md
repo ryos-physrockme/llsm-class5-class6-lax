@@ -122,7 +122,23 @@ repository and identify the source-code license. The Abstract summarizes
 the time-Lax construction, the surviving operator-product contributions,
 the Hamiltonian equivalence and the numerical coefficient searches.
 
-Next: review the Abstract and completed front/back matter.
+The subsequent manuscript audit clarifies the formal local expansion used
+in the Class 5 monodromy comparison and displays its generating Hamiltonian
+flow and first projector recursion. The reference convention dictionary now
+specifies the old and new fields and times explicitly. Both Hamiltonian
+sections state the same variation convention.
+
+Appendix A now explains that time derivatives cancel in both off-shell fits
+for arbitrary coefficients, identifies the conservation-law origin of the
+fixed Class 5 scalar parts, and distinguishes supplied normalizations and
+initial values from fitted coefficients and analytically verified spectral
+dependence. The Abstract, Introduction and Summary describe the numerical
+role consistently. Verification of these statements extends
+`scripts/ml/verify_conventions.py`; the audit is recorded in
+[`paper/manuscript_audit.md`](paper/manuscript_audit.md).
+
+Next: review the audited manuscript and the completed front/back matter in
+PR #11.
 
 Current planned paper structure:
 

@@ -64,6 +64,9 @@ the original and adapted samplers, residuals, losses and gradients at arbitrary
 coefficients. Independent symbolic formulas also compare the complete recovered
 `U` and `V` matrices against the explicit manuscript entries. The checks are
 recorded in `results/ml/convention_verification.json`.
+They also verify the cancellation of independently sampled time derivatives
+in both off-shell objectives, the Class 5 scalar conservation identity, and
+invertibility of both coefficient maps for arbitrary fitted coefficients.
 
 ### Convention dictionary
 

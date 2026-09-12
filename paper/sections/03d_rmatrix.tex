@@ -128,12 +128,31 @@ T_1(x,0;\zeta)
 \right],
 \label{eq:class5-rmatrix-generating-V}
 \end{equation}
-where the trace is taken over the first auxiliary space
+where the trace is taken over the first auxiliary space.  For
+$\tau(\zeta)\ne0$ and $\zeta\ne\lambda$, it satisfies
+\begin{equation}
+\{\log\tau(\zeta),U_{5,2}(x;\lambda)\}_5
+=\partial_x\mathbb V_2
+ +[\mathbb V_2,U_{5,2}(x;\lambda)]
+\label{eq:class5-generating-hamiltonian-flow}
+\end{equation}
 \cite{SemenovTianShansky1983,DoikouKaraiskos2011}.
 
 The pole of $U_5(x;\zeta)$ at $\zeta=0$ has residue $\rho/2$, by
-Eq.~\eqref{eq:class5-U-rho-K}.  The local expansion of the monodromy is
-therefore governed by a rank-one projector $\Pi(x;\zeta)$ satisfying
+Eq.~\eqref{eq:class5-U-rho-K}, with eigenvalues $1/2$ and $0$.
+To extract local charges, we use the formal small-$\zeta$ expansion
+associated with the first eigenvalue.  In a sector where
+$\operatorname{Re}(1/\zeta)>0$, the corresponding monodromy eigenvalue
+has the dominant exponential factor $\exp(\ell/(2\zeta))$.  Thus
+\begin{equation}
+\frac{T(x,0;\zeta)T(\ell,x;\zeta)}{\tau(\zeta)}
+\sim\Pi(x;\zeta),
+\label{eq:class5-normalized-monodromy-asymptotics}
+\end{equation}
+where $\sim$ denotes the formal power-series expansion, with the
+exponentially small contribution of the other eigenvalue omitted.
+The normalized monodromy at finite $\zeta$ has trace one; its local
+expansion is described by the rank-one projector $\Pi$ satisfying
 \begin{equation}
 \Pi^2=\Pi,
 \qquad
@@ -149,8 +168,17 @@ with the branch
 \rho(x)+\zeta\Pi_1(x)+\mathcal O(\zeta^2).
 \label{eq:class5-local-projector-expansion}
 \end{equation}
-Expanding Eq.~\eqref{eq:class5-local-projector-equations} to first order fixes
-the coefficient uniquely as
+The projector constraint at order $\zeta$ and the transport equation
+at order $\zeta^0$ give
+\begin{equation}
+\begin{aligned}
+\rho\Pi_1+\Pi_1\rho&=\Pi_1,\\
+\partial_x\rho&=\frac12[\rho,\Pi_1]
+ +\alpha_5[K^{\mathrm{cl}}_5,\rho].
+\end{aligned}
+\label{eq:class5-Pi1-equations}
+\end{equation}
+These determine the coefficient uniquely as
 \begin{equation}
 \Pi_1
 =
@@ -159,7 +187,7 @@ the coefficient uniquely as
 \label{eq:class5-Pi1-solution}
 \end{equation}
 Using Eq.~\eqref{eq:class5-local-projector-expansion} in the generating
-matrix \eqref{eq:class5-rmatrix-generating-V}, write
+matrix \eqref{eq:class5-rmatrix-generating-V}, the local series reads
 \begin{equation}
 \mathbb V_2(x;\zeta,\lambda)
 =
@@ -168,7 +196,7 @@ matrix \eqref{eq:class5-rmatrix-generating-V}, write
 +\mathcal O(\zeta^2).
 \label{eq:class5-generating-V-expansion}
 \end{equation}
-The coefficient relevant for the Class 5 Hamiltonian flow is
+The coefficient of $\zeta$ is
 \begin{align}
 \mathbb V^{(1)}
 ={}&
@@ -183,11 +211,11 @@ The coefficient relevant for the Class 5 Hamiltonian flow is
 \right].
 \label{eq:class5-generating-V-first-coefficient}
 \end{align}
-The standard monodromy formula is conventionally written with the Hamiltonian
-in the first argument of the Poisson bracket.  Our Hamiltonian evolution in
-Eq.~\eqref{eq:class5-hamiltonian-flow-definition} uses the opposite order.
-With this convention, the time Lax matrix obtained from the classical
-$r$-matrix route is therefore
+Equation~\eqref{eq:class5-generating-hamiltonian-flow} places the generating
+Hamiltonian in the first argument of the Poisson bracket.  With the
+evolution convention $\partial_tU_5=\{U_5,H\}_5$ of
+Eq.~\eqref{eq:class5-hamiltonian-flow-definition}, the coefficient of
+$\zeta$ in $\log\tau(\zeta)$ therefore has the time Lax matrix
 \begin{equation}
 V_{5,r}(x;\lambda):=-\mathbb V^{(1)}(x;\lambda).
 \label{eq:class5-rmatrix-time-V-definition}
@@ -206,3 +234,7 @@ The matrix on the right-hand side is independent of the spin field and of
 the spatial coordinate.  Its spatial derivative vanishes and it commutes
 with $U_5$, so $V_{5,r}$ and $V_5$ generate the same zero-curvature equation.
 This is the scalar freedom described after Eq.~\eqref{eq:class5-DeltaV}.
+The comparison identifies the associated local charge as generating the
+$H^{\rm cl}_5$ spin flow.  This identification concerns the Hamiltonian
+vector field on the unit-spin constraint; additive constants, Casimirs,
+and total derivatives with vanishing periodic integral leave it unchanged.
