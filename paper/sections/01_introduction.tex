@@ -1,50 +1,74 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Long-wavelength limits of integrable spin chains relate quantum lattice
-models to classical field theories.  Coherent states associate a smooth
-spin field with a slowly varying lattice configuration, while the
-quantum inverse-scattering construction supplies the lattice Lax
-operators.  Systematic continuum constructions recover the
-Landau--Lifshitz model and its isotropic and anisotropic generalizations
-\cite{AvanDoikouSfetsos2010,DoikouKaraiskos2011}.
+The Landau--Lifshitz model relates the long-wavelength dynamics of
+quantum spin chains to classical field theory.  It also appears in
+limits of string sigma models: the coherent-state continuum action
+of the Heisenberg chain agrees with an action obtained for strings
+carrying large angular momentum \cite{Kruczenski2004}.  Integrable
+deformations extend this relation to anisotropic Landau--Lifshitz
+models.  Their classical Lax pairs and conserved-charge algebras have
+been studied in limits of deformed string backgrounds
+\cite{KameyamaYoshida2014}.  These connections motivate an explicit
+account of how the Hamiltonian and Lax structures pass from the
+quantum chain to the continuum theory.
 
-We consider the Class 5 and Class 6 spin-$\tfrac12$ chains, two
-non-Hermitian deformations of the Heisenberg XXX chain in the
-classification of Ref.~\cite{deLeeuwPribytokRyan2019}.
-Their deformed Landau--Lifshitz continuum models were obtained in
-Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}, where a boost construction
-generates higher conserved charges and the construction of Lax pairs
-is raised as a further question.  Class 6 is also identified with the
-eleven-vertex model in Ref.~\cite{CorcoranDeLeeuw2024}; its associated
-Landau--Lifshitz hierarchy was studied in
-Ref.~\cite{LevinOlshanetskyZotov2014}.  These results provide the setting
-for examining how the continuum time component follows from the
-quantum lattice Lax equation.
+The Class 5 and Class 6 models provide two non-Hermitian deformations
+of the spin-$\tfrac12$ Heisenberg XXX chain.  They arose in the
+classification of nearest-neighbour integrable chains in
+Ref.~\cite{deLeeuwPribytokRyan2019} and have transfer matrices with
+nontrivial Jordan blocks.  De Leeuw, Fontanella and Nieto Garc\'ia
+derived their deformed Landau--Lifshitz continuum models and
+constructed higher conserved charges using a boost functional
+\cite{deLeeuwFontanellaNietoGarcia2026}.  For Class 5, they also
+identified the quantum deformation as a Jordanian Drinfeld twist.
+The coexistence of this algebraic structure with a non-Hermitian
+Hamiltonian makes these chains useful examples for studying the
+relation between quantum and classical integrability.
 
-The coherent-state lower symbol of an operator is its matrix element
-in a product of spin coherent states, with any auxiliary-space indices
-retained.  The spatial continuum Lax matrix follows from the leading
-coefficient of a normalized lattice operator.  For the time component,
-the lattice zero-curvature equation contains products whose factors
-act on a common physical site.  Their lower symbols include a
-contribution beyond the product of the separate symbols.  This
-nonmultiplicativity is part of coherent-state symbol calculus
-\cite{Perelomov1986,Schlichenmaier2010}.  In the continuum limit considered
-here, the local spin representation remains fixed while the lattice
-spacing tends to zero.  It is therefore necessary to determine which
-operator-product contributions survive at the order of the continuum
-time evolution.
+Several classical constructions are available for this comparison.
+Avan, Doikou and Sfetsos formulated continuum limits that retain the
+classical Lax and $r$-matrix structures \cite{AvanDoikouSfetsos2010}.
+The relation between continuum Hamiltonians, time Lax matrices and
+boundary conditions was developed further in
+Ref.~\cite{DoikouKaraiskos2011}.  For Class 6, the quantum model is
+identified with the eleven-vertex model in
+Ref.~\cite{CorcoranDeLeeuw2024}, and its Landau--Lifshitz Lax
+formulation is already contained in the eleven-vertex construction
+of Levin, Olshanetsky and Zotov \cite{LevinOlshanetskyZotov2014}.
 
-In this paper we evaluate these contributions directly for both chains
-and absorb them into a local correction of the continuum time Lax
-matrix.  The Class 5 contribution is a total spatial derivative.  The
-Class 6 calculation also retains a commutator involving the second
-coefficient of the spatial lattice operator.  We derive the Hamiltonian
-equations independently and give off-shell identities, with explicit
-inverses, relating all their components to the Lax curvature.  For
-Class 5, a separate classical $r$-matrix and monodromy construction
-provides a comparison with the time matrix obtained from the lattice.
+The question addressed here is how the quantum lattice \emph{time}
+Lax operator produces the continuum time matrix for the Hamiltonian
+flow.  In Section~2 of Ref.~\cite{deLeeuwFontanellaNietoGarcia2026},
+the authors discuss a spatial Lax matrix for Class 5 and leave the
+construction of a compatible time component open.  Taking the time
+operator directly to the continuum identifies the quantum terms
+that enter this component and permits a comparison with the
+classical $r$-matrix construction.
+
+We perform this limit at fixed spin $\tfrac12$, using the
+coherent-state lower symbol: the matrix element of an operator in
+a product of spin coherent states, with auxiliary-space indices
+retained.  The lattice zero-curvature equation contains operator
+products whose factors share a physical site.  At that site, the
+lower symbol of a product generally differs from the product of
+the separate symbols, as in standard coherent-state symbol calculus
+\cite{Perelomov1986,Schlichenmaier2010}.  Smooth variation of the spin
+labels between neighbouring sites controls the long-wavelength
+expansion, while products on a common site retain the fixed
+spin-$\tfrac12$ operator algebra.  Their contribution must therefore
+be evaluated at the order of the continuum time evolution.
+
+For both chains, we compute this surviving contribution and absorb
+it into a local correction of the direct time symbol.  In Class 5
+it is a total spatial derivative; Class 6 also has a commutator
+contribution involving the second spatial-operator coefficient.
+We derive the Hamiltonian equations independently and establish
+their equivalence to the corrected zero-curvature equations by
+identities that hold before imposing the equations of motion.
+Explicit inverse relations recover every component of the equations
+from the curvature.  The undeformed XXX limit and the independent
+classical $r$-matrix construction for Class 5 provide further checks.
 
 Section~\ref{sec:setup} fixes the lattice conventions and formulates the
 continuum problem.  Sections~\ref{sec:class5-model} and

@@ -72,11 +72,18 @@ Written in the current draft:
    and the off-shell curvature/EOM factorization with explicit inverse.
 9. Section 5: the common operator-product correction, comparison of
    deformation scalings and spatial coefficients, and the isotropic limit.
-10. Introduction and Summary and discussion: initial drafts incorporate
-    the literature context and scope previously grouped in Section 5.3.
+10. Introduction and Summary and discussion: revised using the introductions
+    and closing sections of related papers. The Introduction develops the
+    physical context, established constructions, and the specific time-Lax
+    question; Section 6 emphasizes results, interpretation, and extensions.
     Section 5.3 has been removed; Section 5 retains the technical comparison.
     Sections 2--5 each introduce their purpose and sequence before the
     first subsection.
+
+The literature and editorial comparison is recorded in
+[`paper/literature_review.md`](paper/literature_review.md).
+Kruczenski (2004) and Kameyama--Yoshida (2014) were added for the spin-chain
+and string-theory context. Numbered references follow first citation order.
 
 Section 4 was merged in PR #8, and CI published its updated PDF on `main`.
 Section 5 and the structural revision are prepared for review in PR #9.
