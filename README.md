@@ -65,6 +65,8 @@ The reconstructed searches recover the documented analytic coefficient branches 
 
 in a `[skip ci]` bot commit. Thus the PDFs in the repository are reproducible build products of the committed sources.
 
+For pull-request reviews, use the PDFs in the current CI run's `compiled-documents` artifact; the tracked PDFs on the working branch are not automatically updated. During ChatGPT-assisted manuscript reviews, the affected PDFs are also delivered as files in the active session's Library before review, with the source commit and CI run identified. See [the PDF review workflow](AGENTS.md#pdf-review-and-publication).
+
 ## Citation
 
 Citation metadata are provided in `CITATION.cff`. The manuscript title and bibliographic fields are provisional until submission.

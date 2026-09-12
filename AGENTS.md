@@ -16,8 +16,16 @@ Read `PROJECT_STATUS.md`, `README.md`, and `REPRODUCIBILITY.md` before changing 
 2. Update or add an executable check in `scripts/` when possible.
 3. Run the relevant script(s), preferably `make verify` before merging substantial changes.
 4. Update the research note before compressing the result into the paper if the change alters the calculation history or conventions.
-5. Compile the affected LaTeX document and inspect the resulting PDF.
-6. Keep generated PDFs synchronized with the committed source for material manuscript/note changes when PDFs are intentionally tracked; CI always builds artifact PDFs from source.
+5. Use the pull-request CI build to compile the affected LaTeX document and inspect the resulting PDF.
+6. Deliver the review PDFs as described below. After merging, confirm that CI has synchronized the tracked PDFs on `main` with the committed sources.
+
+## PDF review and publication
+
+- For manuscript or note changes, obtain the affected PDFs from the successful pull-request CI run's `compiled-documents` artifact. Check that the run corresponds to the current source revision; the PDF tracked on a working branch may be stale.
+- Before requesting review in ChatGPT, save these PDFs to the active session's Library and provide direct file links. Include the source commit SHA and the workflow run URL in the handoff so the reviewed version is identifiable. A CI link alone is not a PDF handoff.
+- Keep generated PDF changes out of working-branch commits. The existing `publish-pdfs` job updates the tracked PDFs only after successful verification and compilation on a push to `main`.
+- Do not merge a manuscript pull request solely to make its review PDF available.
+- After merging, check that `publish-pdfs` succeeded and that the tracked PDF contains the expected manuscript changes; successful LaTeX compilation alone does not confirm publication.
 
 ## Writing and notation constraints
 
