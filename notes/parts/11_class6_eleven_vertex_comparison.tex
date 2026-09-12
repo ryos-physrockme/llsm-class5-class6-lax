@@ -1,0 +1,217 @@
+\section{Class 6 と既知 eleven-vertex Landau--Lifshitz Lax 対の直接照合}
+\label{sec:class6-eleven-vertex-comparison}
+
+Class 6 の量子模型が eleven-vertex model に対応すること、および eleven-vertex $R$-matrix から rational Landau--Lifshitz 型場の理論が構成されること自体は既知である\cite{CdL2024,LOZ2014}。したがって本節の目的は新しい可積分 hierarchy を主張することではない。前節までに有限格子の量子 time-Lax 演算子から得た Class 6 の連続 Lax 対が、既知の eleven-vertex Landau--Lifshitz Lax 対とどの規約変換で一致するかを直接示す。
+
+Levin--Olshanetsky--Zotov の eleven-vertex 構成\cite{LOZ2014}に基づく rational Landau--Lifshitz Lax 対は、Atalikov--Zotov\cite{AtalikovZotov2021}の Sec.~4, Eqs.~(4.1)--(4.5) に標準基底で明示されている。以下ではその式を比較の出発点とする。
+
+\subsection{既知の rational eleven-vertex Landau--Lifshitz Lax 対}
+
+既知模型のスピン行列を
+\begin{equation}
+\Sigma=
+\begin{pmatrix}
+\Sigma_{11}&\Sigma_{12}\\
+\Sigma_{21}&-\Sigma_{11}
+\end{pmatrix}
+\label{eq:eleven-sigma-generic}
+\end{equation}
+とし、既知模型のスペクトルパラメータを$z$とする。空間 Lax 行列は
+\begin{equation}
+U_{\rm 11v}(z,\Sigma)=
+\begin{pmatrix}
+\dfrac{\Sigma_{11}}{z}-z\Sigma_{12}
+&\dfrac{\Sigma_{12}}{z}\\[2mm]
+\dfrac{\Sigma_{21}}{z}-2z\Sigma_{11}-z^3\Sigma_{12}
+&-\dfrac{\Sigma_{11}}{z}+z\Sigma_{12}
+\end{pmatrix}.
+\label{eq:eleven-U}
+\end{equation}
+これは eleven-vertex classical $r$-matrix から
+$U_{\rm 11v}=\operatorname{tr}_2(r_{12}(z)\Sigma_2)$
+として得られる行列である\cite{LOZ2014,AtalikovZotov2021}。
+
+同じ規約で classical mechanics の companion matrix は
+\begin{equation}
+M_{\rm top}(z,\Sigma)=
+\begin{pmatrix}
+\Sigma_{12}&0\\
+2\Sigma_{11}+2z^2\Sigma_{12}&-\Sigma_{12}
+\end{pmatrix}.
+\label{eq:eleven-Mtop}
+\end{equation}
+スピン行列の固有値を$\pm\Lambda_{\Sigma}$とし、
+$\Sigma^2=\Lambda_{\Sigma}^2\Id_2$とする。空間微分の係数を$k$とすると、
+\begin{equation}
+\mathsf v
+=-\frac{k}{4\Lambda_{\Sigma}^2}[\Sigma,\partial_x\Sigma]
+\label{eq:eleven-vaux}
+\end{equation}
+を用いて time Lax 行列は
+\begin{equation}
+V_{\rm 11v}(z,\Sigma)
+=\frac12\left[
+\frac1zU_{\rm 11v}(z,\Sigma)
++2M_{\rm top}(z,\Sigma)
+-U_{\rm 11v}(z,\mathsf v)
+\right].
+\label{eq:eleven-V}
+\end{equation}
+既知模型の時間を$\tau$とすると、この組は
+\begin{equation}
+\partial_{\tau}U_{\rm 11v}
++k\partial_xV_{\rm 11v}
+-[U_{\rm 11v},V_{\rm 11v}]=0
+\label{eq:eleven-zc}
+\end{equation}
+を満たす\cite{AtalikovZotov2021}。
+
+対応する anisotropy map は
+\begin{equation}
+J_{\rm 11v}(\Sigma)
+=-\begin{pmatrix}
+\Sigma_{12}&0\\
+2\Sigma_{11}&-\Sigma_{12}
+\end{pmatrix},
+\label{eq:eleven-J}
+\end{equation}
+運動方程式は
+\begin{equation}
+\partial_{\tau}\Sigma
+=[J_{\rm 11v}(\Sigma),\Sigma]
+-\frac{k^2}{8\Lambda_{\Sigma}^2}
+[\Sigma,\partial_x^2\Sigma].
+\label{eq:eleven-eom}
+\end{equation}
+
+\subsection{Class 6 との規約辞書}
+
+本ノートの Class 6 の古典スピン成分$S^+,S^-,S^3$から
+\begin{equation}
+\Sigma:=
+\begin{pmatrix}
+S^3&S^+\\
+S^-&-S^3
+\end{pmatrix}
+\label{eq:class6-eleven-spin}
+\end{equation}
+を定義する。Class 6 の単位スピン条件
+\begin{equation}
+S^+S^-+(S^3)^2=1
+\label{eq:class6-eleven-constraint}
+\end{equation}
+より
+\begin{equation}
+\Sigma^2=\Id_2,
+\qquad \Lambda_{\Sigma}^2=1.
+\label{eq:class6-eleven-characteristic}
+\end{equation}
+
+Class 6 の連続変形結合を$\alpha_6$、本ノートの連続スペクトルパラメータを$\lambda$とする。補助的な非零複素数$\beta$を
+\begin{equation}
+\beta^2=-2\alpha_6
+\label{eq:class6-eleven-beta}
+\end{equation}
+で定義する。$\beta$の二つの平方根の選択は以下の全式を同時に変換するだけであり、対応する Lax 方程式は同じである。既知模型の規約との辞書は
+\begin{equation}
+z=\beta\lambda,
+\qquad
+k=-\frac4\beta,
+\qquad
+\tau=\frac{i\beta^2}{2}t=-i\alpha_6 t
+\label{eq:class6-eleven-dictionary}
+\end{equation}
+と取れる。
+
+本ノートの Class 6 空間行列$U_6$の traceless part を
+\begin{equation}
+U_{6,0}:=U_6-\frac{1}{4\lambda}\Id_2
+\label{eq:class6-eleven-U0}
+\end{equation}
+とする。式\eqref{eq:eleven-U}へ
+\eqref{eq:class6-eleven-spin}--\eqref{eq:class6-eleven-dictionary}
+を代入すると、成分ごとに
+\begin{equation}
+U_{6,0}(\lambda)
+=\frac{\beta}{4}
+U_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}
+\label{eq:class6-eleven-U-map}
+\end{equation}
+が成り立つ。右辺の転置$\mathsf T$は補助空間の基底規約の差を表す。本ノートの$U_6$に含まれる$\Id_2/(4\lambda)$は$x,t$に依存せず、交換子にも寄与しないため零曲率式を変えない。
+
+同じ辞書を time matrix に適用する。式\eqref{eq:class6-eleven-characteristic}と$k=-4/\beta$から
+\begin{equation}
+\mathsf v
+=\frac1\beta[\Sigma,\partial_x\Sigma].
+\end{equation}
+これを式\eqref{eq:eleven-V}へ代入し、本ノートの Class 6 time matrix の各成分と比較すると
+\begin{equation}
+V_6(\lambda)
+=\frac{i\beta^2}{2}
+V_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}
+=-i\alpha_6
+V_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}
+\label{eq:class6-eleven-V-map}
+\end{equation}
+を得る。これはon-shellで零曲率が一致するというだけでなく、$S^\pm,S^3$とそれらの一階空間微分を独立な記号として扱った行列恒等式である。
+
+転置によって交換子の順序が反転することに注意する。式\eqref{eq:eleven-zc}を転置し、式\eqref{eq:class6-eleven-dictionary}--\eqref{eq:class6-eleven-V-map}を使うと
+\begin{equation}
+\partial_tU_{6,0}
+-\partial_xV_6+[U_{6,0},V_6]=0
+\end{equation}
+となる。ここで
+\begin{equation}
+\frac{\beta}{4}k=-1
+\end{equation}
+が空間微分項の符号を合わせる。$U_6-U_{6,0}$はスカラーなので、同じ式は$U_6$にも成立する。
+
+\subsection{運動方程式の直接照合}
+
+Lax 行列だけでなく、spin equation も同じ辞書で一致する。式\eqref{eq:class6-eleven-spin}を式\eqref{eq:eleven-J}へ代入すると
+\begin{equation}
+J_{\rm 11v}(\Sigma)
+=-\begin{pmatrix}
+S^+&0\\
+2S^3&-S^+
+\end{pmatrix}.
+\end{equation}
+また、式\eqref{eq:class6-eleven-dictionary}から
+\begin{equation}
+\frac{k^2}{8}=-\frac1{\alpha_6}.
+\end{equation}
+既知模型の時間$\tau=-i\alpha_6 t$を用いて
+式\eqref{eq:eleven-eom}を本ノートの時間$t$へ変換すると
+\begin{equation}
+\partial_t\Sigma
+=-i[\Sigma,\partial_x^2\Sigma]
+-i\alpha_6[J_{\rm 11v}(\Sigma),\Sigma].
+\label{eq:class6-eleven-matrix-eom}
+\end{equation}
+その三つの独立成分は
+\begin{align}
+\partial_t S^+
+&=2i\left(
+S^+\partial_x^2S^3-S^3\partial_x^2S^+
++\alpha_6(S^+)^2
+\right),\\
+\partial_t S^-
+&=2i\left(
+S^3\partial_x^2S^--S^-\partial_x^2S^3
++2\alpha_6(S^3)^2-\alpha_6S^+S^-
+\right),\\
+\partial_t S^3
+&=i\left(
+S^-\partial_x^2S^+-S^+\partial_x^2S^-
+-2\alpha_6S^+S^3
+\right).
+\end{align}
+これは本ノートで量子 Class 6 Hamiltonian の連続極限から独立に得た運動方程式と一致する。
+
+\subsection{位置づけ}
+
+この直接照合により、Class 6 についても有限格子の量子 time-Lax 演算子から得た$U_6,V_6$が、既知の eleven-vertex Landau--Lifshitz hierarchy の$U,V$と具体的な規約辞書のもとで一致することが分かった。Class 5 で行った classical $r$-matrix / monodromy route との比較と役割が対応している。
+
+一方、この一致は Class 6 の Lax hierarchy の新規性を支持するものではない。むしろ逆で、最終的な classical pair が既知構造に着地することを明示する独立検算である。本研究で別に検討している新しい点は、既知の最終 pair の存在ではなく、finite-lattice quantum time equation から fixed-spin long-wavelength limit を取る際に共有物理サイトの operator product correction がどのように残り、その time component を再構成するかという経路である。
+
+検証プログラム `scripts/class6/verify_eleven_vertex_comparison.py` は、式\eqref{eq:class6-eleven-U-map}、式\eqref{eq:class6-eleven-V-map}、運動方程式、および零曲率規約の変換係数を記号計算で独立に確認する。比較では$S^+,S^-,S^3$と一階・二階空間微分を独立な記号として扱い、最終行列の成分一致に運動方程式を代入していない。
