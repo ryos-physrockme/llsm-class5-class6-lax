@@ -3,7 +3,7 @@
 調査日: 2026-09-13。
 対象ブランチ: `research/shared-site-generalization`。
 
-本メモは、`notes/parts/10_shared_site_generalization.tex` で導出した局所補正式の文献上の位置づけを確認するための調査記録である。既存の coherent-state symbol calculus、量子 time-Lax 演算子、連続 Lax 構成そのものを新規と扱わない。ここでいう「確認できなかった」は、指定した文献と検索範囲で同一式を見つけなかったという意味であり、文献上の不在を証明するものではない。
+本メモは、`notes/parts/10_shared_site_generalization.tex` で導出した局所補正式の文献上の位置づけと、Class 5 / Class 6 の既知 Lax 構造との関係を確認するための調査記録である。既存の coherent-state symbol calculus、量子 time-Lax 演算子、連続 Lax 構成そのものを新規と扱わない。ここでいう「確認できなかった」は、指定した文献と検索範囲で同一式を見つけなかったという意味であり、文献上の不在を証明するものではない。
 
 ## 1. Avan--Doikou--Sfetsos (2010)
 
@@ -76,7 +76,7 @@ PoS CORFU2019 (2020) 210,
 
 として直接つなぐ際の局所積の扱いに限定すべきである。
 
-## 3. de Leeuw--Fontanella--Nieto García (2026)
+## 3. de Leeuw--Fontanella--Nieto García (2026): Class 5
 
 M. de Leeuw, A. Fontanella and J. M. Nieto García,
 *An integrable deformed Landau--Lifshitz model with particle production?*,
@@ -87,7 +87,70 @@ Class 5 の coherent-state continuum model、Hamiltonian flow、保存量、お�
 
 一方、同論文は spatial Lax matrix の Poisson algebra を確認した後、運動方程式を抽出する compatible companion matrix を見つけられなかったと明記している。したがって、今回の Class 5 計算は「新しい模型を発見した」という位置づけではなく、この未完成だった time component を有限格子の time operator から導出し、さらに独立な classical r-matrix / monodromy construction と照合したものと位置づけられる。
 
-## 4. 現段階での新規性評価
+## 4. eleven-vertex Landau--Lifshitz hierarchy と Class 6 の直接照合
+
+A. Levin, M. Olshanetsky and A. Zotov,
+*Classical integrable systems and soliton equations related to eleven-vertex R-matrix*,
+Nucl. Phys. B 887 (2014) 400--422,
+[arXiv:1406.2995](https://arxiv.org/abs/1406.2995),
+および
+K. Atalikov and A. Zotov,
+*Field theory generalizations of two-body Calogero--Moser models in the form of Landau--Lifshitz equations*,
+J. Geom. Phys. 164 (2021) 104161,
+[arXiv:2010.14297](https://arxiv.org/abs/2010.14297)
+を比較した。
+
+Class 6 の量子模型が eleven-vertex model に対応すること、および eleven-vertex classical r-matrix が rational Landau--Lifshitz hierarchy を与えることは既知である。Atalikov--Zotov (2021), Sec. 4 は、その rational model の空間・時間 Lax 行列を標準基底で明示しているため、今回の Class 6 の最終 \(U_6,V_6\) と成分ごとに比較できる。
+
+Class 6 のスピンから
+
+\[
+\Sigma=\begin{pmatrix}S^3&S^+\\S^-&-S^3\end{pmatrix},
+\qquad \Sigma^2=1
+\]
+
+を定義する。非零複素数 \(\beta\) を
+
+\[
+\beta^2=-2\alpha_6
+\]
+
+で定義し、既知模型のスペクトルパラメータと空間微分係数を
+
+\[
+z=\beta\lambda,\qquad k=-\frac4\beta
+\]
+
+と置く。Class 6 空間行列の traceless part は厳密に
+
+\[
+U_{6,0}(\lambda)
+=\frac{\beta}{4}U_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}
+\]
+
+となる。Class 6 の完全な \(U_6\) との差は \(1/(4\lambda)\) 倍の単位行列であり、零曲率を変えない。
+
+時間規約を
+
+\[
+\tau=\frac{i\beta^2}{2}t=-i\alpha_6 t
+\]
+
+と変換すると、time matrix も
+
+\[
+V_6(\lambda)
+=\frac{i\beta^2}{2}V_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}
+=-i\alpha_6 V_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}
+\]
+
+として全成分が一致する。転置は補助空間の基底規約の差に対応し、交換子の順序を反転する。係数 \((\beta/4)k=-1\) により空間微分項を含む零曲率規約も一致する。
+
+さらに rational eleven-vertex model の anisotropy map を用いると、同じ \(\beta,z,k,\tau\) の辞書で運動方程式も Class 6 の三成分式へ一致する。この一致は `scripts/class6/verify_eleven_vertex_comparison.py` で、スピン成分と一階・二階空間微分を独立な記号として検証する。
+
+この結果は Class 6 の hierarchy の新規性を支持するものではない。むしろ、有限格子の量子 time-Lax 演算子から本研究で得た pair が、既知の classical eleven-vertex hierarchy に正しく着地するという独立検算である。Class 5 における independent classical r-matrix / monodromy comparison と同じ役割を Class 6 にも与える。
+
+## 5. 現段階での新規性評価
 
 今回の条件付き一般式
 
@@ -114,14 +177,27 @@ Class 5 の coherent-state continuum model、Hamiltonian flow、保存量、お�
 3. ADS (2010) が shared-site / overlapping-index contributions を無視したと述べること。
 4. Class 6 の Landau--Lifshitz hierarchy 自体を新しいと述べること。
 
-一方、現時点で原稿の中心候補として残るのは次である。
+一方、原稿の中心候補として残るのは次である。
 
 - fixed spin \(1/2\) の長波長極限において、有限格子の局所 time-Lax equation を直接 continuum へ移す際の operator-product correction の power counting を明示すること。
-- その補正が Sutherland relation の残差を含む局所恒等式として整理でき、指定した条件下で covariant derivative 型の局所 time correction へ吸収できること。
+- その補正が Sutherland relation の残差を含む局所恒等式として整理でき、指定した条件下で adjoint covariant derivative 型の局所 time correction へ吸収できること。
 - Class 5 では既存研究で未構成だった time component を得ること。
-- Class 6 と XXZ を用いて、式が Class 5 固有の total derivative の偶然ではないことを確認すること。
+- Class 5 では classical r-matrix / monodromy construction、Class 6 では既知 rational eleven-vertex Landau--Lifshitz pair と、量子格子から得た continuum time matrix がそれぞれ独立に一致すること。
+- XXZ を既知模型の第三 control として、一般式が二つの非Hermitian模型だけの偶然ではないことを確認すること。
 
-## 5. 原稿への反映方針
+ここまで進むと、論文の構成は単に「Class 5 と Class 6 を計算した」より、
+
+\[
+\text{local quantum time equation}
+\longrightarrow
+\text{conditional continuum identity}
+\longrightarrow
+\text{Class 5 / Class 6 applications and independent validations}
+\]
+
+と置く方が、実際の内容を正確に表す。ただし、この一般恒等式自体が標準的な symbol calculus と Sutherland relation から比較的短く導けることも事実であり、概念的新規性を過大評価しない。
+
+## 6. 原稿への反映方針
 
 一般式を原稿に入れる場合、Introduction では方法の新規性を広く主張せず、既存の二つの流れを先に認めるべきである。
 
@@ -130,6 +206,6 @@ Class 5 の coherent-state continuum model、Hamiltonian flow、保存量、お�
 
 その上で、「本稿では finite-lattice local time equation を fixed-spin long-wavelength limit へ直接移し、その局所積が continuum time order に残る条件と形を調べる」と課題を限定する。
 
-Section 2 には、Sutherland relation の残差 \(\mathcal B\)、第二モーメント差 \(\Xi\)、一般式を短く導入し、解析的証明の主要部分を示す候補がある。Class 5 / Class 6 の各節は、その一般式の具体化と独立な Hamiltonian / Lax check として再配置できる。XXZ は第三の長い模型節ではなく、一般式の既知模型による control として短く置くのがよい。
+Section 2 には、Sutherland relation の残差 \(\mathcal B\)、第二モーメント差 \(\Xi\)、一般式を導入し、解析的証明の主要部分を示す候補がある。Class 5 / Class 6 の各節は、その一般式の具体化と独立な Hamiltonian / Lax check として再配置できる。Class 5 の classical r-matrix comparison と Class 6 の eleven-vertex comparison を対称的な validation として見せる価値がある。XXZ は第三の長い模型節ではなく、一般式の既知模型による短い control とする。
 
-ただし、paper source の変更は、Class 6 と既知 eleven-vertex classical Lax pair の直接照合、および追加の文献探索を終えてから判断する。研究ノート上では、現時点の一般恒等式とその成立条件を保存してよい。
+この段階では paper source をまだ変更せず、研究ノートと検証コードに結果を固定する。次の原稿改訂では、一般式を Section 2 にどの長さで入れるか、二模型の重複した導出をどこまで圧縮できるかを先に設計し、既存の詳細検算を失わない構成にする。
