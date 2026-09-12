@@ -106,9 +106,9 @@ For neighbouring sites this gives the Taylor expansion
 +\mathcal O(\epsilon^3),
 \label{eq:spin-long-wavelength-expansion}
 \end{equation}
-where the fields on the right-hand side are evaluated at $(x_n,t)$.  The unit
-length constraint in \eqref{eq:continuum-spin-field} implies the useful
-kinematical identities
+where the fields on the right-hand side are evaluated at $(x_n,t)$.
+Differentiating the unit-spin constraint
+$\boldsymbol S^{\mathsf T}\boldsymbol S=1$ gives the kinematical identities
 \begin{equation}
 \boldsymbol S^{\mathsf T}\partial_x\boldsymbol S=0,
 \qquad
@@ -153,6 +153,12 @@ L_{a,n}^{\downarrow}(u)
 \end{equation}
 which is a $2\times2$ matrix acting on the auxiliary space.
 
+After evaluating these symbols on real spin vectors, we extend their
+algebraic expressions to complex spin components satisfying
+$\boldsymbol S^{\mathsf T}\boldsymbol S=1$.  Here $\mathsf T$ denotes the
+transpose.  Scalar and vector products are bilinear on this complexified
+spin space.
+
 The continuum spatial Lax matrix is extracted after the model-dependent
 normalization and spectral scaling have been fixed.  Let $\lambda$ denote the
 \emph{continuum Lax spectral parameter}, to distinguish it from the quantum
@@ -180,11 +186,9 @@ form
 we call the coefficient $U(x,t;\lambda)$ the \emph{continuum spatial Lax
 matrix}.  The choices of $c_L$, of the scaling $u(\epsilon,\lambda)$, and of
 any deformation parameters are part of the model-specific continuum limit;
-they are not fixed by the coherent-state construction alone.
+they are specified separately for the two models.
 
-The lower symbol of a single local operator is therefore straightforward.
-The next step is more delicate because the discrete zero-curvature equation
-\eqref{eq:discrete-zero-curvature} contains products of operators with
-overlapping physical support.  We now determine how such products enter the
-continuum zero-curvature equation.
-
+The discrete zero-curvature equation \eqref{eq:discrete-zero-curvature}
+also contains products of operators with overlapping physical support.
+We next evaluate their lower symbols and determine their contribution to
+the continuum zero-curvature equation.

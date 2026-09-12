@@ -13,7 +13,7 @@ matrices.  The spatial expansion contains a nonzero second-order operator
 coefficient, which must be retained when taking the continuum limit of the
 time component.
 
-\subsection{Quantum Class 6 model and continuum limit}
+\subsection{Quantum Class 6 model and spatial Lax matrix}
 \label{sec:class6-spatial-lax}
 
 Let $\kappa_6\in\mathbb C$ denote the \emph{Class 6 lattice deformation
@@ -96,7 +96,7 @@ equation and
 \begin{equation}
 R_6(0;\kappa_6)=P,
 \qquad
-P\left.\partial_uR_6(u;\kappa_6)\right|_{u=0}
+P\left.\frac{\partial R_6(u;\kappa_6)}{\partial u}\right|_{u=0}
 =h_6(\kappa_6).
 \label{eq:class6-R-regularity-hamiltonian}
 \end{equation}
@@ -107,9 +107,8 @@ R_6(u;\kappa_6)R_6(-u;\kappa_6)
 =(1-4u^2)\Id_4.
 \label{eq:class6-R-inverse-relation}
 \end{equation}
-Thus the inverse required by the finite-lattice time operator exists for
-$u\neq\pm\tfrac12$.  Equation~\eqref{eq:class6-R-inverse-relation} is an
-algebraic inversion relation; it contains no Hermitian conjugation.
+This algebraic inversion relation ensures that the inverse required by
+the finite-lattice time operator exists for $u\neq\pm\tfrac12$.
 
 To fix the continuum scaling, consider the lower symbol of a bond
 Hamiltonian.  The coherent states and the smooth unit spin field
@@ -120,10 +119,9 @@ S^{\pm}:=S^1\pm\ii S^2,
 \qquad S_n^{\pm}:=S^{\pm}(x_n,t).
 \label{eq:class6-spin-pm}
 \end{equation}
-The algebraic expressions below also extend to complex spin components
-subject to $\boldsymbol S^{\mathsf T}\boldsymbol S=1$, with the transpose
-defining a bilinear product.  On this complexified spin space, $S^+$ and
-$S^-$ need not be complex conjugates.
+With the complex extension described in
+Section~\ref{sec:coherent-long-wavelength}, the unit-spin constraint reads
+$S^+S^-+(S^3)^2=1$.
 Direct evaluation of Eq.~\eqref{eq:class6-local-hamiltonian} gives
 \begin{equation}
 h_{6;n,n+1}^{\downarrow}

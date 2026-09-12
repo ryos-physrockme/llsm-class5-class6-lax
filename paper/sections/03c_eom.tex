@@ -143,8 +143,8 @@ with $\partial_t\boldsymbol S$ given by
 therefore supplies the dynamical identification required on the left-hand
 side of the continuum equation \eqref{eq:continuum-zc-with-C}.
 
-We finally test the relation between the corrected Lax pair and the equations
-of motion without imposing the equations of motion in the curvature.  Define
+To establish the off-shell relation between the curvature and the equations
+of motion, we treat the time derivatives as independent variables and define
 the three equation-of-motion residuals
 \begin{align}
 E_+
@@ -176,7 +176,7 @@ S^-\partial_x^2S^+
 \label{eq:class5-residual-three}
 \end{align}
 The curvature of the matrices $U_5$ and $V_5$ in
-\eqref{eq:class5-spatial-Lax} and \eqref{eq:class5-time-Lax-final} is
+\eqref{eq:class5-spatial-Lax} and \eqref{eq:class5-time-Lax-compact} is
 \begin{equation}
 F^{(5)}_{tx}
 :=
@@ -200,16 +200,17 @@ E_+
 \label{eq:class5-offshell-factorization}
 \end{equation}
 For $\lambda\neq0$, the residuals are recovered from the curvature entries by
-\begin{equation}
-E_+=4\lambda F^{(5)}_{21},
+\begin{align}
+E_+&=4\lambda\bigl(F^{(5)}_{tx}\bigr)_{21},
 \qquad
-E_3=-4\lambda F^{(5)}_{22},
-\qquad
-E_-=4\lambda\left(
-F^{(5)}_{12}-2\alpha_5\lambda F^{(5)}_{22}
+E_3=-4\lambda\bigl(F^{(5)}_{tx}\bigr)_{22},
+\nonumber\\
+E_-&=4\lambda\left(
+\bigl(F^{(5)}_{tx}\bigr)_{12}
+-2\alpha_5\lambda\bigl(F^{(5)}_{tx}\bigr)_{22}
 \right).
 \label{eq:class5-residuals-from-curvature}
-\end{equation}
+\end{align}
 Hence the zero-curvature condition $F^{(5)}_{tx}=0$ is equivalent to the
 three continuum equations of motion
 \eqref{eq:class5-eom-plus}--\eqref{eq:class5-eom-three}.
@@ -229,4 +230,3 @@ the Class 5 continuum equation used in
 Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.  The reflection of the second
 spin axis conjugates $M_5$ by $\operatorname{diag}(1,-1,1)$, yielding the
 deformation matrix used there.
-

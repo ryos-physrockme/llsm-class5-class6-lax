@@ -101,6 +101,9 @@ Appendices
   two-site deformation operator, and `L_6^(j)` denotes the coefficient of
   `ε^j` in the normalized lattice spatial operator.
 - Repeated Cartesian indices are summed once this convention has been declared.
+- The Class 5 two-site deformation operator is `K_5`, corresponding to `K`
+  in the Class 5 scripts and research note. Model subscripts are also retained
+  on `A^(j)` and the overlapping-product differences in both model sections.
 - Symbols are introduced only after their physical meaning has been stated.
 
 ## Authoring rules

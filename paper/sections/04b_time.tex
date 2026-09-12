@@ -64,9 +64,9 @@ A^{(2)}_{6;a,n}
 \end{align}
 The deformation of the bond Hamiltonian first contributes explicitly at
 order $\epsilon^3$, since its commutator with the leading identity in
-$\widehat L_6$ vanishes.  The coefficients in
-Eqs.~\eqref{eq:class6-A1} and \eqref{eq:class6-A2} nevertheless depend on
-$\alpha_6$ through $L_6^{(1)}$ and $L_6^{(2)}$.
+$\widehat L_6$ vanishes.  The dependence on $\alpha_6$ in
+Eqs.~\eqref{eq:class6-A1} and \eqref{eq:class6-A2} enters through
+$L_6^{(1)}$ and $L_6^{(2)}$.
 
 Taking the lower symbol on the two physical sites gives
 \begin{equation}
@@ -143,23 +143,14 @@ factor on the left and the time factor at $n$, supported on $n-1,n$.
 Terms involving the third time coefficient cancel within each difference,
 because they multiply the leading identity in $\widehat L_6$.
 The coefficient $L_6^{(3)}$ first enters these differences at order
-$\epsilon^4$.  Thus the displayed coefficients suffice for the continuum
-source, but the products involving $L_6^{(2)}$ must be retained.
+$\epsilon^4$.  The continuum source therefore requires the products
+displayed in Eq.~\eqref{eq:class6-overlapping-product-expansion}, including
+those involving $L_6^{(2)}$.
 
 At coincident spins, the order-$\epsilon^2$ terms cancel between
 $\widehat{\mathcal D}^{(+)}_{6;a,n}$ and
-$\widehat{\mathcal D}^{(-)}_{6;a,n}$.  Expanding their spin arguments to
-first order, and evaluating the order-$\epsilon^3$ products at coincident
-spins, yields
-\begin{equation}
-\mathcal C_6
-:=\lim_{\epsilon\to0}\epsilon^{-3}
-\left(\widehat{\mathcal D}^{(+)}_{6;a,n}
--\widehat{\mathcal D}^{(-)}_{6;a,n}\right)
-=2\ii\bigl(\partial_x\Xi_6+[\Xi_6,U_6]\bigr).
-\label{eq:class6-shared-site-correction}
-\end{equation}
-Here $\Xi_6$ is the difference between the lower symbol of the square of
+$\widehat{\mathcal D}^{(-)}_{6;a,n}$.  To express the surviving contribution,
+define $\Xi_6$ as the difference between the lower symbol of the square of
 the first spatial coefficient and the square of its lower symbol:
 \begin{align}
 \Xi_6
@@ -179,9 +170,19 @@ In particular, Eq.~\eqref{eq:class6-K-lower-symbols} gives
 \end{pmatrix}.
 \label{eq:class6-second-spatial-lower-symbol}
 \end{equation}
-The calculation of Eq.~\eqref{eq:class6-shared-site-correction} uses only
-the unit-spin constraint and its spatial derivative.  It does not assume
-an equation of motion.
+Expanding the spin arguments of the order-$\epsilon^2$ terms to first
+order, and evaluating the order-$\epsilon^3$ products at coincident spins,
+yields
+\begin{equation}
+\mathcal C_6
+:=\lim_{\epsilon\to0}\epsilon^{-3}
+\left(\widehat{\mathcal D}^{(+)}_{6;a,n}
+-\widehat{\mathcal D}^{(-)}_{6;a,n}\right)
+=2\ii\bigl(\partial_x\Xi_6+[\Xi_6,U_6]\bigr).
+\label{eq:class6-shared-site-correction}
+\end{equation}
+This calculation uses the unit-spin constraint and its spatial derivative
+and holds for arbitrary time dependence of the spin.
 
 The local time correction
 \begin{align}
@@ -226,8 +227,8 @@ V_6:=V_6^\downarrow+\Delta V_6
 \label{eq:class6-time-Lax-compact}
 \end{equation}
 
-For an explicit component form, write $S_x^a:=\partial_x S^a$ for
-$a\in\{+,-,3\}$.  The entries of $V_6$ are
+We write $V_6(x,t;\lambda)=\bigl((V_6)_{rs}\bigr)_{r,s=1}^{2}$ and
+$S_x^a:=\partial_x S^a$ for $a\in\{+,-,3\}$.  The matrix elements are
 \begin{align}
 (V_6)_{11}
 ={}&\frac{\ii}{4\lambda^2}\Bigl[
@@ -269,8 +270,8 @@ the source.  Expanding Eq.~\eqref{eq:class6-shared-site-correction} gives
 +4\ii\left[\bigl(L_6^{(2)}\bigr)^\downarrow,U_6\right].
 \label{eq:class6-source-expanded}
 \end{equation}
-For example, at a spatially uniform configuration
-$\boldsymbol S=(0,0,1)^{\mathsf T}$,
+At a fixed time, consider the spatially uniform spin configuration
+$\boldsymbol S=(0,0,1)^{\mathsf T}$.  Then
 \begin{equation}
 U_6=\begin{pmatrix}
 1/(2\lambda)&\alpha_6\lambda\\
@@ -283,17 +284,13 @@ U_6=\begin{pmatrix}
 \end{pmatrix}.
 \label{eq:class6-uniform-source}
 \end{equation}
-This is an instantaneous spatial configuration, not an assumption of
-stationary time evolution.  Its source is nonzero for $\alpha_6\ne0$.
+The source is nonzero for $\alpha_6\ne0$.
 Omitting the term involving $L_6^{(2)}$ from
 Eq.~\eqref{eq:class6-DeltaV} would leave a polynomial in $U_6$, whose
 spatial derivative and commutator with $U_6$ both vanish in this example.
 The total-derivative correction sufficient for Class 5 therefore fails
 for Class 6.
 
-Equations~\eqref{eq:class6-Vdown-direct} and
-\eqref{eq:class6-DeltaV-absorbs-C} establish the time matrix and the local
-absorption of the contribution from overlapping products.  In
-Section~\ref{sec:class6-eom} we derive the Hamiltonian equations
+In Section~\ref{sec:class6-eom} we derive the Hamiltonian equations
 independently and establish their off-shell equivalence to the
 zero-curvature equation for $(U_6,V_6)$.
