@@ -1,107 +1,225 @@
 \section{Class 5 の量子 Lax 作用素の規格化と既知の古典 Lax 表現との対応}
 \label{sec:class5-lax-correspondence}
 
-本節では、de Leeuw--Fontanella--Nieto Garc\'ia の Class 5 スピン鎖\cite{DFN2026}と、Kameyama--Yoshida の null-like warped $SL(2)$ Landau--Lifshitz 模型\cite{KY2014}を比較する。前者の量子 $L$ 作用素の印刷式を、量子 $R$ 行列の分解と同じ規格化で再構成する。その後、固定 spin-$\tfrac12$ の長波長極限から得られる空間・時間 Lax 行列を、後者の既知の組に明示的に対応させる。
+本節では、de Leeuw--Fontanella--Nieto Garc\'ia の Class 5 スピン鎖\cite{DFN2026}と、Kameyama--Yoshida の null-like warped $SL(2)$ Landau--Lifshitz 模型\cite{KY2014}を比較する。比較の途中で文献固有の記号だけを突然持ち込まないように、まず各文献で模型を定義している式とパラメータを示し、その後に本ノートの記号へ変換する。前半では Class 5 の量子 $R$ 行列から出発して量子 $L$ 作用素と連続空間 Lax 行列 $U_5$ の関係を確認する。後半では Kameyama--Yoshida の作用、運動方程式、既知 Lax pair を示したうえで、本ノートの $U_5,V_5$ との局所的な対応を与える。
 
-文献入力は、\href{https://arxiv.org/abs/2506.13598v2}{arXiv:2506.13598v2} の式 (1.1), (1.8), (1.11), (1.12), (2.23) と、\href{https://arxiv.org/abs/1405.4467v2}{arXiv:1405.4467v2} の式 (4.3), (4.7), (4.8), (A.1), (A.4) である。以下に示す量子作用素の再構成、規約変換およびゲージ行列は、本節で固定する規約による計算結果であり、原著者による訂正の公表を意味しない。また、印刷式を未展開のまま古典接続とみなす操作と、格子作用素を単位行列の周りで長波長展開する操作を区別する。
+文献入力は、\href{https://arxiv.org/abs/2506.13598v2}{arXiv:2506.13598v2} の式 (1.1), (1.3), (1.5), (1.8)--(1.12), (2.12)--(2.16), (2.23) と、\href{https://arxiv.org/abs/1405.4467v2}{arXiv:1405.4467v2} の式 (4.1)--(4.9), (A.1), (A.4) である。以下に示す量子作用素の再構成、規約変換およびゲージ行列は、本節で固定する規約による計算結果であり、原著者による訂正の公表を意味しない。また、印刷された量子 $L$ 作用素そのものの比較と、長波長展開で得られる連続空間接続の比較を区別する。
 
-\subsection{量子鎖と連続理論の規約}
+\subsection{de Leeuw--Fontanella--Nieto Garc\'ia の Class 5 $R$ 行列から本ノートの規約まで}
 
-量子スペクトルパラメータを $u$、格子変形パラメータを $\kappa_5$ とする。補助空間と各物理格子点の空間はいずれも $\mathbb C^2$ であり、二空間の順序付き基底を
-$\{|\!\uparrow\uparrow\rangle,|\!\uparrow\downarrow\rangle,|\!\downarrow\uparrow\rangle,|\!\downarrow\downarrow\rangle\}$ とする。本節で Class 5 と呼ぶ鎖の基本 $R$ 行列と二格子点 Hamiltonian は
-\begin{align}
-R_5(u;\kappa_5)
-&=\begin{pmatrix}
+まず比較元の量子模型を定義する。文献\cite{DFN2026}の Class 5 $R$ 行列は、量子スペクトルパラメータ $u$ と三つの定数 $a_1,a_2,a_3$ を用いて
+\begin{equation}
+R^{\rm DFN}_5(u;a_1,a_2,a_3)=
+\begin{pmatrix}
+1+2a_1u&a_2u&-a_2u&a_2a_3u^2\\
+0&2a_1u&1&-a_3u\\
+0&1&2a_1u&a_3u\\
+0&0&0&1+2a_1u
+\end{pmatrix}
+\label{eq:c5corr-DFN-R-general}
+\end{equation}
+で定義される。二空間の基底順序は
+\begin{equation}
+\{|\!\uparrow\uparrow\rangle,|\!\uparrow\downarrow\rangle,
+|\!\downarrow\uparrow\rangle,|\!\downarrow\downarrow\rangle\}
+\label{eq:c5corr-basis}
+\end{equation}
+とする。$a_1$ はスペクトルパラメータと $a_2,a_3$ の再規格化で除けるため、同文献は以後 $a_1=1$ としている。また、$a_3$ はスペクトルパラメータに依存する局所基底変換で移せる。同文献の式 (1.3) は
+\begin{equation}
+V(u)=\begin{pmatrix}1&a_3u\\0&1\end{pmatrix}
+\label{eq:c5corr-DFN-basis-change}
+\end{equation}
+を用いて $a_3=0$ の表示へ移れることを示している。
+
+$a_1=1$ としたとき、対応する二格子点 Hamiltonian は
+\begin{equation}
+h^{\rm DFN}_5(a_2,a_3)=
+\begin{pmatrix}
+2&a_2&-a_2&0\\
+0&0&2&a_3\\
+0&2&0&-a_3\\
+0&0&0&2
+\end{pmatrix}.
+\label{eq:c5corr-DFN-h}
+\end{equation}
+周期鎖では、同文献が
+\begin{equation}
+a_{\rm DFN}:=\frac{a_2+a_3}{2},
+\qquad
+b_{\rm DFN}:=\frac{a_2-a_3}{2}
+\label{eq:c5corr-DFN-ab}
+\end{equation}
+と置いたとき、$b_{\rm DFN}$ に比例する Hamiltonian の寄与は周期和で消える。したがって周期系の局所力学に残る一つの変形パラメータは $a_{\rm DFN}$ である。同文献の連続極限では、格子間隔を $\epsilon$ として
+\begin{equation}
+a_{\rm DFN}=\epsilon\alpha_{\rm DFN}
+\label{eq:c5corr-DFN-scaling}
+\end{equation}
+と rescale している。
+
+本ノートでは、量子 $R$ 行列を比較するときに $a_1=1$, $a_3=0$ の表示を採用する。この表示では
+\begin{equation}
+a_{\rm DFN}=\frac{a_2}{2}.
+\end{equation}
+本ノートの Class 5 格子変形パラメータ $\kappa_5$ と連続変形結合 $\alpha_5$ を
+\begin{equation}
+\kappa_5:=a_{\rm DFN}=\frac{a_2}{2},
+\qquad
+a_2=2\kappa_5,
+\qquad
+\kappa_5=\epsilon\alpha_5
+\label{eq:c5corr-parameter-dictionary}
+\end{equation}
+で定義する。従って、この量子 $R$ 行列の表示では $\alpha_5=\alpha_{\rm DFN}$ である。後で場の基底や時間を変換するときに生じる符号・規格化の変更とは区別する。
+
+式\eqref{eq:c5corr-DFN-R-general}に式\eqref{eq:c5corr-parameter-dictionary}を代入すると、本ノートで用いる基本 $R$ 行列
+\begin{equation}
+R_5(u;\kappa_5)=
+\begin{pmatrix}
 1+2u&2\kappa_5u&-2\kappa_5u&0\\
 0&2u&1&0\\
 0&1&2u&0\\
 0&0&0&1+2u
-\end{pmatrix},
-\label{eq:c5corr-R}\\
-h_5(\kappa_5)&=P\,\partial_uR_5(u;\kappa_5)\big|_{u=0},
-\qquad
-P=\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{pmatrix}.
-\label{eq:c5corr-h}
-\end{align}
-$P$ は二空間を交換する作用素である。周期鎖の Hamiltonian は $H^{\rm lat}_5=\sum_n h_{5;n,n+1}$ とし、格子時間 $t_{\rm lat}$ に対して $\partial_{t_{\rm lat}}\mathcal O=\ii[H^{\rm lat}_5,\mathcal O]$ を用いる。
-
-格子間隔を $\epsilon$、連続変形結合を $\alpha_5$、連続スペクトルパラメータを $\lambda\ne0$ とする。長波長極限は
+\end{pmatrix}
+\label{eq:c5corr-R}
+\end{equation}
+を得る。同様に、式\eqref{eq:c5corr-DFN-h}は
 \begin{equation}
-\kappa_5=\epsilon\alpha_5,
-\qquad u=\frac{\lambda}{\epsilon},
+h_5(\kappa_5)=
+\begin{pmatrix}
+2&2\kappa_5&-2\kappa_5&0\\
+0&0&2&0\\
+0&2&0&0\\
+0&0&0&2
+\end{pmatrix}
+=P\,\partial_uR_5(u;\kappa_5)\big|_{u=0},
+\qquad
+P=\begin{pmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{pmatrix}
+\label{eq:c5corr-h}
+\end{equation}
+となる。$P$ は二空間を交換する作用素である。周期鎖の Hamiltonian は $H^{\rm lat}_5=\sum_nh_{5;n,n+1}$ とし、格子時間 $t_{\rm lat}$ に対して $\partial_{t_{\rm lat}}\mathcal O=\ii[H^{\rm lat}_5,\mathcal O]$ を用いる。
+
+長波長極限では、連続スペクトルパラメータを $\lambda\ne0$、連続時間を $t$ として
+\begin{equation}
+u=\frac{\lambda}{\epsilon},
 \qquad x_n=n\epsilon,
 \qquad t=\epsilon^2t_{\rm lat}
 \label{eq:c5corr-scaling}
 \end{equation}
-で定める。Pauli 行列 $\sigma^1,\sigma^2,\sigma^3$ は標準的な表示を用い、古典スピンとその横成分を
+とする。古典スピンとその横成分を
 \begin{equation}
 \boldsymbol S=(S^1,S^2,S^3)^{\mathsf T},
 \qquad \boldsymbol S^{\mathsf T}\boldsymbol S=1,
 \qquad S^\pm=S^1\pm\ii S^2
 \label{eq:c5corr-spin}
 \end{equation}
-とする。ベクトルの内積・外積は複素双線形に拡張し、複素共役は含めない。$S_x^i=\partial_xS^i$、$S_{xx}^i=\partial_x^2S^i$ と書き、繰り返す Cartesian 添字 $i=1,2,3$ は和を取る。
+と定義する。ベクトルの内積・外積は複素双線形に拡張し、複素共役は含めない。$S_x^i=\partial_xS^i$、$S_{xx}^i=\partial_x^2S^i$ と書き、繰り返す Cartesian 添字 $i=1,2,3$ は和を取る。
 
-spin-$\tfrac12$ では物理スピン生成子は $s^i=\sigma^i/2$ であり、coherent state の単位スピンは $\langle s^i\rangle=S^i/2$ を満たす。物理空間だけの期待値、すなわち lower symbol を上付き $\downarrow$ で表す。その密度行列は実球面上で $\rho=(\mathbf1_2+S^i\sigma^i)/2$ であり、複素化後も $\rho^2=\rho$, $\tr\rho=1$ を代数的に用いる。
+\subsection{Class 5 $R$ 行列の twist 分解と量子 $L$ 作用素}
 
-本節で比較する連続 Lax 行列は
-\begin{align}
-U_5(\boldsymbol S;\lambda)
-&=\frac1{4\lambda}
-\begin{pmatrix}
-1+S^3+2\alpha_5\lambda S^+&S^--2\alpha_5\lambda(1+S^3)\\
-S^+&1-S^3
-\end{pmatrix},
-\label{eq:c5corr-U}\\
-V_5(\boldsymbol S,\boldsymbol S_x;\lambda)
-&=-2(\boldsymbol S\times\boldsymbol S_x)^i
-\frac{\partial U_5}{\partial S^i}
-+2\ii U_5^2-\frac{\ii}{4\lambda^2}\mathbf1_2.
-\label{eq:c5corr-V}
-\end{align}
-Cartesian 微分 $\partial U_5/\partial S^i$ はスピン制約を代入する前に取る。補助線形問題を $\partial_x\Psi=U_5\Psi$, $\partial_t\Psi=V_5\Psi$ とするので、曲率は $F_{tx}=\partial_tU_5-\partial_xV_5+[U_5,V_5]$ である。変形を表す三次元行列と対応する運動方程式は
+量子 $L$ 作用素の依存関係を明確にするため、まず文献\cite{DFN2026}の式 (1.8) を書く。$a_1=1$, $a_3=0$ では
 \begin{equation}
-M_5=\begin{pmatrix}0&0&-1\\0&0&-\ii\\1&\ii&0\end{pmatrix},
-\qquad
-\partial_t\boldsymbol S=-2\boldsymbol S\times
-(\boldsymbol S_{xx}+\alpha_5M_5\boldsymbol S_x).
-\label{eq:c5corr-eom}
+R^{\rm DFN}_5(u;1,a_2,0)
+=
+\begin{pmatrix}
+1&a_2/2&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1
+\end{pmatrix}
+R_{\rm XXX}(u)
+\begin{pmatrix}
+1&0&-a_2/2&0\\0&1&0&0\\0&0&1&0\\0&0&0&1
+\end{pmatrix},
+\label{eq:c5corr-R-factorization}
 \end{equation}
-$M_5$ はスピン空間の変形行列であり、時間 Lax 行列 $V_5$ とは異なる。
+ただし
+\begin{equation}
+R_{\rm XXX}(u)=
+\begin{pmatrix}
+1+2u&0&0&0\\
+0&2u&1&0\\
+0&1&2u&0\\
+0&0&0&1+2u
+\end{pmatrix}
+\label{eq:c5corr-Rxxx}
+\end{equation}
+は本節の規格化における XXX $R$ 行列である。文献では、この分解を
+\begin{equation}
+R^{\rm DFN}_5(u;1,a_2,0)=F_{21}R_{\rm XXX}(u)F_{12}^{-1},
+\qquad
+F=\mathbf1\otimes\mathbf1+rac{a_2}{2}s^+\otimes
+\left(\frac12\mathbf1+s^z\right)
+\label{eq:c5corr-twist-F}
+\end{equation}
+と書き、$F$ を Jordanian Drinfeld twist としている。
 
-\subsection{量子 Lax 作用素の再構成と印刷式との相違}
-
-文献\cite{DFN2026}の量子 $R$ 行列の二つの変形係数を $a_2,a_3$ とする。$a_3=0$ の一パラメータ表示で式 (1.8) の三角行列に現れる係数は $a_2/2$ である。したがって twist の係数を
+ここで、物理空間の $su(2)$ 生成子 $s^z,s^\pm$ は
+\begin{equation}
+[s^z,s^\pm]=\pm s^\pm,
+\qquad [s^+,s^-]=2s^z
+\label{eq:c5corr-su2}
+\end{equation}
+を満たすものとし、
+\begin{equation}
+s^{11}:=\frac12\mathbf1+s^z,
+\qquad s^{22}:=\frac12\mathbf1-s^z
+\label{eq:c5corr-s11}
+\end{equation}
+と定義する。式\eqref{eq:c5corr-parameter-dictionary}に従って twist 係数を
 \begin{equation}
 \vartheta:=\frac{a_2}{2}=\kappa_5
 \label{eq:c5corr-theta}
 \end{equation}
-と定める。物理スピン生成子 $s^z,s^\pm$ は $[s^z,s^\pm]=\pm s^\pm$, $[s^+,s^-]=2s^z$ を満たすとし、
-\begin{equation}
-s^{11}:=\tfrac12\mathbf1+s^z,
-\qquad s^{22}:=\tfrac12\mathbf1-s^z
-\label{eq:c5corr-s11}
-\end{equation}
-と書く。各ブロックを物理空間の作用素とする積
-\begin{equation}
-L_{\rm tw}(u)=
+と書く。
+
+XXX の補助空間を二次元基本表現、物理空間を一般の $su(2)$ 表現としたとき、twist 分解から得られる量子 $L$ 作用素を $L_{\rm tw}(u)$ とする。各成分が物理空間上の作用素である $2\times2$ ブロック行列として、積を先に表示すると
+\begin{align}
+L_{\rm tw}(u)
+&=
 \begin{pmatrix}\mathbf1+\vartheta s^+&0\\0&\mathbf1\end{pmatrix}
 \begin{pmatrix}2u\mathbf1+s^{11}&s^-\\s^+&2u\mathbf1+s^{22}\end{pmatrix}
 \begin{pmatrix}\mathbf1&-\vartheta s^{11}\\0&\mathbf1\end{pmatrix}
+\nonumber\\[1mm]
+&=
+\begin{pmatrix}
+(\mathbf1+\vartheta s^+)(2u\mathbf1+s^{11})
+&
+(\mathbf1+\vartheta s^+)
+\left[s^--\vartheta(2u\mathbf1+s^{11})s^{11}\right]
+\\[1mm]
+s^+
+&
+2u\mathbf1+s^{22}-\vartheta s^+s^{11}
+\end{pmatrix}.
 \label{eq:c5corr-Lproduct}
-\end{equation}
-は、同文献の式 (1.8), (1.11) と基本表現で整合する再構成である。非可換な作用素の積の順序は表示どおりに取る。その右上成分は
-\begin{equation}
-(L_{\rm tw})_{12}
-=(\mathbf1+\vartheta s^+)
-\left[s^--\vartheta(2u\mathbf1+s^{11})s^{11}\right].
-\label{eq:c5corr-L12}
-\end{equation}
-印刷された式 (1.12) との相違は、変形係数 $a_2$ を $\vartheta=a_2/2$ とする点と、右上成分の最後の括弧内の $s^+$ が積\eqref{eq:c5corr-Lproduct}では $s^-$ となる点である。後者は昇降作用素の違いであり、全体の規格化だけでは解消しない。
+\end{align}
+二行目が三つの行列を実際に掛けた結果である。従って、この式だけから右上成分に現れる昇降作用素と係数を追える。
 
-基本表現 $s^+=E_{12}$, $s^-=E_{21}$, $s^{11}=\operatorname{diag}(1,0)$, $s^{22}=\operatorname{diag}(0,1)$ を用いる。ここで $E_{ab}$ は $(a,b)$ 成分だけが $1$ の二次元行列単位である。このとき積を取れば
+比較のため、文献\cite{DFN2026}の印刷された式 (1.12) を、本節の記号を保ったまま書くと
 \begin{equation}
-L_{\rm tw}(u)\big|_{s=1/2}=R_5(u;\vartheta)
+L_{\rm print}(u)=
+\begin{pmatrix}
+(\mathbf1+a_2s^+)(2u\mathbf1+s^{11})
+&
+s^--a_2(2u\mathbf1+s^{11})s^{11}
++a_2s^+\left[s^+-a_2(2u\mathbf1+s^{11})s^{11}\right]
+\\[1mm]
+s^+
+&
+2u\mathbf1+s^{22}-a_2s^+s^{11}
+\end{pmatrix}.
+\label{eq:c5corr-Lprint}
+\end{equation}
+式\eqref{eq:c5corr-Lproduct}との相違は二つある。第一に、twist 分解\eqref{eq:c5corr-R-factorization}, \eqref{eq:c5corr-twist-F}から得られる係数は $a_2/2=\vartheta$ であるのに対し、式\eqref{eq:c5corr-Lprint}には $a_2$ が現れる。第二に、右上成分の最後の括弧では、式\eqref{eq:c5corr-Lproduct}には $s^-$ が現れるのに対し、式\eqref{eq:c5corr-Lprint}には $s^+$ が現れる。後者は単なる全体規格化では解消しない。本ノートでは、原著者が訂正を公表したとは主張せず、twist の定義式と基本 $R$ 行列に内部整合する式\eqref{eq:c5corr-Lproduct}を比較に用いる。
+
+基本表現では
+\begin{equation}
+s^+=E_{12},
+\qquad s^-=E_{21},
+\qquad s^{11}=\operatorname{diag}(1,0),
+\qquad s^{22}=\operatorname{diag}(0,1),
+\label{eq:c5corr-fundamental-spin}
+\end{equation}
+である。ここで $E_{ab}$ は $(a,b)$ 成分だけが $1$ の二次元行列単位である。このとき式\eqref{eq:c5corr-Lproduct}を掛けると
+\begin{equation}
+L_{\rm tw}(u)\big|_{s=1/2}=R_5(u;\vartheta)=R_5(u;\kappa_5)
 \label{eq:c5corr-fundamental-equality}
 \end{equation}
 が全成分で成立する。また、二つの補助空間を $1,2$、物理空間を $q$、第二の量子スペクトルパラメータを $v$ とすると、
@@ -112,77 +230,204 @@ R_{5;12}(u-v;\vartheta)L_{{\rm tw};1q}(u)L_{{\rm tw};2q}(v)
 \end{equation}
 を spin-$\tfrac12$ と spin-$1$ の両方で記号計算により確認した。この二表現での検算を、任意表現に対する普遍 twist の証明と同一視しない。
 
-式\eqref{eq:c5corr-scaling}に $\vartheta=\epsilon\alpha_5$ を代入し、基本表現の lower symbol を取ると、
+\subsection{coherent-state 規格化と連続空間 Lax 行列}
+
+文献\cite{DFN2026}は section 2 の冒頭で spin-$\tfrac12$ 表現を
 \begin{equation}
-\frac{L_{\rm tw}^{\downarrow}}{2u}
-=\mathbf1_2+\epsilon U_5
+s^i=\frac12\sigma^i
+\label{eq:c5corr-spinhalf}
+\end{equation}
+とし、同文献の式 (2.14) では古典 spin density を
+\begin{equation}
+\boldsymbol S_{\rm DFN}
+=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)^{\mathsf T},
+\qquad
+\boldsymbol S_{\rm DFN}^{\mathsf T}\boldsymbol S_{\rm DFN}=1
+\label{eq:c5corr-DFN-classical-spin}
+\end{equation}
+と定義している。この二つの式を同時に採用すれば、spin-$\tfrac12$ coherent state に対して
+\begin{equation}
+\langle s^i\rangle=\frac12S_{\rm DFN}^i
+\label{eq:c5corr-coherent-expectation}
+\end{equation}
+である。一方、同文献の式 (2.23) には $\langle s^i\rangle=S_{\rm DFN}^i$ と印刷されている。従って、式 (2.23) は同論文の式 (2.14) と $s^i=\sigma^i/2$ の規格化を同時に用いる限り factor $2$ が整合しない。本ノートでは式\eqref{eq:c5corr-coherent-expectation}を用いる。この点も原著者が訂正を公表したという意味ではなく、比較に用いる規格化を明示しているだけである。
+
+本ノートのスピン $\boldsymbol S$ は式\eqref{eq:c5corr-DFN-classical-spin}と同じ単位長さの規格化を用いる。物理空間だけの期待値、すなわち lower symbol を上付き $\downarrow$ で表す。密度行列は
+\begin{equation}
+\rho(\boldsymbol S)=\frac12(\mathbf1_2+S^i\sigma^i),
+\qquad \rho^2=\rho,
+\qquad \tr\rho=1
+\label{eq:c5corr-rho}
+\end{equation}
+である。複素化後も後二式を代数的に用いる。
+
+式\eqref{eq:c5corr-scaling}と $\vartheta=\kappa_5=\epsilon\alpha_5$ を式\eqref{eq:c5corr-Lproduct}の基本表現へ代入する。規格化した量子空間作用素を
+\begin{equation}
+\widehat L_{5;a,n}:=\frac{L_{{\rm tw};a,n}}{2u}
+\label{eq:c5corr-Lhat}
+\end{equation}
+とすると、その lower symbol は厳密に
+\begin{equation}
+\widehat L_{5;a,n}^{\downarrow}
+=\mathbf1_2+\epsilon U_5(x_n,t;\lambda)
 \label{eq:c5corr-exact-symbol}
 \end{equation}
-となる。これは基本表現では厳密な等式である。したがって、この規格化で得られる連続空間接続は式\eqref{eq:c5corr-U}と一致する。
+となる。ここで本ノートの連続空間 Lax 行列は
+\begin{equation}
+U_5(\boldsymbol S;\lambda)
+=\frac1{4\lambda}
+\begin{pmatrix}
+1+S^3+2\alpha_5\lambda S^+
+&
+S^--2\alpha_5\lambda(1+S^3)
+\\
+S^+&1-S^3
+\end{pmatrix}.
+\label{eq:c5corr-U}
+\end{equation}
+従って、式\eqref{eq:c5corr-parameter-dictionary}と式\eqref{eq:c5corr-coherent-expectation}で規格化を固定し、twist 分解から得た量子 $L$ 作用素を使えば、本ノートの $U_5$ は Class 5 量子 $R$ 行列の長波長極限として直接得られる。
 
-比較の範囲を明確にするため、印刷式 (1.12) の係数だけを $a_2/2$ に変更し、右上成分の昇降作用素は変更しないものを $L_{\rm coef}$ と定義する。基本表現で同じ展開をすると
+印刷式との違いが連続極限のどの次数に現れるかも分けておく。式\eqref{eq:c5corr-Lprint}の係数だけを $a_2/2$ に変更し、右上成分の $s^+$ はそのまま残した作用素を $L_{\rm coef}$ と定義する。この基本表現の lower symbol は
 \begin{equation}
 \frac{L_{\rm coef}^{\downarrow}}{2u}
 -\left(\mathbf1_2+\epsilon U_5\right)
 =-\frac{\epsilon^2\alpha_5(1+S^3)}{4\lambda}E_{12}.
 \label{eq:c5corr-subleading-difference}
 \end{equation}
-すなわち、係数と $\langle s^i\rangle=S^i/2$ の規格化だけを整合させても、空間接続を決める $\epsilon$ 一次の項は一致する。昇降作用素の相違はこの極限では二次に現れるが、量子作用素全体の同一視では無視できない。
+従って係数の規格化だけを直した場合でも、連続空間接続を決める $\epsilon$ 一次の項は一致する。右上成分の昇降作用素の相違はこの基本表現の長波長展開では二次に現れるが、量子作用素全体の同一視では無視できない。
 
-係数 $a_2$ も印刷どおりに保持した場合、$\epsilon$ 一次の項を $U_{\rm print}$ と書くと
+逆に、式\eqref{eq:c5corr-Lprint}の係数 $a_2$ を印刷どおりに保つと、$\epsilon$ 一次の係数 $U_{\rm print}$ は
 \begin{equation}
 U_{\rm print}-U_5
 =\frac{\alpha_5}{2}
 \begin{pmatrix}S^+&-(1+S^3)\\0&0\end{pmatrix}.
 \label{eq:c5corr-leading-difference}
 \end{equation}
-この差は変形部分の係数が二倍になることを表す。以上により、印刷式との不一致、規格化した長波長極限での一致、量子作用素全体の一致は、それぞれ異なる主張として整理できる。文献\cite{DFN2026}の式 (2.23) によるスピン置換も、単位スピン\eqref{eq:c5corr-spin}と $s^i=\sigma^i/2$ を使う場合には $\langle s^i\rangle=S^i/2$ として読む必要がある。
+従って、印刷式そのもの、係数だけを整合させた式、twist 分解から再構成した量子作用素の三つを区別する必要がある。
 
-\subsection{Kameyama--Yoshida の場と Lax 行列}
-
-文献\cite{KY2014}第4.1節の場を $n^0,n^1,n^2$ とし、
+本ノートで量子格子の時間作用素から得た時間 Lax 行列は
 \begin{equation}
-(n^0)^2-(n^1)^2-(n^2)^2=1,
-\qquad n^\pm:=\frac{n^0\pm n^1}{\sqrt2}
+V_5(\boldsymbol S,\boldsymbol S_x;\lambda)
+=-2(\boldsymbol S\times\boldsymbol S_x)^i
+\frac{\partial U_5}{\partial S^i}
++2\ii U_5^2-\frac{\ii}{4\lambda^2}\mathbf1_2.
+\label{eq:c5corr-V}
+\end{equation}
+Cartesian 微分 $\partial U_5/\partial S^i$ はスピン制約を代入する前に取る。補助線形問題を $\partial_x\Psi=U_5\Psi$, $\partial_t\Psi=V_5\Psi$ とするので、曲率は $F_{tx}=\partial_tU_5-\partial_xV_5+[U_5,V_5]$ である。本ノートの Hamiltonian 規約では、変形行列と運動方程式は
+\begin{equation}
+M_5=\begin{pmatrix}0&0&-1\\0&0&-\ii\\1&\ii&0\end{pmatrix},
+\qquad
+\partial_t\boldsymbol S=-2\boldsymbol S\times
+(\boldsymbol S_{xx}+\alpha_5M_5\boldsymbol S_x).
+\label{eq:c5corr-eom}
+\end{equation}
+$M_5$ は三次元スピン空間の定数行列であり、二次元補助空間の時間 Lax 行列 $V_5$ とは異なる。
+
+\subsection{Kameyama--Yoshida の null-like warped $SL(2)$ Landau--Lifshitz 模型}
+
+次に比較先の古典模型を、その作用から定義する。文献\cite{KY2014}の section 4.1 では、二つの実場 $\rho(t_K,x)$, $\psi(t_K,x)$ に対して null-like warped $SL(2)$ Landau--Lifshitz 模型の作用を
+\begin{align}
+S_K=\frac{L_K}{2}\int dt_K\,dx\Bigg[&
+-\frac{C_K}{2}\bigl(\cosh\rho+\sin\psi\,\sinh\rho\bigr)^2
++(\cosh\rho-1)\,\partial_{t_K}\psi
+\nonumber\\
+&-\frac{\Lambda_K}{16\pi^2L_K^2}
+\left\{(\partial_x\rho)^2+\sinh^2\rho\,(\partial_x\psi)^2\right\}
+\Bigg]
+\label{eq:c5corr-K-action}
+\end{align}
+と書いている。本節では文献中の $L$ を $L_K$、同文献中で $\lambda$ と書かれる作用の結合を $\Lambda_K$ と改名した。これは、本ノートの Lax スペクトルパラメータ $\lambda$ と混同しないためである。$C_K$ が null-like 変形の結合であり、$C_K=0$ でこの変形項が消える。
+
+同文献の三成分スピンを
+\begin{equation}
+n^0=-\cosh\rho,
+\qquad
+n^1=\sinh\rho\,\sin\psi,
+\qquad
+n^2=\sinh\rho\,\cos\psi
+\label{eq:c5corr-K-spin-rhopsi}
+\end{equation}
+と定義する。従って
+\begin{equation}
+(n^0)^2-(n^1)^2-(n^2)^2=1
 \label{eq:c5corr-Kspin}
 \end{equation}
-とする。同文献の作用の規格化定数を $L_K$、同文献で $\lambda$ と書かれる結合を $\Lambda_K$、null-like 変形の結合を $C_K$ と呼ぶ。$\Lambda_K$ はスペクトルパラメータではない。式 (4.8) の二係数を
-\begin{equation}
-A_K:=\frac{4\pi L_K}{\sqrt{\Lambda_K}},
-\qquad B_K:=-\frac{2}{A_K},\qquad A_K\ne0
-\label{eq:c5corr-Kconstants}
-\end{equation}
-と書き直す。時間とスペクトルパラメータは $t_K,z_K$ と表す。
+を満たす。この実条件は本ノートの compact な単位球面とは異なる。
 
-補助空間の生成子は、同文献付録Aに合わせて
+作用\eqref{eq:c5corr-K-action}から得られる運動方程式は
+\begin{align}
+\partial_{t_K}n^0
+&=\frac{\Lambda_K}{8\pi^2L_K^2}
+\left(n^1\partial_x^2n^2-n^2\partial_x^2n^1\right)
+-C_K(n^0-n^1)n^2,
+\label{eq:c5corr-K-eom0}\\
+\partial_{t_K}n^1
+&=\frac{\Lambda_K}{8\pi^2L_K^2}
+\left(n^0\partial_x^2n^2-n^2\partial_x^2n^0\right)
+-C_K(n^0-n^1)n^2,
+\label{eq:c5corr-K-eom1}\\
+\partial_{t_K}n^2
+&=\frac{\Lambda_K}{8\pi^2L_K^2}
+\left(-n^0\partial_x^2n^1+n^1\partial_x^2n^0\right)
+-C_K(n^0-n^1)^2.
+\label{eq:c5corr-K-eom2}
+\end{align}
+この三式が後で本ノートの Class 5 運動方程式と照合する対象である。
+
+Lax pair を書くため、light-cone 成分と補助空間生成子を
 \begin{equation}
+n^\pm:=\frac{n^0\pm n^1}{\sqrt2},
+\qquad
 T^0=\frac{\ii}{2}\sigma^2,
 \qquad T^1=\frac12\sigma^1,
 \qquad T^2=\frac12\sigma^3,
-\qquad T^\pm=\frac{T^0\pm T^1}{\sqrt2}
+\qquad
+T^\pm=\frac{T^0\pm T^1}{\sqrt2}
 \label{eq:c5corr-Kgenerators}
 \end{equation}
-とする。式 (4.7) の既知の Lax 行列は、この記号では
+と定義する。文献\cite{KY2014}では Lax スペクトルパラメータを $z$ と書くが、本節では $z_K$ と呼ぶ。また同文献の式 (4.8) の係数を
+\begin{equation}
+A_K:=\frac{4\pi L_K}{\sqrt{\Lambda_K}},
+\qquad
+B_K:=-\frac{\sqrt{\Lambda_K}}{2\pi L_K}=-\frac{2}{A_K}
+\label{eq:c5corr-Kconstants}
+\end{equation}
+と改名する。従って、作用\eqref{eq:c5corr-K-action}の空間微分項に現れる係数は
+\begin{equation}
+\frac{\Lambda_K}{8\pi^2L_K^2}=\frac{2}{A_K^2}.
+\label{eq:c5corr-K-kinetic-coefficient}
+\end{equation}
+これで作用、運動方程式、Lax pair に現れる定数の依存関係が明示される。
+
+文献\cite{KY2014}の式 (4.7) の空間・時間 Lax 行列を、それぞれ $U_K(t_K,x;z_K)$, $V_K(t_K,x;z_K)$ と書くと
 \begin{align}
 U_K={}&\frac{A_K}{z_K}
 \left[-\left(n^+-\frac{C_Kz_K^2}{2}n^-\right)T^-
 +n^2T^2-n^-T^+\right],
 \label{eq:c5corr-UK}\\
-V_K={}&\frac{B_K}{z_K}\Bigl[
--\Bigl(n^2n_x^+-n^+n_x^2
--\frac{C_Kz_K^2}{2}(n^-n_x^2-n^2n_x^-)\Bigr)T^-
-\nonumber\\[-1mm]
-&\hspace{18mm}+(n^-n_x^+-n^+n_x^-)T^2
--(n^-n_x^2-n^2n_x^-)T^+\Bigr]
+V_K={}&\frac{B_K}{z_K}\Bigg[
+-\left\{n^2\partial_xn^+-n^+\partial_xn^2
+-\frac{C_Kz_K^2}{2}
+\left(n^-\partial_xn^2-n^2\partial_xn^-\right)\right\}T^-
+\nonumber\\
+&\hspace{17mm}
++\left(n^-\partial_xn^+-n^+\partial_xn^-\right)T^2
+-\left(n^-\partial_xn^2-n^2\partial_xn^-\right)T^+
+\Bigg]
 \nonumber\\
 &+\frac{A_KB_K}{z_K^2}
 \left[-\left(n^++\frac{C_Kz_K^2}{2}n^-\right)T^-
 +n^2T^2-n^-T^+\right].
 \label{eq:c5corr-VK}
 \end{align}
-ここで $n_x^a=\partial_xn^a$ である。添字 $2$ を持つ $n^2$ は場の第三成分であり、二乗ではない。
+同文献は
+\begin{equation}
+[\partial_{t_K}-V_K,\partial_x-U_K]=0
+\label{eq:c5corr-K-flatness}
+\end{equation}
+が式\eqref{eq:c5corr-K-eom0}--\eqref{eq:c5corr-K-eom2}を再現することを示している。従って、本ノートとの比較で確認すべき対象は、運動方程式だけでなく式\eqref{eq:c5corr-UK}, \eqref{eq:c5corr-VK}の両方である。
 
-\subsection{場の再定義と空間・時間成分の同時照合}
+\subsection{場、結合、スペクトルパラメータ、時間の辞書}
 
 $M_5^{\mathsf T}=-M_5$, $M_5^3=0$ を用いて、新しいスピン場 $\widetilde{\boldsymbol S}$ を
 \begin{equation}
@@ -202,36 +447,51 @@ $M_5^{\mathsf T}=-M_5$, $M_5^3=0$ を用いて、新しいスピン場 $\widetil
 \end{equation}
 に移る。
 
-二つの理論の場、結合、スペクトルパラメータおよび時間の対応は
+本ノートと Kameyama--Yoshida の場の対応を
 \begin{equation}
-\begin{gathered}
 \begin{pmatrix}n^0(x,t_K)\\n^1(x,t_K)\\n^2(x,t_K)\end{pmatrix}
-=\operatorname{diag}(1,-\ii,-\ii)\,
-\widetilde{\boldsymbol S}(x,t_K/A_K^2),\\
-C_K=\frac{\alpha_5^2}{2A_K^2},
-\qquad z_K=2\ii A_K\lambda,
-\qquad t_K=A_K^2t.
-\end{gathered}
-\label{eq:c5corr-dictionary}
+=
+\operatorname{diag}(1,-\ii,-\ii)\,
+\widetilde{\boldsymbol S}(x,t_K/A_K^2)
+\label{eq:c5corr-field-dictionary}
 \end{equation}
-これでスピン制約\eqref{eq:c5corr-Kspin}と\eqref{eq:c5corr-spin}が対応する。また、式\eqref{eq:c5corr-rotated-eom}は文献\cite{KY2014}の式 (4.3) の三成分に一致する。これは複素化した場の対応であり、二つの実条件を同じ実模型とみなすことはできない。
+と定義し、結合・スペクトルパラメータ・時間を
+\begin{equation}
+C_K=\frac{\alpha_5^2}{2A_K^2},
+\qquad
+z_K=2\ii A_K\lambda,
+\qquad
+t_K=A_K^2t
+\label{eq:c5corr-parameter-K-dictionary}
+\end{equation}
+で対応させる。式\eqref{eq:c5corr-field-dictionary}により
+\begin{equation}
+\widetilde{\boldsymbol S}^{\mathsf T}\widetilde{\boldsymbol S}=1
+\quad\Longleftrightarrow\quad
+(n^0)^2-(n^1)^2-(n^2)^2=1
+\label{eq:c5corr-constraint-dictionary}
+\end{equation}
+となる。また、式\eqref{eq:c5corr-rotated-eom}は式\eqref{eq:c5corr-K-eom0}--\eqref{eq:c5corr-K-eom2}の三成分に一致する。この対応は複素化した場の対応であり、二つの実条件を同じ実模型とみなすことはできない。
+
+\subsection{空間・時間 Lax 行列の同時照合}
 
 行列の比較には
 \begin{equation}
 Q=\begin{pmatrix}0&\ii\\1&0\end{pmatrix},
 \qquad
 G(x,\lambda)=\mathbf1_2+\alpha_5\left(\lambda-\frac{x}{2}\right)E_{12},
-\qquad \mathcal G(x,\lambda)=G(x,\lambda)Q^{-1}
+\qquad
+\mathcal G(x,\lambda)=G(x,\lambda)Q^{-1}
 \label{eq:c5corr-gauge}
 \end{equation}
-を用いる。$E_{12}^2=0$ なので $\det G=1$ であり、逆行列も有限の多項式である。traceless 部分を
+を用いる。$E_{12}^2=0$ なので $\det G=1$ であり、$G$ と $\mathcal G$ は可逆である。traceless 部分を
 \begin{equation}
 U_{5,0}:=U_5-\tfrac12\tr U_5\,\mathbf1_2,
 \qquad
 V_{5,0}:=V_5-\tfrac12\tr V_5\,\mathbf1_2
 \label{eq:c5corr-traceless}
 \end{equation}
-と定義する。式\eqref{eq:c5corr-rotation}, \eqref{eq:c5corr-dictionary}を代入すると、
+と定義する。式\eqref{eq:c5corr-field-dictionary}, \eqref{eq:c5corr-parameter-K-dictionary}を Kameyama--Yoshida の Lax pair\eqref{eq:c5corr-UK}, \eqref{eq:c5corr-VK}へ代入すると、
 \begin{align}
 U_{5,0}
 &=\mathcal G U_K\mathcal G^{-1}
@@ -241,16 +501,16 @@ V_{5,0}
 &=A_K^2\mathcal G V_K\mathcal G^{-1}
 \label{eq:c5corr-Videntity}
 \end{align}
-となる。時間成分の $A_K^2$ は $dt_K/dt$ に由来する。$\mathcal G$ は場にも時間にも依存せず、時間方向のゲージ微分項はない。
+となる。時間成分の $A_K^2$ は $dt_K/dt$ に由来する。$\mathcal G$ は場にも時間にも依存しないため、時間方向のゲージ微分項はない。
 
-この照合は中間表示でも検証できる。任意の三成分ベクトル $\boldsymbol v$ に対する線形行列写像を
+この照合は中間表示でも確認できる。任意の三成分ベクトル $\boldsymbol v$ に対する線形行列写像を
 \begin{equation}
 \mathcal U_\lambda(\boldsymbol v)
 :=\frac{v^i\sigma^i}{4\lambda}
 +\frac{\alpha_5^2\lambda}{4}(v^1+\ii v^2)E_{12}
 \label{eq:c5corr-Umap}
 \end{equation}
-と定義すれば、\eqref{eq:c5corr-dictionary}の代入後に
+と定義すれば、式\eqref{eq:c5corr-field-dictionary}, \eqref{eq:c5corr-parameter-K-dictionary}の代入後に
 \begin{align}
 Q^{-1}U_KQ&=\mathcal U_\lambda(\widetilde{\boldsymbol S}),
 \label{eq:c5corr-UKrot}\\
@@ -266,7 +526,7 @@ V_{5,0}-A_K^2\mathcal G V_K\mathcal G^{-1}
 \left(\widetilde{\boldsymbol S}^{\mathsf T}\widetilde{\boldsymbol S}-1\right)E_{12}
 \label{eq:c5corr-offshell-difference}
 \end{equation}
-である。したがって単位スピン制約上では、空間・時間の両成分が同じゲージ変換で同時に一致する。
+である。従って単位スピン制約上では、空間・時間の両成分が同じゲージ変換で同時に一致する。
 
 \subsection{単位行列成分と境界条件}
 
@@ -308,8 +568,8 @@ G(x+\ell,\lambda)G(x,\lambda)^{-1}
 
 \subsection{検証の範囲と研究上の位置づけ}
 
-検証プログラムは、量子 $R$ 行列、三つの因子からなる $L_{\rm tw}$、印刷式の実装、連続 $U_5,V_5$、文献\cite{KY2014}の $U_K,V_K$ をそれぞれ別に定義して比較する。浮動小数点サンプリングは用いず、記号式を展開・簡単化して零行列を確認する。計20件の内訳は、量子作用素と lower symbol の比較5件、二つのスピン表現での $RLL$ 関係2件、nilpotency・複素直交性・スピン制約の対応3件、直接の Lax 照合とゲージ行列の可逆性3件、中間表示の $U,V$ の比較2件、運動方程式の変換2件、trace の直接計算と scalar 曲率3件である。
+検証プログラムは、文献\cite{DFN2026}の一般 Class 5 $R$ 行列、その $a_1=1$, $a_3=0$ 表示、twist から再構成した $L_{\rm tw}$、印刷式の実装、本ノートの $U_5,V_5$、文献\cite{KY2014}の $U_K,V_K$ をそれぞれ別に定義して比較する。浮動小数点サンプリングは用いず、記号式を展開・簡単化して零行列を確認する。量子 $R$ 行列と Hamiltonian のパラメータ辞書、二つのスピン表現での $RLL$ 関係、長波長極限、場の再定義、Kameyama--Yoshida の空間・時間 Lax 行列、時間規格化、Hamiltonian flow、単位行列成分を独立に検算する。
 
-実行ファイルは \path{scripts/class5/verify_lax_correspondence.py}、出力は \path{results/class5/lax_correspondence/verification_results.json} である。trace の直接計算2件は式\eqref{eq:c5corr-aU}, \eqref{eq:c5corr-aV}を確認する。時間成分については、制約を課す前には式\eqref{eq:c5corr-aV}の右辺から $\ii(\boldsymbol S^{\mathsf T}\boldsymbol S-1)/(8\lambda^2)$ だけ異なることも明示的に検証する。
+実行ファイルは \path{scripts/class5/verify_lax_correspondence.py}、出力は \path{results/class5/lax_correspondence/verification_results.json} である。時間 Lax 行列については、単位スピン制約を課す前の差\eqref{eq:c5corr-offshell-difference}も検証する。また trace の直接計算により式\eqref{eq:c5corr-aU}, \eqref{eq:c5corr-aV}を確認し、scalar 曲率\eqref{eq:c5corr-scalar-curvature}も独立に検算する。
 
-本節の結果により、式\eqref{eq:c5corr-U}は量子 $R$ 行列と整合する再構成から得られる長波長接続であり、式\eqref{eq:c5corr-V}はその時間成分として既知の null-like warped $SL(2)$ Lax pair と局所的に対応する。このため、Class 5 に新しい古典 Lax hierarchy を発見したという主張はしない。一方、量子格子の時間 Lax 作用素から共有格子点の作用素積を保持して式\eqref{eq:c5corr-V}を得る計算は、既知の古典組を変数変換する計算とは区別される。新規性の評価には、その量子--古典の導出と既存文献との比較が別途必要である。
+本節の結果により、式\eqref{eq:c5corr-U}は Class 5 量子 $R$ 行列と整合する twist の再構成から得られる長波長接続であり、式\eqref{eq:c5corr-V}はその時間成分として既知の null-like warped $SL(2)$ Lax pair と局所的に対応する。このため、Class 5 に新しい古典 Lax hierarchy を発見したという主張はしない。一方、量子格子の時間 Lax 作用素から共有格子点の作用素積を保持して式\eqref{eq:c5corr-V}を得る計算は、既知の古典 pair を変数変換する計算とは区別される。新規性の評価には、その量子--古典の導出と既存文献との比較が別途必要である。
