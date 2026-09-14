@@ -1,0 +1,100 @@
+\subsection{Comparison with the known eleven-vertex Landau--Lifshitz pair}
+\label{sec:class6-eleven-vertex-comparison}
+
+The Class 6 lattice model is quantum-mechanically the eleven-vertex model
+\cite{CorcoranDeLeeuw2024}, and the associated rational Landau--Lifshitz
+hierarchy is already known \cite{LevinOlshanetskyZotov2014}.  We now compare
+the pair derived above directly with an explicit form of that known classical
+pair.  This provides an independent check of the finite-lattice construction;
+it is not a claim of a new Class 6 hierarchy.
+
+Following the rational formulas of Ref.~\cite{AtalikovZotov2021}, introduce
+a traceless spin matrix
+\begin{equation}
+\Sigma=
+\begin{pmatrix}
+\Sigma_{11}&\Sigma_{12}\\
+\Sigma_{21}&-\Sigma_{11}
+\end{pmatrix}
+\end{equation}
+and the spectral parameter $z$.  The spatial matrix can be written as
+\begin{equation}
+U_{\rm 11v}(z,\Sigma)=
+\begin{pmatrix}
+\Sigma_{11}/z-z\Sigma_{12}&\Sigma_{12}/z\\
+\Sigma_{21}/z-2z\Sigma_{11}-z^3\Sigma_{12}
+&-\Sigma_{11}/z+z\Sigma_{12}
+\end{pmatrix}.
+\label{eq:class6-known-eleven-U}
+\end{equation}
+For $\Sigma^2=\Lambda_{\Sigma}^2\Id_2$, define
+\begin{align}
+M_{\rm top}(z,\Sigma)
+&=\begin{pmatrix}
+\Sigma_{12}&0\\
+2\Sigma_{11}+2z^2\Sigma_{12}&-\Sigma_{12}
+\end{pmatrix},
+\nonumber\\
+\mathsf v
+&=-\frac{k}{4\Lambda_{\Sigma}^2}
+[\Sigma,\partial_x\Sigma].
+\end{align}
+The corresponding time matrix is
+\begin{equation}
+V_{\rm 11v}(z,\Sigma)
+=\frac12\left[
+\frac{1}{z}U_{\rm 11v}(z,\Sigma)
++2M_{\rm top}(z,\Sigma)
+-U_{\rm 11v}(z,\mathsf v)
+\right],
+\label{eq:class6-known-eleven-V}
+\end{equation}
+with zero-curvature convention
+$\partial_{\tau}U_{\rm 11v}+k\partial_xV_{\rm 11v}
+-[U_{\rm 11v},V_{\rm 11v}]=0$.
+
+For the Class 6 spin field, set
+\begin{equation}
+\Sigma:=
+\begin{pmatrix}
+S^3&S^+\\
+S^-&-S^3
+\end{pmatrix}.
+\label{eq:class6-eleven-spin-matrix}
+\end{equation}
+The unit-spin constraint gives $\Sigma^2=\Id_2$.  Let $\beta$ be a nonzero
+complex number satisfying
+\begin{equation}
+\beta^2=-2\alpha_6,
+\qquad
+z=\beta\lambda,
+\qquad
+k=-\frac{4}{\beta},
+\qquad
+\tau=\frac{\ii\beta^2}{2}t=-\ii\alpha_6t.
+\label{eq:class6-eleven-dictionary-paper}
+\end{equation}
+Then the traceless spatial matrix $U_{6,0}$ defined in
+Eq.~\eqref{eq:class6-traceless-U} and the time matrix
+Eq.~\eqref{eq:class6-time-Lax-compact} obey the exact identities
+\begin{align}
+U_{6,0}(\lambda)
+&=\frac{\beta}{4}
+U_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T},
+\label{eq:class6-eleven-U-map-paper}\\
+V_6(\lambda)
+&=\frac{\ii\beta^2}{2}
+V_{\rm 11v}(\beta\lambda,\Sigma)^{\mathsf T}.
+\label{eq:class6-eleven-V-map-paper}
+\end{align}
+The scalar difference $U_6-U_{6,0}=\Id_2/(4\lambda)$ does not affect the
+curvature.  The transpose reverses the commutator order, while
+$(\beta/4)k=-1$ and the time rescaling in
+Eq.~\eqref{eq:class6-eleven-dictionary-paper} reproduce the zero-curvature
+convention used in this paper.
+
+The same dictionary maps the known eleven-vertex spin equation to
+Eq.~\eqref{eq:class6-vector-eom}.  Thus the spatial matrix, the time matrix
+and the Hamiltonian flow obtained from the Class 6 quantum chain all agree
+with the independently known rational eleven-vertex Landau--Lifshitz
+structure.
