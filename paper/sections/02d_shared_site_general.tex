@@ -1,0 +1,145 @@
+\subsection{Common form of the shared-site correction}
+\label{sec:shared-site-common-form}
+
+The preceding construction defines the continuum source $\mathcal C$ without
+assuming a particular lattice model.  We now give a common expression for
+this source under the scaling realized by the two chains below.  This step
+uses the spin-$\tfrac12$ local operator algebra and the lattice Sutherland
+relation; it is not a new statement about the general nonmultiplicativity of
+coherent-state symbols.
+
+Let $P$ denote the permutation operator on two physical spin-$\tfrac12$
+spaces.  After the model-dependent normalization and spectral scaling, assume
+that the spatial Lax operator, the two-site Hamiltonian and the spectral
+derivative have expansions
+\begin{align}
+\widehat L
+&=\Id+\epsilon X+\epsilon^2Y+\mathcal O(\epsilon^3),
+\nonumber\\
+h
+&=2P+\epsilon h^{(1)}+\mathcal O(\epsilon^2),
+\nonumber\\
+\partial_u\widehat L
+&=\epsilon^2 Z+\mathcal O(\epsilon^3).
+\label{eq:common-operator-expansions}
+\end{align}
+Here $X,Y,Z$ act on the auxiliary space and one physical site, while
+$h^{(1)}$ acts on two neighbouring physical sites.  The labels $1,2$ below
+specify the physical site on which a one-site operator acts; the auxiliary
+space is shared and the order of auxiliary-space matrix products is retained.
+For the scalings of Sections~\ref{sec:class5-model} and
+\ref{sec:class6-model}, $Z$ is the coefficient obtained by differentiating
+with respect to the quantum spectral parameter at fixed lattice coupling.
+
+The order-$\epsilon^2$ coefficient of the Sutherland relation is conveniently
+measured by
+\begin{equation}
+\mathcal B
+:=[2P,X_2X_1+Y_2+Y_1]
++[h^{(1)},X_2+X_1]-Z_1+Z_2.
+\label{eq:common-Sutherland-residual}
+\end{equation}
+For an integrable lattice Lax operator obeying the Sutherland relation at this
+order, $\mathcal B=0$.  We also use the symmetric two-spin projector
+$P_+:=(\Id+P)/2$ and assume
+\begin{equation}
+P_+h^{(1)}P_+=cP_+
+\label{eq:common-triplet-condition}
+\end{equation}
+for a field-independent scalar $c$.  This condition holds for the two chains
+studied below.  It is a sufficient condition for the common identity derived
+here; no claim is made that it is necessary for arbitrary spin chains.
+
+At a fixed continuum spin $\boldsymbol S$, define
+\begin{equation}
+U:=X^\downarrow,
+\qquad
+\Xi:=(X^2)^\downarrow-U^2,
+\label{eq:common-Xi-definition}
+\end{equation}
+where the operator square is formed before taking the lower symbol.  Expanding
+the finite-lattice time operator gives
+\begin{align}
+A^{(1)}&=-\ii[2P,X_2],
+\nonumber\\
+A^{(2)}&=\ii X_2[2P,X_2]-\ii[2P,Y_2]
+-\ii[h^{(1)},X_2]-\ii Z_2.
+\label{eq:common-time-coefficients}
+\end{align}
+The order-$\epsilon^2$ parts of the two overlapping products in
+Eq.~\eqref{eq:exact-lower-symbol-lattice-zc} have equal coincident-spin
+values,
+\begin{equation}
+\mathcal D^{(+)}_2(\boldsymbol S,\boldsymbol S)
+=\mathcal D^{(-)}_2(\boldsymbol S,\boldsymbol S)
+=2\ii\Xi.
+\label{eq:common-quadratic-overlap}
+\end{equation}
+They therefore cancel before the continuum limit is taken.  Their first
+spatial Taylor coefficients instead add and give
+\begin{equation}
+\partial_x S^i
+\left.
+\left(
+\frac{\partial\mathcal D^{(+)}_2}{\partial S_R^i}
++\frac{\partial\mathcal D^{(-)}_2}{\partial S_L^i}
+\right)\right|_{\boldsymbol S_L=\boldsymbol S_R=\boldsymbol S}
+=2\ii\partial_x\Xi.
+\label{eq:common-quadratic-Taylor}
+\end{equation}
+The coincident-spin cubic terms give the complementary contribution
+\begin{equation}
+\mathcal D^{(+)}_3(\boldsymbol S,\boldsymbol S)
+-\mathcal D^{(-)}_3(\boldsymbol S,\boldsymbol S)
+=2\ii[\Xi,U]-\ii\langle X_1\mathcal B\rangle.
+\label{eq:common-cubic-overlap}
+\end{equation}
+Here $\langle\cdots\rangle$ denotes the lower symbol on the two physical
+sites at the same spin, with auxiliary-space indices retained.  The terms
+containing $Y$ are required in the intermediate expansion but cancel after
+all contributions in Eq.~\eqref{eq:common-time-coefficients} are combined.
+
+Equations~\eqref{eq:common-quadratic-Taylor} and
+\eqref{eq:common-cubic-overlap} give
+\begin{equation}
+\mathcal C
+=2\ii\bigl(\partial_x\Xi+[\Xi,U]\bigr)
+-\ii\langle X_1\mathcal B\rangle.
+\label{eq:common-source-with-residual}
+\end{equation}
+For the lattice models considered here, the Sutherland relation gives
+$\mathcal B=0$, and hence
+\begin{equation}
+\mathcal C
+=2\ii\bigl(\partial_x\Xi+[\Xi,U]\bigr).
+\label{eq:common-source-general}
+\end{equation}
+The source is then absorbed by the local correction
+\begin{equation}
+\Delta V=2\ii\Xi+f(\lambda)\Id,
+\label{eq:common-DeltaV-general}
+\end{equation}
+where $f(\lambda)$ is independent of the spin and of the spacetime
+coordinates.  The model calculations in Sections~\ref{sec:class5-time-lax}
+and \ref{sec:class6-time-lax} fix convenient representatives and independently
+verify every step of the continuum limit.
+
+For spin $\tfrac12$, the second moment in
+Eq.~\eqref{eq:common-Xi-definition} is also determined by the spin dependence
+of $U$.  Writing
+\begin{equation}
+X=\mathsf X_0\otimes\Id_2+\mathsf X_i\otimes\sigma^i,
+\qquad
+U=\mathsf X_0+\mathsf X_i S^i,
+\label{eq:common-X-Pauli-expansion}
+\end{equation}
+one obtains
+\begin{equation}
+\Xi
+=\mathsf X_i\mathsf X_j
+\left(\delta_{ij}-S^iS^j+\ii\varepsilon_{ijk}S^k\right).
+\label{eq:common-Xi-from-U}
+\end{equation}
+Thus a higher coefficient of the spatial-operator expansion can provide a
+useful model-specific representation of $\Xi$, as happens in Class 6, without
+being independent data in the common formula.
