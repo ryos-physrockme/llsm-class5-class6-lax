@@ -2,6 +2,36 @@
 
 All commands below are run from the repository root. Install `requirements.txt` for analytic checks, or `requirements-ml.txt` for the complete suite including CPU PyTorch and pandas.
 
+## Common spin-1/2 shared-site correction
+
+The common local time-Lax correction used in manuscript Section 2 is checked independently of the model-specific Class 5 and Class 6 derivations.
+
+The first program verifies the conditional identity with generic matrix entries, then checks Class 5, Class 6 and a weak-anisotropy XXZ control together with a case that violates the Sutherland condition:
+
+```bash
+python scripts/generalization/verify_shared_site_identity.py
+```
+
+It writes
+
+```text
+results/generalization/shared_site_identity.json
+```
+
+The second program checks the analytic proof structure while keeping the auxiliary-space coefficients noncommutative.  It verifies the quadratic cancellation and Taylor term, the cubic identity with the Sutherland residual retained, the cancellation of explicit second-spatial-coefficient terms, the defect for a general first Hamiltonian correction, the rank condition used in the research note, and the Class 5/Class 6/XXZ rank checks:
+
+```bash
+python scripts/generalization/verify_shared_site_proof.py
+```
+
+It writes
+
+```text
+results/generalization/shared_site_proof.json
+```
+
+Both scripts are included in the physics CI path through `make verify-generalization`, which is a dependency of `verify-class6`.  The physical local space is spin `1/2`; the analytic proof does not fix the finite auxiliary-space dimension.  These checks do not establish finite-time quantum convergence, higher physical spin, or higher Hamiltonian flows.
+
 ## Class 5: quantum-to-classical time-Lax limit
 
 Exact symbolic derivation:
@@ -38,7 +68,7 @@ Exact symbolic derivation:
 python scripts/class6/verify_coherent_symbolic.py
 ```
 
-This retains the second spatial coefficient required in Class 6, verifies the shared-site correction including its commutator contribution, checks the Hamiltonian flow and off-shell Lax factorization, and includes a negative control showing that the Class-5-only total-derivative correction fails in Class 6. It also derives the instantaneous spin derivative from the two adjacent quantum bonds and checks its continuum limit against the Hamiltonian flow used in manuscript section 4.3.
+This retains the second spatial coefficient in the intermediate Class 6 operator products, verifies the shared-site correction including its commutator contribution, checks the Hamiltonian flow and off-shell Lax factorization, and includes a negative control showing that the Class-5-only total-derivative correction fails in Class 6. It also derives the instantaneous spin derivative from the two adjacent quantum bonds and checks its continuum limit against the Hamiltonian flow used in manuscript section 4.3.  The common derivation above separately verifies that explicit second-order spatial terms cancel from the final model-independent formula after all intermediate products are retained.
 
 Finite-spacing, Yang-Baxter, finite-lattice zero-curvature, and independent off-shell checks:
 
@@ -47,6 +77,23 @@ python scripts/class6/verify_coherent_numeric.py
 ```
 
 Outputs are written under `results/class6/`.
+
+Direct comparison with the known rational eleven-vertex Landau--Lifshitz pair:
+
+```bash
+python scripts/class6/verify_eleven_vertex_comparison.py
+```
+
+This checks the exact convention dictionary
+
+```text
+beta^2 = -2 alpha6
+z = beta lambda
+k = -4/beta
+t_11v = (i beta^2/2) t
+```
+
+and verifies the spatial Lax matrix, time Lax matrix, zero-curvature convention and spin equation.  Results are written to `results/class6/eleven_vertex_comparison.json`.  This is an independent validation of the Class 6 continuum pair, not a claim of a new eleven-vertex hierarchy.
 
 ## Machine-learning discovery path
 
