@@ -1,6 +1,14 @@
 {
   "checks": [
     {
+      "name": "DFN_general_R_reduces_to_manuscript_R",
+      "passed": true
+    },
+    {
+      "name": "DFN_local_H_reduces_to_manuscript_H",
+      "passed": true
+    },
+    {
       "name": "twist_product_equals_fundamental_R",
       "passed": true
     },
@@ -81,6 +89,6 @@
       "passed": true
     }
   ],
-  "passed": 20,
+  "passed": 22,
   "scope": "Exact algebra; unit-spin restriction is stated explicitly. No equality of real or global boundary sectors asserted."
 }
