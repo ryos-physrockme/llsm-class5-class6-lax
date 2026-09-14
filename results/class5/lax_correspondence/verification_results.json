@@ -1,0 +1,86 @@
+{
+  "checks": [
+    {
+      "name": "twist_product_equals_fundamental_R",
+      "passed": true
+    },
+    {
+      "name": "printed_upper_right_operator_difference_after_coefficient_correction",
+      "passed": true
+    },
+    {
+      "name": "normalized_lower_symbol_exactly_I_plus_epsilon_U",
+      "passed": true
+    },
+    {
+      "name": "coefficient_corrected_printed_L_differs_only_at_epsilon_squared",
+      "passed": true
+    },
+    {
+      "name": "uncorrected_printed_L_has_double_deformation_in_U",
+      "passed": true
+    },
+    {
+      "name": "exact_symbolic_RLL_spin_1/2",
+      "passed": true
+    },
+    {
+      "name": "exact_symbolic_RLL_spin_1",
+      "passed": true
+    },
+    {
+      "name": "nilpotence_M_cubed",
+      "passed": true
+    },
+    {
+      "name": "field_rotation_complex_orthogonal",
+      "passed": true
+    },
+    {
+      "name": "sphere_to_hyperboloid_constraint",
+      "passed": true
+    },
+    {
+      "name": "spatial_gauge_identity_all_entries",
+      "passed": true
+    },
+    {
+      "name": "time_gauge_identity_modulo_unit_spin_all_entries",
+      "passed": true
+    },
+    {
+      "name": "gauge_matrix_invertible",
+      "passed": true
+    },
+    {
+      "name": "KY_spatial_matrix_in_rotated_spin_frame",
+      "passed": true
+    },
+    {
+      "name": "KY_time_matrix_in_rotated_spin_frame",
+      "passed": true
+    },
+    {
+      "name": "field_rotation_of_Hamiltonian_equations",
+      "passed": true
+    },
+    {
+      "name": "KY_equations_with_time_rescaling",
+      "passed": true
+    },
+    {
+      "name": "spatial_scalar_part_from_trace",
+      "passed": true
+    },
+    {
+      "name": "time_scalar_part_from_trace_modulo_unit_spin",
+      "passed": true
+    },
+    {
+      "name": "scalar_curvature_equals_alpha_Eplus_over_four",
+      "passed": true
+    }
+  ],
+  "passed": 20,
+  "scope": "Exact algebra; unit-spin restriction is stated explicitly. No equality of real or global boundary sectors asserted."
+}
