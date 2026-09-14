@@ -8,16 +8,16 @@ Use --output PATH to write a different report.
 
 Sources (read separately; no network requests made by this script):
   de Leeuw, Fontanella, Nieto Garcia, arXiv:2506.13598v2,
-    equations (1.1), (1.8), (1.11), (1.12), (2.23).
+    equations (1.1), (1.5), (1.8), (1.11), (1.12), (2.14), (2.23).
   Kameyama, Yoshida, arXiv:1405.4467v2,
-    equations (4.3), (4.7), (4.8), (A.1), (A.4).
+    equations (4.1)--(4.9), (A.1), (A.4).
   https://github.com/ryos-physrockme/llsm-class5-class6-lax
     paper/sections/03a_spatial.tex, 03b_time.tex, 03c_eom.tex.
 
 Conventions:
   alpha is the continuum deformation coupling; lam is the continuum
   spectral parameter. epsilon is the lattice spacing, u=lam/epsilon,
-  theta=a_2/2=epsilon*alpha, with a_3=0.
+  theta=a_2/2=epsilon*alpha, with a_1=1 and a_3=0.
   S is the unit spin in the manuscript. T is the rotated spin,
   S=exp(-alpha*x*M/2)*T. All vector products are complex bilinear.
   AK=4*pi*L_K/sqrt(Lambda_K), where Lambda_K is the coupling (not a
@@ -40,6 +40,7 @@ import sympy as s
 I = s.I
 alpha, lam, x, AK, epsilon = s.symbols('alpha lam x AK epsilon', nonzero=True)
 u, v, theta = s.symbols('u v theta')
+a1, a2, a3 = s.symbols('a1 a2 a3')
 Id = s.eye(2)
 E = s.Matrix([[0, 1], [0, 0]])
 sigma = [s.Matrix([[0, 1], [1, 0]]),
@@ -144,9 +145,30 @@ def main() -> None:
         help='Destination for the deterministic JSON verification report.',
     )
     args = parser.parse_args()
+
+    # de Leeuw--Fontanella--Nieto Garcia (1.1) and (1.5), before fixing
+    # a_1=1 and the a_3=0 local-basis representative.
+    r_dfn = s.Matrix([
+        [1+2*a1*u, a2*u, -a2*u, a2*a3*u**2],
+        [0, 2*a1*u, 1, -a3*u],
+        [0, 1, 2*a1*u, a3*u],
+        [0, 0, 0, 1+2*a1*u],
+    ])
+    h_dfn = s.Matrix([
+        [2, a2, -a2, 0],
+        [0, 0, 2, a3],
+        [0, 2, 0, -a3],
+        [0, 0, 0, 2],
+    ])
+
     e, f, h, k = E, E.T, s.diag(1, 0), s.diag(0, 1)
     l_direct = quantum_L(u, theta, e, f, h, k)
     r_class5 = 2*u*s.eye(4)+P+2*theta*u*K
+    h_class5 = 2*P+2*theta*K
+    check('DFN_general_R_reduces_to_manuscript_R',
+          r_dfn.subs({a1: 1, a2: 2*theta, a3: 0})-r_class5)
+    check('DFN_local_H_reduces_to_manuscript_H',
+          h_dfn.subs({a2: 2*theta, a3: 0})-h_class5)
     check('twist_product_equals_fundamental_R', l_direct-r_class5)
     check('printed_upper_right_operator_difference_after_coefficient_correction',
           printed_L(u, theta, e, f, h, k)-l_direct
