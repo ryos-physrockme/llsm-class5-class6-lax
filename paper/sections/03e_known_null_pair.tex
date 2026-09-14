@@ -126,13 +126,41 @@ on the unit-spin constraint.  The spatial identity holds without using the
 constraint; before imposing it, the difference in the time identity is
 proportional to
 $\widetilde{\boldsymbol S}^{\mathsf T}\widetilde{\boldsymbol S}-1$.
-Thus the two components are mapped simultaneously by the same local gauge
-transformation after the time rescaling in
+Thus the two traceless components are mapped simultaneously by the same local
+gauge transformation after the time rescaling in
 Eq.~\eqref{eq:class5-known-dictionary}.
 
-This is a local equivalence and should not be promoted to a statement about
-the periodic monodromy.  If the original spin is periodic with circumference
-$\ell$, then
+For completeness, the scalar parts of the Class 5 matrices are not constant.
+Writing
+\begin{equation}
+a_U:=\frac12\tr U_5,
+\qquad
+a_V:=\frac12\tr V_5,
+\label{eq:class5-known-scalar-parts}
+\end{equation}
+one finds on the unit-spin constraint
+\begin{align}
+a_U&=\frac{1}{4\lambda}+\frac{\alpha_5}{4}S^+,
+\nonumber\\
+a_V&=\frac{\ii\alpha_5}{2}
+(S^+\partial_xS^3-S^3\partial_xS^+)
++\frac{\ii\alpha_5^2}{4}(S^+)^2.
+\label{eq:class5-known-scalars}
+\end{align}
+Using the residual $E^{(5)}_+$ defined in
+Eq.~\eqref{eq:class5-residual-plus}, these obey
+\begin{equation}
+\partial_ta_U-\partial_xa_V
+=\frac{\alpha_5}{4}E^{(5)}_+.
+\label{eq:class5-known-scalar-curvature}
+\end{equation}
+Thus the scalar sector is locally flat on the Class 5 equations of motion and
+can then be removed locally by a scalar auxiliary transformation.  This is an
+on-shell local statement, not an off-shell identification of the full
+$\mathfrak{gl}(2)$ pairs.
+
+The comparison should also not be promoted to a statement about the periodic
+monodromy.  If the original spin is periodic with circumference $\ell$, then
 \begin{equation}
 \widetilde{\boldsymbol S}(x+\ell,t)
 =\exp\!\left(\frac{\alpha_5\ell}{2}M_5\right)
@@ -143,8 +171,8 @@ G(x+\ell,\lambda)G(x,\lambda)^{-1}
 \label{eq:class5-known-boundary-twist}
 \end{equation}
 Neither transformation is generically periodic.  The comparison therefore
-shows that the local Class 5 pair belongs to a known classical Lax structure,
-while leaving global boundary conditions and monodromy data distinct.  The
-result specific to the present construction is the direct recovery of this
-pair from the finite-lattice quantum time operator, including the shared-site
-contribution required in its continuum limit.
+shows that the local Class 5 classical structure is related to a known Lax
+pair, while leaving global boundary conditions and monodromy data distinct.
+The result specific to the present construction is the direct recovery of the
+Class 5 time component from the finite-lattice quantum time operator,
+including the shared-site contribution required in its continuum limit.
