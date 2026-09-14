@@ -16,17 +16,19 @@ The deterministic report is written to
 Use `--output PATH` to keep a separate rerun. A nonzero residual raises an
 exception and gives a nonzero process exit code.
 
-The 20 exact checks cover the reconstructed quantum L operator, reduction to
-the fundamental R matrix, leading and subleading differences from the printed
-expression, the RLL relation in spin 1/2 and spin 1, the field transformation,
-both Kameyama--Yoshida Lax components, the time convention, the Hamiltonian
-flow, and the scalar part of the connection. The two trace checks additionally
-verify the scalar coefficients directly from the manuscript U and V formulas.
+The 22 exact checks cover the reduction of the general Class-5 R matrix and
+local Hamiltonian to the manuscript representative, the reconstructed quantum
+L operator, reduction to the fundamental R matrix, leading and subleading
+differences from the printed expression, the RLL relation in spin 1/2 and spin
+1, the field transformation, both Kameyama--Yoshida Lax components, the time
+convention, the Hamiltonian flow, and the scalar part of the connection. The
+two trace checks additionally verify the scalar coefficients directly from the
+manuscript U and V formulas.
 
 Sources: de Leeuw--Fontanella--Nieto Garcia, arXiv:2506.13598v2, equations
-(1.1), (1.8), (1.11), (1.12), (2.23); Kameyama--Yoshida, arXiv:1405.4467v2,
-equations (4.3), (4.7), (4.8), (A.1), (A.4). The script states the complete
-parameter and field conventions and performs no network requests.
+(1.1), (1.5), (1.8), (1.11), (1.12), (2.14), (2.23); Kameyama--Yoshida,
+arXiv:1405.4467v2, equations (4.1)--(4.9), (A.1), (A.4). The script states the
+complete parameter and field conventions and performs no network requests.
 
 These are local algebraic checks on the complexified unit-spin constraint.
 The reconstruction is not an author-confirmed erratum. Testing RLL in two
