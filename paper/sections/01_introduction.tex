@@ -26,49 +26,67 @@ The coexistence of this algebraic structure with a non-Hermitian
 Hamiltonian makes these chains useful examples for studying the
 relation between quantum and classical integrability.
 
-Several classical constructions are available for this comparison.
-Avan, Doikou and Sfetsos formulated continuum limits that retain the
-classical Lax and $r$-matrix structures \cite{AvanDoikouSfetsos2010}.
-The relation between continuum Hamiltonians, time Lax matrices and
-boundary conditions was developed further in
-Ref.~\cite{DoikouKaraiskos2011}.  For Class 6, the quantum model is
-identified with the eleven-vertex model in
-Ref.~\cite{CorcoranDeLeeuw2024}, and its Landau--Lifshitz Lax
-formulation is already contained in the eleven-vertex construction
-of Levin, Olshanetsky and Zotov \cite{LevinOlshanetskyZotov2014}.
+Several ingredients of this correspondence are already available in
+general form.  Avan, Doikou and Sfetsos formulated coherent-state
+continuum limits that retain classical Lax and $r$-matrix structures
+\cite{AvanDoikouSfetsos2010}.  Quantum time Lax operators and their
+hierarchy can be constructed from the lattice monodromy
+\cite{DoikouFindlay2020}, while continuum Hamiltonians, time Lax
+matrices and boundary conditions were developed further in
+Ref.~\cite{DoikouKaraiskos2011}.  These results provide the spatial
+continuum construction and the finite-lattice time evolution separately.
+The issue considered here is the local passage between them: the
+long-wavelength limit of the finite-lattice zero-curvature equation itself.
 
-The question addressed here is how the quantum lattice \emph{time}
-Lax operator produces the continuum time matrix for the Hamiltonian
-flow.  In Section~2 of Ref.~\cite{deLeeuwFontanellaNietoGarcia2026},
-the authors discuss a spatial Lax matrix for Class 5 and leave the
-construction of a compatible time component open.  Taking the time
-operator directly to the continuum identifies the quantum terms
-that enter this component and permits a comparison with the
-classical $r$-matrix construction.
+For Class 6, the quantum model is identified with the eleven-vertex model in
+Ref.~\cite{CorcoranDeLeeuw2024}, and a corresponding Landau--Lifshitz
+hierarchy is known from the eleven-vertex construction of Levin,
+Olshanetsky and Zotov \cite{LevinOlshanetskyZotov2014}.  Explicit rational
+Landau--Lifshitz Lax matrices in compatible conventions are also available
+in Ref.~\cite{AtalikovZotov2021}.  We therefore do not seek a new Class 6
+hierarchy.  For Class 5, Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}
+constructs a spatial Lax matrix but leaves a compatible time component open.
+These two models allow the same finite-lattice-to-continuum construction to
+be tested both against an open time-component problem and against an
+independently known classical pair.
 
-We perform this limit at fixed spin $\tfrac12$, using the
-coherent-state lower symbol: the matrix element of an operator in
-a product of spin coherent states, with auxiliary-space indices
-retained.  The lattice zero-curvature equation contains operator
-products whose factors share a physical site.  At that site, the
-lower symbol of a product generally differs from the product of
-the separate symbols, as in standard coherent-state symbol calculus
-\cite{Perelomov1986,Schlichenmaier2010}.  Smooth variation of the spin
-labels between neighbouring sites controls the long-wavelength
-expansion, while products on a common site retain the fixed
-spin-$\tfrac12$ operator algebra.  Their contribution must therefore
-be evaluated at the order of the continuum time evolution.
+We perform the limit at fixed spin $\tfrac12$, using the coherent-state
+lower symbol: the matrix element of an operator in a product of spin
+coherent states, with auxiliary-space indices retained.  The lattice
+zero-curvature equation contains products whose factors share a physical
+site.  At that site the lower symbol of a product generally differs from
+the product of the separate symbols, as in standard coherent-state symbol
+calculus \cite{Perelomov1986,Schlichenmaier2010}.  Smooth variation of the
+spin labels controls the long-wavelength expansion, while a common physical
+site retains the fixed spin-$\tfrac12$ operator algebra.
 
-For both chains, we compute this surviving contribution and absorb
-it into a local correction of the direct time symbol.  In Class 5
-it is a total spatial derivative; Class 6 also has a commutator
-contribution involving the second spatial-operator coefficient.
-We derive the Hamiltonian equations independently and establish
-their equivalence to the corrected zero-curvature equations by
-identities that hold before imposing the equations of motion.
-Explicit inverse relations recover every component of the equations
-from the curvature.  The undeformed XXX limit and the independent
-classical $r$-matrix construction for Class 5 provide further checks.
+The point relevant to the time equation is the power counting of these
+products.  In the scaling realized by both chains, the two connected
+contributions start at order $\epsilon^2$ and cancel at coincident spins.
+Their first spatial Taylor coefficients and the coincident order-$\epsilon^3$
+products remain at the same order as the continuum time evolution.  We show
+under explicit spin-$\tfrac12$ assumptions that their sum is controlled by
+\begin{equation}
+\Xi=(X^2)^\downarrow-(X^\downarrow)^2,
+\end{equation}
+where $X$ is the first coefficient of the normalized spatial lattice
+operator.  When the corresponding order of the Sutherland relation holds,
+the source has the local form
+$2\ii(\partial_x\Xi+[\Xi,U])$ and is absorbed into the time matrix.
+The two model calculations independently verify this common identity.
+
+For Class 5 the source reduces to a total spatial derivative.  For Class 6
+its model-specific representation also contains a nonzero commutator, which
+can be isolated on a spatially uniform spin configuration.  In both cases
+we derive the Hamiltonian equations independently and establish their
+off-shell equivalence to the corrected zero-curvature equations with
+explicit inverse relations.  The Class 5 time matrix agrees with an
+independent classical $r$-matrix construction up to a field-independent
+scalar matrix.  The Class 6 pair agrees, after an explicit change of
+spectral, coupling and time conventions, with the known rational
+eleven-vertex Landau--Lifshitz pair.  The undeformed XXX limit provides a
+further control: omitting the shared-site contribution gives the wrong
+coefficient in the standard time matrix even in that limit.
 
 We also use numerical coefficient searches to identify candidate Lax pairs,
 following the optimization approach of
@@ -76,17 +94,18 @@ Krippendorf, L\"ust and Syvaeri \cite{KrippendorfLustSyvaeri2021}.
 The input consists of sampled local spin values and derivatives, and the
 coefficients of finite ans\"atze are fitted at fixed deformation and spectral
 parameters by minimizing off-shell curvature residuals.  The tensor
-structures are specified using the null
-direction in Class 5 and the nilpotent anisotropy in Class 6.
-In Class 5, the coefficients of eight additional candidate terms were
-suppressed; in Class 6, the recovered relations revealed a finite
-matrix-square-root expression.  Appendix~\ref{sec:ml-search} gives the
-ans\"atze, loss functions, numerical settings and analytic verification.
+structures are specified using the null direction in Class 5 and the
+nilpotent anisotropy in Class 6.  In Class 5, the coefficients of eight
+additional candidate terms were suppressed; in Class 6, the recovered
+relations revealed a finite matrix-square-root expression.
+Appendix~\ref{sec:ml-search} gives the ans\"atze, loss functions, numerical
+settings and analytic verification.
 
-Section~\ref{sec:setup} fixes the lattice conventions and formulates the
-continuum problem.  Sections~\ref{sec:class5-model} and
-\ref{sec:class6-model} carry out the two model calculations.
-Section~\ref{sec:comparison} compares the surviving corrections and
-their dependence on the lattice operators.  We summarize the results
-and discuss their scope and possible extensions in
+Section~\ref{sec:setup} fixes the lattice conventions, formulates the
+continuum problem and derives the common shared-site correction.
+Sections~\ref{sec:class5-model} and \ref{sec:class6-model} apply the
+construction to the two chains and provide independent checks against their
+continuum dynamics and classical Lax structures.  Section~\ref{sec:comparison}
+compares the model-dependent realizations and the isotropic limit.  We
+summarize the results and discuss their scope and possible extensions in
 Section~\ref{sec:summary-discussion}.
