@@ -41,14 +41,47 @@ measured by
 \end{equation}
 For an integrable lattice Lax operator obeying the Sutherland relation at this
 order, $\mathcal B=0$.  We also use the symmetric two-spin projector
-$P_+:=(\Id+P)/2$ and assume
+$P_+:=(\Id+P)/2$ and the condition
 \begin{equation}
 P_+h^{(1)}P_+=cP_+
 \label{eq:common-triplet-condition}
 \end{equation}
-for a field-independent scalar $c$.  This condition holds for the two chains
-studied below.  It is a sufficient condition for the common identity derived
-here; no claim is made that it is necessary for arbitrary spin chains.
+for a field-independent scalar $c$.  This is a sufficient condition for the
+common identity below and holds for both chains studied here.
+
+For the two models, Eq.~\eqref{eq:common-triplet-condition} also follows from
+the Sutherland relation rather than being an independent model assumption.
+To see this, expand the first spatial coefficient in the physical Pauli basis,
+\begin{equation}
+X=\mathsf X_0\otimes\Id_2+\mathsf X_i\otimes\sigma^i.
+\label{eq:common-X-rank-expansion}
+\end{equation}
+If the three auxiliary-space matrices $\mathsf X_i$ are linearly independent,
+the part of $\mathcal B=0$ that is even under exchange of the two physical
+sites implies
+\begin{equation}
+[h^{(1)}_+,\sigma^i_1+\sigma^i_2]=0,
+\qquad
+h^{(1)}_+:=\frac12\left(h^{(1)}+Ph^{(1)}P\right),
+\qquad i=1,2,3.
+\label{eq:common-even-Sutherland}
+\end{equation}
+The tensor product of two spin-$\tfrac12$ representations decomposes into one
+spin triplet and one spin singlet, each with multiplicity one.  Hence an
+operator commuting with all three total-spin generators is scalar on each
+sector.  The exchange-odd part of $h^{(1)}$ has vanishing triplet-to-triplet
+matrix elements, so Eq.~\eqref{eq:common-triplet-condition} follows.  For
+both Class 5 and Class 6, the spin dependence has rank three for
+$\lambda\ne0$; for example,
+\begin{equation}
+\det\frac{\partial(U_{12},U_{21},U_{11})}
+{\partial(S^1,S^2,S^3)}
+=\frac{\ii}{32\lambda^3}.
+\label{eq:common-model-rank-minor}
+\end{equation}
+For a rank-deficient spatial coefficient the implication need not hold, so we
+retain Eq.~\eqref{eq:common-triplet-condition} as the stated sufficient
+condition of the general formula.
 
 At a fixed continuum spin $\boldsymbol S$, define
 \begin{equation}
