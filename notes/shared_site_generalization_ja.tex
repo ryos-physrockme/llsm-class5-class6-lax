@@ -1,0 +1,42 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage[margin=23mm]{geometry}
+\usepackage{luatexja-fontspec}
+\setmainfont{Latin Modern Roman}
+\setmainjfont{HaranoAjiMincho-Regular.otf}[BoldFont=HaranoAjiMincho-Bold.otf]
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={スピン1/2鎖の局所時間Lax方程式：共有サイト補正の解析的導出}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\End}{\operatorname{End}}
+\numberwithin{equation}{section}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+\title{スピン$1/2$鎖の局所時間Lax方程式\\共有サイト補正の解析的導出}
+\author{研究ノート}
+\date{2026年9月13日}
+\begin{document}
+\maketitle
+\noindent
+有限格子の演算子積から連続時間Lax行列を導く際の補正について、成立条件、解析的導出、
+独立検証、文献上の位置づけをまとめる。完全研究ノートへの追加節と同じソースから作成した抜粋である。
+\input{parts/10_shared_site_generalization.tex}
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{DPR2019} M.~de Leeuw, A.~Pribytok and P.~Ryan,
+``Classifying two-dimensional integrable spin chains'',
+J. Phys. A \textbf{52} (2019) 505201,
+\href{https://arxiv.org/abs/1904.12005}{arXiv:1904.12005}.
+\bibitem{DFN2026} M.~de Leeuw, A.~Fontanella and J.~M.~Nieto Garc\'ia,
+``An integrable deformed Landau--Lifshitz model with particle production?'',
+SciPost Phys. \textbf{20} (2026) 041,
+\href{https://arxiv.org/abs/2506.13598}{arXiv:2506.13598}.
+\bibitem{ADS2010} J.~Avan, A.~Doikou and K.~Sfetsos,
+``Systematic classical continuum limits of integrable spin chains and emerging novel dualities'',
+Nucl. Phys. B \textbf{840} (2010) 469--490,
+\href{https://arxiv.org/abs/1005.4605}{arXiv:1005.4605}.
+\bibitem{DoikouFindlay2017} A.~Doikou and I.~Findlay,
+``The quantum auxiliary linear problem \& Darboux--Backlund transformations'',
+PoS \textbf{CORFU2019} (2020) 210,
+\href{https://arxiv.org/abs/1706.06052v3}{arXiv:1706.06052v3}.
+\end{thebibliography}
+\end{document}

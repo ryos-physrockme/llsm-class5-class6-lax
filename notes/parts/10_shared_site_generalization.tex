@@ -1,0 +1,389 @@
+\section{局所時間Lax方程式における共有サイト補正の一般形}
+\label{sec:shared-site-general-proof}
+
+本節では、スピン$1/2$の積状態を用いた長波長極限で、有限格子の時間Lax演算子から
+連続時間Lax行列を得る際の補正を解析的に導く。出発点は規格化された有限格子の
+零曲率方程式であり、既知の連続時間行列を入力しない。まず成立条件を明示し、
+二次係数の空間Taylor展開と三次係数の同一点での値を別々に計算する。
+その後、Sutherland relationと空間行列のスピン依存性の階数から、条件の一部が従うことを示す。
+ここで得るのは指定した次数の局所恒等式であり、任意の量子鎖の可積分性や有限時間の量子発展の収束を主張するものではない。
+
+\subsection{対象とする極限と成立条件}
+\label{subsec:shared-conditions}
+
+局所物理空間を$\mathcal H=\mathbb C^2$、補助空間を有限次元の$\mathcal V_a$とする。
+$P=P_{12}$は二つの物理サイトを交換する演算子である。以下、補助空間の添字$a$は省略する。
+$X_1$、$X_2$などの添字は物理サイトを指定し、補助空間は共有する。
+したがって異なる物理サイトの演算子でも、補助空間での行列積の順序は交換できない。
+
+格子間隔を$\epsilon$、量子および連続理論のスペクトルパラメータを$u,\lambda$とし、
+$u=\lambda/\epsilon$と置く。空間Lax演算子、二サイトHamiltonian、スペクトル微分を
+\begin{align}
+\widehat L&=1+\epsilon X+\epsilon^2Y+O(\epsilon^3),
+&h&=2P+\epsilon h^{(1)}+O(\epsilon^2),\label{eq:ss-expansion}\\
+\partial_u\widehat L&=\epsilon^2Z+O(\epsilon^3)
+\label{eq:ss-spectral-derivative}
+\end{align}
+と展開する。$X,Y,Z\in\End(\mathcal V_a\otimes\mathcal H)$は位置に明示的に依存しない。
+微分は格子結合を固定して取る。連続結合を固定する通常のスケーリングでは$Z=\partial_\lambda X$となるが、
+以下の演算子恒等式では、Sutherland relationを課す前は$X,Y,Z$を独立に扱える。
+
+$\widehat L$に対するSutherland relationと、その二次係数の残差を
+\begin{align}
+[h,\widehat L_2\widehat L_1]
+&=\widehat L_2\partial_u\widehat L_1-(\partial_u\widehat L_2)\widehat L_1,
+\label{eq:ss-sutherland}\\
+\mathcal B&:=[2P,X_2X_1+Y_2+Y_1]+[h^{(1)},X_2+X_1]-Z_1+Z_2
+\label{eq:ss-residual}
+\end{align}
+と定義する。式\eqref{eq:ss-sutherland}が成り立てば$\mathcal B=0$である。
+また$P(Y_1+Y_2)P=Y_1+Y_2$より$[P,Y_1+Y_2]=0$である。
+
+各サイトのcoherent-state lower symbolは、rank-one射影
+\begin{equation}
+\rho(x)=\frac{1+S^i(x)\sigma^i}{2},\qquad
+\rho^2=\rho,\quad\tr\rho=1,\quad S^iS^i=1
+\label{eq:ss-rho}
+\end{equation}
+によって取る。$\sigma^i$はPauli行列で、$i=1,2,3$について和を取る。
+$\boldsymbol S=(S^1,S^2,S^3)^{\mathsf T}$は単位スピン場である。
+まず実スピンで計算し、得られた代数式を$\boldsymbol S^{\mathsf T}\boldsymbol S=1$上へ複素化してもよい。
+隣接サイトには滑らかな$\rho(x)$を割り当てる。
+
+一サイト演算子と二サイト演算子の同一点でのsymbolをそれぞれ
+\begin{equation}
+X^\downarrow:=\tr_{\mathcal H}(\rho X),\qquad
+\langle Q\rangle:=\tr_{12}\bigl[(\rho\otimes\rho)Q\bigr]
+\label{eq:ss-symbols}
+\end{equation}
+とする。物理空間のみをトレースし、補助空間の行列を残す。
+連続空間行列$U$と第二モーメントの差$\Xi$を
+\begin{equation}
+U:=X^\downarrow,\qquad \Xi:=(X^2)^\downarrow-U^2
+\label{eq:ss-Xi}
+\end{equation}
+と定義する。演算子積をsymbolの積に置き換えられないこと自体は既知の性質である。
+本節で調べるのは、その差が局所時間Lax方程式に現れる次数と形である。
+
+十分条件として、三重項部分空間への射影$P_+=(1+P)/2$に対し
+\begin{equation}
+P_+h^{(1)}P_+=cP_+
+\label{eq:ss-triplet}
+\end{equation}
+を仮定する。$c$はスピンに依存しない複素スカラーである。
+これは同じ向きのスピンの積状態について、一次Hamiltonian補正の期待値が方向に依存しないことを保証する。
+本節後半では、$X$のスピン依存性が十分な階数を持つ場合、この条件が$\mathcal B=0$から従うことを示す。
+
+\subsection{時間演算子の展開と二次項の空間変化}
+
+スカラー規格化を固定した時間演算子を
+\begin{equation}
+\widehat A=-i\widehat L_2^{-1}
+\bigl([h,\widehat L_2]+\partial_u\widehat L_2\bigr)
+=\epsilon A^{(1)}+\epsilon^2A^{(2)}+O(\epsilon^3)
+\label{eq:ss-time}
+\end{equation}
+とする。その係数は直接展開により
+\begin{align}
+A^{(1)}&=-i[2P,X_2]=-2i(X_1-X_2)P,\label{eq:ss-A1}\\
+A^{(2)}&=iX_2[2P,X_2]-i[2P,Y_2]-i[h^{(1)},X_2]-iZ_2
+\label{eq:ss-A2}
+\end{align}
+となる。$PX_1=X_2P$、$PX_2=X_1P$を用いた。
+
+格子零曲率式の二つの積について、symbolの非乗法性を
+\begin{align}
+D_n^+&:=(\widehat A_{n+1}\widehat L_n)^\downarrow
+       -\widehat A_{n+1}^\downarrow\widehat L_n^\downarrow,\nonumber\\
+D_n^-&:=(\widehat L_n\widehat A_n)^\downarrow
+       -\widehat L_n^\downarrow\widehat A_n^\downarrow
+\label{eq:ss-D}
+\end{align}
+で表す。それぞれ二次、三次の係数を$D_2^\pm,D_3^\pm$と書く。
+$D^+$の物理サイトは$n,n+1$、$D^-$では$n-1,n$である。
+
+同一点では$P(\rho\otimes\rho)=(\rho\otimes\rho)P=\rho\otimes\rho$であるため、
+\begin{equation}
+\langle A^{(1)}\rangle=0,\qquad
+D_2^+(\rho,\rho)=\langle A^{(1)}X_1\rangle=2i\Xi,
+\qquad D_2^-(\rho,\rho)=\langle X_2A^{(1)}\rangle=2i\Xi.
+\label{eq:ss-D2}
+\end{equation}
+例えば最初の積は$-2i\langle(X_1-X_2)X_2P\rangle$となり、
+$\langle X_1X_2\rangle=U^2$と$\langle X_2^2\rangle=(X^2)^\downarrow$から従う。
+これにより$D_n^+-D_n^-$の二次項が消える。
+
+次に空間Taylor係数を求める。評価点$x_0$でのみ$\rho(x_0)=\operatorname{diag}(1,0)$となる
+\emph{定数の}物理基底を選ぶ。これは位置依存のゲージ変換ではなく、微分時に基底を動かさない。
+$X$の物理行列要素を補助空間の行列$X_{ij}$で表し、
+\begin{equation}
+X=\sum_{i,j=0}^1X_{ij}\otimes|i\rangle\langle j|,
+\qquad
+\rho_x:=\partial_x\rho=\begin{pmatrix}0&p\\q&0\end{pmatrix}
+\label{eq:ss-blocks}
+\end{equation}
+と置く。$\rho\rho_x+\rho_x\rho=\rho_x$により対角成分はゼロである。
+$p,q$は射影の接ベクトルの成分で、複素化した計算では独立に扱える。
+この基底では
+\begin{align}
+U&=X_{00},\qquad \Xi=X_{01}X_{10},\nonumber\\
+\partial_x\Xi&=p(X_{11}-X_{00})X_{10}
+             +qX_{01}(X_{11}-X_{00}).
+\label{eq:ss-Xi-tangent}
+\end{align}
+二次項の各引数を別々に微分すると
+\begin{align}
+\delta_R D_2^+(\rho,\rho)[\rho_x]&=2ip(X_{11}-X_{00})X_{10},\nonumber\\
+\delta_L D_2^-(\rho,\rho)[\rho_x]&=2iqX_{01}(X_{11}-X_{00}).
+\label{eq:ss-D2-tangent}
+\end{align}
+$\delta_L,\delta_R$は左または右の物理状態に関する方向微分である。
+$D_n^-$を引く負号と$\rho(x-\epsilon)$のTaylor展開の負号により、両者は加算される。
+その和は$2i\partial_x\Xi$となる。ここまでは$h^{(1)}$への条件もSutherland relationも必要ない。
+
+\subsection{三次項の導出とSutherland残差}
+
+同一点での三次係数の差は
+\begin{equation}
+D_3^+-D_3^-=
+\langle A^{(2)}X_1-X_2A^{(2)}+A^{(1)}Y_1-Y_2A^{(1)}\rangle
+-[\langle A^{(2)}\rangle,U].
+\label{eq:ss-D3-start}
+\end{equation}
+$A^{(1)}$の同一点でのsymbolがゼロであることを使った。
+式\eqref{eq:ss-A2}の四つの項に従い、交換相互作用、$Y$、$h^{(1)}$、$Z$の寄与へ分ける。
+
+交換相互作用に由来する寄与は
+\begin{align}
+(D_3^+-D_3^-)_{\mathrm{ex}}
+&=2i\bigl(\langle X_2X_1X_2\rangle-(X^2)^\downarrow U\bigr)
+  +2i[\Xi,U]\nonumber\\
+&=2i[\Xi,U]-i\langle X_1[2P,X_2X_1]\rangle.
+\label{eq:ss-cubic-exchange}
+\end{align}
+第二行では、物理サイト交換の下で期待値が不変であることを用いた。
+$\langle X_2X_1X_2\rangle$は一般に$U^3$ではなく、ここでも積の順序と物理サイトの重なりを保つ。
+
+$Y$に由来する項をすべて合わせると
+\begin{equation}
+(D_3^+-D_3^-)_{Y}
+=-2i\langle([Y_1,X_2]+[X_1,Y_2])P\rangle
+=-2i\bigl([Y^\downarrow,U]+[U,Y^\downarrow]\bigr)=0.
+\label{eq:ss-Y-cancel}
+\end{equation}
+時間演算子中の$-i[2P,Y_2]$と、積中の$A^{(1)}Y$をともに保持した後の相殺である。
+最初から$Y$を省略してよいという意味ではない。
+
+スペクトル微分による寄与は
+\begin{equation}
+(D_3^+-D_3^-)_{Z}
+=i\bigl((XZ)^\downarrow-UZ^\downarrow\bigr)
+=-i\langle X_1(-Z_1+Z_2)\rangle.
+\label{eq:ss-Z-part}
+\end{equation}
+
+残る$h^{(1)}$項の整理に、式\eqref{eq:ss-triplet}を使う。
+一次Hamiltonian補正の交換子のsymbolを
+$K_h:=\langle[h^{(1)},X_2]\rangle$と定義する。
+この補助空間行列は時間行列にも現れる。同条件の下では
+\begin{align}
+\langle(X_1+X_2)[h^{(1)},X_1+X_2]\rangle&=0,
+\label{eq:ss-h-collective}\\
+\langle[h^{(1)},X_2X_1]\rangle&=[K_h,U].
+\label{eq:ss-h-product}
+\end{align}
+式\eqref{eq:ss-h-collective}では、$X_1+X_2$が$P$と可換であり三重項を保存する。
+したがって期待値の中で$h^{(1)}$を$c$へ置き換えられる。
+
+式\eqref{eq:ss-h-product}も明示的に示せる。式\eqref{eq:ss-blocks}と同じ基底で、
+$h^{(1)}$の物理行列要素を$h_{ij,kl}$とし、
+$a_h:=h_{00,01}$、$b_h:=h_{01,00}$と置く。
+三重項条件は$h_{00,10}=-a_h$、$h_{10,00}=-b_h$、
+$h_{00,11}=h_{11,00}=0$、$h_{00,00}=c$を与える。
+従って
+\begin{equation}
+K_h=a_hX_{10}-b_hX_{01},\qquad
+\langle[h^{(1)},X_2X_1]\rangle
+=a_h[X_{10},X_{00}]-b_h[X_{01},X_{00}]=[K_h,U].
+\label{eq:ss-h-block-proof}
+\end{equation}
+$a_h,b_h$は物理Hamiltonianのスカラー成分であり、補助空間行列とは可換である。
+
+これら二式と$[h^{(1)},X_2X_1]=[h^{(1)},X_2]X_1+X_2[h^{(1)},X_1]$から
+\begin{align}
+(D_3^+-D_3^-)_{h}
+&=-i\langle[h^{(1)},X_2]X_1-X_2[h^{(1)},X_2]\rangle+i[K_h,U]
+\nonumber\\
+&=-i\langle X_1[h^{(1)},X_1+X_2]\rangle
+\label{eq:ss-h-part}
+\end{align}
+となる。式\eqref{eq:ss-cubic-exchange}--\eqref{eq:ss-h-part}を加えると
+\begin{equation}
+D_3^+(\rho,\rho)-D_3^-(\rho,\rho)
+=2i[\Xi,U]-i\langle X_1\mathcal B\rangle
+\label{eq:ss-cubic-final}
+\end{equation}
+を得る。これは数値的な係数合わせではなく、交換演算子とrank-one射影の恒等式による導出である。
+補助空間に関するCayley--Hamilton恒等式は使用していないため、補助空間の次元を二に限る必要もない。
+一方、式\eqref{eq:ss-h-block-proof}では物理空間が二次元であることを使用した。
+
+以上から、連続極限の補正を
+$\mathcal C:=\lim_{\epsilon\to0}\epsilon^{-3}(D_n^+-D_n^-)$と定義すると
+\begin{equation}
+\mathcal C=2i\bigl(\partial_x\Xi+[\Xi,U]\bigr)-i\langle X_1\mathcal B\rangle.
+\label{eq:ss-source-final}
+\end{equation}
+Sutherland relationの該当次数が成立する場合、$\mathcal B=0$であるため
+\begin{equation}
+\Delta V=2i\Xi+f(\lambda)1,
+\qquad \mathcal C=\partial_x\Delta V+[\Delta V,U]
+\label{eq:ss-DeltaV}
+\end{equation}
+となる。$f(\lambda)$は位置とスピンに依存しない任意のスカラーである。
+
+なお三重項条件を課さない場合にも、式\eqref{eq:ss-source-final}に追加する残差は具体的に書ける。
+その行列を$\mathcal R_h$とすれば
+\begin{equation}
+\mathcal R_h=i\left\{
+\langle(X_1+X_2)[h^{(1)},X_1+X_2]\rangle
+-\langle[h^{(1)},X_2X_1]\rangle+[K_h,U]\right\}.
+\label{eq:ss-h-defect}
+\end{equation}
+任意の$h^{(1)}$について、補正は式\eqref{eq:ss-source-final}の右辺に$\mathcal R_h$を加えたものとなる。
+式\eqref{eq:ss-h-collective}と\eqref{eq:ss-h-product}が、この残差を消す条件の働きを明示している。
+
+\subsection{階数条件の下では三重項条件が従う}
+\label{subsec:ss-rank}
+
+$h^{(1)}$のサイト交換に対して偶な部分を
+$h^{(1)}_+:=(h^{(1)}+Ph^{(1)}P)/2$と定義する。
+式\eqref{eq:ss-residual}の交換相互作用項と$-Z_1+Z_2$はサイト交換に対して奇である。
+従って
+\begin{equation}
+\frac{\mathcal B+P\mathcal BP}{2}=[h^{(1)}_+,X_1+X_2].
+\label{eq:ss-even-residual}
+\end{equation}
+
+$X$を物理空間のPauli基底で展開し、補助空間行列$\mathsf X_0,\mathsf X_i$を
+\begin{equation}
+X=\mathsf X_0\otimes1+\sum_{i=1}^3\mathsf X_i\otimes\sigma^i,
+\qquad U=\mathsf X_0+\sum_{i=1}^3\mathsf X_i S^i
+\label{eq:ss-pauli-expansion}
+\end{equation}
+で定義する。三つの$\mathsf X_i$が線形独立、すなわち
+$\boldsymbol v\mapsto\sum_i\mathsf X_i v^i$の階数が三と仮定する。
+$\mathcal B=0$と式\eqref{eq:ss-even-residual}から
+\begin{equation}
+[h^{(1)}_+,\sigma^i_1+\sigma^i_2]=0\qquad(i=1,2,3)
+\label{eq:ss-collective-commute}
+\end{equation}
+が従う。二つのスピン$1/2$の積は、重複度一の三重項と一重項に分解される。
+従って全スピンと可換な行列は各部分空間でスカラーとなり、
+$P_-=(1-P)/2$を用いて
+\begin{equation}
+h^{(1)}_+=c_+P_++c_-P_-.
+\label{eq:ss-h-even-form}
+\end{equation}
+よって$P_+h^{(1)}P_+=c_+P_+$であり、式\eqref{eq:ss-triplet}は独立の仮定でなくなる。
+
+この議論は階数が三に満たない場合には使えない。例えば補助空間の非零行列$T_a$を用いた
+$X=T_a\otimes\sigma^3$、$Y=Z=0$、$h^{(1)}=\sigma^3\otimes\sigma^3$では
+$\mathcal B=0$だが、三重項での$h^{(1)}$はスカラーではない。
+これは階数条件なしに三重項条件を導くことへの反例であり、補正式自体への反例とは主張しない。
+
+\subsection{補正後の時間行列と二模型への適用}
+
+同一点の時間symbolも式\eqref{eq:ss-A2}から直接評価できる。
+$[2P,Y_2]$の期待値はゼロであるため
+\begin{equation}
+\langle A^{(2)}\rangle=-2i\Xi-iK_h-iZ^\downarrow.
+\label{eq:ss-A2-symbol}
+\end{equation}
+$\widehat A^\downarrow=\epsilon^2V^\downarrow+O(\epsilon^3)$に含まれる
+$A^{(1)}$の空間変化と合わせると、式\eqref{eq:ss-DeltaV}による補正後の時間行列は
+\begin{equation}
+V=-2(\boldsymbol S\times\partial_x\boldsymbol S)^i
+        \frac{\partial U}{\partial S^i}
+-iK_h-iZ^\downarrow+f(\lambda)1.
+\label{eq:ss-corrected-time}
+\end{equation}
+$x$微分の次数を数えると、$t=\epsilon^2t_{\rm lat}$の時間規格化では
+$\partial_{t_{\rm lat}}\widehat L$も$\epsilon^3$から始まる。
+従って共有サイト補正は連続時間方程式と同じ次数で残る。
+ただし、左辺の量子交換子のsymbolを古典Hamiltonian流の$\partial_tU$と同定することは別の力学的な確認である。
+式\eqref{eq:ss-corrected-time}だけからその確認や、曲率と全運動方程式の同値性までは主張しない。
+
+具体例の名前と演算子を本節内で定義しておく。
+Class 5、Class 6は文献\cite{DPR2019,DFN2026}の二つの非Hermitianスピン鎖である。
+順序付き基底$\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}$で
+\begin{equation}
+K_5=\begin{pmatrix}0&1&-1&0\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix},
+\qquad
+K_6=\begin{pmatrix}0&1&1&0\\0&0&0&-1\\0&0&0&-1\\0&0&0&0\end{pmatrix}
+\label{eq:ss-model-K}
+\end{equation}
+と置く。連続変形結合$\alpha_5,\alpha_6$を用いて、その第一空間係数は
+\begin{equation}
+X_5=\frac{P}{2\lambda}+\alpha_5K_5,
+\qquad
+X_6=\frac{P}{2\lambda}+\alpha_6\lambda K_6+\alpha_6^2\lambda^3K_6^2.
+\label{eq:ss-model-X}
+\end{equation}
+Class 5では$h^{(1)}=2\alpha_5K_5$、Class 6では$h^{(1)}=0$であり、
+両者とも$Z=\partial_\lambda X$である。
+$U_{12},U_{21},U_{11}$の順にスピン3成分への係数を取り出した$3\times3$小行列の行列式は、いずれも
+\begin{equation}
+\det\frac{\partial(U_{12},U_{21},U_{11})}{\partial(S^1,S^2,S^3)}
+=\frac{i}{32\lambda^3}.
+\label{eq:ss-model-rank}
+\end{equation}
+従って$\lambda\ne0$では式\eqref{eq:ss-collective-commute}の議論を適用できる。
+
+Class 6では$X_6^2=1/(4\lambda^2)+2Y_6$という模型固有の恒等式があり、
+$\Xi$を$Y_6$で書き換えると第二空間係数に由来する交換子が見える。
+一方、一般導出では明示的な$Y$は式\eqref{eq:ss-Y-cancel}で相殺する。
+したがって第二係数は途中の計算で保持すべきだが、最終補正に必要な独立の追加データとは限らない。
+実際、式\eqref{eq:ss-pauli-expansion}より
+\begin{equation}
+\Xi=\sum_{i,j=1}^3\mathsf X_i\mathsf X_j
+\bigl(\delta_{ij}-S^iS^j+i\varepsilon_{ijk}S^k\bigr),
+\qquad\varepsilon_{123}=1
+\label{eq:ss-Xi-from-U}
+\end{equation}
+と復元できる。$\delta_{ij}$はKroneckerのデルタ、$\varepsilon_{ijk}$は完全反対称テンソルであり、$k$についても和を取る。
+$U$のスピン依存性全体を知れば、スピン$1/2$ではこの第二モーメントも決まる。
+
+独立な検算として、既知XXZ鎖の弱異方性極限も使える。
+格子異方性を$\eta=\epsilon\gamma$とし、連続異方性$\gamma$を固定する。
+標準six-vertex $R$行列の規格化により
+\begin{equation}
+X_{\rm XXZ}=\begin{pmatrix}a&0&0&0\\0&0&b&0\\0&b&0&0\\0&0&0&a\end{pmatrix},
+\quad a=\gamma\coth(2\gamma\lambda),\quad b=\frac{\gamma}{\sinh(2\gamma\lambda)}
+\label{eq:ss-xxz-X}
+\end{equation}
+となる。この場合の同じ小行列式は$iab^2/4$であり、$ab\ne0$の領域で階数条件を満たす。
+特別なスペクトル点で階数が落ちても、$h^{(1)}=0$なので三重項条件を直接確認できる。
+補正式の正しさと、あるスペクトル点で運動方程式を曲率から逆算できるかは区別する必要がある。
+
+\subsection{文献との差、検証範囲、原稿への反映}
+
+Avan--Doikou--Sfetsos\cite{ADS2010}の第2節はcoherent-state期待値から
+空間Lax行列とmonodromyを構成し、格子和の数と格子間隔の次数を対応させて連続極限を論じる。
+期待値と非線形演算が一般には交換しない点も第2.4節で明記されている。
+Doikou--Findlay\cite{DoikouFindlay2017}は量子時間Lax成分の階層を構成し、
+第5節でcoherent statesを用いた時間発展にも触れている。
+本節の計算は、これらの枠組みやsymbolの非乗法性を新規とするものではない。
+比較すべき対象は、局所零曲率式の$\epsilon^3$係数と、その局所的な時間行列への吸収である。
+当該文献を確認した範囲では本節と同一の局所補正式を確認できていないが、文献上の優先性は未確定である。
+
+独立検証には二つの実装を用いた。既存の一般成分を用いるプログラムは50項目を再実行した。
+追加プログラムは補助空間の成分を非可換な記号として保持し、本節の各相殺、任意の$h^{(1)}$での
+式\eqref{eq:ss-h-defect}、Sutherland残差の交換偶成分、全スピンと可換な行列の空間、
+二模型とXXZの階数を34項目で確認した。合計84項目のうち、80項目は厳密にゼロ、
+4項目は仮定を外した検算で予期した非零結果となった。
+この数は独立の物理結果の数ではなく、実装中のassertion数である。
+
+本節の結果に基づけば、原稿には共通補正式の条件と導出を先に置き、二模型をその具体化として扱う余地がある。
+ただし、原稿本文の変更は文献比較と独立レビューの後に行う。
+高次Hamiltonian、より大きい物理スピン、有限時間の量子発展の誤差制御は本節では扱っていない。
+既存のClass 6とeleven-vertex模型の直接対応も、この局所恒等式とは別に照合する必要がある。
