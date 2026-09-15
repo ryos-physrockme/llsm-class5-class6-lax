@@ -1,12 +1,6 @@
 \section{Comparison of Class 5 and Class 6}
 \label{sec:comparison}
 
-Section~\ref{sec:shared-site-common-form} gives the shared-site correction in
-a form that is common to the spin-$\tfrac12$ scaling of the two chains.  We
-now compare how that expression is realized by their different lattice
-operators and deformation scalings, and then evaluate the common isotropic
-limit.
-
 \subsection{Operator-product corrections in the coherent-state limit}
 \label{sec:comparison-symbol-products}
 
@@ -19,16 +13,14 @@ U_m=\bigl(L_m^{(1)}\bigr)^\downarrow.
 \label{eq:comparison-symbol-square-difference}
 \end{equation}
 All lower symbols are evaluated at the same spin
-$\boldsymbol S(x,t)$.  The Class 5 and Class 6 calculations in
-Sections~\ref{sec:class5-time-lax} and \ref{sec:class6-time-lax}
-independently give the common source
+$\boldsymbol S(x,t)$.  Sections~\ref{sec:class5-time-lax} and
+\ref{sec:class6-time-lax} give
 \begin{equation}
 \mathcal C_m
 =2\ii\bigl(\partial_x\Xi_m+[\Xi_m,U_m]\bigr),
 \label{eq:comparison-common-source}
 \end{equation}
-in agreement with Eq.~\eqref{eq:common-source-general}.  The representatives
-used in the two model sections are obtained from
+with the representatives
 \begin{equation}
 \Delta V_m
 =2\ii\Xi_m-\frac{\ii}{4\lambda^2}\Id_{\mathcal V_a},
@@ -36,34 +28,22 @@ used in the two model sections are obtained from
 V_m=V_m^\downarrow+\Delta V_m.
 \label{eq:comparison-common-correction}
 \end{equation}
-The scalar term fixes the chosen representative and does not affect the
-curvature.
+The scalar term does not affect the curvature.
 
-The power counting behind Eq.~\eqref{eq:comparison-common-source} is the same
-in both models.  The two connected products in the lattice zero-curvature
-equation start at order $\epsilon^2$.  Their coincident-spin terms cancel,
-while their first spatial Taylor coefficients and their coincident
-order-$\epsilon^3$ terms survive at the same order as
-$\partial_{t_{\rm lat}}\widehat L$ under
-$t=\epsilon^2t_{\rm lat}$.  This is the local time-equation effect described
-in Section~\ref{sec:shared-site-common-form}; it does not rely on treating the
-nonmultiplicativity of coherent-state symbols as a new property.
-
-\subsection{Common structure and model-dependent terms}
+\subsection{Model-dependent terms}
 \label{sec:comparison-model-dependence}
 
 The different deformation scalings follow from the bond lower symbols.  For
 Class 5, the deformation vanishes at coincident spins and its leading term is
-proportional to $\kappa_5\epsilon$.  For Class 6, it already contributes at
-order $\kappa_6$.  Matching each contribution to the order-$\epsilon^2$
-exchange energy fixes $\kappa_5=\epsilon\alpha_5$ and
+proportional to $\kappa_5\epsilon$.  For Class 6, it contributes already at
+order $\kappa_6$.  Matching these terms to the order-$\epsilon^2$ exchange
+energy gives $\kappa_5=\epsilon\alpha_5$ and
 $\kappa_6=\epsilon^2\alpha_6$.
 
-The resulting Hamiltonian densities and spatial-operator coefficients are
-compared in Table~\ref{tab:class5-class6-comparison}.  In the table,
-$L_5^{(2)}:=0$ denotes the absent second-order coefficient in the exact
-expansion \eqref{eq:class5-L-expansion}.  The matrices $M_5$ and $N_6$ are
-those in Eqs.~\eqref{eq:class5-M-definition} and
+Table~\ref{tab:class5-class6-comparison} compares the Hamiltonian densities
+and spatial-operator coefficients.  Here $L_5^{(2)}:=0$ denotes the absent
+second-order coefficient in Eq.~\eqref{eq:class5-L-expansion}, and $M_5$ and
+$N_6$ are defined in Eqs.~\eqref{eq:class5-M-definition} and
 \eqref{eq:class6-N-definition}.
 
 \begin{table}[htbp]
@@ -95,9 +75,8 @@ Eq.~\eqref{eq:class5-continuum-hamiltonian}.}
 \end{table}
 
 The antisymmetric matrix $M_5$ couples the spin to its spatial derivative in
-Class 5.  The symmetric matrix $N_6$ gives a local anisotropy term in Class 6.
-At the operator level, the model-specific representations of the second
-moment are
+Class 5, whereas the symmetric matrix $N_6$ gives a local anisotropy term in
+Class 6.  The corresponding second moments are
 \begin{equation}
 \Xi_5=\frac{\Id_{\mathcal V_a}}{4\lambda^2}-U_5^2,
 \qquad
@@ -106,25 +85,18 @@ moment are
 \label{eq:comparison-two-symbol-squares}
 \end{equation}
 Thus $[\Xi_5,U_5]=0$, and the Class 5 source is a total spatial derivative.
-For Class 6, Eq.~\eqref{eq:class6-L-first-square} expresses the same second
-moment through $L_6^{(2)}$, making the nonzero commutator contribution
-explicit in Eq.~\eqref{eq:class6-source-expanded}.  The spatially uniform
-example \eqref{eq:class6-uniform-source} isolates this contribution: it
-remains nonzero when all spatial derivatives vanish.
+For Class 6, Eq.~\eqref{eq:class6-L-first-square} expresses $\Xi_6$ through
+$L_6^{(2)}$, and Eq.~\eqref{eq:class6-source-expanded} contains a nonzero
+commutator.  The uniform configuration
+Eq.~\eqref{eq:class6-uniform-source} isolates this term when all spatial
+derivatives vanish.  In the general formula of
+Section~\ref{sec:shared-site-common-form}, the explicit second-order
+coefficient cancels after the intermediate products are combined, and
+Eq.~\eqref{eq:common-Xi-from-U} reconstructs $\Xi$ from the leading spatial
+matrix.
 
-The appearance of $L_6^{(2)}$ in Eq.~\eqref{eq:comparison-two-symbol-squares}
-does not mean that the common correction requires an independent
-second-order spatial coefficient.  In the general derivation of
-Section~\ref{sec:shared-site-common-form}, all explicit $Y$ terms cancel only
-after they have been retained in the intermediate operator products, and
-$\Xi$ can be reconstructed from the spin dependence of the leading matrix
-through Eq.~\eqref{eq:common-Xi-from-U}.  The Class 6 identity
-Eq.~\eqref{eq:class6-L-first-square} is a particularly convenient
-model-specific representation of this quantity.
-
-The undeformed limit also retains an operator-product correction.  To display
-it, write $\sigma_a^i$ for the Pauli matrices acting on the auxiliary space
-$\mathcal V_a$.  Setting $\alpha_m=0$ in either model gives
+In the undeformed limit, write $\sigma_a^i$ for the Pauli matrices on the
+auxiliary space $\mathcal V_a$.  Setting $\alpha_m=0$ gives
 \begin{align}
 \left.U_m\right|_{\alpha_m=0}
 &=\frac{\Id_{\mathcal V_a}+S^i\sigma_a^i}{4\lambda},
@@ -136,9 +108,8 @@ $\mathcal V_a$.  Setting $\alpha_m=0$ in either model gives
 =-\frac{\ii(\partial_x S^i)\sigma_a^i}{4\lambda^2}.
 \label{eq:comparison-isotropic-correction}
 \end{align}
-These formulas follow from $(S^i\sigma_a^i)^2=\Id_{\mathcal V_a}$ on the
-unit-spin constraint.  Adding the correction to the direct time symbol gives
-the common isotropic Landau--Lifshitz time matrix
+Using $(S^i\sigma_a^i)^2=\Id_{\mathcal V_a}$ on the unit-spin constraint,
+the corrected time matrix is
 \begin{equation}
 \left.V_m\right|_{\alpha_m=0}
 =-\frac{(\boldsymbol S\times\partial_x\boldsymbol S)^i\sigma_a^i}
@@ -147,5 +118,5 @@ the common isotropic Landau--Lifshitz time matrix
 \label{eq:comparison-isotropic-V}
 \end{equation}
 The direct symbol has twice the coefficient of the second term in
-Eq.~\eqref{eq:comparison-isotropic-V}.  The surviving correction is therefore
-already present in the spin-$\tfrac12$ XXX limit.
+Eq.~\eqref{eq:comparison-isotropic-V}, so the shared-site correction is also
+required in the spin-$\tfrac12$ XXX limit.
