@@ -1,0 +1,65 @@
+\subsection{Hamiltonian 密度の対応}
+
+前節では Kameyama--Yoshida の null-like warped $SL(2)$ Landau--Lifshitz 模型の作用と運動方程式を直接比較した。ここでは Lax pair の比較より前の段階で、Class 5 と同模型の Hamiltonian 密度が同じ場の変換で対応することを明示する。
+
+Class 5 の continuum Hamiltonian 密度は、全微分を除いて
+\begin{equation}
+\mathcal H_5
+=-\frac12\,\partial_x\boldsymbol S^{\mathsf T}\partial_x\boldsymbol S
++\frac{\alpha_5}{2}\,
+\boldsymbol S^{\mathsf T}M_5\partial_x\boldsymbol S,
+\label{eq:c5corr-H5-density}
+\end{equation}
+である。式\eqref{eq:c5corr-rotation}の場の変換
+$\boldsymbol S=\mathcal R(x)\widetilde{\boldsymbol S}$,
+$\mathcal R=e^{-\alpha_5xM_5/2}$を代入する。$M_5^{\mathsf T}=-M_5$ なので
+$\mathcal R^{\mathsf T}\mathcal R=\mathbf1_3$ であり、一次微分の交差項が消えて
+\begin{equation}
+\widetilde{\mathcal H}_5
+=-\frac12\,
+\partial_x\widetilde{\boldsymbol S}^{\mathsf T}
+\partial_x\widetilde{\boldsymbol S}
+-\frac{\alpha_5^2}{8}\,
+\widetilde{\boldsymbol S}^{\mathsf T}M_5^2
+\widetilde{\boldsymbol S}
+\label{eq:c5corr-H5-rotated}
+\end{equation}
+を得る。
+
+一方、Kameyama--Yoshida の作用\eqref{eq:c5corr-K-action}から、全体係数 $L_K/2$ を除いた Hamiltonian 密度は
+\begin{equation}
+\mathcal H_K
+=C_K(n^-)^2
+-\frac{1}{A_K^2}\,
+\partial_x n^a\,\eta_{ab}\,\partial_x n^b,
+\qquad
+\eta=\operatorname{diag}(1,-1,-1),
+\label{eq:c5corr-HK-density}
+\end{equation}
+である。ここで
+\begin{equation}
+A_K:=\frac{4\pi L_K}{\sqrt{\Lambda_K}},
+\qquad
+n^-:=\frac{n^0-n^1}{\sqrt2}.
+\end{equation}
+場の辞書\eqref{eq:c5corr-field-dictionary}を
+$D:=\operatorname{diag}(1,-\ii,-\ii)$ と書けば
+\begin{equation}
+D^{\mathsf T}\eta D=\mathbf1_3,
+\qquad
+\widetilde{\boldsymbol S}^{\mathsf T}M_5^2
+\widetilde{\boldsymbol S}=-2(n^-)^2.
+\label{eq:c5corr-H-map-identities}
+\end{equation}
+したがって、結合の辞書
+$C_K=\alpha_5^2/(2A_K^2)$ のもとで
+\begin{equation}
+\widetilde{\mathcal H}_5
+=\frac{A_K^2}{2}\,\mathcal H_K
+\label{eq:c5corr-Hamiltonian-density-map}
+\end{equation}
+が成り立つ。時間変換 $t_K=A_K^2t$ を含めると、同じ辞書で式\eqref{eq:c5corr-rotated-eom}が Kameyama--Yoshida の運動方程式\eqref{eq:c5corr-K-eom0}--\eqref{eq:c5corr-K-eom2}へ移る。
+
+従って、Lax pair の式だけが偶然 gauge-equivalent なのではない。複素化した局所古典力学として Hamiltonian 密度と運動方程式が先に対応し、その同じ場・結合・時間の辞書の上で式\eqref{eq:c5corr-Uidentity}, \eqref{eq:c5corr-Videntity}の Lax pair 対応が成立する。実条件と周期境界条件が一致しないことは前節の注意の通りである。
+
+この対応は \path{scripts/class5/verify_hamiltonian_correspondence.py} で独立に記号検算し、結果を \path{results/class5/lax_correspondence/hamiltonian_verification.json} に保存する。
