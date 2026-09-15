@@ -1,0 +1,40 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage[margin=22mm]{geometry}
+\usepackage{luatexja-fontspec}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=.88]
+\setmainjfont{HaranoAjiMincho-Regular.otf}[BoldFont=HaranoAjiMincho-Bold.otf]
+\setsansjfont{HaranoAjiGothic-Regular.otf}[BoldFont=HaranoAjiGothic-Bold.otf]
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xurl,hyperref}
+\hypersetup{hidelinks,pdftitle={Class 5 の量子 Lax 作用素の規格化と既知の古典 Lax 表現との対応}}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\tr}{\operatorname{tr}}
+\numberwithin{equation}{section}
+\allowdisplaybreaks[2]
+\setlength{\parskip}{.32em}
+\setlength{\emergencystretch}{2.5em}
+\begin{document}
+\begin{center}
+{\Large\bfseries Class 5 の Lax 表現の比較}\par
+\medskip
+{\normalsize 量子作用素の規格化・長波長極限・局所ゲージ変換}\par
+\smallskip
+{\normalsize 2026年9月14日}
+\end{center}
+\noindent 本書は完全計算ノートに追記する節の単独組版である。記号と規約は以下に定義する。
+\input{parts/12_class5_generic_lax_comparison.tex}
+\begin{thebibliography}{9}
+\bibitem{DFN2026}
+M.~de Leeuw, A.~Fontanella and J.~M.~Nieto Garc\'ia,
+``An integrable deformed Landau--Lifshitz model with particle production?,''
+SciPost Phys. \textbf{20} (2026) 041,
+\href{https://arxiv.org/abs/2506.13598v2}{arXiv:2506.13598v2}.
+\bibitem{KY2014}
+T.~Kameyama and K.~Yoshida,
+``Anisotropic Landau--Lifshitz sigma models from $q$-deformed $\mathrm{AdS}_5\times S^5$ superstrings,''
+JHEP \textbf{08} (2014) 110,
+\href{https://arxiv.org/abs/1405.4467v2}{arXiv:1405.4467v2}.
+\end{thebibliography}
+\end{document}

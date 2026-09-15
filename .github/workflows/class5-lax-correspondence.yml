@@ -1,0 +1,50 @@
+name: Class 5 Lax correspondence
+
+on:
+  push:
+    branches: [research/class5-generic-lax-comparison]
+  pull_request:
+    branches: [main, research/shared-site-generalization]
+    paths:
+      - notes/parts/12_class5_generic_lax_comparison.tex
+      - notes/class5_lax_comparison_ja.tex
+      - notes/full_research_note_ja.tex
+      - scripts/class5/verify_lax_correspondence.py
+      - results/class5/lax_correspondence/**
+      - .github/workflows/class5-lax-correspondence.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify-and-build-note:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install symbolic dependency
+        run: python -m pip install sympy==1.14.0
+      - name: Check all correspondence identities and the recorded result
+        run: |
+          python scripts/class5/verify_lax_correspondence.py --output /tmp/class5_lax_correspondence.json
+          diff -u results/class5/lax_correspondence/verification_results.json /tmp/class5_lax_correspondence.json
+      - name: Install TeX Live and Japanese support
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-latex-recommended texlive-latex-extra \
+            texlive-luatex texlive-lang-japanese fonts-lmodern
+      - name: Compile the complete note and the standalone comparison
+        run: |
+          cd notes
+          latexmk -lualatex -interaction=nonstopmode -halt-on-error full_research_note_ja.tex
+          latexmk -lualatex -interaction=nonstopmode -halt-on-error class5_lax_comparison_ja.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: class5-lax-comparison-documents
+          path: |
+            notes/full_research_note_ja.pdf
+            notes/class5_lax_comparison_ja.pdf
+            results/class5/lax_correspondence/verification_results.json
