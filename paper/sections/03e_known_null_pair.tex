@@ -1,14 +1,9 @@
 \subsection{Relation to the null-like warped \texorpdfstring{$SL(2)$}{SL(2)} Landau--Lifshitz pair}
 \label{sec:class5-known-null-pair}
 
-The time matrix obtained above is not the first classical Lax representation
-of this type of continuum dynamics.  We now make explicit its local relation
-to the null-like warped $SL(2)$ Landau--Lifshitz pair of
-Ref.~\cite{KameyamaYoshida2014}.  The comparison is useful for separating the
-existence of the classical pair from the finite-lattice derivation in
-Sections~\ref{sec:class5-time-lax} and \ref{sec:class5-eom}.
-
-Let $n^0,n^1,n^2$ denote the fields of the null-like warped model and define
+The Class 5 pair can be compared directly with the null-like warped $SL(2)$
+Landau--Lifshitz pair of Ref.~\cite{KameyamaYoshida2014}.  Let
+$n^0,n^1,n^2$ denote the fields of that model and define
 \begin{equation}
 (n^0)^2-(n^1)^2-(n^2)^2=1,
 \qquad
@@ -28,7 +23,8 @@ T^{\pm}=\frac{T^0\pm T^1}{\sqrt2}.
 \end{equation}
 Introduce a nonzero normalization $A_K$, let $B_K:=-2/A_K$, and denote the
 null-like deformation coupling and spectral parameter by $C_K$ and $z_K$.
-In these conventions the known pair can be written as
+The Lax pair of Ref.~\cite{KameyamaYoshida2014}, with these constants renamed,
+is
 \begin{align}
 U_K
 ={}&\frac{A_K}{z_K}
@@ -57,13 +53,8 @@ V_K
 \right].
 \label{eq:class5-known-VK}
 \end{align}
-These equations are the null-like warped Lax pair of
-Ref.~\cite{KameyamaYoshida2014} rewritten only to distinguish its constants
-from the Class 5 coupling and spectral parameter used in this paper.
 
-The relation to the Class 5 variables involves both a field redefinition and
-an auxiliary-space gauge transformation.  First define a rotated spin
-$\widetilde{\boldsymbol S}$ by
+Define a rotated spin $\widetilde{\boldsymbol S}$ by
 \begin{equation}
 \boldsymbol S(x,t)
 =\mathcal R(x)\widetilde{\boldsymbol S}(x,t),
@@ -73,8 +64,8 @@ $\widetilde{\boldsymbol S}$ by
 \label{eq:class5-known-field-rotation}
 \end{equation}
 Since $M_5^{\mathsf T}=-M_5$, this transformation preserves
-$\boldsymbol S^{\mathsf T}\boldsymbol S=1$.  The field, coupling, spectral
-parameter and time dictionaries are
+$\boldsymbol S^{\mathsf T}\boldsymbol S=1$.  The fields and parameters are
+related by
 \begin{equation}
 \begin{gathered}
 \begin{pmatrix}n^0(x,t_K)\\ n^1(x,t_K)\\ n^2(x,t_K)\end{pmatrix}
@@ -90,8 +81,8 @@ t_K=A_K^2t.
 \end{gathered}
 \label{eq:class5-known-dictionary}
 \end{equation}
-This is a correspondence on the complexified spin space; the two real
-sections are not identified by Eq.~\eqref{eq:class5-known-dictionary}.
+Equation~\eqref{eq:class5-known-dictionary} maps the complexified spin spaces;
+the two real sections are different.
 
 For the auxiliary-space transformation, let
 \begin{equation}
@@ -104,15 +95,14 @@ G(x,\lambda)
 \label{eq:class5-known-gauge}
 \end{equation}
 where $E_{12}$ is the matrix unit with only its $(1,2)$ entry nonzero.
-Define the traceless parts of the Class 5 matrices by
+Define
 \begin{equation}
 U_{5,0}:=U_5-\frac12\tr U_5\,\Id_2,
 \qquad
 V_{5,0}:=V_5-\frac12\tr V_5\,\Id_2.
 \label{eq:class5-known-traceless}
 \end{equation}
-Substitution of Eqs.~\eqref{eq:class5-known-field-rotation}--
-\eqref{eq:class5-known-gauge} gives
+Then
 \begin{align}
 U_{5,0}
 &=\mathcal G U_K\mathcal G^{-1}
@@ -122,23 +112,19 @@ V_{5,0}
 &=A_K^2\mathcal G V_K\mathcal G^{-1}
 \label{eq:class5-known-V-map}
 \end{align}
-on the unit-spin constraint.  The spatial identity holds without using the
-constraint; before imposing it, the difference in the time identity is
-proportional to
+on the unit-spin constraint.  The spatial identity holds without the
+constraint.  Before imposing the constraint, the difference in the time
+identity is proportional to
 $\widetilde{\boldsymbol S}^{\mathsf T}\widetilde{\boldsymbol S}-1$.
-Thus the two traceless components are mapped simultaneously by the same local
-gauge transformation after the time rescaling in
-Eq.~\eqref{eq:class5-known-dictionary}.
 
-For completeness, the scalar parts of the Class 5 matrices are not constant.
-Writing
+The scalar parts are
 \begin{equation}
 a_U:=\frac12\tr U_5,
 \qquad
 a_V:=\frac12\tr V_5,
 \label{eq:class5-known-scalar-parts}
 \end{equation}
-one finds on the unit-spin constraint
+and, on the unit-spin constraint,
 \begin{align}
 a_U&=\frac{1}{4\lambda}+\frac{\alpha_5}{4}S^+,
 \nonumber\\
@@ -148,19 +134,17 @@ a_V&=\frac{\ii\alpha_5}{2}
 \label{eq:class5-known-scalars}
 \end{align}
 Using the residual $E^{(5)}_+$ defined in
-Eq.~\eqref{eq:class5-residual-plus}, these obey
+Eq.~\eqref{eq:class5-residual-plus},
 \begin{equation}
 \partial_ta_U-\partial_xa_V
 =\frac{\alpha_5}{4}E^{(5)}_+.
 \label{eq:class5-known-scalar-curvature}
 \end{equation}
-Thus the scalar sector is locally flat on the Class 5 equations of motion and
-can then be removed locally by a scalar auxiliary transformation.  This is an
-on-shell local statement, not an off-shell identification of the full
-$\mathfrak{gl}(2)$ pairs.
+The scalar sector is therefore locally flat on the Class 5 equations of
+motion.  The full $\mathfrak{gl}(2)$ pair agrees with the traceless pair only
+locally on shell, after a scalar auxiliary transformation.
 
-The comparison should also not be promoted to a statement about the periodic
-monodromy.  If the original spin is periodic with circumference $\ell$, then
+For a periodic spin with circumference $\ell$,
 \begin{equation}
 \widetilde{\boldsymbol S}(x+\ell,t)
 =\exp\!\left(\frac{\alpha_5\ell}{2}M_5\right)
@@ -170,9 +154,8 @@ G(x+\ell,\lambda)G(x,\lambda)^{-1}
 =\Id_2-\frac{\alpha_5\ell}{2}E_{12}.
 \label{eq:class5-known-boundary-twist}
 \end{equation}
-Neither transformation is generically periodic.  The comparison therefore
-shows that the local Class 5 classical structure is related to a known Lax
-pair, while leaving global boundary conditions and monodromy data distinct.
-The result specific to the present construction is the direct recovery of the
-Class 5 time component from the finite-lattice quantum time operator,
-including the shared-site contribution required in its continuum limit.
+The field and gauge transformations are not generically periodic, so the
+local correspondence does not identify periodic monodromies or global
+boundary sectors.  Sections~\ref{sec:class5-time-lax} and
+\ref{sec:class5-eom} give the direct finite-lattice derivation of the Class 5
+time component.
