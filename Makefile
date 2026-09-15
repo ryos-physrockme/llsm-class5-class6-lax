@@ -8,6 +8,8 @@ verify-class5:
 	$(PYTHON) scripts/class5/verify_coherent_symbolic.py
 	$(PYTHON) scripts/class5/verify_coherent_numeric.py
 	$(PYTHON) scripts/class5/verify_rmatrix_comparison.py
+	$(PYTHON) scripts/class5/verify_lax_correspondence.py
+	$(PYTHON) scripts/class5/verify_hamiltonian_correspondence.py
 
 # The existing physics CI invokes this target; include the common correction checks.
 verify-class6: verify-generalization
