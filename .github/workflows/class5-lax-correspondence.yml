@@ -7,6 +7,7 @@ on:
     branches: [main, research/shared-site-generalization]
     paths:
       - notes/parts/12_class5_generic_lax_comparison.tex
+      - notes/parts/12b_class5_hamiltonian_comparison.tex
       - notes/class5_lax_comparison_ja.tex
       - notes/full_research_note_ja.tex
       - scripts/class5/verify_lax_correspondence.py
