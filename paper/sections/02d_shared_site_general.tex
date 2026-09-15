@@ -1,17 +1,10 @@
-\subsection{Common form of the shared-site correction}
+\subsection{Shared-site correction and the Sutherland relation}
 \label{sec:shared-site-common-form}
 
-The preceding construction defines the continuum source $\mathcal C$ without
-assuming a particular lattice model.  We now give a common expression for
-this source under the scaling realized by the two chains below.  This step
-uses the spin-$\tfrac12$ local operator algebra and the lattice Sutherland
-relation; it is not a new statement about the general nonmultiplicativity of
-coherent-state symbols.
-
-Let $P$ denote the permutation operator on two physical spin-$\tfrac12$
-spaces.  After the model-dependent normalization and spectral scaling, assume
-that the spatial Lax operator, the two-site Hamiltonian and the spectral
-derivative have expansions
+For the scaling used below, the continuum source $\mathcal C$ can be expressed
+in terms of the first coefficient of the normalized spatial Lax operator and
+the corresponding order of the Sutherland relation.  Let $P$ denote the
+permutation operator on two physical spin-$\tfrac12$ spaces, and assume
 \begin{align}
 \widehat L
 &=\Id+\epsilon X+\epsilon^2Y+\mathcal O(\epsilon^3),
@@ -31,27 +24,24 @@ For the scalings of Sections~\ref{sec:class5-model} and
 \ref{sec:class6-model}, $Z$ is the coefficient obtained by differentiating
 with respect to the quantum spectral parameter at fixed lattice coupling.
 
-The order-$\epsilon^2$ coefficient of the Sutherland relation is conveniently
-measured by
+Define the order-$\epsilon^2$ Sutherland residual by
 \begin{equation}
 \mathcal B
 :=[2P,X_2X_1+Y_2+Y_1]
 +[h^{(1)},X_2+X_1]-Z_1+Z_2.
 \label{eq:common-Sutherland-residual}
 \end{equation}
-For an integrable lattice Lax operator obeying the Sutherland relation at this
-order, $\mathcal B=0$.  We also use the symmetric two-spin projector
-$P_+:=(\Id+P)/2$ and the condition
+For a lattice Lax operator satisfying the Sutherland relation at this order,
+$\mathcal B=0$.  We also use the symmetric two-spin projector
+$P_+:=(\Id+P)/2$ and impose
 \begin{equation}
 P_+h^{(1)}P_+=cP_+
 \label{eq:common-triplet-condition}
 \end{equation}
-for a field-independent scalar $c$.  This is a sufficient condition for the
-common identity below and holds for both chains studied here.
+with a field-independent scalar $c$.
 
-For the two models, Eq.~\eqref{eq:common-triplet-condition} also follows from
-the Sutherland relation rather than being an independent model assumption.
-To see this, expand the first spatial coefficient in the physical Pauli basis,
+In Class 5 and Class 6, Eq.~\eqref{eq:common-triplet-condition} follows from
+$\mathcal B=0$.  Expand
 \begin{equation}
 X=\mathsf X_0\otimes\Id_2+\mathsf X_i\otimes\sigma^i.
 \label{eq:common-X-rank-expansion}
@@ -66,22 +56,21 @@ h^{(1)}_+:=\frac12\left(h^{(1)}+Ph^{(1)}P\right),
 \qquad i=1,2,3.
 \label{eq:common-even-Sutherland}
 \end{equation}
-The tensor product of two spin-$\tfrac12$ representations decomposes into one
-spin triplet and one spin singlet, each with multiplicity one.  Hence an
-operator commuting with all three total-spin generators is scalar on each
-sector.  The exchange-odd part of $h^{(1)}$ has vanishing triplet-to-triplet
-matrix elements, so Eq.~\eqref{eq:common-triplet-condition} follows.  For
-both Class 5 and Class 6, the spin dependence has rank three for
-$\lambda\ne0$; for example,
+The tensor product of two spin-$\tfrac12$ representations contains one spin
+triplet and one spin singlet.  An operator commuting with the three total-spin
+generators is therefore scalar on each sector.  The exchange-odd part of
+$h^{(1)}$ has vanishing triplet-to-triplet matrix elements, which gives
+Eq.~\eqref{eq:common-triplet-condition}.  For both Class 5 and Class 6 the
+spin dependence has rank three for $\lambda\ne0$; one nonzero minor is
 \begin{equation}
 \det\frac{\partial(U_{12},U_{21},U_{11})}
 {\partial(S^1,S^2,S^3)}
 =\frac{\ii}{32\lambda^3}.
 \label{eq:common-model-rank-minor}
 \end{equation}
-For a rank-deficient spatial coefficient the implication need not hold, so we
-retain Eq.~\eqref{eq:common-triplet-condition} as the stated sufficient
-condition of the general formula.
+For a rank-deficient $X$, Eq.~\eqref{eq:common-triplet-condition} need not
+follow from the Sutherland relation, so it remains an explicit assumption in
+the general formula.
 
 At a fixed continuum spin $\boldsymbol S$, define
 \begin{equation}
@@ -99,7 +88,7 @@ A^{(2)}&=\ii X_2[2P,X_2]-\ii[2P,Y_2]
 -\ii[h^{(1)},X_2]-\ii Z_2.
 \label{eq:common-time-coefficients}
 \end{align}
-We now suppress the model label $m$ on the coefficient functions
+We suppress the model label $m$ on the coefficient functions
 $\mathcal D^{(\pm)}_{m,2}$ and $\mathcal D^{(\pm)}_{m,3}$ introduced in
 Eqs.~\eqref{eq:overlap-plus-coefficients} and
 \eqref{eq:overlap-minus-coefficients}.  We also write $\langle Q\rangle$ for
@@ -107,16 +96,14 @@ the lower symbol of a two-physical-site operator $Q$ evaluated with the same
 spin $\boldsymbol S$ on both sites, leaving its auxiliary-space indices
 uncontracted.
 
-The order-$\epsilon^2$ parts of the two overlapping products have equal
-coincident-spin values,
+At coincident spins, the order-$\epsilon^2$ coefficients satisfy
 \begin{equation}
 \mathcal D^{(+)}_2(\boldsymbol S,\boldsymbol S)
 =\mathcal D^{(-)}_2(\boldsymbol S,\boldsymbol S)
 =2\ii\Xi.
 \label{eq:common-quadratic-overlap}
 \end{equation}
-They therefore cancel before the continuum limit is taken.  Their first
-spatial Taylor coefficients instead add and give
+Their first spatial Taylor coefficients give
 \begin{equation}
 \partial_x S^i
 \left.
@@ -127,52 +114,42 @@ spatial Taylor coefficients instead add and give
 =2\ii\partial_x\Xi.
 \label{eq:common-quadratic-Taylor}
 \end{equation}
-The coincident-spin cubic terms give the complementary contribution
+The coincident order-$\epsilon^3$ coefficients obey
 \begin{equation}
 \mathcal D^{(+)}_3(\boldsymbol S,\boldsymbol S)
 -\mathcal D^{(-)}_3(\boldsymbol S,\boldsymbol S)
 =2\ii[\Xi,U]-\ii\langle X_1\mathcal B\rangle.
 \label{eq:common-cubic-overlap}
 \end{equation}
-The terms containing $Y$ are required in the intermediate expansion but
-cancel after all contributions in Eq.~\eqref{eq:common-time-coefficients} are
-combined.
-
-Equations~\eqref{eq:common-quadratic-Taylor} and
-\eqref{eq:common-cubic-overlap} give
+The explicit $Y$ terms cancel after the contributions in
+Eq.~\eqref{eq:common-time-coefficients} are combined.  Using
+Eq.~\eqref{eq:overlap-source-taylor},
 \begin{equation}
 \mathcal C
 =2\ii\bigl(\partial_x\Xi+[\Xi,U]\bigr)
 -\ii\langle X_1\mathcal B\rangle.
 \label{eq:common-source-with-residual}
 \end{equation}
-For the lattice models considered here, the Sutherland relation gives
-$\mathcal B=0$, and hence
+For $\mathcal B=0$,
 \begin{equation}
 \mathcal C
-=2\ii\bigl(\partial_x\Xi+[\Xi,U]\bigr).
+=2\ii\bigl(\partial_x\Xi+[\Xi,U]\bigr),
 \label{eq:common-source-general}
 \end{equation}
-The source is then absorbed by the local correction
+which is absorbed by
 \begin{equation}
 \Delta V=2\ii\Xi+f(\lambda)\Id,
 \label{eq:common-DeltaV-general}
 \end{equation}
-where $f(\lambda)$ is independent of the spin and of the spacetime
-coordinates.  The model calculations in Sections~\ref{sec:class5-time-lax}
-and \ref{sec:class6-time-lax} fix convenient representatives and independently
-verify every step of the continuum limit.
+where $f(\lambda)$ is independent of the spin and spacetime coordinates.
 
-For spin $\tfrac12$, the same Pauli expansion
-Eq.~\eqref{eq:common-X-rank-expansion} gives
-$U=\mathsf X_0+\mathsf X_iS^i$.  The second moment in
-Eq.~\eqref{eq:common-Xi-definition} is therefore
+For spin $\tfrac12$, Eq.~\eqref{eq:common-X-rank-expansion} gives
+$U=\mathsf X_0+\mathsf X_iS^i$ and
 \begin{equation}
 \Xi
 =\mathsf X_i\mathsf X_j
 \left(\delta_{ij}-S^iS^j+\ii\varepsilon_{ijk}S^k\right).
 \label{eq:common-Xi-from-U}
 \end{equation}
-Thus a higher coefficient of the spatial-operator expansion can provide a
-useful model-specific representation of $\Xi$, as happens in Class 6, without
-being independent data in the common formula.
+In Class 6, Eq.~\eqref{eq:class6-L-first-square} gives an equivalent
+representation of $\Xi$ in terms of $L_6^{(2)}$.

@@ -1,79 +1,61 @@
 \section{Summary and discussion}
 \label{sec:summary-discussion}
 
-We have constructed the continuum time Lax matrices for the Class 5 and
-Class 6 Landau--Lifshitz models by taking their quantum lattice time
-operators to the long-wavelength limit at fixed spin $\tfrac12$.  The local
-lattice zero-curvature equation contains products whose factors share a
-physical site, and the lower symbols of these products cannot in general be
-replaced by products of the separate lower symbols.  Under the scaling used
-here, the coincident order-$\epsilon^2$ contributions cancel, while their
-first spatial Taylor coefficients and the coincident order-$\epsilon^3$
-terms remain at the continuum time-evolution order.
+We have derived the continuum time Lax matrices of the Class 5 and Class 6
+Landau--Lifshitz models from their quantum lattice time operators at fixed
+spin $\tfrac12$.  In the local lattice zero-curvature equation, the two
+operator products share a physical site.  Their coincident
+order-$\epsilon^2$ contributions cancel, while the first spatial Taylor terms
+and the coincident order-$\epsilon^3$ terms remain at the continuum
+time-evolution order.
 
-For the spin-$\tfrac12$ operator expansion specified in
-Section~\ref{sec:shared-site-common-form}, this surviving source is organized
-by the second-moment difference
-$\Xi=(X^2)^\downarrow-(X^\downarrow)^2$.  Retaining the corresponding order
-of the Sutherland relation gives
-$\mathcal C=2\ii(\partial_x\Xi+[\Xi,U])$, so the contribution is absorbed
-into a local correction of the time matrix.  The Class 5 and Class 6 finite-
-lattice calculations independently reproduce this common identity, and the
-corrected zero-curvature equations are equivalent to the separately derived
-Hamiltonian equations of motion through off-shell identities with explicit
-inverses.
+For the operator expansion of Section~\ref{sec:shared-site-common-form}, the
+surviving contribution is expressed through
+$\Xi=(X^2)^\downarrow-(X^\downarrow)^2$.  With the corresponding Sutherland
+relation,
+\begin{equation}
+\mathcal C=2\ii\bigl(\partial_x\Xi+[\Xi,U]\bigr),
+\end{equation}
+and the source is absorbed into a local correction of the time matrix.  The
+Class 5 and Class 6 lattice calculations reproduce this expression and give
+zero-curvature equations that are off-shell equivalent to the independently
+derived Hamiltonian equations.
 
-The two models realize the common correction differently.  In Class 5 the
-source is a total spatial derivative.  In Class 6 its model-specific
-representation through the second spatial coefficient displays an additional
-commutator, which remains nonzero on a spatially uniform spin configuration.
-The general derivation also shows that explicit second-order spatial terms
-cancel after all intermediate operator products are retained; the Class 6
-coefficient is therefore a convenient representation of the second moment,
-not independent data required by the common formula.
+In Class 5, $[\Xi_5,U_5]=0$ and the source is a total spatial derivative.  In
+Class 6, the representation of $\Xi_6$ through $L_6^{(2)}$ gives a nonzero
+commutator, which remains on a spatially uniform spin configuration.  The
+explicit second-order spatial coefficient is needed in the intermediate
+operator products but cancels from the general expression for $\mathcal C$.
 
-The final classical pairs are related to known structures, providing
-independent checks rather than new classical hierarchies.  For Class 5, the
-time matrix agrees with a classical $r$-matrix and monodromy construction up
-to a field-independent scalar matrix.  After a complex field redefinition,
-the traceless Class 5 pair is also mapped by a local auxiliary-space gauge
-transformation to the known null-like warped $SL(2)$ Landau--Lifshitz pair,
-as shown in Section~\ref{sec:class5-known-null-pair}.  The transformation is
-not generically periodic, so this local equivalence does not identify the
-periodic monodromies or global boundary sectors.  For Class 6, the spatial
-matrix, time matrix and spin equation agree with the known rational
-eleven-vertex Landau--Lifshitz structure after the convention dictionary in
-Section~\ref{sec:class6-eleven-vertex-comparison}.
-
-These comparisons sharpen the role of the lattice calculation.  The result
-is not the discovery of a new Class 5 or Class 6 Lax hierarchy; it is the
-direct recovery of their continuum time components from the finite-lattice
-quantum time equation, including the local operator-product terms that
-survive its fixed-spin continuum limit.  The correction is already present
-in the undeformed XXX limit: the direct time symbol alone has twice the
-correct coefficient of one term in the standard isotropic time matrix.
+The resulting classical pairs agree with independent constructions.  The
+Class 5 time matrix matches the classical $r$-matrix/monodromy result up to a
+field-independent scalar matrix, and its traceless pair is locally related to
+the null-like warped $SL(2)$ Landau--Lifshitz pair after the field and gauge
+transformations of Section~\ref{sec:class5-known-null-pair}.  The
+transformation is not generically periodic.  The Class 6 spatial matrix,
+time matrix and spin equation map to the rational eleven-vertex
+Landau--Lifshitz pair through the dictionary in
+Section~\ref{sec:class6-eleven-vertex-comparison}.  In the undeformed XXX
+limit, the direct time symbol has twice the correct coefficient of one term;
+the shared-site correction restores the standard isotropic time matrix.
 
 The numerical searches in Appendix~\ref{sec:ml-search} recover coefficients
-consistent with both analytically verified pairs at the tested parameter
-values.  Their role is to identify coefficient patterns inside the stated
-finite ans\"atze; the Lax claims themselves are established by the analytic
-operator calculation and the off-shell curvature identities.
+consistent with the analytic Class 5 and Class 6 pairs at the tested parameter
+values.  The final Lax relations are established by the operator calculation
+and the off-shell curvature identities.
 
-The results are local statements on the complex unit-spin constraint surface
-in the fixed spin-$\tfrac12$ scaling.  Periodicity is used for the Hamiltonian
-variation and the Class 5 monodromy comparison.  The relation to quantum
-dynamics concerns instantaneous derivatives obtained by evaluating exact
-lattice commutators on product coherent states.  Controlling quantum
-evolution over a finite time interval would additionally require estimates
-for correlations generated between sites and for the accumulated error of
-the continuum expansion.
+The derivation is local on the complex unit-spin constraint surface and uses
+the fixed spin-$\tfrac12$ scaling.  Periodicity enters the Hamiltonian
+variation and the Class 5 monodromy comparison.  The comparison with quantum
+dynamics concerns instantaneous derivatives on product coherent states;
+finite-time control would require estimates of the correlations generated
+between sites and of the accumulated continuum error.
 
-A direct extension is to higher lattice Hamiltonians.  Their time operators
-act on more physical sites, so the overlapping products can involve higher
-local operator moments.  Comparing the resulting continuum flows with the
-boost-generated charges of Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} and
-the eleven-vertex hierarchy of Ref.~\cite{LevinOlshanetskyZotov2014} would
-test how far the local formula of Section~\ref{sec:shared-site-common-form}
-extends.  Varying the local spin representation would separately clarify the
-relation between the long-wavelength limit used here and a large-spin
-classical limit.
+For higher lattice Hamiltonians, the time operators act on more physical
+sites and the overlap terms can involve higher local operator moments.
+Comparing those flows with the boost-generated charges of
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} and the eleven-vertex hierarchy
+of Ref.~\cite{LevinOlshanetskyZotov2014} would test the extension of
+Eq.~\eqref{eq:common-source-general}.  A separate extension to higher local
+spin would clarify the relation between the fixed-spin long-wavelength limit
+used here and a large-spin classical limit.
