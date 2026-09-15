@@ -145,7 +145,7 @@ s^{22}:=\frac12\mathbf1-s^z
 \end{equation}
 と書く。
 
-補助空間を二次元基本表現、物理空間を一般の $su(2)$ 表現としたとき、twist 分解から得られる量子 $L$ 作用素を $L_{\rm tw}(u)$ とする。三つの行列の積を先に書き、同じ display の次の行で実際に掛けた結果を示す：
+補助空間を二次元基本表現、物理空間を一般の $su(2)$ 表現としたとき、twist 分解から得られる量子 $L$ 作用素を $L_{\rm tw}(u)$ とする。
 \begin{align}
 L_{\rm tw}(u)
 &=
@@ -155,26 +155,30 @@ L_{\rm tw}(u)
 \nonumber\\[1mm]
 &=
 \begin{pmatrix}
-(\mathbf1+\vartheta s^+)(2u\mathbf1+s^{11})
+(\mathbf1+\textcolor{MidnightBlue}{\vartheta}s^+)(2u\mathbf1+s^{11})
 &
-(\mathbf1+\vartheta s^+)\left[s^--\vartheta(2u\mathbf1+s^{11})s^{11}\right]
+s^--\textcolor{MidnightBlue}{\vartheta}(2u\mathbf1+s^{11})s^{11}
++\textcolor{MidnightBlue}{\vartheta}s^+
+\left[\textcolor{MidnightBlue}{s^-}-\textcolor{MidnightBlue}{\vartheta}(2u\mathbf1+s^{11})s^{11}\right]
 \\[1mm]
 s^+
-&2u\mathbf1+s^{22}-\vartheta s^+s^{11}
+&2u\mathbf1+s^{22}-\textcolor{MidnightBlue}{\vartheta}s^+s^{11}
 \end{pmatrix}.
 \label{eq:c5corr-Lproduct}
 \end{align}
 
-比較のため、文献\cite{DFN2026}の印刷された式 (1.12) は、本節の記号では
+以下の二式では、両者で異なる箇所だけを色付けする。青は twist 分解から得られる式、赤は文献\cite{DFN2026}の印刷式 (1.12) の対応箇所を示し、黒は両者に共通する部分である。印刷式は本節の記号では
 \begin{equation}
 L_{\rm print}(u)=
 \begin{pmatrix}
-(\mathbf1+a_2s^+)(2u\mathbf1+s^{11})
+(\mathbf1+\textcolor{BrickRed}{a_2}s^+)(2u\mathbf1+s^{11})
 &
-s^--a_2(2u\mathbf1+s^{11})s^{11}
-+a_2s^+\left[s^+-a_2(2u\mathbf1+s^{11})s^{11}\right]
+s^--\textcolor{BrickRed}{a_2}(2u\mathbf1+s^{11})s^{11}
++\textcolor{BrickRed}{a_2}s^+
+\left[\textcolor{BrickRed}{s^+}-\textcolor{BrickRed}{a_2}(2u\mathbf1+s^{11})s^{11}\right]
 \\[1mm]
-s^+&2u\mathbf1+s^{22}-a_2s^+s^{11}
+s^+
+&2u\mathbf1+s^{22}-\textcolor{BrickRed}{a_2}s^+s^{11}
 \end{pmatrix}.
 \label{eq:c5corr-Lprint}
 \end{equation}
