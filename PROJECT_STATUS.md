@@ -1,12 +1,12 @@
 # Project status
 
-Last updated: 2026-09-12.
+Last updated: 2026-09-15.
 
 This file is intended to restore the state of the project without relying on chat history.
 
 ## Current physics question
 
-The main problem is the quantum-to-classical correspondence for the **time** component of the Lax pair in the Class 5 and Class 6 spin chains and their Landau-Lifshitz continuum limits.
+The main problem is the quantum-to-classical correspondence for the **time** component of the Lax pair in the Class 5 and Class 6 spin chains and their Landau--Lifshitz continuum limits.
 
 The spatial continuum Lax matrix follows from the normalized lattice Lax operator by the usual long-wavelength/coherent-state expansion. The time component is subtler because the finite-lattice zero-curvature equation contains products such as
 
@@ -14,30 +14,132 @@ The spatial continuum Lax matrix follows from the normalized lattice Lax operato
 A_{a,n+1} L_{a,n},   L_{a,n} A_{a,n},
 ```
 
-whose factors share a physical lattice site. The coherent-state lower symbol therefore does not factor into the ordinary product of the separate lower symbols. Under the Landau-Lifshitz continuum scaling this shared-site contribution survives at the same order as the continuum time-Lax equation.
+whose factors share a physical lattice site. The coherent-state lower symbol therefore does not factor into the ordinary product of the separate lower symbols. Under the Landau--Lifshitz continuum scaling this shared-site contribution survives at the same order as the continuum time-Lax equation.
 
-The non-multiplicativity of coherent-state symbols is standard. The project-specific result is the explicit finite-lattice-to-continuum evaluation of this contribution for Class 5 and Class 6 and its absorption into a local correction of the continuum time-Lax matrix.
+The non-multiplicativity of coherent-state symbols, coherent-state continuum Lax constructions, quantum time-Lax hierarchies, and quantum-to-classical Lax limiting procedures are established ingredients. The project-specific question is the **local** passage from the finite-lattice quantum time equation to the fixed-spin long-wavelength continuum time matrix and the operator products that survive at that order.
 
-## Established Class 5 results
+## Common spin-1/2 shared-site identity
 
-- The Class 5 continuum spatial Lax matrix is recovered from the normalized quantum lattice Lax operator.
+Use the normalized operator expansions
+
+```text
+Lhat = I + epsilon X + epsilon^2 Y + ...
+h    = 2 P + epsilon h1 + ...
+d_u Lhat = epsilon^2 Z + ...
+```
+
+and define
+
+```text
+U  = X^downarrow
+Xi = (X^2)^downarrow - U^2.
+```
+
+Let `B` denote the order-`epsilon^2` Sutherland residual,
+
+```text
+B = [2P, X2 X1 + Y2 + Y1] + [h1, X2 + X1] - Z1 + Z2.
+```
+
+For physical spin `1/2`, rank-one product lower symbols, and a first Hamiltonian correction that is scalar on the spin-triplet sector, the local shared-site source obeys
+
+```text
+C = 2 i (d_x Xi + [Xi,U]) - i <X1 B>.
+```
+
+Hence `B=0` gives
+
+```text
+C = 2 i (d_x Xi + [Xi,U]),
+Delta V = 2 i Xi + f(lambda) I,
+```
+
+with `f(lambda)` independent of the fields and spacetime coordinates.
+
+For Class 5 and Class 6, the triplet-scalar condition is not an extra model assumption: the three Pauli coefficients of the leading spatial operator are linearly independent for `lambda != 0`, and the exchange-even part of the order-two Sutherland relation implies the required total-spin commutant condition. The common rank-three minor is `i/(32 lambda^3)` in both models.
+
+Important interpretation:
+
+- the coincident order-`epsilon^2` connected products cancel;
+- their first spatial Taylor coefficients and the coincident order-`epsilon^3` products survive at the continuum time-evolution order;
+- the explicit second spatial coefficient `Y` must be retained in intermediate products but cancels from the final common formula;
+- in Class 6, `L6^(2)` is a useful model-specific representation of `Xi`, not independent final input;
+- for spin `1/2`, `Xi` can be reconstructed from the full spin dependence of `U` by the Pauli algebra;
+- the analytic proof allows arbitrary finite auxiliary dimension but uses a two-dimensional physical spin space;
+- higher physical spin, higher Hamiltonian flows and finite-time quantum convergence are not established.
+
+Research record and checks:
+
+- `notes/parts/10_shared_site_generalization.tex`
+- `scripts/generalization/verify_shared_site_identity.py`
+- `scripts/generalization/verify_shared_site_proof.py`
+- `results/generalization/shared_site_identity.json`
+- `results/generalization/shared_site_proof.json`
+
+The second proof file records 34 exact checks, including Class 5/Class 6/XXZ rank tests and rank-deficient negative controls.
+
+## Class 5 results
+
+- The continuum spatial Lax matrix is obtained from the normalized Class 5 quantum lattice Lax operator.
 - The finite-lattice time Lax operator has been taken directly to the continuum while retaining shared-site operator products.
-- The connected contribution reduces to the Class-5-specific total-derivative form proportional to `∂_x(U_5^2)`.
-- The corrected continuum time Lax matrix reproduces the Class 5 Hamiltonian equations of motion off shell; curvature and EOM are mutually reconstructible for generic spectral parameter.
-- The undeformed XXX / isotropic Landau-Lifshitz limit provides a control and still requires the shared-site correction.
-- An independent classical `r`-matrix / monodromy construction gives the same time-Lax matrix up to a field-independent scalar matrix.
+- The Class 5 source reduces to a total spatial derivative.
+- The corrected time matrix reproduces the Hamiltonian equations off shell, with curvature and EOM mutually reconstructible for generic spectral parameter.
+- The undeformed XXX limit still requires the shared-site correction; the direct time symbol alone has the wrong coefficient in the standard isotropic time matrix.
+- An independent classical `r`-matrix / monodromy construction gives the same time matrix up to a field-independent scalar matrix.
+- The full Class 5 normalization and Lax comparison has been checked independently. The traceless continuum pair is locally related, after a complex field redefinition and a local auxiliary-space gauge transformation, to the null-like warped `SL(2)` Landau--Lifshitz pair of Kameyama--Yoshida.
+- This local relation does **not** identify the real sections, periodic monodromies, scattering data, Poisson structures, or global boundary sectors. The field and gauge transformations are not generically periodic.
 
-Primary verification code: `scripts/class5/`.
+Detailed Class 5 comparison:
 
-## Established Class 6 results
+- `notes/parts/12_class5_generic_lax_comparison.tex`
+- `scripts/class5/verify_lax_correspondence.py`
+- `results/class5/lax_correspondence/verification_results.json`
+
+The dedicated comparison workflow and symbolic checks are green.
+
+## Class 6 results
 
 - The Class 6 quantum `R`-matrix and normalized lattice Lax operator have been expanded through the order required by the time-Lax limit.
-- Unlike Class 5, the second spatial coefficient is essential.
-- The shared-site contribution contains both a spatial derivative and a non-vanishing commutator term. A spatially uniform spin configuration gives an explicit negative control showing that the Class-5-only total-derivative correction fails.
-- The corrected Class 6 continuum time Lax matrix reproduces the Hamiltonian equations of motion and admits an off-shell Lax/EOM factorization with invertible coefficient map for generic spectral parameter.
-- Class 6 is already known at the quantum level as the eleven-vertex model; the project does not claim a new hierarchy. The result is an explicit bridge/dictionary and the nontrivial time-Lax continuum construction.
+- The second spatial coefficient must be retained in the intermediate shared-site products; the common derivation shows that it is not independent final data.
+- The shared-site source contains both a spatial derivative and a nonzero commutator contribution. A spatially uniform spin configuration provides a negative control against a Class-5-only total-derivative correction.
+- The corrected time matrix reproduces the Hamiltonian equations and admits an off-shell curvature/EOM factorization with an invertible coefficient map for generic spectral parameter.
+- Class 6 is already the eleven-vertex model at the quantum level; no new hierarchy is claimed.
+- The continuum Class 6 pair has been matched directly to the known rational eleven-vertex Landau--Lifshitz pair. With
 
-Primary verification code: `scripts/class6/`.
+```text
+beta^2 = -2 alpha6
+z      = beta lambda
+k      = -4/beta
+tau    = (i beta^2/2) t
+```
+
+the traceless spatial matrix, time matrix, zero-curvature convention and spin equation agree, up to auxiliary-space transpose and the field-independent scalar part of `U6`.
+
+Detailed Class 6 comparison:
+
+- `notes/parts/11_class6_eleven_vertex_comparison.tex`
+- `scripts/class6/verify_eleven_vertex_comparison.py`
+- `results/class6/eleven_vertex_comparison.json`
+
+## Literature positioning and novelty
+
+The current audits are
+
+- `research/shared_site_literature_audit.md`
+- `research/novelty_reassessment_2026-09-14.md`
+- `paper/literature_review.md`
+
+The manuscript explicitly treats the following as known:
+
+- coherent-state lower-symbol non-multiplicativity;
+- coherent-state continuum Lax constructions;
+- quantum time-Lax hierarchies;
+- quantum-to-classical Lax limiting procedures;
+- the classical structures to which the final Class 5 and Class 6 pairs are locally related.
+
+The manuscript does **not** claim a new Class 5 or Class 6 classical hierarchy. The result specific to this work is the direct fixed-spin long-wavelength limit of the **local quantum lattice time-Lax equation**, including the shared-site operator-product terms that survive at the continuum time-evolution order, together with the conditional local identity above.
+
+The literature audit distinguishes this from the global lattice-sum power counting of Avan--Doikou--Sfetsos and from the quantum time-Lax hierarchy of Doikou--Findlay. A targeted search has not found the same local fixed-spin shared-site formula in the checked sources, but literature absence or priority is not established.
 
 ## Machine-learning discovery path
 
@@ -45,163 +147,78 @@ Machine learning selected local structures and coefficient relations for subsequ
 
 - Earlier PCM and symmetric-coset tests recovered spectral-parameter families.
 - A low-loss `T^{1,1}` candidate was shown analytically to be a fake Lax connection, motivating the off-shell `F = Q E` certificate and rank test.
-- Class 5 used twelve temporal structures plus a spatial coefficient, with an off-shell residual and a uniform sparsity penalty. Nine historical runs selected the physical coefficients and suppressed eight extra terms.
-- Class 6 used eight coefficients in the finite nilpotent matrix library `{I, N, N^2}`, with on-shell curvature training. Six historical runs exposed the finite matrix-square-root coefficient pattern. The restored implementation also supports an exactly equivalent off-shell `F-A6 E` objective, now the default; the time-derivative terms cancel for arbitrary fitted coefficients.
-- Final claims are established by analytic factorization, symbolic verification, finite-lattice checks, and literature comparison.
+- Class 5 used twelve temporal structures plus a spatial coefficient, with an off-shell residual and a uniform sparsity penalty.
+- Class 6 used eight coefficients in the finite nilpotent matrix library `{I,N,N^2}`; the restored implementation includes an exactly equivalent off-shell objective.
+- Final Lax claims are established by analytic factorization, symbolic verification, finite-lattice checks and literature comparison, not by low loss alone.
 
-Historical aggregate metrics are in `results/ml/historical_summary.json`. The
-original training scripts have been recovered from the user attachments and
-Library files; matching hashes and unchanged sources are preserved in
-`archive/ml_original/`. The active scripts now derive directly from them, using
-the manuscript spin, time, deformation and spectral conventions. They retain
-the original candidate spaces, spatial sampling, initialization, sparsity and
-Adam/L-BFGS settings. `scripts/ml/verify_conventions.py` checks losses and
-gradients at arbitrary coefficients, the on/off-shell equivalence for Class 6,
-and exact agreement with the manuscript Lax matrices. Current numerical results
-are in `results/ml/class5/` and `results/ml/class6/`, with the original on-shell
-Class 6 rerun in `results/ml/class6_onshell/`. Earlier least-squares reconstruction
-outputs have been moved to `archive/ml_reconstructed/`.
+The recovered original search code is preserved under `archive/ml_original/`. Active scripts and results are under `scripts/ml/` and `results/ml/`. See `REPRODUCIBILITY.md` for exact commands and convention dictionaries.
 
-## Manuscript status
+## Git / manuscript status
 
-`paper/main.tex` is the current draft.
+The research results have been integrated into `main` in the following order:
 
-Written in the current draft:
+1. PR #12: shared-site generalization, research-note integration, XXZ control and Class 6 / eleven-vertex validation -- merged with a normal merge commit.
+2. PR #13: Class 5 normalization and Kameyama--Yoshida correspondence -- merged with a normal merge commit.
 
-1. common quantum-lattice setup and continuum limit;
-2. Class 5 quantum model and spatial Lax matrix;
-3. Class 5 finite-lattice derivation of the time Lax matrix;
-4. Class 5 zero-curvature/EOM equivalence;
-5. Class 5 independent classical `r`-matrix comparison.
-6. Class 6 section 4.1: quantum Hamiltonian and `R`-matrix, continuum
-   scaling, exact spatial-operator expansion, and continuum spatial Lax matrix.
-7. Class 6 section 4.2: finite-lattice time-operator expansion, overlapping
-   lower-symbol products, local correction involving the second spatial
-   coefficient, and the corrected time Lax matrix with explicit entries.
-8. Class 6 section 4.3: continuum Hamiltonian and component equations of
-   motion, the instantaneous finite-lattice Heisenberg spin derivative,
-   and the off-shell curvature/EOM factorization with explicit inverse.
-9. Section 5: the common operator-product correction, comparison of
-   deformation scalings and spatial coefficients, and the isotropic limit.
-10. Introduction and Summary and discussion: revised using the introductions
-    and closing sections of related papers. The Introduction develops the
-    physical context, established constructions, and the specific time-Lax
-    question; Section 6 emphasizes results, interpretation, and extensions.
-    Section 5.3 has been removed; Section 5 retains the technical comparison.
-    Sections 2--5 each introduce their purpose and sequence before the
-    first subsection.
+The remaining manuscript integration is draft PR #14 from `paper/shared-site-framework` to `main`. The paper branch has been synchronized with the merged research results. PR #14 contains the manuscript/editorial changes only:
 
-The literature and editorial comparison is recorded in
-[`paper/literature_review.md`](paper/literature_review.md).
-Kruczenski (2004) and Kameyama--Yoshida (2014) were added for the spin-chain
-and string-theory context. Numbered references follow first citation order.
+- common shared-site formula and rank-three argument in Section 2;
+- concise Class 5 comparison with the known null-like warped pair;
+- concise Class 6 comparison with the known eleven-vertex pair;
+- revised Abstract, Introduction, model comparison and Summary;
+- updated literature/novelty framing and reproducibility documentation.
 
-Sections 4 and 5 and the Introduction/Summary revision were merged in
-PRs #8 and #9. CI published the reviewed manuscript on `main` after each merge.
-
-The current revision expands the overlapping-product calculation in the main
-text. It defines the quadratic and cubic coefficient functions, displays their
-Taylor extraction, and evaluates the spatial-derivative and coincident-spin
-contributions separately for both models. The single-site Pauli product identity
-is introduced in Section 2 before those calculations. The five empty appendix
-headings have been removed. Appendix A presents both ML searches directly as
-off-shell coefficient fits, with explicit input data, fixed model parameters,
-trainable coefficients, loss functions, sampling and numerical checks. It
-contains the off-shell Class 6 formulation. Historical on-shell comparisons
-and changes between code versions are kept in the research record. The
-Introduction summarizes the method and cites Krippendorf--Lüst--Syvaeri (2021). Execution commands
-and file organization are documented in the repository guides.
-
-The expanded derivation and off-shell ML appendix were merged in PR #10.
-The next revision adds the Abstract and completes the front and back matter,
-following the author's `dbi-stress-tensor-flow/paper/paper.tex`: a separate
-title page, author, affiliation, e-mail footnote, keywords, matching margins
-and link colors, and PDF metadata. Acknowledgments disclose the use of
-ChatGPT and Codex. Data and code availability statements point to this
-repository and identify the source-code license. The Abstract summarizes
-the time-Lax construction, the surviving operator-product contributions,
-the Hamiltonian equivalence and the numerical coefficient searches.
-
-The subsequent manuscript audit clarifies the formal local expansion used
-in the Class 5 monodromy comparison and displays its generating Hamiltonian
-flow and first projector recursion. The reference convention dictionary now
-specifies the old and new fields and times explicitly. Both Hamiltonian
-sections state the same variation convention.
-
-Appendix A now explains that time derivatives cancel in both off-shell fits
-for arbitrary coefficients, identifies the conservation-law origin of the
-fixed Class 5 scalar parts, and distinguishes supplied normalizations and
-initial values from fitted coefficients and analytically verified spectral
-dependence. The Abstract, Introduction and Summary describe the numerical
-role consistently. Verification of these statements extends
-`scripts/ml/verify_conventions.py`; the audit is recorded in
-[`paper/manuscript_audit.md`](paper/manuscript_audit.md).
-
-Next: review the audited manuscript and the completed front/back matter in
-PR #11.
-
-Current planned paper structure:
+The current paper structure is
 
 ```text
 1 Introduction
 2 Quantum lattice setup and continuum limit
+  2.x Common form of the shared-site correction
 3 Class 5 model
+  3.x Relation to the null-like warped SL(2) Landau--Lifshitz pair
 4 Class 6 model
+  4.x Comparison with the known eleven-vertex Landau--Lifshitz pair
 5 Comparison of Class 5 and Class 6
 6 Summary and discussion
 A Machine-learning searches for the Lax pairs
 ```
 
+XXZ remains a research/control example rather than a third full manuscript model.
+
+PR #14 CI rebuilds the physics checks, ML checks, manuscript and complete Japanese research note. Merge only after all jobs are green and the generated manuscript PDF has been visually checked.
+
 ## Notation decisions
 
 - Quantum lattice pair: `L_{a,n}(u)` and `A_{a,n}(u)`.
-- Continuum pair: `U(x,t;λ)` and `V(x,t;λ)`.
-- `u` is the quantum spectral parameter; `λ` is the continuum Lax spectral parameter when that convention is used.
-- In manuscript section 3, `κ_5` and `α_5` denote the Class 5 lattice and
-  continuum deformation parameters, with `κ_5 = ε α_5`. They correspond to
-  `a` and `alpha` in the Class 5 verification scripts. The added model
-  subscripts are a notation change only; the normalizations are unchanged.
-- In manuscript section 4, `κ_6` and `α_6` denote the Class 6 lattice and
-  continuum deformation parameters, with `κ_6 = ε² α_6`. They correspond to
-  `a` and `alpha` in the existing Class 6 verification scripts and research
-  note; this is a notation change only. `K_6` is the four-dimensional
-  two-site deformation operator, and `L_6^(j)` denotes the coefficient of
-  `ε^j` in the normalized lattice spatial operator.
+- Continuum pair: `U(x,t;lambda)` and `V(x,t;lambda)`.
+- `u` is the quantum spectral parameter; `lambda` is the continuum spectral parameter.
+- Class 5 lattice/continuum couplings are `kappa_5`, `alpha_5`, with `kappa_5 = epsilon alpha_5`.
+- Class 6 lattice/continuum couplings are `kappa_6`, `alpha_6`, with `kappa_6 = epsilon^2 alpha_6`.
+- In the common Section 2 derivation, `X`, `Y`, `Z`, `B`, and `Xi` are local generic quantities defined there and are not replacements for the model-labelled coefficients elsewhere.
 - Repeated Cartesian indices are summed once this convention has been declared.
-- The Class 5 two-site deformation operator is `K_5`, corresponding to `K`
-  in the Class 5 scripts and research note. Model subscripts are also retained
-  on `A^(j)` and the overlapping-product differences in both model sections.
 - Symbols are introduced only after their physical meaning has been stated.
-- Equation-of-motion residuals carry model superscripts, `E^(5)` and
-  `E^(6)`, matching the curvature notation. The component formulas for
-  `V_5` and `V_6` are introduced in prose without matrix index-range suffixes.
-- Retain the explicit matrix elements of `V_5` and `V_6`; a generator-basis
-  rewrite has not been adopted.
-- Bond lower symbols retain their lattice indices, `h_(m;n,n+1)^downarrow`,
-  with the continuum density evaluated at `(x_n,t)` for model `m = 5,6`.
-  Section 4.3 explicitly defines the site Pauli operators and Cartesian
-  residual components, and states the equal-time and variation conventions.
+- Equation-of-motion residuals carry model superscripts `E^(5)` and `E^(6)`.
+- Retain the explicit matrix elements of `V_5` and `V_6`; no generator-basis rewrite has been adopted.
 
 ## Authoring rules
 
-- No `\boxed`, `\fbox`, `\framebox`, or `\mbox` in the manuscript or research note.
+- No `\\boxed`, `\\fbox`, `\\framebox`, or `\\mbox` in the manuscript or research note.
 - Avoid context-dependent labels imported from another paper unless the underlying object has first been defined self-containedly.
-- Prefer explicit derivations over introducing short-lived helper symbols solely to compress algebra.
-- Do not present a low ML loss as a proof of integrability.
-- Do not claim that coherent-state symbol non-multiplicativity is new.
-- Keep literature input, convention changes, new derivations, and novelty assessment logically separate.
+- Prefer explicit derivations over short-lived helper notation introduced only to compress algebra.
+- Do not present low ML loss as proof of integrability.
+- Do not claim coherent-state symbol non-multiplicativity as new.
+- Do not claim a new Class 5 or Class 6 classical hierarchy.
+- Keep literature input, convention changes, new derivations and novelty assessment logically separate.
 
 ## Editorial scope
 
-The analytic quantum-to-classical time-Lax construction remains the main paper
-narrative. The Introduction gives an ML overview, and Appendix A supplies the
-mathematical search formulation and numerical settings. Code execution
-instructions belong in the repository guides. The detailed overlapping-product
-derivation already present in the main text is retained there.
+The analytic quantum-to-classical time-Lax construction is the paper narrative:
 
-Present the ML method independently of the development history: avoid
-unexplained references to an "original search", earlier implementations or
-convention changes. State the sampled input, fixed physical parameters,
-trainable coefficients and objective explicitly. The numerical definition of
-the losses is unchanged; the appendix uses an ordinary sample average and
-writes the common normalization as an explicit factor of `1/12`.
+```text
+known spatial continuum construction + known quantum time hierarchy
+        -> local fixed-spin time-equation continuum limit
+        -> conditional shared-site identity
+        -> Class 5 / Class 6 realizations and independent classical checks.
+```
+
+The Introduction gives a short ML overview, and Appendix A supplies the mathematical search formulation and numerical settings. Detailed proof history, controls, normalization audits and global caveats remain in the research record rather than being copied wholesale into the manuscript.
