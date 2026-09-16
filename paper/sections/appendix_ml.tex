@@ -1,4 +1,3 @@
-\appendix
 \section{Machine-learning searches for the Lax pairs}
 \label{sec:ml-search}
 
@@ -78,280 +77,156 @@ O_5(\lambda):=\exp(\alpha_5\lambda M_5)
  +\frac{\alpha_5^2\lambda^2}{2}M_5^2,
 \qquad O_5^{\mathsf T}O_5=\Id_3,
 \qquad\det O_5=1.
-\label{eq:ml-class5-rotation}
+\label{eq:ml-O5}
 \end{equation}
-Both $\mathcal D_x$ and $O_5$ are fixed by $M_5$, $\alpha_5$ and
-$\lambda$ throughout a run.
-
-Define the scalar contractions
-$\chi:=\boldsymbol m_5^{\mathsf T}\boldsymbol S$,
-$\xi:=\boldsymbol m_5^{\mathsf T}\mathcal D_x\boldsymbol S$, and
-$\varrho:=\boldsymbol m_5^{\mathsf T}
-(\boldsymbol S\times\mathcal D_x\boldsymbol S)$.
-The twelve vector structures $\boldsymbol W_j$ used for the time
-component are
+The spatial ansatz is
 \begin{equation}
-\begin{aligned}
-\boldsymbol W_1&=\boldsymbol S\times\mathcal D_x\boldsymbol S,
-&\boldsymbol W_2&=\varrho\boldsymbol m_5,\\
-\boldsymbol W_3&=\boldsymbol S,
-&\boldsymbol W_4&=\chi\boldsymbol m_5,\\
-\boldsymbol W_5&=\mathcal D_x\boldsymbol S,
-&\boldsymbol W_6&=\chi\mathcal D_x\boldsymbol S,\\
-\boldsymbol W_7&=\xi\boldsymbol S,
-&\boldsymbol W_8&=\boldsymbol m_5\times\mathcal D_x\boldsymbol S,\\
-\boldsymbol W_9&=\chi(\boldsymbol m_5\times\boldsymbol S),
-&\boldsymbol W_{10}&=\varrho\boldsymbol S,\\
-\boldsymbol W_{11}&=\boldsymbol m_5,
-&\boldsymbol W_{12}&=\chi^2\boldsymbol m_5.
-\end{aligned}
-\label{eq:ml-class5-features}
-\end{equation}
-The trainable coefficients are the spatial coefficient $\beta_5$ and
-the twelve temporal coefficients $\theta_1,\ldots,\theta_{12}$.
-The candidate vectors are
-\begin{align}
 \boldsymbol u_5
-&=O_5\left(\frac{\ii}{2\lambda}\boldsymbol S
- +\beta_5\chi\boldsymbol m_5\right)
- -\frac{\alpha_5}{2}\boldsymbol m_5,
-\label{eq:ml-class5-u}\\
-\boldsymbol v_5
-&=-2O_5\sum_{j=1}^{12}\theta_j\boldsymbol W_j.
-\label{eq:ml-class5-v}
-\end{align}
-The coefficient of $\partial_t\boldsymbol S$ in
-$\partial_t\boldsymbol u_5$ determines the matrix
-\begin{equation}
-\mathsf Q_5
-:=O_5\left(\frac{\ii}{2\lambda}\Id_3
-       +\beta_5\boldsymbol m_5\boldsymbol m_5^{\mathsf T}\right).
-\label{eq:ml-class5-Q}
+=a_5O_5\boldsymbol S
++b_5\boldsymbol m_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S)
++c_5\boldsymbol m_5,
+\label{eq:ml-U5-ansatz}
 \end{equation}
-Thus $\mathsf Q_5$ depends on the same $\beta_5$ as the spatial ansatz.
-Since $\boldsymbol E^{(5)}$ contains $\partial_t\boldsymbol S$ with unit
-coefficient, the time-derivative terms in
-$\boldsymbol{\mathcal F}^{(5)}-\mathsf Q_5\boldsymbol E^{(5)}$ cancel
-for every value of the fitted coefficients.  The optimization matches the
-remaining spatial-derivative and algebraic terms to the supplied dynamics.
-For a prescribed sparsity weight $\eta>0$ and smoothing scale
-$\delta=10^{-10}$, the loss minimized over these thirteen coefficients is
+and the time ansatz contains the twelve structures
 \begin{align}
-\mathcal L_5
-={}&\frac{1}{12}\left\langle\left\|
-O_5^{-1}
-\bigl(\boldsymbol{\mathcal F}^{(5)}-\mathsf Q_5\boldsymbol E^{(5)}\bigr)
-\right\|^2\right\rangle
+\boldsymbol v_5={}&
+ d_1 O_5(\boldsymbol S\times\mathcal D_x\boldsymbol S)
++d_2\boldsymbol m_5\bigl[\boldsymbol m_5^{\mathsf T}
+ (\boldsymbol S\times\mathcal D_x\boldsymbol S)\bigr]
++d_3O_5\boldsymbol S
++d_4\boldsymbol m_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S)
++d_5\boldsymbol m_5
 \nonumber\\
-&+\eta\left(\sqrt{\beta_5^2+\delta^2}
- +\sum_{j=1}^{12}\sqrt{\theta_j^2+\delta^2}\right).
-\label{eq:ml-class5-loss}
+&+d_6O_5\mathcal D_x\boldsymbol S
++d_7\boldsymbol m_5(\boldsymbol m_5^{\mathsf T}\mathcal D_x\boldsymbol S)
++d_8\boldsymbol m_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S)^2
++d_9\boldsymbol m_5(\boldsymbol m_5^{\mathsf T}\boldsymbol S)
+  (\boldsymbol m_5^{\mathsf T}\mathcal D_x\boldsymbol S)
+\nonumber\\
+&+d_{10}O_5(\boldsymbol S\times\boldsymbol m_5)
++d_{11}\boldsymbol m_5\bigl[\boldsymbol m_5^{\mathsf T}
+(\boldsymbol S\times\boldsymbol m_5)\bigr]
++d_{12}O_5\boldsymbol m_5.
+\label{eq:ml-V5-ansatz}
 \end{align}
-The first term measures the curvature mismatch with a fixed, invertible
-weighting $O_5^{-1}$ of its components.  The second term is a smooth
-$\ell^1$ penalty applied uniformly to all thirteen coefficients.  The weight
-$\eta$ is held fixed during each optimization stage, with the values
-given in Section~\ref{sec:ml-numerics}.
-
-The scalar parts are fixed using the local conservation law for $S^+$
-in Eq.~\eqref{eq:class5-eom-plus}.  Choosing the scalar representative
-of the main-text Lax pair gives
+The fitted coefficients are
+$(a_5,b_5,c_5,d_1,\ldots,d_{12})$.  The scalar parts are fixed to
 \begin{align}
 \mu_5&=\frac{1}{4\lambda}+\frac{\alpha_5}{4}S^+,
 \nonumber\\
 \nu_5&=\frac{\ii\alpha_5}{2}
- (S^+\partial_xS^3-S^3\partial_xS^+)
- +\frac{\ii\alpha_5^2}{4}(S^+)^2.
+(S^+\partial_xS^3-S^3\partial_xS^+)
++\frac{\ii\alpha_5^2}{4}(S^+)^2,
 \label{eq:ml-class5-scalars}
 \end{align}
-They obey
+and obey
 $\partial_t\mu_5-\partial_x\nu_5=(\alpha_5/4)E^{(5)}_+$,
 where $E^{(5)}_+$ is defined in Eq.~\eqref{eq:class5-residual-plus}.
 This identity holds independently of the fitted coefficients, so the
 numerical search determines the traceless parts of the pair.
 
-The numerical coefficients approach the relations
-\begin{align}
-\beta_5&=-\frac{\ii\alpha_5^2\lambda}{4},
-&\theta_1&=\frac{\ii}{2\lambda},
-&\theta_2&=\beta_5,
-\nonumber\\
-\theta_3&=\frac{1}{4\lambda^2},
-&\theta_4&=\frac{\alpha_5^2}{8},
-&\theta_5&=\cdots=\theta_{12}=0.
-\label{eq:ml-class5-coefficients}
-\end{align}
-Substitution gives exactly the matrices in
-Eqs.~\eqref{eq:class5-spatial-Lax} and
-\eqref{eq:class5-time-Lax-compact}.  The identity
-$\det\mathsf Q_5=(\ii/(2\lambda))^3$ and the inverse relations
-\eqref{eq:class5-residuals-from-curvature} establish the local
-equivalence to the equations of motion.
+The off-shell loss is
+\begin{equation}
+\mathcal L_5
+=\left\langle
+\left\|
+\boldsymbol{\mathcal F}^{(5)}
+-Q_5\boldsymbol E^{(5)}
+\right\|^2
+\right\rangle
++\gamma_5\sum_{r\in\mathcal R_5}|r|,
+\label{eq:ml-class5-loss}
+\end{equation}
+where $Q_5$ is the coefficient of $\partial_t\boldsymbol S$ induced by
+Eq.~\eqref{eq:ml-U5-ansatz}, $\mathcal R_5$ contains the eight coefficients
+$d_5,\ldots,d_{12}$, and $\gamma_5=10^{-7}$.  This is the objective used in
+the nine stored Class 5 runs.
+
+The recovered sparse branch has
+\begin{equation}
+ c_5=d_5=\cdots=d_{12}=0,
+\label{eq:ml-class5-sparse}
+\end{equation}
+while the remaining coefficients reproduce the analytic pair in
+Section~\ref{sec:class5-model}.  The numerical values and run-to-run
+statistics are given in the repository output files described in
+Section~\ref{sec:ml-numerics}.
 
 \subsection{Class 6}
 \label{sec:ml-class6-paper}
 
-For Class 6, the known nilpotency $N_6^3=0$ of
-Eq.~\eqref{eq:class6-N-definition} determines the finite matrix basis
-$\{\Id_3,N_6,N_6^2\}$.  The eight real coefficients
-$a_1,a_2,b_0,b_1,b_2,c_0,c_1,c_2$ are the trainable parameters.
-They enter three coefficient matrices,
+For Class 6, let $N_6$ be the nilpotent matrix in
+Eq.~\eqref{eq:class6-N-definition}.  The search uses the exact finite basis
+$\{\Id_3,N_6,N_6^2\}$.  The spatial and time ans\"atze are
 \begin{align}
-\mathsf A_6&=\frac{\ii}{2\lambda}\Id_3+a_1N_6+a_2N_6^2,
-\nonumber\\
-\mathsf B_6&=b_0\Id_3+b_1N_6+b_2N_6^2,
-\nonumber\\
-\mathsf C_6&=c_0\Id_3+c_1N_6+c_2N_6^2.
-\label{eq:ml-class6-matrices}
+\boldsymbol u_6&=(a_0\Id_3+a_1N_6+a_2N_6^2)\boldsymbol S,
+\label{eq:ml-U6-ansatz}\\
+\boldsymbol v_6&=(b_0\Id_3+b_1N_6+b_2N_6^2)
+(\boldsymbol S\times\partial_x\boldsymbol S)
++(c_0\Id_3+c_1N_6)\boldsymbol S.
+\label{eq:ml-V6-ansatz}
 \end{align}
-The coefficient $\ii/(2\lambda)$ of $\Id_3$ in $\mathsf A_6$ is
-fixed throughout a run.
-The candidate vectors and scalar parts are
-\begin{align}
-\boldsymbol u_6&=\mathsf A_6\boldsymbol S,
-&\mu_6&=\frac{1}{4\lambda},
-\nonumber\\
-\boldsymbol v_6&=-2\bigl[\mathsf B_6\boldsymbol S
- +\mathsf C_6(\boldsymbol S\times\partial_x\boldsymbol S)\bigr],
-&\nu_6&=0.
-\label{eq:ml-class6-ansatz}
-\end{align}
-Since $\partial_t\boldsymbol u_6=\mathsf A_6\partial_t\boldsymbol S$,
-the spatial ansatz fixes the coefficient map multiplying
-$\boldsymbol E^{(6)}$ to be $\mathsf A_6$.  The loss minimized over
-the eight coefficients is
+The eight trainable coefficients are
+$(a_0,a_1,a_2,b_0,b_1,b_2,c_0,c_1)$.  The scalar parts are fixed to
+\begin{equation}
+\mu_6=\frac{1}{4\lambda},
+\qquad
+\nu_6=0.
+\label{eq:ml-class6-scalars}
+\end{equation}
+
+The Class 6 objective can be written off shell as
 \begin{equation}
 \mathcal L_6
-=\frac{1}{12}\left\langle\left\|
-\boldsymbol{\mathcal F}^{(6)}-\mathsf A_6\boldsymbol E^{(6)}
-\right\|^2\right\rangle,
+=\left\langle
+\left\|
+\boldsymbol{\mathcal F}^{(6)}-A_6\boldsymbol E^{(6)}
+\right\|^2
+\right\rangle,
+\qquad
+A_6:=a_0\Id_3+a_1N_6+a_2N_6^2.
 \label{eq:ml-class6-loss}
 \end{equation}
-evaluated on the independently sampled spin derivatives.  The nilpotency
-of $N_6$ gives
-$\det\mathsf A_6=(\ii/(2\lambda))^3$ for every choice of the fitted
-coefficients, so its coefficient map is invertible for $\lambda\ne0$.
-As in Class 5, the terms containing $\partial_t\boldsymbol S$ cancel
-between $\boldsymbol{\mathcal F}^{(6)}$ and
-$\mathsf A_6\boldsymbol E^{(6)}$ for arbitrary fitted coefficients.
-The sampled time derivative therefore supplies no additional fitting
-constraint.  The constant scalar parts in
-Eq.~\eqref{eq:ml-class6-ansatz} have identically zero scalar curvature.
+For any fitted coefficients, the time-derivative terms cancel in
+$\boldsymbol{\mathcal F}^{(6)}-A_6\boldsymbol E^{(6)}$.
+The original stored runs used the on-shell form obtained by substituting the
+Class 6 equations of motion for $\partial_t\boldsymbol S$; the two losses are
+exactly equal for the same spatial samples and coefficients.  The active
+script uses Eq.~\eqref{eq:ml-class6-loss} and also reruns the original
+on-shell objective as a convention check.
 
-The recovered coefficient relations are
-\begin{align}
-a_1=c_1&=-\ii\alpha_6\lambda,
-&a_2=c_2&=-\ii\alpha_6^2\lambda^3,
-\nonumber\\
-b_0&=\frac{1}{4\lambda^2},
-&b_1&=\frac{\alpha_6}{2},
-\nonumber\\
-b_2&=\frac{3\alpha_6^2\lambda^2}{2},
-&c_0&=\frac{\ii}{2\lambda}.
-\label{eq:ml-class6-coefficients}
-\end{align}
-They give $\mathsf C_6=\mathsf A_6$ and the finite matrix-square-root
-identity
+The recovered coefficients are equivalent to the matrix-square-root form
 \begin{equation}
-\mathsf A_6^2=-\frac{1}{4\lambda^2}\Id_3+\alpha_6N_6.
-\label{eq:ml-class6-square}
+A_6(\lambda)
+=\frac{1}{2\lambda}
+\left(\Id_3+2\alpha_6\lambda^2N_6
++2\alpha_6^2\lambda^4N_6^2\right),
+\label{eq:ml-A6}
 \end{equation}
-The corresponding $U_6^{\rm fit},V_6^{\rm fit}$ coincide with
-Eqs.~\eqref{eq:class6-spatial-Lax} and
-\eqref{eq:class6-time-Lax-compact}.  Their subsequent analytic
-verification gives
-$\boldsymbol{\mathcal F}^{(6)}=\mathsf A_6\boldsymbol E^{(6)}$
-off shell, with $\det\mathsf A_6=(\ii/(2\lambda))^3$.
-Thus the final equivalence to the equations of motion follows from an
-invertible coefficient map, as displayed explicitly in
-Section~\ref{sec:class6-eom}.
+with the corresponding time coefficients fixed by the zero-curvature
+condition.  Substitution gives the analytic Class 6 matrices in
+Section~\ref{sec:class6-model}.
 
-\subsection{Sampling and numerical checks}
+\subsection{Numerical settings and verification}
 \label{sec:ml-numerics}
 
-The following distributions generate the input data.  All dimensionful
-quantities are expressed in a fixed length unit.
-In Class 5, draw a real unit vector $\boldsymbol S$ by normalizing a
-three-dimensional standard Gaussian vector.  Let
-$\Pi_{\boldsymbol S}:=\Id_3-\boldsymbol S\boldsymbol S^{\mathsf T}$
-be its tangent projection, and draw independent standard real Gaussian
-vectors $\boldsymbol g_1,\boldsymbol g_2,\boldsymbol g_t$.  The local
-derivatives are
-\begin{align}
-\partial_x\boldsymbol S
-&=\Pi_{\boldsymbol S}\boldsymbol g_1-\frac{\alpha_5}{2}M_5\boldsymbol S,
-\nonumber\\
-\partial_x^2\boldsymbol S
-&=\Pi_{\boldsymbol S}\boldsymbol g_2
- -(\Pi_{\boldsymbol S}\boldsymbol g_1)^{\mathsf T}
-   (\Pi_{\boldsymbol S}\boldsymbol g_1)\boldsymbol S
-\nonumber\\
-&\quad-\alpha_5M_5\Pi_{\boldsymbol S}\boldsymbol g_1
- +\frac{\alpha_5^2}{4}M_5^2\boldsymbol S,
-\nonumber\\
-\partial_t\boldsymbol S&=-2\Pi_{\boldsymbol S}\boldsymbol g_t.
-\label{eq:ml-class5-sampling}
-\end{align}
-These data satisfy the unit-spin constraint and its differentiated
-identities; the time derivative is sampled independently of the
-equations of motion.  Each run uses 768 training points and 4096
-independent validation points.  The pairs $(\alpha_5,\lambda)$ are
-$(0.8,5\ii/7)$, $(0.8,5\ii/12)$, and $(1.4,5\ii/12)$, with three
-initializations for each pair.
+For Class 5, each run uses $100$ sampled configurations and optimizes with
+Adam for $5000$ steps at learning rate $10^{-2}$, followed by L-BFGS for at
+most $500$ iterations.  Nine independent seeds are stored.  For Class 6,
+each run uses $128$ samples, Adam for $4000$ steps at learning rate
+$5\times10^{-3}$, followed by L-BFGS for at most $500$ iterations.  Six
+independent seeds are stored.  The samples are generated by drawing Gaussian
+vectors, normalizing the spin to unit length, projecting the first derivative
+to the tangent plane, and projecting the second derivative so that the second
+derivative of the unit-spin constraint is satisfied.  The time derivative is
+sampled independently and projected to the tangent plane for the off-shell
+losses.
 
-For Class 6, draw a complex Gaussian vector $\boldsymbol z$, whose
-real and imaginary components have independent unit variance, and set
-$\boldsymbol S=\boldsymbol z/\sqrt{\boldsymbol z^{\mathsf T}\boldsymbol z}$.
-Samples with $|\boldsymbol z^{\mathsf T}\boldsymbol z|\le0.25$ are rejected.
-Using independent complex Gaussian vectors $\boldsymbol g_1,\boldsymbol g_2$
-with the same distribution, set
-\begin{align}
-\partial_x\boldsymbol S&=0.8\Pi_{\boldsymbol S}\boldsymbol g_1,
-\nonumber\\
-\partial_x^2\boldsymbol S&=0.8\Pi_{\boldsymbol S}\boldsymbol g_2
- -(\partial_x\boldsymbol S)^{\mathsf T}(\partial_x\boldsymbol S)\boldsymbol S.
-\label{eq:ml-class6-sampling}
-\end{align}
-For the off-shell loss, an independent complex Gaussian vector
-$\boldsymbol g_t$ with the same distribution gives
-$\partial_t\boldsymbol S=-2\Pi_{\boldsymbol S}\boldsymbol g_t$.
-Each run uses 768 training points and 3072 independent validation points.
-The pairs $(\alpha_6,\lambda)$ are $(0.35,10\ii/13)$,
-$(0.7,\ii/2)$, and $(1.1,10\ii/29)$, with two initializations each.
-
-Class 5 starts with independent zero-mean Gaussian coefficients of standard
-deviation $0.25$.  Class 6 starts from the undeformed values
-$b_0=1/(4\lambda^2)$, $c_0=\ii/(2\lambda)$, and zero for the remaining
-coefficients, with independent zero-mean real Gaussian perturbations of
-standard deviation $0.08$.
-Both searches use Adam followed by the limited-memory
-Broyden--Fletcher--Goldfarb--Shanno method (L-BFGS).
-For Class 5, Adam has 600 steps and learning rate $0.03$;
-L-BFGS has at most 50 iterations and learning rate $0.8$.
-The sparsity weight in Eq.~\eqref{eq:ml-class5-loss} is
-$\eta=10^{-9}$ during Adam and $5\times10^{-11}$ during L-BFGS.
-For Class 6, Adam has 1300 steps and learning rate $0.02$;
-L-BFGS has at most 120 iterations and learning rate $0.7$.
-At every step, the loss is evaluated on the full, fixed training set,
-and its gradients update the ansatz coefficients.  Both searches use
-double precision.  After optimization, the same residuals are evaluated
-on independently generated validation samples; the sparsity penalty is
-excluded from the Class 5 validation residual.
-
-Across the runs specified above, the largest absolute
-coefficient error was $3.61\times10^{-7}$ in Class 5 and
-$1.12\times10^{-11}$ in Class 6.  The largest absolute coefficient of
-$\boldsymbol W_5,\ldots,\boldsymbol W_{12}$ was $8.10\times10^{-8}$.
-The maximum validation mean-square residual in the first term of
-Eq.~\eqref{eq:ml-class5-loss} was $4.94\times10^{-14}$.
-For Class 6, the maximum validation root-mean-square residual,
-$\sqrt{\mathcal L_6}$, was $2.92\times10^{-11}$.
-The fixed normalizations and the undeformed Class 6 initial point are
-inputs to the searches.  The deformation-dependent coefficient relations
-are checked after optimization.  Each run fits a finite set of coefficients
-at one chosen $(\alpha_m,\lambda)$; the general spectral dependence is
-established by exact substitution into the Lax matrices and the off-shell
-identities in Sections~\ref{sec:class5-eom} and \ref{sec:class6-eom}.
-The evaluation of
-overlapping quantum products in the main text supplies the further
-connection to the finite lattice time operators.
+The stored Class 5 runs reproduce the nonzero analytic coefficients with
+relative errors below $10^{-5}$ after fixing the common normalization, while
+the eight additional candidate coefficients are below $10^{-6}$ in absolute
+value.  The stored Class 6 runs reproduce the matrix-square-root relations
+within the same tolerance.  The active verification script checks the loss
+and its gradient at arbitrary coefficients, verifies the equivalence of the
+two Class 6 objectives, reruns the stored seeds, and compares the recovered
+matrices with the analytic expressions used in the manuscript.
