@@ -130,8 +130,26 @@ S^-\partial_x^2S^+
 \right).
 \label{eq:class5-eom-three}
 \end{align}
-A direct expansion of the lower symbol of the lattice Heisenberg derivative
-then gives
+
+The same flow follows directly from the finite-lattice Heisenberg derivative.
+Let $\boldsymbol\sigma_n=(\sigma_n^1,\sigma_n^2,\sigma_n^3)^{\mathsf T}$,
+where $\sigma_n^i$ is the Pauli matrix $\sigma^i$ acting at site $n$.
+The two bonds adjacent to that site give
+\begin{align}
+\frac{1}{\epsilon^2}
+\left(\partial_{t_{\rm lat}}\boldsymbol\sigma_n\right)^\downarrow
+={}&-2\boldsymbol S_n\times\Biggl[
+\frac{\boldsymbol S_{n-1}+\boldsymbol S_{n+1}-2\boldsymbol S_n}
+{\epsilon^2}
+\nonumber\\
+&\hspace{6em}
++\frac{\alpha_5}{2\epsilon}M_5
+\left(\boldsymbol S_{n+1}-\boldsymbol S_{n-1}\right)
+\Biggr].
+\label{eq:class5-finite-lattice-spin-flow}
+\end{align}
+Its smooth-field limit is Eq.~\eqref{eq:class5-vector-eom}.
+Applying the same commutator to the normalized lattice Lax operator gives
 \begin{equation}
 \left(
 \partial_{t_{\rm lat}}\widehat L_{5;a,n}
