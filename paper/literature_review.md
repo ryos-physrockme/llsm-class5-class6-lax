@@ -63,3 +63,9 @@ XXZ は一般式の第三 control として研究ノート・検証コードに�
 Class 5/6 の二模型、undeformed XXX、XXZ control、および既知 classical model との照合は、この局所恒等式と量子--古典 bridge の検証として位置づける。
 
 対象文献を確認した範囲では同一の局所 shared-site formula は見つけていないが、これは literature absence や priority の証明ではない。
+
+## 2026-09-16 self-review completion
+
+PR #17 の最新版では、上記の三つの中心修正に加えて Abstract を非技術化し、ML を Abstract から外した。`PROJECT_STATUS.md` と `REPRODUCIBILITY.md` も Appendix A/B と Class 5 Hamiltonian/EOM comparison に合わせて更新済みである。
+
+PR #17 head `1cca5ed328137a800cf9ddd5dba8d4fa0a00e013` では main CI と Class 5 専用 workflow がともに success。生成原稿は35ページで、Introduction、Section 2.4、Class 5 comparison、Summary、Appendix A/B をレンダリングして確認し、clipping、overlap、broken glyph、式配置の異常は見つからなかった。
