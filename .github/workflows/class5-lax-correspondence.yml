@@ -7,9 +7,11 @@ on:
     branches: [main, research/shared-site-generalization]
     paths:
       - notes/parts/12_class5_generic_lax_comparison.tex
+      - notes/parts/12b_class5_hamiltonian_comparison.tex
       - notes/class5_lax_comparison_ja.tex
       - notes/full_research_note_ja.tex
       - scripts/class5/verify_lax_correspondence.py
+      - scripts/class5/verify_hamiltonian_correspondence.py
       - results/class5/lax_correspondence/**
       - .github/workflows/class5-lax-correspondence.yml
 
@@ -26,10 +28,12 @@ jobs:
           python-version: '3.11'
       - name: Install symbolic dependency
         run: python -m pip install sympy==1.14.0
-      - name: Check all correspondence identities and the recorded result
+      - name: Check all correspondence identities and the recorded results
         run: |
           python scripts/class5/verify_lax_correspondence.py --output /tmp/class5_lax_correspondence.json
           diff -u results/class5/lax_correspondence/verification_results.json /tmp/class5_lax_correspondence.json
+          python scripts/class5/verify_hamiltonian_correspondence.py --output /tmp/class5_hamiltonian_correspondence.json
+          diff -u results/class5/lax_correspondence/hamiltonian_verification.json /tmp/class5_hamiltonian_correspondence.json
       - name: Install TeX Live and Japanese support
         run: |
           sudo apt-get update
@@ -48,3 +52,4 @@ jobs:
             notes/full_research_note_ja.pdf
             notes/class5_lax_comparison_ja.pdf
             results/class5/lax_correspondence/verification_results.json
+            results/class5/lax_correspondence/hamiltonian_verification.json

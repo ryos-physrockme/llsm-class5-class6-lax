@@ -1,16 +1,103 @@
-\subsection{Relation to the null-like warped \texorpdfstring{$SL(2)$}{SL(2)} Landau--Lifshitz pair}
+\subsection{Comparison with the null-like warped \texorpdfstring{$SL(2)$}{SL(2)} Landau--Lifshitz model}
 \label{sec:class5-known-null-pair}
 
-The Class 5 pair can be compared directly with the null-like warped $SL(2)$
-Landau--Lifshitz pair of Ref.~\cite{KameyamaYoshida2014}.  Let
-$n^0,n^1,n^2$ denote the fields of that model and define
+The null-like warped $SL(2)$ Landau--Lifshitz model of
+Ref.~\cite{KameyamaYoshida2014} is defined in its Sec.~4.1 by a first-order
+Landau--Lifshitz action.  Let $n^0,n^1,n^2$ denote its spin variables and set
 \begin{equation}
 (n^0)^2-(n^1)^2-(n^2)^2=1,
 \qquad
-n^{\pm}:=\frac{n^0\pm n^1}{\sqrt2}.
+n^{\pm}:=\frac{n^0\pm n^1}{\sqrt2},
+\qquad
+\eta:=\operatorname{diag}(1,-1,-1).
 \label{eq:class5-known-n-fields}
 \end{equation}
-For the auxiliary-space basis, set
+Writing the constants in that action as $L_K$, $\Lambda_K$ and $C_K$, define
+\begin{equation}
+A_K:=\frac{4\pi L_K}{\sqrt{\Lambda_K}}.
+\label{eq:class5-known-AK}
+\end{equation}
+The Hamiltonian density following from the action, with its overall factor
+$L_K/2$ stripped off, is
+\begin{equation}
+\mathcal H_K
+=C_K(n^-)^2
+-\frac{1}{A_K^2}\,
+\partial_x n^a\,\eta_{ab}\,\partial_x n^b.
+\label{eq:class5-known-HK}
+\end{equation}
+Here and below $a,b=0,1,2$ are summed.
+
+The Class 5 Hamiltonian in Eq.~\eqref{eq:class5-continuum-hamiltonian} can be
+put in the same form locally.  Define
+\begin{equation}
+\boldsymbol S(x,t)
+=\mathcal R(x)\widetilde{\boldsymbol S}(x,t),
+\qquad
+\mathcal R(x):=
+\exp\!\left(-\frac{\alpha_5x}{2}M_5\right).
+\label{eq:class5-known-field-rotation}
+\end{equation}
+Since $M_5^{\mathsf T}=-M_5$, the matrix $\mathcal R$ is complex orthogonal.
+Substitution into the Class 5 Hamiltonian density gives
+\begin{equation}
+\widetilde{\mathcal H}_5
+=-\frac12\,
+\partial_x\widetilde{\boldsymbol S}^{\mathsf T}
+\partial_x\widetilde{\boldsymbol S}
+-\frac{\alpha_5^2}{8}\,
+\widetilde{\boldsymbol S}^{\mathsf T}M_5^2
+\widetilde{\boldsymbol S}.
+\label{eq:class5-known-rotated-H}
+\end{equation}
+Now set
+\begin{equation}
+\begin{pmatrix}n^0(x,t_K)\\ n^1(x,t_K)\\ n^2(x,t_K)\end{pmatrix}
+=
+\operatorname{diag}(1,-\ii,-\ii)\,
+\widetilde{\boldsymbol S}(x,t_K/A_K^2),
+\qquad
+C_K=\frac{\alpha_5^2}{2A_K^2},
+\qquad
+t_K=A_K^2t.
+\label{eq:class5-known-dynamical-dictionary}
+\end{equation}
+The identities
+\begin{equation}
+\operatorname{diag}(1,-\ii,-\ii)^{\mathsf T}
+\eta\,
+\operatorname{diag}(1,-\ii,-\ii)=\Id_3,
+\qquad
+\widetilde{\boldsymbol S}^{\mathsf T}M_5^2
+\widetilde{\boldsymbol S}=-2(n^-)^2
+\label{eq:class5-known-H-identities}
+\end{equation}
+then give
+\begin{equation}
+\widetilde{\mathcal H}_5
+=\frac{A_K^2}{2}\,\mathcal H_K.
+\label{eq:class5-known-H-map}
+\end{equation}
+The same field redefinition maps the Class 5 equation
+\eqref{eq:class5-vector-eom} to
+\begin{equation}
+\partial_t\widetilde{\boldsymbol S}
+=-2\widetilde{\boldsymbol S}\times
+\left(
+\partial_x^2\widetilde{\boldsymbol S}
+-\frac{\alpha_5^2}{4}M_5^2\widetilde{\boldsymbol S}
+\right),
+\label{eq:class5-known-rotated-eom}
+\end{equation}
+and Eq.~\eqref{eq:class5-known-dynamical-dictionary} converts its three
+components into the equations of motion of the null-like warped model in
+Ref.~\cite{KameyamaYoshida2014}.  The comparison below is therefore between
+Lax representations of locally equivalent complexified equations of motion,
+with the Hamiltonian densities related by Eq.~\eqref{eq:class5-known-H-map}.
+No identification of the two real phase spaces or of their Poisson structures
+is assumed here.
+
+For the Lax comparison, introduce
 \begin{equation}
 T^0=\frac{\ii}{2}\sigma^2,
 \qquad
@@ -18,13 +105,17 @@ T^1=\frac12\sigma^1,
 \qquad
 T^2=\frac12\sigma^3,
 \qquad
-T^{\pm}=\frac{T^0\pm T^1}{\sqrt2}.
+T^{\pm}=\frac{T^0\pm T^1}{\sqrt2},
+\qquad
+B_K:=-\frac{2}{A_K},
 \label{eq:class5-known-generators}
 \end{equation}
-Introduce a nonzero normalization $A_K$, let $B_K:=-2/A_K$, and denote the
-null-like deformation coupling and spectral parameter by $C_K$ and $z_K$.
-The Lax pair of Ref.~\cite{KameyamaYoshida2014}, with these constants renamed,
-is
+and relate the spectral parameters by
+\begin{equation}
+z_K=2\ii A_K\lambda.
+\label{eq:class5-known-spectral-dictionary}
+\end{equation}
+In these conventions the Lax pair of Ref.~\cite{KameyamaYoshida2014} is
 \begin{align}
 U_K
 ={}&\frac{A_K}{z_K}
@@ -54,36 +145,6 @@ V_K
 \label{eq:class5-known-VK}
 \end{align}
 
-Define a rotated spin $\widetilde{\boldsymbol S}$ by
-\begin{equation}
-\boldsymbol S(x,t)
-=\mathcal R(x)\widetilde{\boldsymbol S}(x,t),
-\qquad
-\mathcal R(x):=
-\exp\!\left(-\frac{\alpha_5x}{2}M_5\right).
-\label{eq:class5-known-field-rotation}
-\end{equation}
-Since $M_5^{\mathsf T}=-M_5$, this transformation preserves
-$\boldsymbol S^{\mathsf T}\boldsymbol S=1$.  The fields and parameters are
-related by
-\begin{equation}
-\begin{gathered}
-\begin{pmatrix}n^0(x,t_K)\\ n^1(x,t_K)\\ n^2(x,t_K)\end{pmatrix}
-=
-\operatorname{diag}(1,-\ii,-\ii)\,
-\widetilde{\boldsymbol S}(x,t_K/A_K^2),
-\\[1mm]
-C_K=\frac{\alpha_5^2}{2A_K^2},
-\qquad
-z_K=2\ii A_K\lambda,
-\qquad
-t_K=A_K^2t.
-\end{gathered}
-\label{eq:class5-known-dictionary}
-\end{equation}
-Equation~\eqref{eq:class5-known-dictionary} maps the complexified spin spaces;
-the two real sections are different.
-
 For the auxiliary-space transformation, let
 \begin{equation}
 Q=\begin{pmatrix}0&\ii\\1&0\end{pmatrix},
@@ -94,8 +155,7 @@ G(x,\lambda)
 \mathcal G:=GQ^{-1},
 \label{eq:class5-known-gauge}
 \end{equation}
-where $E_{12}$ is the matrix unit with only its $(1,2)$ entry nonzero.
-Define
+where $E_{12}$ is the matrix unit with only its $(1,2)$ entry nonzero.  Define
 \begin{equation}
 U_{5,0}:=U_5-\frac12\tr U_5\,\Id_2,
 \qquad
@@ -113,8 +173,8 @@ V_{5,0}
 \label{eq:class5-known-V-map}
 \end{align}
 on the unit-spin constraint.  The spatial identity holds without the
-constraint.  Before imposing the constraint, the difference in the time
-identity is proportional to
+constraint; before imposing it, the difference in the time identity is
+proportional to
 $\widetilde{\boldsymbol S}^{\mathsf T}\widetilde{\boldsymbol S}-1$.
 
 The scalar parts are
@@ -143,7 +203,8 @@ Eq.~\eqref{eq:class5-residual-plus},
 The scalar sector is locally flat on the Class 5 equations of motion and can
 be removed on shell by a local scalar auxiliary transformation.
 
-For a periodic spin with circumference $\ell$,
+The equivalence above is local.  For a periodic Class 5 spin with
+circumference $\ell$,
 \begin{equation}
 \widetilde{\boldsymbol S}(x+\ell,t)
 =\exp\!\left(\frac{\alpha_5\ell}{2}M_5\right)
@@ -153,8 +214,6 @@ G(x+\ell,\lambda)G(x,\lambda)^{-1}
 =\Id_2-\frac{\alpha_5\ell}{2}E_{12}.
 \label{eq:class5-known-boundary-twist}
 \end{equation}
-The field and gauge transformations are not generically periodic, so the
-local correspondence does not identify periodic monodromies or global
-boundary sectors.  Sections~\ref{sec:class5-time-lax} and
-\ref{sec:class5-eom} give the direct finite-lattice derivation of the Class 5
-time component.
+The field and gauge transformations are not generically periodic; periodic
+monodromies and global boundary sectors are therefore not identified by this
+map.

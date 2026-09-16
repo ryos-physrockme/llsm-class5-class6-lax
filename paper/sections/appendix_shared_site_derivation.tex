@@ -1,0 +1,167 @@
+\section{Derivation of the shared-site identity}
+\label{app:shared-site-derivation}
+
+This appendix derives Eqs.~\eqref{eq:common-quadratic-overlap}--
+\eqref{eq:common-source-with-residual}.  The assumptions and operator
+expansions are those of Section~\ref{sec:shared-site-common-form}.  All
+lower symbols below are evaluated with the same rank-one spin state
+$\rho=(\Id_2+S^i\sigma^i)/2$ on the two physical sites, while the
+auxiliary-space matrix order is kept fixed.
+
+From Eq.~\eqref{eq:common-time-coefficients},
+\begin{equation}
+A^{(1)}=-2\ii(X_1-X_2)P.
+\label{eq:app-A1-permutation}
+\end{equation}
+At coincident spins,
+$P(\rho\otimes\rho)=(\rho\otimes\rho)P=\rho\otimes\rho$, so
+$\langle A^{(1)}\rangle=0$.  Direct substitution in the two overlap
+products gives
+\begin{equation}
+\mathcal D^{(+)}_2(\boldsymbol S,\boldsymbol S)
+=\mathcal D^{(-)}_2(\boldsymbol S,\boldsymbol S)
+=2\ii\left[(X^2)^\downarrow-U^2\right]
+=2\ii\Xi.
+\label{eq:app-D2-coincident}
+\end{equation}
+Thus the coincident order-$\epsilon^2$ contribution cancels in
+$\widehat{\mathcal D}^{(+)}-\widehat{\mathcal D}^{(-)}$.
+
+To obtain its first spatial variation, choose at one point a fixed physical
+basis in which
+\begin{equation}
+\rho=\begin{pmatrix}1&0\\0&0\end{pmatrix},
+\qquad
+\partial_x\rho=\begin{pmatrix}0&p\\q&0\end{pmatrix},
+\qquad
+X=\sum_{r,s=0}^1X_{rs}\otimes|r\rangle\langle s|.
+\label{eq:app-rho-block-basis}
+\end{equation}
+The basis is held fixed when differentiating.  The projector identity
+$\rho\,\partial_x\rho+(\partial_x\rho)\rho=\partial_x\rho$ removes the
+diagonal components of $\partial_x\rho$.  In this basis
+\begin{equation}
+U=X_{00},
+\qquad
+\Xi=X_{01}X_{10},
+\label{eq:app-U-Xi-blocks}
+\end{equation}
+and differentiation with respect to the spin state gives
+\begin{equation}
+\partial_x\Xi
+=p(X_{11}-X_{00})X_{10}
++qX_{01}(X_{11}-X_{00}).
+\label{eq:app-Xi-tangent}
+\end{equation}
+Let $\delta_R$ and $\delta_L$ denote directional variations with respect to
+the right and left physical density matrices, respectively.  Their action on
+the quadratic overlap coefficients is
+\begin{align}
+\delta_R\mathcal D^{(+)}_2[\partial_x\rho]
+&=2\ii p(X_{11}-X_{00})X_{10},
+\nonumber\\
+\delta_L\mathcal D^{(-)}_2[\partial_x\rho]
+&=2\ii qX_{01}(X_{11}-X_{00}).
+\label{eq:app-D2-tangent}
+\end{align}
+The minus sign in the definition of the overlap source is compensated by the
+Taylor expansion of the left neighbour,
+$\rho(x-\epsilon)=\rho(x)-\epsilon\partial_x\rho+\cdots$.  Therefore the two
+terms in Eq.~\eqref{eq:app-D2-tangent} add and reproduce
+Eq.~\eqref{eq:common-quadratic-Taylor}.
+
+It remains to evaluate the coincident order-$\epsilon^3$ term.  Using
+$\langle A^{(1)}\rangle=0$, one finds
+\begin{align}
+\mathcal D^{(+)}_3-\mathcal D^{(-)}_3
+={}&\left\langle
+A^{(2)}X_1-X_2A^{(2)}+A^{(1)}Y_1-Y_2A^{(1)}
+\right\rangle
+-[\langle A^{(2)}\rangle,U].
+\label{eq:app-D3-start}
+\end{align}
+We separate the four terms in $A^{(2)}$ according to their origin.
+The exchange part gives
+\begin{equation}
+(\mathcal D^{(+)}_3-\mathcal D^{(-)}_3)_{\rm ex}
+=2\ii[\Xi,U]
+-\ii\left\langle X_1[2P,X_2X_1]\right\rangle.
+\label{eq:app-D3-exchange}
+\end{equation}
+The terms containing the explicit second spatial coefficient cancel only
+after both its occurrence in $A^{(2)}$ and the products with $A^{(1)}$ are
+retained:
+\begin{align}
+(\mathcal D^{(+)}_3-\mathcal D^{(-)}_3)_Y
+&=-2\ii\left\langle
+([Y_1,X_2]+[X_1,Y_2])P
+\right\rangle
+\nonumber\\
+&=-2\ii\left([Y^\downarrow,U]+[U,Y^\downarrow]\right)=0.
+\label{eq:app-D3-Y}
+\end{align}
+The spectral-derivative contribution is
+\begin{equation}
+(\mathcal D^{(+)}_3-\mathcal D^{(-)}_3)_Z
+=-\ii\left\langle X_1(-Z_1+Z_2)\right\rangle.
+\label{eq:app-D3-Z}
+\end{equation}
+
+For the Hamiltonian correction define
+\begin{equation}
+K_h:=\langle[h^{(1)},X_2]\rangle.
+\label{eq:app-Kh}
+\end{equation}
+The triplet condition~\eqref{eq:common-triplet-condition} implies
+\begin{align}
+\left\langle
+(X_1+X_2)[h^{(1)},X_1+X_2]
+\right\rangle&=0,
+\label{eq:app-h-collective}\\
+\langle[h^{(1)},X_2X_1]\rangle&=[K_h,U].
+\label{eq:app-h-product}
+\end{align}
+The first identity follows because $X_1+X_2$ commutes with the site
+permutation and therefore preserves the triplet containing the product
+state.  For the second identity, use the basis of
+Eq.~\eqref{eq:app-rho-block-basis}.  If
+$a_h=(h^{(1)})_{00,01}$ and $b_h=(h^{(1)})_{01,00}$, the triplet condition
+gives
+\begin{equation}
+K_h=a_hX_{10}-b_hX_{01},
+\qquad
+\langle[h^{(1)},X_2X_1]\rangle
+=a_h[X_{10},X_{00}]-b_h[X_{01},X_{00}],
+\label{eq:app-h-blocks}
+\end{equation}
+which is Eq.~\eqref{eq:app-h-product}.  The complete Hamiltonian contribution
+then reduces to
+\begin{equation}
+(\mathcal D^{(+)}_3-\mathcal D^{(-)}_3)_h
+=-\ii\left\langle
+X_1[h^{(1)},X_1+X_2]
+\right\rangle.
+\label{eq:app-D3-h}
+\end{equation}
+
+Adding Eqs.~\eqref{eq:app-D3-exchange}, \eqref{eq:app-D3-Y},
+\eqref{eq:app-D3-Z}, and \eqref{eq:app-D3-h}, and using the definition
+\eqref{eq:common-Sutherland-residual}, gives
+\begin{equation}
+\mathcal D^{(+)}_3(\boldsymbol S,\boldsymbol S)
+-\mathcal D^{(-)}_3(\boldsymbol S,\boldsymbol S)
+=2\ii[\Xi,U]-\ii\langle X_1\mathcal B\rangle.
+\label{eq:app-D3-final}
+\end{equation}
+Together with the Taylor term~\eqref{eq:common-quadratic-Taylor}, this yields
+\begin{equation}
+\mathcal C
+=2\ii\left(\partial_x\Xi+[\Xi,U]\right)
+-\ii\langle X_1\mathcal B\rangle,
+\label{eq:app-source-final}
+\end{equation}
+which is Eq.~\eqref{eq:common-source-with-residual}.  No
+Cayley--Hamilton relation in the auxiliary space has been used, so the
+argument allows arbitrary finite auxiliary dimension.  The two-dimensional
+physical spin space enters through the rank-one spin-$\tfrac12$ projector and
+through Eq.~\eqref{eq:app-h-blocks}.

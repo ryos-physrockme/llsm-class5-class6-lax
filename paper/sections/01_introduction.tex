@@ -1,94 +1,80 @@
 \section{Introduction}
 \label{sec:introduction}
 
-The Landau--Lifshitz model relates the long-wavelength dynamics of
-quantum spin chains to classical field theory.  It also appears in
-limits of string sigma models: the coherent-state continuum action
-of the Heisenberg chain agrees with an action obtained for strings
-carrying large angular momentum \cite{Kruczenski2004}.  Integrable
-deformations extend this relation to anisotropic Landau--Lifshitz
-models, whose Lax pairs and conserved-charge algebras have been studied
-in limits of deformed string backgrounds \cite{KameyamaYoshida2014}.
+Landau--Lifshitz models arise as long-wavelength descriptions of quantum
+spin chains and provide a standard setting in which quantum and classical
+integrability can be compared.  For the Heisenberg chain, the coherent-state
+continuum limit also reproduces the effective action obtained from strings
+with large angular momentum \cite{Kruczenski2004}.  Integrable deformations
+lead to anisotropic Landau--Lifshitz models and connect spin-chain
+deformations with deformed string sigma models
+\cite{KameyamaYoshida2014}.
 
-The Class 5 and Class 6 models provide two non-Hermitian deformations
-of the spin-$\tfrac12$ Heisenberg XXX chain.  They arose in the
-classification of nearest-neighbour integrable chains in
-Ref.~\cite{deLeeuwPribytokRyan2019} and have transfer matrices with
-nontrivial Jordan blocks.  De Leeuw, Fontanella and Nieto Garc\'ia
-derived their deformed Landau--Lifshitz continuum models and
-constructed higher conserved charges using a boost functional
-\cite{deLeeuwFontanellaNietoGarcia2026}.  For Class 5, they also
-identified the quantum deformation as a Jordanian Drinfeld twist.
+The continuum limit of an integrable lattice model involves more than its
+Hamiltonian.  Coherent-state limits of lattice monodromies and spatial Lax
+operators were developed systematically in
+Ref.~\cite{AvanDoikouSfetsos2010}, while classical continuum Hamiltonians,
+time Lax matrices and boundary terms were studied in
+Ref.~\cite{DoikouKaraiskos2011}.  On the quantum lattice, the time component
+can be generated from the monodromy and the local Hamiltonians
+\cite{DoikouFindlay2020}.  Relating that finite-lattice time operator directly
+to the continuum time matrix requires care because the local zero-curvature
+equation contains products of operators that act on a common physical site.
 
-Coherent-state continuum limits that retain classical Lax and
-$r$-matrix structures were formulated in
-Ref.~\cite{AvanDoikouSfetsos2010}.  Quantum time Lax operators can be
-constructed from the lattice monodromy \cite{DoikouFindlay2020}, and
-continuum Hamiltonians, time Lax matrices and boundary conditions were
-developed further in Ref.~\cite{DoikouKaraiskos2011}.  The calculation
-below concerns the long-wavelength limit of the local finite-lattice
-zero-curvature equation.
+The Class 5 and Class 6 chains considered here are two non-Hermitian
+spin-$\tfrac12$ deformations of the XXX chain that appear in the
+classification of regular nearest-neighbour integrable Hamiltonians
+\cite{deLeeuwPribytokRyan2019}.  Their transfer matrices can have nontrivial
+Jordan blocks.  De Leeuw, Fontanella and Nieto Garc\'ia derived the associated
+Landau--Lifshitz continuum models and higher conserved charges
+\cite{deLeeuwFontanellaNietoGarcia2026}.  In Class 5 the deformation is
+related to a Jordanian Drinfeld twist.  The same work obtained a continuum
+spatial Lax matrix but did not construct a compatible time component in those
+variables.
 
-The final classical structures are related to known models.  Class 6 is the
-eleven-vertex model \cite{CorcoranDeLeeuw2024}; its Landau--Lifshitz hierarchy
-follows from the eleven-vertex construction of Levin, Olshanetsky and Zotov
-\cite{LevinOlshanetskyZotov2014}, with explicit rational Lax matrices given in
-Ref.~\cite{AtalikovZotov2021}.  For Class 5,
-Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} constructs a spatial Lax matrix
-but does not give a compatible time component in those variables.  The pair
-obtained here is locally related, after a complex field redefinition and an
-auxiliary-space gauge transformation, to the null-like warped $SL(2)$
-Landau--Lifshitz pair of Ref.~\cite{KameyamaYoshida2014}.  These known pairs
-provide independent checks of the continuum time matrices obtained from the
-lattice calculation.
+The classical structures reached by these deformations are related to known
+integrable models.  The null-like warped $SL(2)$ Landau--Lifshitz model of
+Kameyama and Yoshida is associated with a Jordanian deformation and comes
+with a classical Lax representation \cite{KameyamaYoshida2014}.  Class 6 is
+the eleven-vertex model at the quantum level
+\cite{CorcoranDeLeeuw2024}; the corresponding rational Landau--Lifshitz
+hierarchy is known \cite{LevinOlshanetskyZotov2014,AtalikovZotov2021}.
+These results provide independent classical reference points for the two
+continuum limits.
 
-We take the continuum limit at fixed spin $\tfrac12$ and use coherent-state
-lower symbols, with auxiliary-space indices retained.  The lattice
-zero-curvature equation contains products whose factors share a physical
-site.  At that site the lower symbol of a product generally differs from the
-product of the separate symbols, as in standard coherent-state symbol
-calculus \cite{Perelomov1986,Schlichenmaier2010}.  Smooth variation of the
-spin labels controls the spatial expansion, while the common site retains the
-fixed spin-$\tfrac12$ operator algebra.
-
-For both chains, the connected contributions start at order $\epsilon^2$ and
-cancel at coincident spins.  Their first spatial Taylor coefficients and the
-coincident order-$\epsilon^3$ products remain at the same order as the
-continuum time evolution.  If $X$ is the first coefficient of the normalized
-spatial lattice operator, define
-\begin{equation}
-\Xi=(X^2)^\downarrow-(X^\downarrow)^2.
-\end{equation}
-Under the conditions stated in Section~\ref{sec:shared-site-common-form}, the
-Sutherland relation gives
-$2\ii(\partial_x\Xi+[\Xi,U])$ for the surviving source, which can be absorbed
-into the time matrix.
-
-For Class 5 the source is a total spatial derivative.  For Class 6 its
-model-specific representation contains a nonzero commutator, visible already
-for a spatially uniform spin configuration.  In both cases the corrected
-zero-curvature equations are equivalent off shell to the independently
-derived Hamiltonian equations, with explicit inverse relations.  The Class 5
-time matrix also agrees with an independent classical $r$-matrix construction
-up to a field-independent scalar matrix.  The Class 6 pair agrees, after the
-change of conventions given in Section~\ref{sec:class6-eleven-vertex-comparison},
-with the rational eleven-vertex Landau--Lifshitz pair.  In the undeformed XXX
-limit, omitting the shared-site contribution gives the wrong coefficient in
+For the Class 5 and Class 6 chains, the question addressed here is the local
+quantum-to-classical passage for the time component.  At fixed spin
+$\tfrac12$, smoothness suppresses differences between neighbouring
+coherent-state labels, but it does not turn products on a common site into
+products of their separate lower symbols.  The nonmultiplicativity itself is
+standard in coherent-state symbol calculus
+\cite{Perelomov1986,Schlichenmaier2010}; here its contribution must be tracked
+at the order of the long-wavelength expansion relevant to the local
+time-evolution equation.  The undeformed XXX chain provides a useful control:
+a direct product of separate lower symbols gives an incorrect coefficient in
 the standard time matrix.
 
-We also use numerical coefficient searches to identify candidate Lax pairs,
-following the optimization approach of Krippendorf, L\"ust and Syvaeri
-\cite{KrippendorfLustSyvaeri2021}.  The input consists of sampled local spin
-values and derivatives, and the coefficients of finite ans\"atze are fitted
-at fixed deformation and spectral parameters by minimizing off-shell
-curvature residuals.  The tensor structures use the null direction in Class 5
-and the nilpotent anisotropy in Class 6.  In Class 5, eight additional
-candidate coefficients are suppressed; in Class 6, the fitted relations give
-a finite matrix-square-root expression.  Appendix~\ref{sec:ml-search} gives
-the ans\"atze, loss functions, numerical settings and analytic checks.
+In this paper we take the finite-lattice time Lax operators of the Class 5
+and Class 6 chains to the long-wavelength limit while retaining these
+shared-site products.  A common spin-$\tfrac12$ expression for the resulting
+source follows from the corresponding order of the Sutherland relation.  In
+Class 5 the source reduces to a total spatial derivative, whereas in Class 6
+it contains a nonzero commutator contribution.  For both models the corrected
+zero-curvature equations are equivalent off shell to the Hamiltonian
+equations of motion.  The Class 5 result is compared with both an independent
+classical $r$-matrix construction and the null-like warped $SL(2)$ model; the
+Class 6 result is matched to the rational eleven-vertex Landau--Lifshitz
+pair.
 
-Section~\ref{sec:setup} fixes the lattice conventions and derives the common
-shared-site correction.  Sections~\ref{sec:class5-model} and
-\ref{sec:class6-model} treat the two chains.  Their model-dependent terms and
-the isotropic limit are compared in Section~\ref{sec:comparison}, followed by
-Section~\ref{sec:summary-discussion}.
+Numerical coefficient searches were used during the construction of the two
+pairs, following the optimization approach of
+Ref.~\cite{KrippendorfLustSyvaeri2021}.  The final statements are established
+analytically; the ans\"atze, losses and numerical checks are collected in
+Appendix~\ref{sec:ml-search}.
+
+Section~\ref{sec:setup} fixes the lattice and continuum conventions and
+derives the shared-site contribution.  Sections~\ref{sec:class5-model} and
+\ref{sec:class6-model} treat Class 5 and Class 6, respectively.
+Section~\ref{sec:comparison} compares their continuum corrections and the XXX
+limit.  Section~\ref{sec:summary-discussion} summarizes the results and their
+scope.
