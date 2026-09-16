@@ -14,8 +14,17 @@ Introduce the traceless spin matrix
 \Sigma_{21}&-\Sigma_{11}
 \end{pmatrix}
 \end{equation}
-and spectral parameter $z$.  Let $\Lambda_{\Sigma}\ne0$ fix the two
-eigenvalues of the spin matrix through
+and spectral parameter $z$.  The spatial matrix is
+\begin{equation}
+U_{\rm 11v}(z,\Sigma)=
+\begin{pmatrix}
+\Sigma_{11}/z-z\Sigma_{12}&\Sigma_{12}/z\\
+\Sigma_{21}/z-2z\Sigma_{11}-z^3\Sigma_{12}
+&-\Sigma_{11}/z+z\Sigma_{12}
+\end{pmatrix}.
+\label{eq:class6-known-eleven-U}
+\end{equation}
+Let $\Lambda_{\Sigma}\ne0$ fix the two eigenvalues of the spin matrix through
 $\Sigma^2=\Lambda_{\Sigma}^2\Id_2$.  Let $k$ denote the coefficient of the
 spatial derivative in the zero-curvature equation and let $\tau$ denote the
 time variable of the known model.  Define
@@ -67,8 +76,7 @@ k=-\frac{4}{\beta},
 This dictionary applies for $\alpha_6\ne0$.  The Class 6 matrices in
 Sections~\ref{sec:class6-spatial-lax} and \ref{sec:class6-time-lax} are
 regular at $\alpha_6=0$, and the undeformed limit is taken directly in those
-expressions.
-Then the traceless spatial matrix $U_{6,0}$ defined in
+expressions.  Then the traceless spatial matrix $U_{6,0}$ defined in
 Eq.~\eqref{eq:class6-traceless-U} and the time matrix
 Eq.~\eqref{eq:class6-time-Lax-compact} satisfy
 \begin{align}
