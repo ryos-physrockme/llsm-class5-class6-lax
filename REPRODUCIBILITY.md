@@ -4,7 +4,7 @@ All commands below are run from the repository root. Install `requirements.txt` 
 
 ## Common spin-1/2 shared-site correction
 
-The common local time-Lax correction used in manuscript Section 2 is checked independently of the model-specific Class 5 and Class 6 derivations.
+The common local time-Lax correction used in manuscript Section 2 is checked independently of the model-specific Class 5 and Class 6 derivations. The paper-level analytic derivation is now given in Appendix A, while the longer proof history and controls remain in `notes/parts/10_shared_site_generalization.tex`.
 
 The first program verifies the conditional identity with generic matrix entries, then checks Class 5, Class 6 and a weak-anisotropy XXZ control together with a case that violates the Sutherland condition:
 
@@ -59,6 +59,22 @@ python scripts/class5/verify_rmatrix_comparison.py
 ```
 
 The script checks the classical Poisson algebra, projector recursion, and agreement of the independently generated time-Lax matrix with the quantum-lattice continuum result up to a field-independent scalar matrix.
+
+The comparison with the Kameyama--Yoshida null-like warped `SL(2)` model is split into dynamical and Lax checks:
+
+```bash
+python scripts/class5/verify_hamiltonian_correspondence.py
+python scripts/class5/verify_lax_correspondence.py
+```
+
+The first script verifies the local complexified Hamiltonian-density map, the sphere-to-hyperboloid field dictionary, the null anisotropy and the equations of motion with the stated time rescaling. The second checks the quantum Class 5 normalization and the subsequent auxiliary-space gauge relation of the spatial and time Lax matrices. The deterministic reports are
+
+```text
+results/class5/lax_correspondence/hamiltonian_verification.json
+results/class5/lax_correspondence/verification_results.json
+```
+
+The comparison is local. It does not identify the two real phase spaces, their Poisson structures, periodic monodromies or global boundary sectors.
 
 ## Class 6: quantum-to-classical time-Lax limit
 
@@ -195,10 +211,7 @@ features, omitted its sparsity penalty, and used off-shell training for Class 6.
 Their outputs are retained in `archive/ml_reconstructed/`; their code remains
 accessible in commit `22ae4b88cb6e96af5dab2484ebf8156faaede0d9`.
 
-The manuscript Introduction summarizes the discovery route. Appendix A gives
-the original ansatz spaces expressed in paper variables, the two distinct
-losses, sampling, optimization settings and rerun metrics. The final off-shell
-certificates and lattice calculations remain in the main text.
+The manuscript Introduction summarizes the discovery route. Appendix A gives the analytic shared-site derivation used in Section 2. Appendix B gives the original ML ansatz spaces expressed in paper variables, the two distinct losses, sampling, optimization settings and rerun metrics. The final off-shell certificates and lattice calculations remain in the main text.
 
 ## Build the documents
 
