@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-09-15.
+Last updated: 2026-09-16.
 
 This file restores the state of the project without relying on chat history.
 
@@ -58,9 +58,12 @@ For both Class 5 and Class 6, the triplet condition follows from the exchange-ev
 
 The explicit second spatial coefficient `Y` must be kept in intermediate products but cancels from the final common formula. The analytic proof allows arbitrary finite auxiliary dimension but uses a two-dimensional physical spin space. Higher physical spin, higher Hamiltonian flows and finite-time quantum convergence are not established.
 
+The manuscript now includes the analytic derivation in Appendix A. It displays the coincident quadratic cancellation, the first spatial Taylor term, and the cubic contributions separated into exchange, `Y`, spectral-derivative and `h1` pieces before recombining them into the Sutherland residual.
+
 Primary research record:
 
 - `notes/parts/10_shared_site_generalization.tex`
+- `paper/sections/appendix_shared_site_derivation.tex`
 - `scripts/generalization/verify_shared_site_identity.py`
 - `scripts/generalization/verify_shared_site_proof.py`
 - `results/generalization/shared_site_identity.json`
@@ -74,14 +77,17 @@ Primary research record:
 - The corrected time matrix is off-shell equivalent to the Hamiltonian equations for generic spectral parameter.
 - The undeformed XXX limit still requires the shared-site correction.
 - An independent classical `r`-matrix/monodromy construction gives the same time matrix up to a field-independent scalar matrix.
-- The traceless continuum pair is locally related, after a complex field redefinition and local auxiliary-space gauge transformation, to the null-like warped `SL(2)` Landau--Lifshitz pair of Kameyama--Yoshida.
-- This local relation does not identify real sections, periodic monodromies, scattering data, Poisson structures, or global boundary sectors; the transformations are not generically periodic.
+- The comparison with the Kameyama--Yoshida null-like warped `SL(2)` model is now established first at the level of the local complexified Hamiltonian density and equations of motion. The same field/coupling/time dictionary is then extended by the spectral and auxiliary-gauge dictionaries to relate the traceless Lax pairs.
+- This local correspondence does not identify the two real phase spaces, Poisson structures, periodic monodromies or global boundary sectors; the transformations are not generically periodic.
 
 Detailed comparison:
 
 - `notes/parts/12_class5_generic_lax_comparison.tex`
+- `notes/parts/12b_class5_hamiltonian_comparison.tex`
 - `scripts/class5/verify_lax_correspondence.py`
+- `scripts/class5/verify_hamiltonian_correspondence.py`
 - `results/class5/lax_correspondence/verification_results.json`
+- `results/class5/lax_correspondence/hamiltonian_verification.json`
 
 ## Class 6
 
@@ -125,27 +131,30 @@ The ML searches identify coefficient patterns within stated finite ansatz spaces
 
 ## Manuscript and Git status
 
-The full research and manuscript revision has been integrated into `main` in this order:
+The main research/manuscript stack was integrated into `main` through PRs #12--#16. Draft PR #17, `editorial/restore-intro-and-model-comparison`, contains the current pre-merge revision prompted by the latest self-review.
 
-1. PR #12 -- shared-site generalization, research-note integration, XXZ control and Class 6/eleven-vertex validation -- normal merge.
-2. PR #13 -- Class 5 normalization and Kameyama--Yoshida correspondence -- normal merge.
-3. PR #14 -- manuscript restructuring and final novelty framing -- squash merge.
+PR #17 changes the manuscript in three substantive ways:
 
-The final manuscript source is `paper/main.tex`. Before PR #14 was merged, CI passed all physics checks, ML checks, manuscript compilation and complete Japanese research-note compilation. The resulting 36-page manuscript PDF was rendered page-by-page and visually reviewed.
+1. the Introduction is again literature-led and contains no equations;
+2. the Kameyama--Yoshida comparison is ordered as Hamiltonian density -> EOM -> Lax pair, with an independent exact verification of the Hamiltonian/EOM map;
+3. the central shared-site identity now has an analytic paper-level derivation in Appendix A.
+
+The Abstract is also shortened to state the analytic result without displaying the shared-site formula, and ML is no longer mentioned there. Appendix B retains the full ML ansatz/loss/reproduction details.
 
 Current paper structure:
 
 ```text
 1 Introduction
 2 Quantum lattice setup and continuum limit
-  2.x Common form of the shared-site correction
+  2.x Shared-site correction and the Sutherland relation
 3 Class 5 model
-  3.x Relation to the null-like warped SL(2) Landau--Lifshitz pair
+  3.x Comparison with the null-like warped SL(2) Landau--Lifshitz model
 4 Class 6 model
   4.x Comparison with the known eleven-vertex Landau--Lifshitz pair
 5 Comparison of Class 5 and Class 6
 6 Summary and discussion
-A Machine-learning searches for the Lax pairs
+A Derivation of the shared-site identity
+B Machine-learning searches for the Lax pairs
 ```
 
 XXZ remains a research/control example rather than a third full manuscript model.
