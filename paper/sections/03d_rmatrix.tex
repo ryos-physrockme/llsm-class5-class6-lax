@@ -95,12 +95,48 @@ $U_{5,2}:=\Id_2\otimes U_5$ act on the first and second auxiliary spaces,
 respectively.  The rational part of
 Eq.~\eqref{eq:class5-classical-rmatrix} is the usual isotropic
 Landau--Lifshitz contribution, whereas the constant term contains the Class 5
-deformation.  This structure is consistent with the classical $r$-matrix
-obtained from the Class 5 quantum model in
-Ref.~\cite{deLeeuwFontanellaNietoGarcia2026}.
+deformation.
 
-Let $\mathcal P$ denote path ordering with larger spatial coordinates to
-the left.  The classical monodromy matrix is
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} gives a quadratic Poisson
+algebra for the classical Lax matrix obtained from its Class 5 quantum Lax
+operator.  Equation~\eqref{eq:class5-linear-rmatrix-algebra} concerns the
+long-wavelength coefficient $U_5$ defined by
+Eq.~\eqref{eq:class5-L-lower-expansion}.  Its bracket follows directly from
+the continuum spin Poisson bracket
+\eqref{eq:class5-poisson-bracket}.  The relation of the underlying quantum
+representative to $U_5$ is fixed in
+Section~\ref{sec:class5-spatial-lax}, with the continuum normalization of
+Eqs.~\eqref{eq:class5-deformation-scaling}--\eqref{eq:class5-normalized-L}.
+
+For the representative used here, Eq.~(37) of
+Ref.~\cite{deLeeuwFontanellaNietoGarcia2026} gives the classical
+$r$-matrix
+\begin{equation}
+r_{\mathrm{ref}}(u;\kappa_5)
+=
+-\left(
+\frac{R_5(u;\kappa_5)}{2u}-\Id_4
+\right)
+=
+-\frac{P}{2u}-\kappa_5 K_5.
+\label{eq:class5-reference-rmatrix}
+\end{equation}
+Since $K_5=C_{12}$ in the basis used above, the spectral and deformation
+scalings give
+\begin{equation}
+r^{(5)}_{12}(\zeta,\lambda)
+=
+-\frac{\ii}{\epsilon}\,
+r_{\mathrm{ref}}\!\left(
+\frac{\zeta-\lambda}{\epsilon};
+\epsilon\alpha_5
+\right),
+\label{eq:class5-rmatrix-dictionary}
+\end{equation}
+which reproduces Eq.~\eqref{eq:class5-classical-rmatrix}.
+
+Let $\mathcal P$ denote path ordering with larger spatial coordinates to the
+left.  The classical monodromy matrix is
 \begin{equation}
 T(x,y;\zeta)
 :=

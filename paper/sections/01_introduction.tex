@@ -17,9 +17,13 @@ Ref.~\cite{AvanDoikouSfetsos2010}, while classical continuum Hamiltonians,
 time Lax matrices and boundary terms were studied in
 Ref.~\cite{DoikouKaraiskos2011}.  On the quantum lattice, the time component
 can be generated from the monodromy and the local Hamiltonians
-\cite{DoikouFindlay2020}.  Relating that finite-lattice time operator directly
-to the continuum time matrix requires care because the local zero-curvature
-equation contains products of operators that act on a common physical site.
+\cite{DoikouFindlay2020}.  In the global lattice sums considered in
+Ref.~\cite{AvanDoikouSfetsos2010}, coincident site labels reduce the number of
+independent sums and are subleading in the leading continuum contribution.
+The local zero-curvature equation considered here has a different power
+counting: its two shared-site products have leading contributions that cancel,
+while the first spatial Taylor terms and the next operator-product terms enter
+at the order of the continuum time derivative.
 
 The Class 5 and Class 6 chains considered here are two non-Hermitian
 spin-$\tfrac12$ deformations of the XXX chain that appear in the
@@ -28,9 +32,14 @@ classification of regular nearest-neighbour integrable Hamiltonians
 Jordan blocks.  De Leeuw, Fontanella and Nieto Garc\'ia derived the associated
 Landau--Lifshitz continuum models and higher conserved charges
 \cite{deLeeuwFontanellaNietoGarcia2026}.  In Class 5 the deformation is
-related to a Jordanian Drinfeld twist.  The same work obtained a continuum
-spatial Lax matrix but did not construct a compatible time component in those
-variables.
+related to a Jordanian Drinfeld twist.  The same work constructed a classical
+spatial Lax matrix from the Class 5 quantum Lax operator and established its
+quadratic Poisson algebra; a companion matrix for that construction was left
+open.  We use the same Class 5 quantum $R$-matrix family in the fundamental
+representation.  Its normalized spin-$\tfrac12$ lower symbol has the spatial
+matrix $U_5$ of Section~\ref{sec:class5-spatial-lax} as the leading
+long-wavelength coefficient, and the finite-lattice time operator determines
+the corresponding continuum time matrix below.
 
 The classical structures reached by these deformations are related to known
 integrable models.  The null-like warped $SL(2)$ Landau--Lifshitz model of
@@ -45,14 +54,17 @@ continuum limits.
 For the Class 5 and Class 6 chains, the question addressed here is the local
 quantum-to-classical passage for the time component.  At fixed spin
 $\tfrac12$, smoothness suppresses differences between neighbouring
-coherent-state labels, but it does not turn products on a common site into
-products of their separate lower symbols.  The nonmultiplicativity itself is
+coherent-state labels, while products on a common site retain the finite-spin
+operator algebra.  The resulting nonmultiplicativity of lower symbols is
 standard in coherent-state symbol calculus
-\cite{Perelomov1986,Schlichenmaier2010}; here its contribution must be tracked
-at the order of the long-wavelength expansion relevant to the local
-time-evolution equation.  The undeformed XXX chain provides a useful control:
-a direct product of separate lower symbols gives an incorrect coefficient in
-the standard time matrix.
+\cite{Perelomov1986,Schlichenmaier2010}; finite-spin star products provide an
+explicit symbol calculus for such operator products
+\cite{KoczorZeierGlaser2019}.  The calculation below tracks these shared-site
+products through the order relevant to the local time-evolution equation and
+uses the Sutherland relation to combine the surviving terms into a local
+source.  The undeformed XXX chain provides a useful control: replacing the
+shared-site products by products of separate lower symbols gives an incorrect
+coefficient in the standard time matrix.
 
 In this paper we take the finite-lattice time Lax operators of the Class 5
 and Class 6 chains to the long-wavelength limit while retaining these
