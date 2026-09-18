@@ -1,119 +1,44 @@
 \subsection{Quantum spin chains and the lattice Lax equation}
 \label{sec:quantum-lattice-setup}
 
-The two lattice models studied in this paper are homogeneous periodic spin chains with
-nearest-neighbour interactions and a two-dimensional local Hilbert space.  We
-use the standard quantum inverse-scattering framework for such chains
-\cite{Faddeev1996,AvanDoikouSfetsos2010}, with the following notation.
-
-Let $\mathcal H_{\rm loc}\simeq\mathbb C^2$ denote a reference local Hilbert
-space.  Consider a chain with $N$ lattice sites, and let $\mathcal H_n$ be a
-copy of $\mathcal H_{\rm loc}$ assigned to the $n$th site,
-\begin{equation}
-\mathcal H_n \simeq \mathcal H_{\rm loc} \simeq \mathbb C^2,
-\qquad n=1,\ldots,N.
-\label{eq:local-hilbert-space}
-\end{equation}
-The Hilbert space of the full chain is the tensor product
-\begin{equation}
-\mathcal H^{(N)}
- = \mathcal H_1\otimes\mathcal H_2\otimes\cdots\otimes\mathcal H_N.
-\label{eq:full-hilbert-space}
-\end{equation}
-We impose periodic boundary conditions, so the site labels are understood
-modulo $N$; in particular, the site following $N$ is site $1$.
-
-A homogeneous nearest-neighbour Hamiltonian is specified by a single
-\emph{two-site Hamiltonian operator}
-\begin{equation}
-h\in \operatorname{End}(\mathcal H_{\rm loc}\otimes\mathcal H_{\rm loc}).
-\label{eq:two-site-hamiltonian}
-\end{equation}
-The adjective ``homogeneous'' means that the same two-site operator $h$ is
-used on every nearest-neighbour bond.  We denote by $h_{n,n+1}$ the operator
-on the full Hilbert space \eqref{eq:full-hilbert-space} that acts as $h$ on
-\(\mathcal H_n\otimes\mathcal H_{n+1}\) and as the identity on all remaining
-sites.  For $1\leq n<N$, this embedding is explicitly
-\begin{equation}
-h_{n,n+1}
- = \Id_{\mathcal H_1}\otimes\cdots\otimes
-   \Id_{\mathcal H_{n-1}}\otimes h\otimes
-   \Id_{\mathcal H_{n+2}}\otimes\cdots\otimes
-   \Id_{\mathcal H_N}.
-\label{eq:embedded-two-site-hamiltonian}
-\end{equation}
-For the bond joining the last and first sites, $h_{N,1}$ denotes the same
-operator $h$ acting on \(\mathcal H_N\otimes\mathcal H_1\), with the other
-sites left unchanged.  Thus $h_{n,n+1}$ is the copy of the fixed two-site
-operator $h$ on the $n$th bond.
-
-With these conventions, the Hamiltonian of the periodic chain is
+The two lattice models studied in this paper are homogeneous periodic spin
+chains with nearest-neighbour interactions and a two-dimensional local Hilbert
+space.  We use the standard quantum inverse-scattering framework
+\cite{Faddeev1996,AvanDoikouSfetsos2010}.  Let
+$\mathcal H_n\simeq\mathbb C^2$ be the Hilbert space at site $n$ and
+$\mathcal H^{(N)}=\bigotimes_{n=1}^{N}\mathcal H_n$ the Hilbert space of the
+periodic chain.  A fixed two-site operator
+$h\in\End(\mathbb C^2\otimes\mathbb C^2)$ is embedded as $h_{n,n+1}$ on
+each nearest-neighbour bond, with site labels understood modulo $N$.  The
+lattice Hamiltonian is
 \begin{equation}
 H^{\mathrm{lat}}
  = \sum_{n=1}^{N} h_{n,n+1},
 \qquad h_{N,N+1}\equiv h_{N,1}.
 \label{eq:generic-lattice-hamiltonian}
 \end{equation}
-The model dependence therefore enters through the choice of the single
-matrix $h$.  We next introduce the quantum $R$-matrix and the lattice Lax
-equation associated with a nearest-neighbour integrable chain.
 
-
-For the integrable chains considered in this paper, the local interaction is
-encoded by a quantum $R$-matrix.  Introduce an auxiliary space
-\begin{equation}
-\mathcal V_a\simeq\mathcal H_{\rm loc}\simeq\mathbb C^2,
-\label{eq:auxiliary-space}
-\end{equation}
-which is a tensor factor distinct from the physical Hilbert spaces
-$\mathcal H_n$.  When several auxiliary spaces are required, we label them by
-$a,b,c$.
-
-Let $u\in\mathbb C$ denote the \emph{quantum spectral parameter}.  A quantum
-$R$-matrix in the representation used here is a family of two-site operators
-\begin{equation}
-R(u)\in\End(\mathcal H_{\rm loc}\otimes\mathcal H_{\rm loc}).
-\label{eq:quantum-R-matrix-definition}
-\end{equation}
-Whenever two tensor factors are individually labelled, the corresponding
-subscripts indicate the copy of this same two-site operator acting on those
-factors.  Thus, for example,
-$R_{ab}(u)\in\End(\mathcal V_a\otimes\mathcal V_b)$ and
-$R_{a,n}(u)\in\End(\mathcal V_a\otimes\mathcal H_n)$.
-
-The models considered here have an $R$-matrix of difference form.  Its
-Yang--Baxter equation is
-\begin{align}
-&R_{ab}(u-v)\,R_{ac}(u-w)\,R_{bc}(v-w)
-\nonumber\\
-&\hspace{30mm}=
-R_{bc}(v-w)\,R_{ac}(u-w)\,R_{ab}(u-v),
-\label{eq:quantum-yang-baxter}
-\end{align}
-which is an operator identity on
-$\mathcal V_a\otimes\mathcal V_b\otimes\mathcal V_c$
-\cite{Faddeev1996}.  The subscripts indicate the two tensor factors on which
-each copy of $R$ acts.
-
-Let
-\begin{equation}
-P\in\End(\mathcal H_{\rm loc}\otimes\mathcal H_{\rm loc})
-\label{eq:local-permutation-operator}
-\end{equation}
-be the permutation operator defined by
-$P(|v\rangle\otimes|w\rangle)=|w\rangle\otimes|v\rangle$.
-As for the $R$-matrix, $P_{ab}$ denotes its copy on
-$\mathcal V_a\otimes\mathcal V_b$.  We normalize the $R$-matrix so that its
-regular point is $u=0$,
+For the integrable chains considered here, the local interaction is encoded by
+a quantum $R$-matrix of difference form.  Let
+$\mathcal V_a\simeq\mathbb C^2$ denote an auxiliary space and
+$u\in\mathbb C$ the quantum spectral parameter.  We write $R_{ab}(u)$ and
+$R_{a,n}(u)$ for the same two-site $R$-matrix acting on the indicated tensor
+factors.  The $R$-matrix satisfies the Yang--Baxter equation and is normalized
+at the regular point by
 \begin{equation}
 R(0)=P,
 \qquad\text{equivalently}\qquad
-R_{ab}(0)=P_{ab}.
+R_{ab}(0)=P_{ab},
 \label{eq:R-regularity}
 \end{equation}
-For a regular fundamental spin-$\tfrac12$ chain, the two-site Hamiltonian
-operator introduced in \eqref{eq:two-site-hamiltonian} is obtained from the
-same two-site $R$-matrix as
+where
+\begin{equation}
+P\in\End(\mathbb C^2\otimes\mathbb C^2)
+\label{eq:local-permutation-operator}
+\end{equation}
+is the permutation operator,
+$P(|v\rangle\otimes|w\rangle)=|w\rangle\otimes|v\rangle$.
+For a regular fundamental spin-$\tfrac12$ chain, the two-site Hamiltonian is
 \begin{equation}
 h
 =
@@ -121,63 +46,25 @@ P\left.\frac{\partial R(u)}{\partial u}\right|_{u=0}.
 \label{eq:h-from-R}
 \end{equation}
 This is the standard relation between a regular $R$-matrix and the
-nearest-neighbour Hamiltonian density in the quantum inverse-scattering
-construction \cite{Faddeev1996,deLeeuwPribytokRyan2019}.
+nearest-neighbour Hamiltonian density
+\cite{Faddeev1996,deLeeuwPribytokRyan2019}.
 
-A scalar rescaling $R(u)\mapsto f(u)R(u)$ with $f(0)=1$ preserves the
-regularity convention \eqref{eq:R-regularity} and adds
-$f'(0)\Id$ to $h$.  This term shifts the total energy by a constant and leaves
-the Heisenberg equations unchanged.  An overall rescaling of the spectral
-parameter amounts to a corresponding normalization of the Hamiltonian.
-These normalization freedoms are fixed together with each explicit
+A scalar rescaling $R(u)\mapsto f(u)R(u)$ with $f(0)=1$ preserves
+Eq.~\eqref{eq:R-regularity} and adds $f'(0)\Id$ to $h$.  This shifts the
+total energy by a constant and leaves the Heisenberg equations unchanged.  An
+overall rescaling of the spectral parameter corresponds to a normalization of
+the Hamiltonian.  These freedoms are fixed together with each explicit
 $R$-matrix.
 
-To associate the $R$-matrix with a particular physical site, one copy of its
-second tensor factor is identified with the local Hilbert space
-$\mathcal H_n$.  The resulting \emph{quantum lattice Lax operator} is
+The quantum lattice Lax operator at site $n$ is
 \begin{equation}
 L_{a,n}(u):=R_{a,n}(u)
 \in\End(\mathcal V_a\otimes\mathcal H_n).
 \label{eq:lattice-Lax-operator}
 \end{equation}
-For a fixed physical site $n$, the Yang--Baxter equation implies the local
-exchange relation
-\begin{align}
-R_{ab}(u-v)L_{a,n}(u)L_{b,n}(v)
-=
-L_{b,n}(v)L_{a,n}(u)R_{ab}(u-v),
-\label{eq:RLL-relation}
-\end{align}
-acting on $\mathcal V_a\otimes\mathcal V_b\otimes\mathcal H_n$.
-
-The ordered product of lattice Lax operators around the periodic chain defines
-the \emph{quantum monodromy matrix}
-\begin{equation}
-T_a(u)
-:=L_{a,N}(u)L_{a,N-1}(u)\cdots L_{a,1}(u),
-\label{eq:quantum-monodromy}
-\end{equation}
-and tracing over the auxiliary space gives the \emph{transfer matrix}
-\begin{equation}
-\tau(u):=\tr_a T_a(u).
-\label{eq:quantum-transfer-matrix}
-\end{equation}
-Equation~\eqref{eq:RLL-relation} implies
-\begin{equation}
-[\tau(u),\tau(v)]=0,
-\label{eq:commuting-transfer-matrices}
-\end{equation}
-so an expansion of $\tau(u)$ generates mutually commuting quantum charges
-\cite{Faddeev1996}.
-At the regular point, the logarithmic derivative of the transfer matrix
-reproduces the nearest-neighbour Hamiltonian
-\eqref{eq:generic-lattice-hamiltonian}, up to the scalar and normalization
-freedoms described after \eqref{eq:h-from-R}.
-
-We next need the local equation governing the time evolution of
-$L_{a,n}(u)$.  Differentiating the Yang--Baxter relation at its regular point
-and using \eqref{eq:h-from-R} gives the \emph{Sutherland relation}
-\cite{deLeeuwPribytokRyan2019}
+Differentiating the Yang--Baxter equation at the regular point and using
+Eq.~\eqref{eq:h-from-R} gives the Sutherland relation
+\cite{deLeeuwPribytokRyan2019},
 \begin{align}
 &[h_{n-1,n},L_{a,n}(u)L_{a,n-1}(u)]
 \nonumber\\
@@ -187,8 +74,8 @@ L_{a,n}(u)\,\partial_u L_{a,n-1}(u)
 \bigl(\partial_uL_{a,n}(u)\bigr)L_{a,n-1}(u).
 \label{eq:Sutherland-relation}
 \end{align}
-Here $h_{n-1,n}$ denotes the embedding, defined above, of the same two-site
-Hamiltonian $h$ on the neighbouring physical sites $n-1$ and $n$.
+Here $h_{n-1,n}$ is the same two-site Hamiltonian acting on the neighbouring
+physical sites $n-1$ and $n$.
 
 Let $t_{\rm lat}$ denote the quantum lattice time.  For an operator
 $\mathcal O$ with no explicit time dependence we use the Heisenberg equation
