@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, editorial/inspire-bibtex]
+    branches: [main]
   pull_request:
     branches: [main]
 
